@@ -1,0 +1,18 @@
+//
+//  PrefixHeader.pch
+//  ddt
+//
+//  Created by gener on 15/7/5.
+//  Copyright (c) 2015年 Light. All rights reserved.
+//
+
+#ifndef ddt_PrefixHeader_pch
+#define ddt_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "DDT_SYS_CONSTIST.h"
+#import "LocationManger.h"
+#import "SVProgressHUD/SVProgressHUD.h"
+#endif
