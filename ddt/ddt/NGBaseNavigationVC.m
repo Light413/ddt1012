@@ -23,7 +23,7 @@
     if (IOS7LATER) {
         self.navigationBar.translucent = YES;//设置半透明效果
         self.navigationBar.barStyle = UIBarStyleBlack;
-        self.navigationBar.barTintColor = NGNavigationBgColor;//设置bar的背景颜色
+        self.navigationBar.barTintColor = BarDefaultColor;//设置bar的背景颜色
         [self.navigationBar setTintColor:[UIColor whiteColor]];//设置按钮字体颜色
         [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];//设置标题颜色
     }

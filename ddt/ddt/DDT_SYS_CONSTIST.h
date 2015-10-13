@@ -25,5 +25,10 @@
 
 #define IOS7LATER CurrentIOSVersion >= 7.0f
 
+//bar默认颜色
+#define BarDefaultColor [UIColor colorWithRed:0.976 green:0.643 blue:0.180 alpha:1]
+
+
+
 
 #endif

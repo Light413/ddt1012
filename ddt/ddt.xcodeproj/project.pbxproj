@@ -26,6 +26,10 @@
 		A12CD4F61BCBAC990020CB27 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A12CD4EE1BCBAC990020CB27 /* LICENSE */; };
 		A12CD4F71BCBAC990020CB27 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A12CD4EF1BCBAC990020CB27 /* README.md */; };
 		A12CD4F91BCBAD630020CB27 /* homeSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A12CD4F81BCBAD630020CB27 /* homeSB.storyboard */; };
+		A143F8391BCC96BA0029E555 /* secondSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A143F8381BCC96BA0029E555 /* secondSB.storyboard */; };
+		A143F83B1BCC96D50029E555 /* companySB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A143F83A1BCC96D50029E555 /* companySB.storyboard */; };
+		A143F83D1BCC96E50029E555 /* me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A143F83C1BCC96E50029E555 /* me.storyboard */; };
+		A143F8401BCCA5D60029E555 /* NGSecondVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A143F83F1BCCA5D60029E555 /* NGSecondVC.m */; };
 		A15A95271BC7C3F200643170 /* NGCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A15A95251BC7C3F200643170 /* NGCollectionViewCell.m */; };
 		A15A95281BC7C3F200643170 /* NGCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15A95261BC7C3F200643170 /* NGCollectionViewCell.xib */; };
 		A17B7CF41B43F867003CF895 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A17B7CF31B43F867003CF895 /* main.m */; };
@@ -86,6 +90,11 @@
 		A12CD4EE1BCBAC990020CB27 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		A12CD4EF1BCBAC990020CB27 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A12CD4F81BCBAD630020CB27 /* homeSB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = homeSB.storyboard; sourceTree = "<group>"; };
+		A143F8381BCC96BA0029E555 /* secondSB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = secondSB.storyboard; sourceTree = "<group>"; };
+		A143F83A1BCC96D50029E555 /* companySB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = companySB.storyboard; sourceTree = "<group>"; };
+		A143F83C1BCC96E50029E555 /* me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = me.storyboard; sourceTree = "<group>"; };
+		A143F83E1BCCA5D60029E555 /* NGSecondVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSecondVC.h; sourceTree = "<group>"; };
+		A143F83F1BCCA5D60029E555 /* NGSecondVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSecondVC.m; sourceTree = "<group>"; };
 		A15A95241BC7C3F200643170 /* NGCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCollectionViewCell.h; sourceTree = "<group>"; };
 		A15A95251BC7C3F200643170 /* NGCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGCollectionViewCell.m; sourceTree = "<group>"; };
 		A15A95261BC7C3F200643170 /* NGCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -241,6 +250,9 @@
 				A17B7CF61B43F867003CF895 /* AppDelegate.m */,
 				A17B7CFB1B43F867003CF895 /* MainSB.storyboard */,
 				A12CD4F81BCBAD630020CB27 /* homeSB.storyboard */,
+				A143F8381BCC96BA0029E555 /* secondSB.storyboard */,
+				A143F83A1BCC96D50029E555 /* companySB.storyboard */,
+				A143F83C1BCC96E50029E555 /* me.storyboard */,
 				A17B7CFE1B43F867003CF895 /* Images.xcassets */,
 				A17B7D001B43F867003CF895 /* LaunchScreen.xib */,
 				A17B7CF11B43F867003CF895 /* Supporting Files */,
@@ -253,6 +265,7 @@
 			children = (
 				A1042B821B64D53600A74215 /* test */,
 				A1C1D5991B4919B0008BF54B /* Icon@3x.png */,
+				A1DAAE6D1B493100004F634B /* DDT_SYS_CONSTIST.h */,
 				A17B7CF21B43F867003CF895 /* Info.plist */,
 				A17B7CF31B43F867003CF895 /* main.m */,
 				A1DAAE6E1B49332B004F634B /* PrefixHeader.pch */,
@@ -283,7 +296,6 @@
 			children = (
 				A12CD4FA1BCBBEDF0020CB27 /* thirdparty */,
 				A1C309F61BC65A1F00B46BC2 /* Location */,
-				A1DAAE6D1B493100004F634B /* DDT_SYS_CONSTIST.h */,
 				A1DAAE661B492EF7004F634B /* BaseVC */,
 			);
 			name = commin;
@@ -335,6 +347,8 @@
 		A1DAAE711B493995004F634B /* tonghang */ = {
 			isa = PBXGroup;
 			children = (
+				A143F83E1BCCA5D60029E555 /* NGSecondVC.h */,
+				A143F83F1BCCA5D60029E555 /* NGSecondVC.m */,
 			);
 			name = tonghang;
 			sourceTree = "<group>";
@@ -457,11 +471,14 @@
 				A12CD4F61BCBAC990020CB27 /* LICENSE in Resources */,
 				A1AC85561BC8DB460099C7F7 /* NGCollectionReusableView.xib in Resources */,
 				A15A95281BC7C3F200643170 /* NGCollectionViewCell.xib in Resources */,
+				A143F83D1BCC96E50029E555 /* me.storyboard in Resources */,
 				A17B7D021B43F867003CF895 /* LaunchScreen.xib in Resources */,
 				A12CD4F91BCBAD630020CB27 /* homeSB.storyboard in Resources */,
+				A143F83B1BCC96D50029E555 /* companySB.storyboard in Resources */,
 				A1042B8A1B64D55400A74215 /* image3.png in Resources */,
 				A1042B881B64D55400A74215 /* image1.png in Resources */,
 				A12CD4DD1BCBA6960020CB27 /* SVProgressHUD.bundle in Resources */,
+				A143F8391BCC96BA0029E555 /* secondSB.storyboard in Resources */,
 				A1C1D59A1B4919B0008BF54B /* Icon@3x.png in Resources */,
 				A17B7CFF1B43F867003CF895 /* Images.xcassets in Resources */,
 				A1042B891B64D55400A74215 /* image2.png in Resources */,
@@ -534,6 +551,7 @@
 				A12CD4DE1BCBA6960020CB27 /* SVProgressHUD.m in Sources */,
 				A1C309F91BC65DD300B46BC2 /* LocationManger.m in Sources */,
 				A12CD4F11BCBAC990020CB27 /* RBStoryboardModalSegue.m in Sources */,
+				A143F8401BCCA5D60029E555 /* NGSecondVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,9 +32,18 @@ static NSString *NGCollectionHeaderReuseID = @"NGCollectionHeaderReuseID";
     [super viewDidLoad];
     NSString *path= [[NSBundle mainBundle]pathForResource:@"menuItem" ofType:@"plist"];
     _itemArray = [[NSArray alloc]initWithContentsOfFile:path];
-    
-//    [self initTopView];
     [self initCollectionView];
+    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+    //获取位置信息
+    [SVProgressHUD showWithStatus:@"正在获取位置"];
+    [[LocationManger shareManger]getLocationWithSuccessBlock:^(NSString *str) {
+        [SVProgressHUD dismiss];
+        NSLog(@"current location : %@",str);
+        [leftBtn setTitle:str forState:UIControlStateNormal];
+    } andFailBlock:^(NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -49,8 +58,9 @@ static NSString *NGCollectionHeaderReuseID = @"NGCollectionHeaderReuseID";
 }
 -(void)awakeFromNib
 {
-[self initTopView];
+    [self initTopView];
 }
+
 #pragma mark-init subview
 -(void)initTopView
 {
@@ -76,7 +86,7 @@ static NSString *NGCollectionHeaderReuseID = @"NGCollectionHeaderReuseID";
     
     //搜索栏初始化
     
-    //..topScrollView
+    //topScrollView
     _pageCtr = [[UIPageControl alloc]initWithFrame:CGRectMake((CurrentScreenWidth - 100)/2.0, ScrollViewHeight - 20, 100, 20)];
     _pageCtr.numberOfPages  = 4;
     _pageCtr.currentPageIndicatorTintColor =[UIColor colorWithRed:0.345 green:0.678 blue:0.910 alpha:1];
@@ -85,7 +95,7 @@ static NSString *NGCollectionHeaderReuseID = @"NGCollectionHeaderReuseID";
     _topScrollView.backgroundColor = [UIColor lightGrayColor];
     _topScrollView.contentSize = CGSizeMake(CurrentScreenWidth * 4, ScrollViewHeight);
     _topScrollView.contentInset = UIEdgeInsetsZero;
-    //     [self.view addSubview:_topScrollView];
+    //[self.view addSubview:_topScrollView];
     _topScrollView.delegate  =self;
     _topScrollView.pagingEnabled = YES;
     _topScrollView.showsHorizontalScrollIndicator = NO;
@@ -98,17 +108,6 @@ static NSString *NGCollectionHeaderReuseID = @"NGCollectionHeaderReuseID";
         [_topScrollView addSubview:imgv];
     }
     [_topScrollView addSubview:_pageCtr];
-    _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
-    
-    //获取位置信息
-    [SVProgressHUD showWithStatus:@"正在获取位置"];
-    [[LocationManger shareManger]getLocationWithSuccessBlock:^(NSString *str) {
-        [SVProgressHUD dismiss];
-        NSLog(@"current location : %@",str);
-        [leftBtn setTitle:str forState:UIControlStateNormal];
-    } andFailBlock:^(NSError *error) {
-        [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];
-    }];
 }
 
 -(void)initCollectionView
@@ -130,6 +129,7 @@ static NSString *NGCollectionHeaderReuseID = @"NGCollectionHeaderReuseID";
     [_collectionView registerNib:[UINib nibWithNibName:@"NGCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NGCollectionHeaderReuseID];
 }
 
+#pragma mark -timer action
 -(void)timerAction
 {
     CGPoint currentPoint = _topScrollView.contentOffset;

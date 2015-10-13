@@ -56,7 +56,12 @@
 
 -(void)initTabBar
 {
-    self.rootTabVC.tabBar.tintColor = [UIColor colorWithRed:0.227 green:0.643 blue:0.922 alpha:1];
+    NSArray *titleArr  = @[@"首页",@"同行",@"公司",@"我的",];
+    self.rootTabVC.tabBar.tintColor = BarDefaultColor;
+    NSArray *_itemArr = self.rootTabVC.tabBar.items;
+    [_itemArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [(UIBarButtonItem *)obj setTitle:[titleArr objectAtIndex:idx]];
+    }];
 }
 
 

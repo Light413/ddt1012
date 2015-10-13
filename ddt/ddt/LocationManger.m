@@ -36,13 +36,18 @@
 
 -(void)startLocation
 {
-
+    UIAlertView *_alertView= nil;
     if([CLLocationManager locationServicesEnabled])
     {
-//        CLAuthorizationStatus statue = [CLLocationManager authorizationStatus];
-//        if (statue == kCLAuthorizationStatusDenied) {
-//            [SVProgressHUD showInfoWithStatus:@"请在[设置-隐私-定位服务]中允许访问位置信息"];return;
-//        }
+        CLAuthorizationStatus statue = [CLLocationManager authorizationStatus];
+        if (statue == kCLAuthorizationStatusDenied) {
+            [SVProgressHUD dismiss];
+            if (_alertView == nil) {
+                _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            }
+            _alertView.message =@"请在[设置-隐私-定位服务]中允许访问位置信息";
+            [_alertView show];return;
+        }
         
         _manger.delegate =self;
         _manger.distanceFilter = 10.0;
@@ -57,7 +62,12 @@
     }
     else
     {
-        NSLog(@"请打开定位服务");
+        [SVProgressHUD dismiss];
+        if (_alertView == nil) {
+            _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        }
+        _alertView.message =@"请在[设置-隐私]中打开定位服务";
+        [_alertView show];;
     }
 }
 
