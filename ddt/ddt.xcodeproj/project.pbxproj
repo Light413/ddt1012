@@ -327,7 +327,7 @@
 		A1DAAE6F1B493944004F634B /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				A1DAAE701B493969004F634B /* shouye */,
+				A1DAAE701B493969004F634B /* home */,
 				A1DAAE711B493995004F634B /* tonghang */,
 				A1DAAE721B493999004F634B /* gongsi */,
 				A1DAAE731B49399B004F634B /* me */,
@@ -335,13 +335,13 @@
 			name = controller;
 			sourceTree = "<group>";
 		};
-		A1DAAE701B493969004F634B /* shouye */ = {
+		A1DAAE701B493969004F634B /* home */ = {
 			isa = PBXGroup;
 			children = (
 				A1042B7F1B64D1E600A74215 /* NGHomeVC.h */,
 				A1042B801B64D1E600A74215 /* NGHomeVC.m */,
 			);
-			name = shouye;
+			name = home;
 			sourceTree = "<group>";
 		};
 		A1DAAE711B493995004F634B /* tonghang */ = {

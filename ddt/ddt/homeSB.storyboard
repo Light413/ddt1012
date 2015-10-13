@@ -20,10 +20,69 @@
                     </view>
                     <navigationItem key="navigationItem" id="27g-GL-qGl"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="wkz-vK-zWR" kind="presentation" identifier="searchCityIdentifier" id="T4N-uH-xhZ"/>
+                        <segue destination="Id6-fw-HFB" kind="show" identifier="showItemDetailIdentifier" id="Egy-v7-4F1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cix-hC-A6A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="730" y="498"/>
+            <point key="canvasLocation" x="-596" y="233"/>
+        </scene>
+        <!--贷易通-->
+        <scene sceneID="Grk-6k-qtg">
+            <objects>
+                <viewController title="贷易通" id="vWx-tJ-Tji" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cjU-vI-e9P"/>
+                        <viewControllerLayoutGuide type="bottom" id="AbU-m8-ex2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QKk-NB-rY9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="贷易通" id="ubP-el-xDT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hKF-Ei-8XC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1461" y="-72"/>
+        </scene>
+        <!--贷易通-->
+        <scene sceneID="c1g-Gr-7XI">
+            <objects>
+                <viewController title="贷易通" id="Id6-fw-HFB" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ewt-M2-K3z"/>
+                        <viewControllerLayoutGuide type="bottom" id="4Ai-AO-yXy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pS3-BZ-Tnb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7L9-tZ-Abi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="656" y="658"/>
+        </scene>
+        <!--Base NavigationVC-->
+        <scene sceneID="1ef-JP-c62">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wkz-vK-zWR" customClass="NGBaseNavigationVC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uai-M2-fQO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vWx-tJ-Tji" kind="relationship" relationship="rootViewController" id="zhb-oe-Zea"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pqU-2b-Sa8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="649" y="-72"/>
         </scene>
     </scenes>
 </document>

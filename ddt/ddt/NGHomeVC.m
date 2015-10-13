@@ -14,6 +14,8 @@
 
 static NSString *NGCollectionHeaderReuseID = @"NGCollectionHeaderReuseID";
 
+static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item 详情页Id
+
 @interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 @end
@@ -150,7 +152,7 @@ static NSString *NGCollectionHeaderReuseID = @"NGCollectionHeaderReuseID";
 #pragma mark -btn Action
 -(void)locationBtnAction :(UIButton*)btn
 {
-    
+    [self performSegueWithIdentifier:@"searchCityIdentifier" sender:nil];
 }
 
 -(void)siginBtnAction :(UIButton*)btn
@@ -190,9 +192,7 @@ static NSString *NGCollectionHeaderReuseID = @"NGCollectionHeaderReuseID";
 {
     NSArray *_arr = [_itemArray objectAtIndex:indexPath.section];
     NSDictionary *dic = [_arr objectAtIndex:indexPath.row];
-    
     NGCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"NGCollectionViewCellID" forIndexPath:indexPath];
-    //    cell.backgroundColor = [UIColor lightGrayColor];
     cell.image.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[dic objectForKey:@"imagename"]]];
     cell.title.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
     return cell;
@@ -248,6 +248,7 @@ static NSString *NGCollectionHeaderReuseID = @"NGCollectionHeaderReuseID";
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"%d - %d",indexPath.section,indexPath.row);
+    [self performSegueWithIdentifier:showItemDetailIdentifier sender:nil];
 }
 
 #pragma mark --UICollectionViewDelegateFlowLayout
@@ -281,6 +282,9 @@ static NSString *NGCollectionHeaderReuseID = @"NGCollectionHeaderReuseID";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:showItemDetailIdentifier]) {
+        
+    }
 }
 
 
