@@ -14,6 +14,8 @@
 		A1042B881B64D55400A74215 /* image1.png in Resources */ = {isa = PBXBuildFile; fileRef = A1042B841B64D55400A74215 /* image1.png */; };
 		A1042B891B64D55400A74215 /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1042B851B64D55400A74215 /* image2.png */; };
 		A1042B8A1B64D55400A74215 /* image3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1042B861B64D55400A74215 /* image3.png */; };
+		A12C56B81BCDE98200C6BF79 /* NGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A12C56B71BCDE98200C6BF79 /* NGSearchBar.m */; };
+		A12C56BC1BCDEDF600C6BF79 /* NGPopListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A12C56BB1BCDEDF600C6BF79 /* NGPopListView.m */; };
 		A12CD4DC1BCBA6960020CB27 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A12CD4D71BCBA6960020CB27 /* SVIndefiniteAnimatedView.m */; };
 		A12CD4DD1BCBA6960020CB27 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A12CD4D91BCBA6960020CB27 /* SVProgressHUD.bundle */; };
 		A12CD4DE1BCBA6960020CB27 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A12CD4DB1BCBA6960020CB27 /* SVProgressHUD.m */; };
@@ -68,6 +70,10 @@
 		A1042B841B64D55400A74215 /* image1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image1.png; sourceTree = "<group>"; };
 		A1042B851B64D55400A74215 /* image2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image2.png; sourceTree = "<group>"; };
 		A1042B861B64D55400A74215 /* image3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image3.png; sourceTree = "<group>"; };
+		A12C56B61BCDE98200C6BF79 /* NGSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSearchBar.h; sourceTree = "<group>"; };
+		A12C56B71BCDE98200C6BF79 /* NGSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSearchBar.m; sourceTree = "<group>"; };
+		A12C56BA1BCDEDF600C6BF79 /* NGPopListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGPopListView.h; sourceTree = "<group>"; };
+		A12C56BB1BCDEDF600C6BF79 /* NGPopListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGPopListView.m; sourceTree = "<group>"; };
 		A12CD4D61BCBA6960020CB27 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		A12CD4D71BCBA6960020CB27 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
 		A12CD4D81BCBA6960020CB27 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
@@ -153,6 +159,15 @@
 				A1042B861B64D55400A74215 /* image3.png */,
 			);
 			name = test;
+			sourceTree = "<group>";
+		};
+		A12C56B91BCDEDC000C6BF79 /* popListView */ = {
+			isa = PBXGroup;
+			children = (
+				A12C56BA1BCDEDF600C6BF79 /* NGPopListView.h */,
+				A12C56BB1BCDEDF600C6BF79 /* NGPopListView.m */,
+			);
+			name = popListView;
 			sourceTree = "<group>";
 		};
 		A12CD4D51BCBA6960020CB27 /* SVProgressHUD */ = {
@@ -294,6 +309,7 @@
 		A1C1D5911B48E658008BF54B /* commin */ = {
 			isa = PBXGroup;
 			children = (
+				A12C56B91BCDEDC000C6BF79 /* popListView */,
 				A12CD4FA1BCBBEDF0020CB27 /* thirdparty */,
 				A1C309F61BC65A1F00B46BC2 /* Location */,
 				A1DAAE661B492EF7004F634B /* BaseVC */,
@@ -320,6 +336,8 @@
 				A1DAAE6B1B492FC2004F634B /* NGBaseTableVC.m */,
 				A1042B7C1B64D0F000A74215 /* NGBaseVC.h */,
 				A1042B7D1B64D0F000A74215 /* NGBaseVC.m */,
+				A12C56B61BCDE98200C6BF79 /* NGSearchBar.h */,
+				A12C56B71BCDE98200C6BF79 /* NGSearchBar.m */,
 			);
 			name = BaseVC;
 			sourceTree = "<group>";
@@ -541,6 +559,7 @@
 				A12CD4F41BCBAC990020CB27 /* RBStoryboardSegue.m in Sources */,
 				A12CD4F71BCBAC990020CB27 /* README.md in Sources */,
 				A1DAAE6C1B492FC2004F634B /* NGBaseTableVC.m in Sources */,
+				A12C56B81BCDE98200C6BF79 /* NGSearchBar.m in Sources */,
 				A12CD4F01BCBAC990020CB27 /* RBStoryboardLink.m in Sources */,
 				A1042B7E1B64D0F000A74215 /* NGBaseVC.m in Sources */,
 				A12CD4F21BCBAC990020CB27 /* RBStoryboardPopoverSegue.m in Sources */,
@@ -548,6 +567,7 @@
 				A17B7CF71B43F867003CF895 /* AppDelegate.m in Sources */,
 				A1042B811B64D1E600A74215 /* NGHomeVC.m in Sources */,
 				A17B7CF41B43F867003CF895 /* main.m in Sources */,
+				A12C56BC1BCDEDF600C6BF79 /* NGPopListView.m in Sources */,
 				A12CD4DE1BCBA6960020CB27 /* SVProgressHUD.m in Sources */,
 				A1C309F91BC65DD300B46BC2 /* LocationManger.m in Sources */,
 				A12CD4F11BCBAC990020CB27 /* RBStoryboardModalSegue.m in Sources */,
