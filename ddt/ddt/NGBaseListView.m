@@ -15,6 +15,10 @@
 @implementation NGBaseListView
 {
     NSInteger _numberTableview;
+    id _dataSource;
+    
+    id _tableview1_selectedObj;//tableview1 选中的对象
+    id _tableview2_selectedObj;//tableview2 选中的对象 ,若无tableview2 则为nil
 }
 -(instancetype)initWithFrame:(CGRect)frame withDelegate  :(id)delegate
 {
@@ -22,6 +26,9 @@
     if (self) {
         self.delegate = delegate;
         _numberTableview = [self.delegate numOfTableViewInBaseView:self];
+        _dataSource = [self.delegate dataSourceOfBaseView];
+        _tableview1_selectedObj = nil;
+        _tableview2_selectedObj = nil;
         
         float width = frame.size.width * 1.0 / _numberTableview;
         for (int i=0; i < _numberTableview; i++) {
@@ -30,20 +37,23 @@
             _tableview.dataSource = self;
             _tableview.tag = NGTABLEVIEWTAG  +i;
             _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+            if (i == 1) {
+                _tableview.backgroundView = nil;
+                _tableview.backgroundColor = SubListViewCellNormalColor;
+            }
             [self addSubview:_tableview];
         }
     }
     return self;
 }
 
-
 -(void)setFrame:(CGRect)frame
 {
     [super setFrame:frame];
-    float width = frame.size.width * 1.0 / _numberTableview;
+    float width = frame.size.width * 1.0 / (_numberTableview == 2 ?5:_numberTableview);
     for (int i=0; i < self.subviews.count; i++) {
         UITableView *_tableview = (UITableView *)[self viewWithTag:NGTABLEVIEWTAG +i];
-        _tableview.frame = CGRectMake(width * i, 0, width, frame.size.height);
+        _tableview.frame = CGRectMake(width * i *2, 0, width *(i+2), frame.size.height);
         [_tableview reloadData];
     }
 }
@@ -55,7 +65,20 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([self.delegate respondsToSelector:@selector(dataSourceOfBaseView)]) {
-        return [self.delegate dataSourceOfBaseView].count;
+        id _obj = [self.delegate dataSourceOfBaseView];
+        if (tableView.tag == 300) {
+            if ([_obj isKindOfClass:[NSArray class]]) {
+                return ((NSArray*)_obj).count;
+            }
+            else if([_obj isKindOfClass:[NSDictionary class]])
+            {
+                return [((NSDictionary*)_obj) allKeys].count;
+            }
+        }
+        else if (tableView.tag == 301)
+        {
+            return [[((NSDictionary*)_obj) objectForKey:_tableview1_selectedObj] count];
+        }
     }
     return  0;
 }
@@ -67,6 +90,8 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *_title;
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellReuseIdentifier"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellReuseIdentifier"];
@@ -80,42 +105,72 @@
     }
     
     if (tableView.tag == 300) {
+        if (_numberTableview == 1) {
+            NSArray *_arr = (NSArray*)_dataSource;
+            _title = [_arr objectAtIndex:indexPath.row];
+        }
+        else if (_numberTableview == 2)
+        {
+            NSDictionary *_dic = (NSDictionary*)_dataSource;
+            _title = [[_dic allKeys] objectAtIndex:indexPath.row];
+        }
+        
         UILabel *_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, cell.frame.size.height  -1, cell.frame.size.width, 1)];
         _lab.backgroundColor = SubListViewCellNormalColor;
         [cell addSubview:_lab];
-        
+        cell.selectedBackgroundView = _numberTableview > 1?[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"btn_cell_selectedBG.jpg"]] : nil;
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     else
     {
         cell.backgroundColor = SubListViewCellNormalColor;
+        cell.selectedBackgroundView = nil;
+        NSDictionary *_dic = (NSDictionary*)_dataSource;
+        NSArray *_arr1 = [_dic objectForKey:_tableview1_selectedObj];
+        _title = [_arr1 objectAtIndex:indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-
-    NSArray *_arr =[self.delegate dataSourceOfBaseView];
-    NSString *_title = [_arr objectAtIndex:indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryNone;
     cell.textLabel.text = _title ? _title :@"";
-    cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"btn_cell_selectedBG.jpg"]];
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-//        [_tableView setSeparatorInset:UIEdgeInsetsZero];
-//    }
-//    if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-//        [_tableView setLayoutMargins:UIEdgeInsetsZero];
-//    }
-}
-
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.delegate respondsToSelector:@selector(baseView:didSelectRowAtIndex:)]) {
-          [self.delegate baseView:self didSelectRowAtIndex:indexPath.row];
+    NSString *_selectStr = nil;
+   UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    if (tableView.tag == 300) {
+        if (_numberTableview == 1) {
+            _selectStr = cell.textLabel.text;
+            if ([self.delegate respondsToSelector:@selector(baseView:didSelectObj:secondObj:)]) {
+                [self.delegate baseView:self didSelectObj:_selectStr secondObj:_tableview2_selectedObj];
+            }
+        }
+        else
+        {
+            _tableview1_selectedObj =cell.textLabel.text;
+              UITableView *_t = (UITableView *) [self viewWithTag:301];
+            [_t reloadData];
+        }
+    }
+    else
+    {
+        _selectStr = cell.textLabel.text;
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        _tableview2_selectedObj = _selectStr;
+        if ([self.delegate respondsToSelector:@selector(baseView:didSelectObj:secondObj:)]) {
+            [self.delegate baseView:self didSelectObj:_tableview1_selectedObj secondObj:_tableview2_selectedObj];
+        }
     }
 }
 
-
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+}
 
 
 /*

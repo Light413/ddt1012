@@ -12,12 +12,12 @@
 @protocol NGBaseListDelegate <NSObject>
 
 @required
-//tablevie 个数
+//tablevie 个数 为1 ：dataSourceOfBaseView 数据源为数组类型  2：dataSourceOfBaseView 为字典类型
 -(NSInteger)numOfTableViewInBaseView :(NGBaseListView *)baseListView;
 
--(NSArray*)dataSourceOfBaseView;
+-(id)dataSourceOfBaseView;
 
--(void)baseView:(NGBaseListView *)baseListView didSelectRowAtIndex:(NSInteger)index;
+-(void)baseView:(NGBaseListView *)baseListView didSelectObj:(id)obj1 secondObj:(id)obj2;
 
 @end
 

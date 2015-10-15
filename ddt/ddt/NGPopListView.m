@@ -19,6 +19,7 @@
     
 //    UITableView *_tableView;
     UIButton *_selectedBtn;
+    NSInteger _selectedBtnTag;
     
     NGBaseListView *_listView;
 }
@@ -69,8 +70,13 @@
     }
     btn.selected = YES;
     btn.backgroundColor = BtnSelectColer;
-    
+    _selectedBtnTag = btn.tag;
     _selectedBtn = btn;
+    
+    if (_listView) {
+        [_listView removeFromSuperview];
+        _listView = nil;
+    }
     [self show];
 }
 
@@ -83,37 +89,8 @@
         _maskView.alpha = .7;
         [_maskView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(disappear)]];
     }
-
     [self.window addSubview:_maskView];
- /*
-    if (_tableView == nil) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.tableFooterView = [[UIView alloc]init];
-//        _tableView.separatorInset = UIEdgeInsetsMake(0, -30, 0, -30);
-        
-        if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-            [_tableView setSeparatorInset:UIEdgeInsetsZero];
-        }
-        if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-            [_tableView setLayoutMargins:UIEdgeInsetsZero];
-        }
-    }
-    _tableView.frame = CGRectMake(0, _maskView.frame.origin.y, _maskView.frame.size.width, 0);
-    CGRect rec = _tableView.frame;
-    
-    float _maxHeigt = [self.delegate popListView:self numberOfRowsInSection:0] * 44.0 ;
-    _maxHeigt = _maxHeigt >_maskView.frame.size.height - 60? _maskView.frame.size.height - 60:_maxHeigt;
-    
-    rec.size.height = _maxHeigt + 2;
-    [UIView animateWithDuration:0.3 animations:^{
-        _tableView.frame = rec;
-    }];
-    
-    [self.window addSubview:_tableView];
-  */
-    
+
     if (_listView == nil) {
         _listView =  [[NGBaseListView alloc]initWithFrame:CGRectZero withDelegate:self];
     }
@@ -137,6 +114,7 @@
 
     [_listView removeFromSuperview];
     [_maskView removeFromSuperview];
+    _listView = nil;
     
     _selectedBtn.selected = NO;
     _selectedBtn.backgroundColor = BtnNormalColor;
@@ -146,17 +124,25 @@
 
 -(NSInteger)numOfTableViewInBaseView:(NGBaseListView *)baseListView
 {
-    return 2;
+    return _selectedBtnTag == 1001 ? 2 : 1;
 }
 
--(NSArray *)dataSourceOfBaseView
+-(id)dataSourceOfBaseView
 {
-    return [self.delegate dataSourceOfPoplistview];
+    return [self.delegate dataSourceOfPoplistviewIsArray:_selectedBtnTag != 1001];//传递参数
 }
 
--(void)baseView:(NGBaseListView *)baseListView didSelectRowAtIndex:(NSInteger)index
+-(void)baseView:(NGBaseListView *)baseListView didSelectObj:(id)obj1 secondObj:(id)obj2
 {
-
+    NSLog(@"obj1 : %@ ---- obj2 :%@",obj1,obj2);
+    
+    [_selectedBtn setTitle:obj2?obj2:obj1 forState:UIControlStateNormal];
+    [self disappear];
+    
+    //...获取btn 参数列表
+    if ([self.delegate respondsToSelector:@selector(popListView:didSelectRowAtIndex:)]) {
+        [self.delegate popListView:self didSelectRowAtIndex:0];
+    }
 }
 
 

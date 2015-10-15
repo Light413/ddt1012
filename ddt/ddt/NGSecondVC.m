@@ -16,6 +16,8 @@
     
     NSArray *tonghang_btnTitleArr; //同行-选择按钮的默认标题
     NSArray *tonghang_dataSourceArr; //同行-list data
+    NSDictionary *_dic;
+    
     
     NSArray *company_btnTitleArr; //同行-选择按钮的默认标题
     NSArray *company_dataSourceArr; //同行-list data
@@ -40,6 +42,7 @@
     tonghang_btnTitleArr = @[@"服务区域",@"业务类型",@"类别"];
     tonghang_dataSourceArr = @[@"全部",@"男",@"女",@"其他"];
     
+    _dic = [NSDictionary dictionaryWithObjectsAndKeys:@[@"100",@"101"],@"1",@[@"200",@"201",@"202"],@"2", nil];
     company_btnTitleArr = @[];
 }
 
@@ -73,9 +76,15 @@
     return [tonghang_btnTitleArr objectAtIndex:index];
 }
 
--(NSArray *)dataSourceOfPoplistview
+-(id)dataSourceOfPoplistviewIsArray:(BOOL)isyes
 {
-    return tonghang_dataSourceArr;
+    if (isyes) {
+       return tonghang_dataSourceArr;
+    }
+    else
+    {
+        return _dic;
+    }
 }
 
 -(NSInteger)popListView:(NGPopListView *)popListView numberOfRowsInSection:(NSInteger)section
@@ -83,15 +92,11 @@
     return tonghang_dataSourceArr.count;
 }
 
--(NSString*)titleOfCellInPopView:(NGPopListView*)popListView  atIndex :(NSInteger)index
-{
-    return [tonghang_dataSourceArr objectAtIndex:index];
-}
-
 
 -(void)popListView:(NGPopListView *)popListView  didSelectRowAtIndex:(NSInteger )index
 {
-
+ //...请求网络
+    
 }
 
 

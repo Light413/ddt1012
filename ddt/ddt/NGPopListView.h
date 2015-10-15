@@ -23,17 +23,14 @@
 -(NSString *)titleOfSectionInPopView:(NGPopListView*)poplistview atIndex :(NSInteger)index;
 
 
-
--(NSArray*)dataSourceOfPoplistview;
+//YES : 类型必须是数组 NO:必须是字典
+-(id)dataSourceOfPoplistviewIsArray:(BOOL)isyes;
 
 
 
 //----tableiview------------------------------
 //获取popListView 的row 数据源
 -(NSInteger)popListView:(NGPopListView *)popListView numberOfRowsInSection:(NSInteger)section;
-
-//
--(NSString*)titleOfCellInPopView:(NGPopListView*)popListView  atIndex :(NSInteger)index;
 
 //popListView 选中事件
 -(void)popListView:(NGPopListView *)popListView  didSelectRowAtIndex:(NSInteger )index;
