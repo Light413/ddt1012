@@ -73,6 +73,11 @@
     return [tonghang_btnTitleArr objectAtIndex:index];
 }
 
+-(NSArray *)dataSourceOfPoplistview
+{
+    return tonghang_dataSourceArr;
+}
+
 -(NSInteger)popListView:(NGPopListView *)popListView numberOfRowsInSection:(NSInteger)section
 {
     return tonghang_dataSourceArr.count;

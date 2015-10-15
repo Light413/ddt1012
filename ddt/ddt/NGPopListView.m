@@ -7,6 +7,7 @@
 //
 
 #import "NGPopListView.h"
+
 #define BtnNormalColor  [UIColor colorWithRed:0.749 green:0.792 blue:0.859 alpha:1]
 #define BtnSelectColer  [UIColor colorWithRed:0.808 green:0.855 blue:0.918 alpha:0.5]
 #define BtnHeight 40
@@ -16,8 +17,10 @@
     UIView *_maskView;
     UIView *_superView;
     
-    UITableView *_tableView;
+//    UITableView *_tableView;
     UIButton *_selectedBtn;
+    
+    NGBaseListView *_listView;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame withDelegate :(id)delegate withSuperView:(UIView *)superView
@@ -82,7 +85,7 @@
     }
 
     [self.window addSubview:_maskView];
-    
+ /*
     if (_tableView == nil) {
         _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
@@ -109,20 +112,56 @@
     }];
     
     [self.window addSubview:_tableView];
-    [_tableView reloadData];
+  */
+    
+    if (_listView == nil) {
+        _listView =  [[NGBaseListView alloc]initWithFrame:CGRectZero withDelegate:self];
+    }
+    _listView.frame  = CGRectMake(0, _maskView.frame.origin.y, _maskView.frame.size.width, 0);
+    
+    CGRect rec = _listView.frame;
+    
+    float _maxHeigt = [self.delegate popListView:self numberOfRowsInSection:0] * 44.0 ;
+    _maxHeigt = _maxHeigt >_maskView.frame.size.height - 60? _maskView.frame.size.height - 60:_maxHeigt;
+    
+    rec.size.height = _maxHeigt + 2;
+    [UIView animateWithDuration:0.3 animations:^{
+        _listView.frame = rec;
+    }];
+    
+    [self.window addSubview:_listView];
 }
 
 -(void)disappear
 {
 
-    [_tableView removeFromSuperview];
+    [_listView removeFromSuperview];
     [_maskView removeFromSuperview];
     
     _selectedBtn.selected = NO;
     _selectedBtn.backgroundColor = BtnNormalColor;
 }
 
+#pragma mark - NGBaseListDelegate
 
+-(NSInteger)numOfTableViewInBaseView:(NGBaseListView *)baseListView
+{
+    return 2;
+}
+
+-(NSArray *)dataSourceOfBaseView
+{
+    return [self.delegate dataSourceOfPoplistview];
+}
+
+-(void)baseView:(NGBaseListView *)baseListView didSelectRowAtIndex:(NSInteger)index
+{
+
+}
+
+
+
+/*
 #pragma mark- tableview delegate
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -153,12 +192,12 @@
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [_tableView setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [_tableView setLayoutMargins:UIEdgeInsetsZero];
-    }
+//    if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+//        [_tableView setSeparatorInset:UIEdgeInsetsZero];
+//    }
+//    if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+//        [_tableView setLayoutMargins:UIEdgeInsetsZero];
+//    }
 }
 
 
@@ -167,7 +206,7 @@
     [self.delegate popListView:self didSelectRowAtIndex:indexPath.row];
 }
 
-
+*/
 
 
 

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NGBaseListView.h"
 
 @class NGPopListView;
 
@@ -21,7 +22,13 @@
 //获取Section的title,即btn的标题
 -(NSString *)titleOfSectionInPopView:(NGPopListView*)poplistview atIndex :(NSInteger)index;
 
-//----tableiview
+
+
+-(NSArray*)dataSourceOfPoplistview;
+
+
+
+//----tableiview------------------------------
 //获取popListView 的row 数据源
 -(NSInteger)popListView:(NGPopListView *)popListView numberOfRowsInSection:(NSInteger)section;
 
@@ -39,7 +46,7 @@
 
 
 
-@interface NGPopListView : UIView<UITableViewDataSource,UITableViewDelegate>
+@interface NGPopListView : UIView<NGBaseListDelegate>
 
 
 @property(nonatomic,assign)id<NGPopListDelegate>delegate;
