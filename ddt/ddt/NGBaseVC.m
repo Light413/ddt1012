@@ -19,7 +19,9 @@
     // Do any additional setup after loading the view.
     NSInteger index = self.tabBarController.selectedIndex;
     NSLog(@"%d",index);
+    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

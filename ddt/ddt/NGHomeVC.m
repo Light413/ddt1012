@@ -46,6 +46,10 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
     } andFailBlock:^(NSError *error) {
         [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];
     }];
+    
+    UIBarButtonItem *backitem = [[UIBarButtonItem alloc]init];
+    backitem.title = nil;
+    self.navigationItem.backBarButtonItem =backitem ;
 }
 
 -(void)viewWillAppear:(BOOL)animated

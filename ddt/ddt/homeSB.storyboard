@@ -32,7 +32,7 @@
         <!--贷易通-->
         <scene sceneID="Grk-6k-qtg">
             <objects>
-                <viewController title="贷易通" id="vWx-tJ-Tji" sceneMemberID="viewController">
+                <viewController title="贷易通" id="vWx-tJ-Tji" customClass="NGBaseVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cjU-vI-e9P"/>
                         <viewControllerLayoutGuide type="bottom" id="AbU-m8-ex2"/>
@@ -51,7 +51,7 @@
         <!--贷易通-->
         <scene sceneID="c1g-Gr-7XI">
             <objects>
-                <viewController title="贷易通" id="Id6-fw-HFB" sceneMemberID="viewController">
+                <viewController title="贷易通" id="Id6-fw-HFB" customClass="NGBaseVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ewt-M2-K3z"/>
                         <viewControllerLayoutGuide type="bottom" id="4Ai-AO-yXy"/>
