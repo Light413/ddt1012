@@ -292,7 +292,7 @@
 			path = QCheckbox;
 			sourceTree = "<group>";
 		};
-		A1042B821B64D53600A74215 /* test */ = {
+		A1042B821B64D53600A74215 /* scrollImg */ = {
 			isa = PBXGroup;
 			children = (
 				A1042B831B64D55400A74215 /* image0.png */,
@@ -300,7 +300,7 @@
 				A1042B851B64D55400A74215 /* image2.png */,
 				A1042B861B64D55400A74215 /* image3.png */,
 			);
-			name = test;
+			name = scrollImg;
 			sourceTree = "<group>";
 		};
 		A124419C1BD0EDD200D2588C /* MJRefresh */ = {
@@ -519,8 +519,6 @@
 		A12CD4FA1BCBBEDF0020CB27 /* thirdparty */ = {
 			isa = PBXGroup;
 			children = (
-				9FEE0A511BCDFA4F00EA5261 /* UIViewExt.h */,
-				9FEE0A521BCDFA4F00EA5261 /* UIViewExt.m */,
 				A12441EB1BD0EFD900D2588C /* Helper */,
 				A12441DC1BD0EFD900D2588C /* FMDB */,
 				A124419C1BD0EDD200D2588C /* MJRefresh */,
@@ -587,7 +585,7 @@
 			isa = PBXGroup;
 			children = (
 				A12442031BD0F68900D2588C /* basedata */,
-				A1042B821B64D53600A74215 /* test */,
+				A1042B821B64D53600A74215 /* scrollImg */,
 				A1C1D5991B4919B0008BF54B /* Icon@3x.png */,
 				A1DAAE6D1B493100004F634B /* DDT_SYS_CONSTIST.h */,
 				A17B7CF21B43F867003CF895 /* Info.plist */,
@@ -617,9 +615,9 @@
 		A1C1D5911B48E658008BF54B /* commin */ = {
 			isa = PBXGroup;
 			children = (
-				A12C56B91BCDEDC000C6BF79 /* popListView */,
+				A1D5E7BE1BD1104000CAA653 /* category */,
+				A1D5E7BD1BD10EAE00CAA653 /* toolClass */,
 				A12CD4FA1BCBBEDF0020CB27 /* thirdparty */,
-				A1C309F61BC65A1F00B46BC2 /* Location */,
 				A1DAAE661B492EF7004F634B /* BaseVC */,
 			);
 			name = commin;
@@ -633,6 +631,25 @@
 				A1C309F81BC65DD300B46BC2 /* LocationManger.m */,
 			);
 			name = Location;
+			sourceTree = "<group>";
+		};
+		A1D5E7BD1BD10EAE00CAA653 /* toolClass */ = {
+			isa = PBXGroup;
+			children = (
+				A1C309F61BC65A1F00B46BC2 /* Location */,
+				A12C56B91BCDEDC000C6BF79 /* popListView */,
+				9FEFFCC71BCFAFE80036C23D /* QCheckbox */,
+			);
+			name = toolClass;
+			sourceTree = "<group>";
+		};
+		A1D5E7BE1BD1104000CAA653 /* category */ = {
+			isa = PBXGroup;
+			children = (
+				9FEE0A511BCDFA4F00EA5261 /* UIViewExt.h */,
+				9FEE0A521BCDFA4F00EA5261 /* UIViewExt.m */,
+			);
+			name = category;
 			sourceTree = "<group>";
 		};
 		A1DAAE661B492EF7004F634B /* BaseVC */ = {
@@ -700,7 +717,6 @@
 				9FFEE9491BD0CDF100D53553 /* RegisterViewController.h */,
 				9FFEE94A1BD0CDF100D53553 /* RegisterViewController.m */,
 				9FEFFCD51BCFBADE0036C23D /* MycenterViewController.xib */,
-				9FEFFCC71BCFAFE80036C23D /* QCheckbox */,
 			);
 			name = me;
 			sourceTree = "<group>";
