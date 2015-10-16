@@ -15,4 +15,6 @@
 #import "DDT_SYS_CONSTIST.h"
 #import "LocationManger.h"
 #import "SVProgressHUD/SVProgressHUD.h"
+#import "UIViewExt.h"
+#import "MySharetools.h"
 #endif

@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		05B69C2E05AB6F177D83E56F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA432C30201FEF046829C54 /* libPods.a */; };
+		9FEE0A501BCDEC1700EA5261 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE0A4F1BCDEC1700EA5261 /* LoginViewController.m */; };
+		9FEE0A531BCDFA4F00EA5261 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE0A521BCDFA4F00EA5261 /* UIViewExt.m */; };
+		9FEFFCCF1BCFAFE80036C23D /* checkbox1_checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FEFFCC91BCFAFE80036C23D /* checkbox1_checked@2x.png */; };
+		9FEFFCD11BCFAFE80036C23D /* checkbox1_unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FEFFCCB1BCFAFE80036C23D /* checkbox1_unchecked@2x.png */; };
+		9FEFFCD21BCFAFE80036C23D /* QCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEFFCCD1BCFAFE80036C23D /* QCheckBox.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9FEFFCD61BCFBADE0036C23D /* MycenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEFFCD41BCFBADE0036C23D /* MycenterViewController.m */; };
+		9FEFFCD71BCFBADE0036C23D /* MycenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FEFFCD51BCFBADE0036C23D /* MycenterViewController.xib */; };
+		9FEFFCDA1BCFBDEE0036C23D /* MySharetools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEFFCD91BCFBDEE0036C23D /* MySharetools.m */; };
+		9FFEE9481BD0AB3D00D53553 /* FindBackPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFEE9471BD0AB3D00D53553 /* FindBackPasswordViewController.m */; };
+		9FFEE94B1BD0CDF100D53553 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFEE94A1BD0CDF100D53553 /* RegisterViewController.m */; };
 		A1042B7E1B64D0F000A74215 /* NGBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1042B7D1B64D0F000A74215 /* NGBaseVC.m */; };
 		A1042B811B64D1E600A74215 /* NGHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1042B801B64D1E600A74215 /* NGHomeVC.m */; };
 		A1042B871B64D55400A74215 /* image0.png in Resources */ = {isa = PBXBuildFile; fileRef = A1042B831B64D55400A74215 /* image0.png */; };
@@ -60,6 +70,23 @@
 /* Begin PBXFileReference section */
 		50008DDEF01D3EC79847C509 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9BA432C30201FEF046829C54 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FEE0A4E1BCDEC1700EA5261 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		9FEE0A4F1BCDEC1700EA5261 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		9FEE0A511BCDFA4F00EA5261 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
+		9FEE0A521BCDFA4F00EA5261 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
+		9FEFFCC91BCFAFE80036C23D /* checkbox1_checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox1_checked@2x.png"; sourceTree = "<group>"; };
+		9FEFFCCB1BCFAFE80036C23D /* checkbox1_unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox1_unchecked@2x.png"; sourceTree = "<group>"; };
+		9FEFFCCC1BCFAFE80036C23D /* QCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCheckBox.h; sourceTree = "<group>"; };
+		9FEFFCCD1BCFAFE80036C23D /* QCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCheckBox.m; sourceTree = "<group>"; };
+		9FEFFCD31BCFBADE0036C23D /* MycenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MycenterViewController.h; sourceTree = "<group>"; };
+		9FEFFCD41BCFBADE0036C23D /* MycenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MycenterViewController.m; sourceTree = "<group>"; };
+		9FEFFCD51BCFBADE0036C23D /* MycenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MycenterViewController.xib; sourceTree = "<group>"; };
+		9FEFFCD81BCFBDEE0036C23D /* MySharetools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySharetools.h; sourceTree = "<group>"; };
+		9FEFFCD91BCFBDEE0036C23D /* MySharetools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySharetools.m; sourceTree = "<group>"; };
+		9FFEE9461BD0AB3D00D53553 /* FindBackPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindBackPasswordViewController.h; sourceTree = "<group>"; };
+		9FFEE9471BD0AB3D00D53553 /* FindBackPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindBackPasswordViewController.m; sourceTree = "<group>"; };
+		9FFEE9491BD0CDF100D53553 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		9FFEE94A1BD0CDF100D53553 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		A1042B7C1B64D0F000A74215 /* NGBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGBaseVC.h; sourceTree = "<group>"; };
 		A1042B7D1B64D0F000A74215 /* NGBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGBaseVC.m; sourceTree = "<group>"; };
 		A1042B7F1B64D1E600A74215 /* NGHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGHomeVC.h; sourceTree = "<group>"; };
@@ -144,6 +171,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9FEFFCC71BCFAFE80036C23D /* QCheckbox */ = {
+			isa = PBXGroup;
+			children = (
+				9FEFFCC91BCFAFE80036C23D /* checkbox1_checked@2x.png */,
+				9FEFFCCB1BCFAFE80036C23D /* checkbox1_unchecked@2x.png */,
+				9FEFFCCC1BCFAFE80036C23D /* QCheckBox.h */,
+				9FEFFCCD1BCFAFE80036C23D /* QCheckBox.m */,
+			);
+			path = QCheckbox;
+			sourceTree = "<group>";
+		};
 		A1042B821B64D53600A74215 /* test */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +239,8 @@
 		A12CD4FA1BCBBEDF0020CB27 /* thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				9FEE0A511BCDFA4F00EA5261 /* UIViewExt.h */,
+				9FEE0A521BCDFA4F00EA5261 /* UIViewExt.m */,
 				A12CD4DF1BCBAC990020CB27 /* RBStoryboardLink */,
 				A12CD4D51BCBA6960020CB27 /* SVProgressHUD */,
 			);
@@ -363,6 +403,18 @@
 		A1DAAE731B49399B004F634B /* me */ = {
 			isa = PBXGroup;
 			children = (
+				9FEE0A4E1BCDEC1700EA5261 /* LoginViewController.h */,
+				9FEE0A4F1BCDEC1700EA5261 /* LoginViewController.m */,
+				9FEFFCD31BCFBADE0036C23D /* MycenterViewController.h */,
+				9FEFFCD41BCFBADE0036C23D /* MycenterViewController.m */,
+				9FEFFCD81BCFBDEE0036C23D /* MySharetools.h */,
+				9FEFFCD91BCFBDEE0036C23D /* MySharetools.m */,
+				9FFEE9461BD0AB3D00D53553 /* FindBackPasswordViewController.h */,
+				9FFEE9471BD0AB3D00D53553 /* FindBackPasswordViewController.m */,
+				9FFEE9491BD0CDF100D53553 /* RegisterViewController.h */,
+				9FFEE94A1BD0CDF100D53553 /* RegisterViewController.m */,
+				9FEFFCD51BCFBADE0036C23D /* MycenterViewController.xib */,
+				9FEFFCC71BCFAFE80036C23D /* QCheckbox */,
 			);
 			name = me;
 			sourceTree = "<group>";
@@ -472,10 +524,13 @@
 				A1AC85561BC8DB460099C7F7 /* NGCollectionReusableView.xib in Resources */,
 				A15A95281BC7C3F200643170 /* NGCollectionViewCell.xib in Resources */,
 				A143F83D1BCC96E50029E555 /* me.storyboard in Resources */,
+				9FEFFCCF1BCFAFE80036C23D /* checkbox1_checked@2x.png in Resources */,
+				9FEFFCD11BCFAFE80036C23D /* checkbox1_unchecked@2x.png in Resources */,
 				A17B7D021B43F867003CF895 /* LaunchScreen.xib in Resources */,
 				A12CD4F91BCBAD630020CB27 /* homeSB.storyboard in Resources */,
 				A143F83B1BCC96D50029E555 /* companySB.storyboard in Resources */,
 				A1042B8A1B64D55400A74215 /* image3.png in Resources */,
+				9FEFFCD71BCFBADE0036C23D /* MycenterViewController.xib in Resources */,
 				A1042B881B64D55400A74215 /* image1.png in Resources */,
 				A12CD4DD1BCBA6960020CB27 /* SVProgressHUD.bundle in Resources */,
 				A143F8391BCC96BA0029E555 /* secondSB.storyboard in Resources */,
@@ -537,11 +592,17 @@
 				A15A95271BC7C3F200643170 /* NGCollectionViewCell.m in Sources */,
 				A12CD4F51BCBAC990020CB27 /* UIViewController+RBStoryboardLink.m in Sources */,
 				A1AC85551BC8DB460099C7F7 /* NGCollectionReusableView.m in Sources */,
+				9FEE0A501BCDEC1700EA5261 /* LoginViewController.m in Sources */,
 				A12CD4F31BCBAC990020CB27 /* RBStoryboardPushSegue.m in Sources */,
 				A12CD4F41BCBAC990020CB27 /* RBStoryboardSegue.m in Sources */,
+				9FEE0A531BCDFA4F00EA5261 /* UIViewExt.m in Sources */,
+				9FEFFCD21BCFAFE80036C23D /* QCheckBox.m in Sources */,
+				9FFEE94B1BD0CDF100D53553 /* RegisterViewController.m in Sources */,
 				A12CD4F71BCBAC990020CB27 /* README.md in Sources */,
 				A1DAAE6C1B492FC2004F634B /* NGBaseTableVC.m in Sources */,
+				9FEFFCDA1BCFBDEE0036C23D /* MySharetools.m in Sources */,
 				A12CD4F01BCBAC990020CB27 /* RBStoryboardLink.m in Sources */,
+				9FEFFCD61BCFBADE0036C23D /* MycenterViewController.m in Sources */,
 				A1042B7E1B64D0F000A74215 /* NGBaseVC.m in Sources */,
 				A12CD4F21BCBAC990020CB27 /* RBStoryboardPopoverSegue.m in Sources */,
 				A12CD4DC1BCBA6960020CB27 /* SVIndefiniteAnimatedView.m in Sources */,
@@ -550,6 +611,7 @@
 				A17B7CF41B43F867003CF895 /* main.m in Sources */,
 				A12CD4DE1BCBA6960020CB27 /* SVProgressHUD.m in Sources */,
 				A1C309F91BC65DD300B46BC2 /* LocationManger.m in Sources */,
+				9FFEE9481BD0AB3D00D53553 /* FindBackPasswordViewController.m in Sources */,
 				A12CD4F11BCBAC990020CB27 /* RBStoryboardModalSegue.m in Sources */,
 				A143F8401BCCA5D60029E555 /* NGSecondVC.m in Sources */,
 			);

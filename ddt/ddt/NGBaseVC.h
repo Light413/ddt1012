@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface NGBaseVC : UIViewController
-
+-(void)createLeftBarItemWithBackTitle;
+-(void)goback:(UIButton *)btn;
 @end

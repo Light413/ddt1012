@@ -20,6 +20,8 @@
     self.rootTabVC = (UITabBarController*)self.window.rootViewController;
     [self initTabBar];
     [self initsystem];
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    [self.window makeKeyAndVisible];
     NSLog(@"homedir  :%@",NSHomeDirectory());
     return YES;
 }
