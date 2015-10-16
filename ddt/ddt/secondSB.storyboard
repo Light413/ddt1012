@@ -3,13 +3,12 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--贷款同行名片-->
         <scene sceneID="cM7-lX-2x5">
             <objects>
-                <viewController title="贷款同行名片" id="uvq-Z7-J13" sceneMemberID="viewController">
+                <viewController title="贷款同行名片" id="uvq-Z7-J13" customClass="NGSecondVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F3z-RF-2jm"/>
                         <viewControllerLayoutGuide type="bottom" id="6eN-AY-5VT"/>
@@ -17,40 +16,7 @@
                     <view key="view" contentMode="scaleToFill" id="c9o-mk-3HR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeM-uq-Guz">
-                                <rect key="frame" x="0.0" y="20" width="600" height="40"/>
-                                <color key="backgroundColor" red="0.75686274509999996" green="0.75686274509999996" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="DHl-h8-74r"/>
-                                </constraints>
-                            </view>
-                            <searchBar contentMode="redraw" placeholder="输入姓名、公司或其他关键字" translatesAutoresizingMaskIntoConstraints="NO" id="KB1-aI-Zlr">
-                                <rect key="frame" x="0.0" y="62" width="600" height="44"/>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="uvq-Z7-J13" id="eBg-QW-zmu"/>
-                                </connections>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zog-5q-ZzE">
-                                <rect key="frame" x="0.0" y="107" width="600" height="442"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="6eN-AY-5VT" firstAttribute="top" secondItem="zog-5q-ZzE" secondAttribute="bottom" constant="2" id="NwX-Qm-Y7o"/>
-                            <constraint firstItem="zog-5q-ZzE" firstAttribute="leading" secondItem="c9o-mk-3HR" secondAttribute="leading" id="Y3T-wP-5ak"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZeM-uq-Guz" secondAttribute="trailing" constant="-16" id="aEI-kC-7Ju"/>
-                            <constraint firstAttribute="trailing" secondItem="zog-5q-ZzE" secondAttribute="trailing" id="f9b-Ot-Dqk"/>
-                            <constraint firstItem="KB1-aI-Zlr" firstAttribute="leading" secondItem="c9o-mk-3HR" secondAttribute="leadingMargin" constant="-16" id="mZK-8I-2Uu"/>
-                            <constraint firstItem="zog-5q-ZzE" firstAttribute="top" secondItem="KB1-aI-Zlr" secondAttribute="bottom" constant="1" id="mlw-XO-XiO"/>
-                            <constraint firstItem="ZeM-uq-Guz" firstAttribute="leading" secondItem="c9o-mk-3HR" secondAttribute="leadingMargin" constant="-16" id="pRj-uZ-GaU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="KB1-aI-Zlr" secondAttribute="trailing" constant="-16" id="stl-hZ-HVR"/>
-                            <constraint firstItem="KB1-aI-Zlr" firstAttribute="top" secondItem="ZeM-uq-Guz" secondAttribute="bottom" constant="2" id="wP5-Pw-7Ns"/>
-                            <constraint firstItem="ZeM-uq-Guz" firstAttribute="top" secondItem="F3z-RF-2jm" secondAttribute="bottom" id="xl1-zJ-kmK"/>
-                        </constraints>
                     </view>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -61,7 +27,6 @@
                 <searchDisplayController id="aXl-qy-xKk">
                     <connections>
                         <outlet property="delegate" destination="uvq-Z7-J13" id="hlx-uS-a2H"/>
-                        <outlet property="searchBar" destination="KB1-aI-Zlr" id="vlF-Xd-U5L"/>
                         <outlet property="searchContentsController" destination="uvq-Z7-J13" id="xLw-Qx-YQR"/>
                         <outlet property="searchResultsDataSource" destination="uvq-Z7-J13" id="qTc-Ec-GN3"/>
                         <outlet property="searchResultsDelegate" destination="uvq-Z7-J13" id="1iT-9l-mT4"/>

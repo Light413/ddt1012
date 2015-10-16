@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <one name="银行信贷个人" key="11">
+        <two name="公务员（非公检法）" key="111"/>
+        <two name="公务员（公检法）" key="112"/>
+        <two name="事业编制、教师" key="113"/>
+        <two name="打卡工资" key="114"/>
+        <two name="零首付" key="115"/>
+        <two name="其他" key="116"></two>
+     </one>
+     <one name="银行抵押个人" key="12">
+        <two name="房产" key="121"/>
+        <two name="车辆" key="122"/>
+        <two name="其他资产" key="123"/>
+        <two name="其他" key="124"/>
+     </one>
+     <one name="民间信贷个人" key="13">
+        <two name="公务员（非公检法）" key="131"/>
+        <two name="公务员（公检法）" key="132"/>
+        <two name="事业编制、教师、医生（市级以上）" key="133"/>
+        <two name="事业编制、教师、医生（市级以下）" key="134"/>
+        <two name="大型企业员工（市级以上）" key="135"/>
+        <two name="打卡工资（有社保）" key="136"/>
+        <two name="打卡工资（无社保）" key="137"/>
+        <two name="现金流水（有社保）" key="138"/>
+        <two name="现金流水（无社保）" key="139"/>
+        <two name="有营业执照" key="1310"/>
+        <two name="有房产" key="1311"/>
+        <two name="有车产" key="1312"/>
+        <two name="有流水" key="1313"/>
+        <two name="保单贷" key="1314"/>
+        <two name="信用卡贷" key="1315"/>
+        <two name="淘宝商户贷" key="1316"/>
+        <two name="网购达人贷" key="1317"/>
+        <two name="学历贷" key="1318"/>
+        <two name="P0S贷" key="1319"/>
+        <two name="库存贷" key="1320"/>
+        <two name="公积金贷" key="1321"/>
+        <two name="丽人贷" key="1322"/>
+        <two name="其他" key="1323"/>
+     </one>
+     <one name="民间抵押个人" key="14">
+         <two name="房产" key="141">
+             <three name="商品房全款房抵押、公证" key="1411"/>
+             <three name="商品房全款房只抵押、不公证" key="1412"/>
+             <three name="商品房按揭房抵押、公证" key="1413"/>
+             <three name="商品房按揭房只公证、不抵押" key="1414"/>
+             <three name="商品房全款房抵押、公证" key="1415"/>
+             <three name="商品房购房合同只抵押、不公证" key="1416"/>
+             <three name="全款写字楼" key="1417"/>
+             <three name="按揭写字楼" key="1418"/>
+             <three name="购房合同写字楼" key="1419"/>
+             <three name="全款商铺" key="14110"/>
+             <three name="按揭商铺" key="14111"/>
+             <three name="购房合同商铺" key="14112"/>
+             <three name="单签" key="14113"/>
+             <three name="黑户" key="14114"/>
+             <three name="经济适用房" key="14115"/>
+             <three name="小产权房" key="14116"/>
+             <three name="安置房" key="14117"/>
+         </two>
+         <two name="车辆" key="142">
+             <three name="全款押车（质押）" key="1421"/>
+             <three name="按揭押车（质押）" key="1422"/>
+             <three name="全款不押车" key="1423"/>
+             <three name="按揭不押车" key="1424"/>
+             <three name="4S店车押合格证" key="1425"/>
+             <three name="4S店车押车（质押）" key="1426"/>
+             <three name="工程车" key="1427"/>
+             <three name="公司名下车" key="1428"/>
+             <three name="未上牌车" key="1429"/>
+             <three name="超额车贷（附加信用）" key="14210"/>
+             <three name="车主不到" key="14211"/>
+             <three name="债权转让" key="14212"/>
+             <three name="按揭转卖" key="14213"/>
+             <three name="查封状态" key="14214"/>
+             <three name="手续不全" key="14212"/>
+         </two>
+         <two name="其他资产" key="143"/>
+     </one>
+    <one name="银行信贷企业" key="21">
+        <two name="生产型" key="211"/>
+        <two name="贸易型" key="212"/>
+        <two name="房地产" key="213"/>
+        <two name="在建工程" key="214"/>
+        <two name="个体工商" key="215"/>
+        <two name="库存" key="216"/>
+        <two name="其他" key="217"/>
+     </one>
+    <one name="银行抵押企业" key="22">
+        <two name="土地" key="221"/>
+        <two name="设备" key="222"/>
+        <two name="矿山" key="223"/>
+        <two name="股权" key="224"/>
+        <two name="个体工商" key="225"/>
+        <two name="库存" key="226"/>
+        <two name="其他" key="227"/>
+     </one>
+     <one name="民间信贷企业" key="23">
+         <two name="生产型" key="231"/>
+         <two name="贸易型" key="232"/>
+         <two name="房地产" key="233"/>
+         <two name="在建工程" key="234"/>
+         <two name="个体工商" key="235"/>
+         <two name="库存" key="236"/>
+         <two name="有营业执照" key="237"/>
+         <two name="有房产" key="238"/>
+         <two name="有车产" key="239"/>
+         <two name="有流水" key="2310"/>
+         <two name="淘宝商户贷" key="2311"/>
+         <two name="P0S贷" key="2312"/>
+         <two name="库存贷" key="2313"/>
+     </one>
+     <one name="民间抵押企业" key="24">
+         <two name="土地" key="241"/>
+         <two name="设备" key="242"/>
+         <two name="矿山" key="243"/>
+         <two name="股权" key="244"/>
+         <two name="房产" key="245"/>
+         <two name="车辆" key="246"/>
+         <two name="其他" key="247"/>
+     </one>
+     <one name="零首付" key="31">
+         <two name="零首付购房" key="311"/>
+         <two name="零首付购车" key="312"/>
+     </one>
+     <one name="短拆过桥" key="32">
+         <two name="承兑汇票" key="321"/>
+         <two name="倒贷" key="322"/>
+         <two name="验资" key="323"/>
+         <two name="形象金" key="324"/>
+         <two name="摆账" key="325"/>
+         <two name="围标、陪标" key="326"/>
+         <two name="揽储" key="327"/>
+         <two name="垫资" key="328"/>
+         <two name="其他" key="329"/>
+     </one>
+     <one name="信用卡相关" key="33">
+         <two name="养卡提额" key="331"/>
+         <two name="套现代还" key="332"/>
+         <two name="大额" key="333"/>
+         <two name="其他" key="334"/>
+     </one>
+     <one name="其他" key="34">
+         <two name="新三板上市" key="341"/>
+         <two name="股票配资" key="342"/>
+         <two name="分期购车" key="343"/>
+     </one>
+</root>
