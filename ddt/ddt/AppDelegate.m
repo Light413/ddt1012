@@ -54,6 +54,12 @@
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.1f alpha:0.8f]];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    
+    //xml parse
+    if (![NGXMLReader hasAlreadyParserSuccess]) {
+        NSLog(@".....start parser.....");
+        [NGXMLReader parser];
+    }
 }
 
 -(void)initTabBar

@@ -19,4 +19,5 @@
 #import "MySharetools.h"
 #import "MJRefresh.h"
 #import "LKDBHelper.h"
+#import "NGXMLReader.h"
 #endif

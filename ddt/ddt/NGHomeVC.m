@@ -8,6 +8,7 @@
 
 #import "NGHomeVC.h"
 #import "NGCollectionViewCell.h"
+#import "NGXMLReader.h"
 
 #define ScrollViewHeight    100
 #define CollectionHeaderViewHight 140
@@ -50,6 +51,15 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
     UIBarButtonItem *backitem = [[UIBarButtonItem alloc]init];
     backitem.title = nil;
     self.navigationItem.backBarButtonItem =backitem ;
+    
+    //...test
+    //    NSArray *_arr = [NGXMLReader getAllCities];
+    //    根据城市名获取id
+    //    NSString*_str = [NGXMLReader getIDWithCityName:@"上海"];
+    //    根据城市ID获取所有区域
+    //    NSArray*_arr = [NGXMLReader getAllAreaWithCityID:@"73"];
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
