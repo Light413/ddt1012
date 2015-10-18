@@ -9,6 +9,8 @@
 #import "NGHomeVC.h"
 #import "NGCollectionViewCell.h"
 #import "NGXMLReader.h"
+#import "NGItemDetailVC.h"
+#import "NGSearchCityVC.h"
 
 #define ScrollViewHeight    100
 #define CollectionHeaderViewHight 140
@@ -30,6 +32,7 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
     NSTimer *_timer;
     
     NSArray *_itemArray;//item元素项
+    NSDictionary *_selectItemDic;//选中cell的数据项
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,7 +42,7 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
     
     _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
     //获取位置信息
-    [SVProgressHUD showWithStatus:@"正在获取位置"];
+//    [SVProgressHUD showWithStatus:@"正在获取位置"];
     [[LocationManger shareManger]getLocationWithSuccessBlock:^(NSString *str) {
         [SVProgressHUD dismiss];
         NSLog(@"current location : %@",str);
@@ -54,9 +57,6 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
         [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];
     }];
     
-    UIBarButtonItem *backitem = [[UIBarButtonItem alloc]init];
-    backitem.title = nil;
-    self.navigationItem.backBarButtonItem =backitem ;
     
     //...test
     //    NSArray *_arr = [NGXMLReader getAllCities];
@@ -67,7 +67,8 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
     
 //    NSArray*_arr = [NGXMLReader getCurrentLocationAreas];
     
-    NSArray*_arr = [NGXMLReader getBaseTypeDataWithKey:@"11" andLevel:@"two"];
+//    NSArray*_arr = [NGXMLReader getBaseTypeDataWithKey:@"11" andLevel:@"two"];
+       NSArray *_a = self.navigationController.viewControllers;
     
 }
 
@@ -84,6 +85,11 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
 -(void)awakeFromNib
 {
     [self initTopView];
+    
+    UIBarButtonItem *backitem = [[UIBarButtonItem alloc]init];
+//    backitem.image = [UIImage imageNamed:@"leftArrow"];
+    backitem.title = @"返回";
+    self.navigationItem.backBarButtonItem =backitem ;
 }
 
 #pragma mark-init subview
@@ -271,6 +277,10 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"%d - %d",indexPath.section,indexPath.row);
+    NSLog(@"....%@",[[_itemArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row]);
+    //key,title
+    _selectItemDic =[[_itemArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row];
+    
     [self performSegueWithIdentifier:showItemDetailIdentifier sender:nil];
 }
 
@@ -305,9 +315,14 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:showItemDetailIdentifier]) {
-        
+    if ([segue.identifier isEqualToString:showItemDetailIdentifier]) {//item详情页
+//        NGItemDetailVC *_vc = [segue destinationViewController];
+//        _vc.superdic = _selectItemDic;
     }
+//    else if (1)
+//    {
+//    
+//    }
 }
 
 

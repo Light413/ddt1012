@@ -96,6 +96,9 @@
 		AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB921BD21E3000C23992 /* NGXMLReader.m */; settings = {ASSET_TAGS = (); }; };
 		AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */; settings = {ASSET_TAGS = (); }; };
 		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; settings = {ASSET_TAGS = (); }; };
+		ADCEAF8F1BD393AA006F1E56 /* NGSearchCityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF8E1BD393AA006F1E56 /* NGSearchCityVC.m */; settings = {ASSET_TAGS = (); }; };
+		ADCEAF921BD39B35006F1E56 /* NGItemDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF911BD39B35006F1E56 /* NGItemDetailVC.m */; settings = {ASSET_TAGS = (); }; };
+		ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -267,6 +270,12 @@
 		AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGXMLDataModel.m; sourceTree = "<group>"; };
 		AD92EB971BD24A0300C23992 /* NGXMLBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGXMLBaseModel.h; sourceTree = "<group>"; };
 		AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGXMLBaseModel.m; sourceTree = "<group>"; };
+		ADCEAF8D1BD393AA006F1E56 /* NGSearchCityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSearchCityVC.h; sourceTree = "<group>"; };
+		ADCEAF8E1BD393AA006F1E56 /* NGSearchCityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSearchCityVC.m; sourceTree = "<group>"; };
+		ADCEAF901BD39B35006F1E56 /* NGItemDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGItemDetailVC.h; sourceTree = "<group>"; };
+		ADCEAF911BD39B35006F1E56 /* NGItemDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGItemDetailVC.m; sourceTree = "<group>"; };
+		ADCEAF931BD3B45E006F1E56 /* NGItemsDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGItemsDetailVC.h; sourceTree = "<group>"; };
+		ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGItemsDetailVC.m; sourceTree = "<group>"; };
 		CE8468AE545F99D5CA121C5E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -693,6 +702,12 @@
 			children = (
 				A1042B7F1B64D1E600A74215 /* NGHomeVC.h */,
 				A1042B801B64D1E600A74215 /* NGHomeVC.m */,
+				ADCEAF8D1BD393AA006F1E56 /* NGSearchCityVC.h */,
+				ADCEAF8E1BD393AA006F1E56 /* NGSearchCityVC.m */,
+				ADCEAF901BD39B35006F1E56 /* NGItemDetailVC.h */,
+				ADCEAF911BD39B35006F1E56 /* NGItemDetailVC.m */,
+				ADCEAF931BD3B45E006F1E56 /* NGItemsDetailVC.h */,
+				ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */,
 			);
 			name = home;
 			sourceTree = "<group>";
@@ -922,6 +937,7 @@
 			files = (
 				A12441D41BD0EDD200D2588C /* MJRefreshGifHeader.m in Sources */,
 				A1DAAE691B492F84004F634B /* NGBaseNavigationVC.m in Sources */,
+				ADCEAF8F1BD393AA006F1E56 /* NGSearchCityVC.m in Sources */,
 				A15A95271BC7C3F200643170 /* NGCollectionViewCell.m in Sources */,
 				A12441F71BD0EFD900D2588C /* FMDatabase.m in Sources */,
 				A12441D01BD0EDD200D2588C /* MJRefreshAutoStateFooter.m in Sources */,
@@ -966,6 +982,7 @@
 				A12C56BC1BCDEDF600C6BF79 /* NGPopListView.m in Sources */,
 				A12441FC1BD0EFD900D2588C /* LKDB+Mapping.m in Sources */,
 				A12441DB1BD0EDD200D2588C /* UIView+MJExtension.m in Sources */,
+				ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */,
 				A12441FD1BD0EFD900D2588C /* LKDBHelper.m in Sources */,
 				A12441FA1BD0EFD900D2588C /* FMDatabaseQueue.m in Sources */,
 				A12441C91BD0EDD200D2588C /* MJRefreshAutoFooter.m in Sources */,
@@ -974,6 +991,7 @@
 				A12441CC1BD0EDD200D2588C /* MJRefreshFooter.m in Sources */,
 				AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */,
 				AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */,
+				ADCEAF921BD39B35006F1E56 /* NGItemDetailVC.m in Sources */,
 				A12441FB1BD0EFD900D2588C /* FMResultSet.m in Sources */,
 				A12CD4DE1BCBA6960020CB27 /* SVProgressHUD.m in Sources */,
 				A12441D51BD0EDD200D2588C /* MJRefreshNormalHeader.m in Sources */,
