@@ -10,12 +10,7 @@
 
 @interface NGXMLReader : NSObject<NSXMLParserDelegate>
 
-+(instancetype)share;
-
-
-/**
- *  xml数据解析
- */
+// xml数据解析
 +(void)parser;
 
 
@@ -27,6 +22,7 @@
 +(BOOL)hasAlreadyParserSuccess;
 
 
+//获取位置数据操作
 /**
  *   获取全部城市数据，每个元素为字典类型－key：为城市ID obj ： 城市名称
  *
@@ -34,6 +30,16 @@
  */
 +(NSArray*)getAllCities;
 
+
+/**
+ *  获取当前定位城市下所有区域
+ *
+ *  @return 所有区域数据（每个元素为字典类型－key：ID obj ：名称）
+ */
++(NSArray*)getCurrentLocationAreas;
+
+
+#pragma mark --optional
 /**
  *  获取指定城市下的所有区域
  *
@@ -53,9 +59,27 @@
  */
 +(NSString*)getIDWithCityName:(NSString*)name;
 
+#pragma mark --optional-- end
 
 
+//获取基础类型数据操作
 
+/**
+ *  获取基础类型数据
+ *
+ *  @return 基础数据(元素类型字典 ：ID－编码, NAME : 名称)
+ */
++(NSArray*)getBaseTypeData;
+
+/**
+ *  根据指定参数获取基础类型数据
+ *
+ *  @param key   上一级的数据编码
+ *  @param level 子数据的level值<eg,one,two,three> one：第一级数据，two：第二级数据
+ *
+ *  @return 基础数据(元素类型字典 ：ID－编码, NAME : 名称)
+ */
++(NSArray*)getBaseTypeDataWithKey:(NSString*)key andLevel:(NSString*)level;
 
 
 @end

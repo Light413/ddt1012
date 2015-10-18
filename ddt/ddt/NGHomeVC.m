@@ -43,7 +43,13 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
     [[LocationManger shareManger]getLocationWithSuccessBlock:^(NSString *str) {
         [SVProgressHUD dismiss];
         NSLog(@"current location : %@",str);
-        [leftBtn setTitle:str forState:UIControlStateNormal];
+        [[NSUserDefaults standardUserDefaults]setObject:@"上海市" forKey:CURRENT_LOCATION_CITY];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        if (str) {
+             [leftBtn setTitle:str forState:UIControlStateNormal];
+        }
+
     } andFailBlock:^(NSError *error) {
         [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];
     }];
@@ -59,6 +65,9 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
     //    根据城市ID获取所有区域
     //    NSArray*_arr = [NGXMLReader getAllAreaWithCityID:@"73"];
     
+//    NSArray*_arr = [NGXMLReader getCurrentLocationAreas];
+    
+    NSArray*_arr = [NGXMLReader getBaseTypeDataWithKey:@"11" andLevel:@"two"];
     
 }
 
@@ -84,10 +93,10 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
     leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBtn.frame = CGRectMake(0, 0, 60, 40);
     [leftBtn setImage:[UIImage imageNamed:@"bar_down_icon"] forState:UIControlStateNormal];
-    [leftBtn setTitle:@"未知" forState:UIControlStateNormal];
+    [leftBtn setTitle:@"选择城市" forState:UIControlStateNormal];
     leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [leftBtn setTitleEdgeInsets:UIEdgeInsetsMake(3, -20, 3, -5)];
-    [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(5, -10, 5, 52)];
+    [leftBtn setTitleEdgeInsets:UIEdgeInsetsMake(3, -18, 3, -5)];
+    [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(5, -12, 5, 52)];
     [leftBtn addTarget:self action:@selector(locationBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftBtn];
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];

@@ -219,6 +219,15 @@
     return _m.ID;
 }
 
+//获取当前定位城市下所有区域
++(NSArray*)getCurrentLocationAreas
+{
+    NSString*name = [[NSUserDefaults standardUserDefaults]objectForKey:CURRENT_LOCATION_CITY];
+    NSString*cityid = [[self share]getIDWithCityName:name];
+    return [[self share]getAllAreaWithCityID:cityid];
+}
+
+
 //根据城市ID获取，当前城市下区域
 +(NSArray*)getAllAreaWithCityID:(NSString*)strid
 {
@@ -244,7 +253,34 @@
 
 #pragma mark --获取基础类型数据
 
+-(NSArray*)getBaseTypeDataWithKey:(NSString*)key andLevel:(NSString*)level
+{
+    NSMutableArray *_arr = [[NSMutableArray alloc]init];
+    NSString*searchStr =key?[NSString stringWithFormat:@"level = '%@' and key like '%@%%'",level,key]: [NSString stringWithFormat:@"level = '%@'",level];
+    
+    NSArray *_cities = [_helper search:[NGXMLDataModel class] where:searchStr orderBy:@"key asc" offset:0 count:INT16_MAX];
+    
+    [_cities enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *_id = ((NGXMLDataModel*)obj).key ? ((NGXMLDataModel*)obj).key : @"";
+        NSString *_name =((NGXMLDataModel*)obj).name?((NGXMLDataModel*)obj).name:@"";
+        if (_id && _name) {
+            NSDictionary *_d = [NSDictionary dictionaryWithObjectsAndKeys:_id,@"ID",_name,@"NAME", nil];
+            [_arr addObject:_d];
+        }
+    }];
+    
+    return _arr;
+}
 
++(NSArray*)getBaseTypeDataWithKey:(NSString*)key andLevel:(NSString*)level
+{
+    return [[self share]getBaseTypeDataWithKey:key andLevel:level];
+}
+
++(NSArray*)getBaseTypeData
+{
+    return [self getBaseTypeDataWithKey:nil andLevel:@"one"];
+}
 
 
 @end

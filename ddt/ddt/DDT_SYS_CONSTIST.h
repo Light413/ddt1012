@@ -30,5 +30,7 @@
 #define RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 
+//当前定位城市名称
+#define CURRENT_LOCATION_CITY   @"CURRENT_LOCATION_CITY"
 
 #endif
