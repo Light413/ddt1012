@@ -247,7 +247,7 @@
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ExA-aA-3aS">
                                                     <rect key="frame" x="8" y="202" width="191" height="35"/>
-                                                    <color key="backgroundColor" red="0.89803921568627454" green="0.54509803921568623" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.95686274509803926" green="0.62352941176470589" blue="0.23921568627450981" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="WJ2-R7-AG4"/>
                                                     </constraints>
@@ -257,14 +257,14 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EW-p6-f7O">
                                                     <rect key="frame" x="204" y="202" width="192" height="35"/>
-                                                    <color key="backgroundColor" red="0.93333333333333335" green="0.56470588235294117" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.93725490196078431" green="0.61568627450980395" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="搜同行">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIf-NL-2DI">
                                                     <rect key="frame" x="401" y="202" width="191" height="35"/>
-                                                    <color key="backgroundColor" red="0.94117647058823528" green="0.5725490196078431" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.94901960784313721" green="0.61960784313725492" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="搜公司">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>

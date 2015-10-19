@@ -78,6 +78,7 @@
 		A143F83D1BCC96E50029E555 /* me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A143F83C1BCC96E50029E555 /* me.storyboard */; };
 		A143F8401BCCA5D60029E555 /* NGSecondVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A143F83F1BCCA5D60029E555 /* NGSecondVC.m */; };
 		A149A4411BCF37320098E7C3 /* NGBaseListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A149A4401BCF37320098E7C3 /* NGBaseListView.m */; };
+		A157110E1BD4EAB500D586F6 /* LPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A157110D1BD4EAB500D586F6 /* LPickerView.m */; settings = {ASSET_TAGS = (); }; };
 		A15A95271BC7C3F200643170 /* NGCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A15A95251BC7C3F200643170 /* NGCollectionViewCell.m */; };
 		A15A95281BC7C3F200643170 /* NGCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15A95261BC7C3F200643170 /* NGCollectionViewCell.xib */; };
 		A17B7CF41B43F867003CF895 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A17B7CF31B43F867003CF895 /* main.m */; };
@@ -86,6 +87,7 @@
 		A17B7CFF1B43F867003CF895 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A17B7CFE1B43F867003CF895 /* Images.xcassets */; };
 		A17B7D021B43F867003CF895 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A17B7D001B43F867003CF895 /* LaunchScreen.xib */; };
 		A17B7D0E1B43F867003CF895 /* ddtTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A17B7D0D1B43F867003CF895 /* ddtTests.m */; };
+		A17D0CD11BD4C0DE00E465A7 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = A17D0CD01BD4C0DE00E465A7 /* ChineseToPinyin.m */; settings = {ASSET_TAGS = (); }; };
 		A1AC85551BC8DB460099C7F7 /* NGCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AC85531BC8DB460099C7F7 /* NGCollectionReusableView.m */; };
 		A1AC85561BC8DB460099C7F7 /* NGCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1AC85541BC8DB460099C7F7 /* NGCollectionReusableView.xib */; };
 		A1AC85581BC8F2FA0099C7F7 /* menuItem.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1AC85571BC8F2FA0099C7F7 /* menuItem.plist */; };
@@ -236,6 +238,8 @@
 		A143F83F1BCCA5D60029E555 /* NGSecondVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSecondVC.m; sourceTree = "<group>"; };
 		A149A43F1BCF37320098E7C3 /* NGBaseListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGBaseListView.h; sourceTree = "<group>"; };
 		A149A4401BCF37320098E7C3 /* NGBaseListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGBaseListView.m; sourceTree = "<group>"; };
+		A157110C1BD4EAB500D586F6 /* LPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPickerView.h; sourceTree = "<group>"; };
+		A157110D1BD4EAB500D586F6 /* LPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPickerView.m; sourceTree = "<group>"; };
 		A15A95241BC7C3F200643170 /* NGCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCollectionViewCell.h; sourceTree = "<group>"; };
 		A15A95251BC7C3F200643170 /* NGCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGCollectionViewCell.m; sourceTree = "<group>"; };
 		A15A95261BC7C3F200643170 /* NGCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -250,6 +254,8 @@
 		A17B7D071B43F867003CF895 /* ddtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ddtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A17B7D0C1B43F867003CF895 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A17B7D0D1B43F867003CF895 /* ddtTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ddtTests.m; sourceTree = "<group>"; };
+		A17D0CCF1BD4C0DE00E465A7 /* ChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyin.h; sourceTree = "<group>"; };
+		A17D0CD01BD4C0DE00E465A7 /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
 		A1AC85521BC8DB460099C7F7 /* NGCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCollectionReusableView.h; sourceTree = "<group>"; };
 		A1AC85531BC8DB460099C7F7 /* NGCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGCollectionReusableView.m; sourceTree = "<group>"; };
 		A1AC85541BC8DB460099C7F7 /* NGCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGCollectionReusableView.xib; sourceTree = "<group>"; };
@@ -627,6 +633,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A17D0CCE1BD4C0B100E465A7 /* chineseToPin */ = {
+			isa = PBXGroup;
+			children = (
+				A17D0CCF1BD4C0DE00E465A7 /* ChineseToPinyin.h */,
+				A17D0CD01BD4C0DE00E465A7 /* ChineseToPinyin.m */,
+			);
+			name = chineseToPin;
+			sourceTree = "<group>";
+		};
+		A17D0CD21BD4C0FD00E465A7 /* NGUIPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				A157110C1BD4EAB500D586F6 /* LPickerView.h */,
+				A157110D1BD4EAB500D586F6 /* LPickerView.m */,
+			);
+			name = NGUIPickerView;
+			sourceTree = "<group>";
+		};
 		A1C1D5911B48E658008BF54B /* commin */ = {
 			isa = PBXGroup;
 			children = (
@@ -651,6 +675,8 @@
 		A1D5E7BD1BD10EAE00CAA653 /* toolClass */ = {
 			isa = PBXGroup;
 			children = (
+				A17D0CD21BD4C0FD00E465A7 /* NGUIPickerView */,
+				A17D0CCE1BD4C0B100E465A7 /* chineseToPin */,
 				AD92EB901BD21E0000C23992 /* NGXMLReader */,
 				A1C309F61BC65A1F00B46BC2 /* Location */,
 				A12C56B91BCDEDC000C6BF79 /* popListView */,
@@ -967,6 +993,7 @@
 				A12441CE1BD0EDD200D2588C /* MJRefreshAutoGifFooter.m in Sources */,
 				A12CD4DC1BCBA6960020CB27 /* SVIndefiniteAnimatedView.m in Sources */,
 				A17B7CF71B43F867003CF895 /* AppDelegate.m in Sources */,
+				A17D0CD11BD4C0DE00E465A7 /* ChineseToPinyin.m in Sources */,
 				A1042B811B64D1E600A74215 /* NGHomeVC.m in Sources */,
 				A17B7CF41B43F867003CF895 /* main.m in Sources */,
 				A12441D31BD0EDD200D2588C /* MJRefreshBackStateFooter.m in Sources */,
@@ -985,6 +1012,7 @@
 				A12441F81BD0EFD900D2588C /* FMDatabaseAdditions.m in Sources */,
 				A12441CC1BD0EDD200D2588C /* MJRefreshFooter.m in Sources */,
 				AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */,
+				A157110E1BD4EAB500D586F6 /* LPickerView.m in Sources */,
 				AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */,
 				A12441FB1BD0EFD900D2588C /* FMResultSet.m in Sources */,
 				A12CD4DE1BCBA6960020CB27 /* SVProgressHUD.m in Sources */,
