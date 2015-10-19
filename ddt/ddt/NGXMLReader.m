@@ -269,6 +269,10 @@
         }
     }];
     
+    [_cities enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+    }];
+    
     return _arr;
 }
 

@@ -1,5 +1,5 @@
 //
-//  NGItemsDetailVC.h
+//  NGItemDetailVC.h
 //  ddt
 //
 //  Created by wyg on 15/10/18.
@@ -9,5 +9,7 @@
 #import "NGBaseTableVC.h"
 
 @interface NGItemsDetailVC : NGBaseTableVC
+
+@property(nonatomic,retain)NSDictionary *superdic;//上级传递的参数
 
 @end

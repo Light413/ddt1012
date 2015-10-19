@@ -9,7 +9,7 @@
 #import "NGHomeVC.h"
 #import "NGCollectionViewCell.h"
 #import "NGXMLReader.h"
-#import "NGItemDetailVC.h"
+#import "NGItemsDetailVC.h"
 #import "NGSearchCityVC.h"
 
 #define ScrollViewHeight    100
@@ -313,11 +313,9 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:showItemDetailIdentifier]) {//item详情页
-//        NGItemDetailVC *_vc = [segue destinationViewController];
-//        _vc.superdic = _selectItemDic;
+        NGItemsDetailVC *_vc = [segue destinationViewController];
+        _vc.superdic = _selectItemDic;
     }
 //    else if (1)
 //    {
