@@ -81,13 +81,16 @@
 		A157110E1BD4EAB500D586F6 /* LPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A157110D1BD4EAB500D586F6 /* LPickerView.m */; settings = {ASSET_TAGS = (); }; };
 		A15A95271BC7C3F200643170 /* NGCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A15A95251BC7C3F200643170 /* NGCollectionViewCell.m */; };
 		A15A95281BC7C3F200643170 /* NGCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15A95261BC7C3F200643170 /* NGCollectionViewCell.xib */; };
+		A15F1C461BD5D67500E854A7 /* UIButton+setBtnArg.m in Sources */ = {isa = PBXBuildFile; fileRef = A15F1C451BD5D67500E854A7 /* UIButton+setBtnArg.m */; settings = {ASSET_TAGS = (); }; };
+		A15F1C4A1BD615A600E854A7 /* NGSecondListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A15F1C481BD615A600E854A7 /* NGSecondListCell.m */; settings = {ASSET_TAGS = (); }; };
+		A15F1C4B1BD615A600E854A7 /* NGSecondListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15F1C491BD615A600E854A7 /* NGSecondListCell.xib */; settings = {ASSET_TAGS = (); }; };
 		A17B7CF41B43F867003CF895 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A17B7CF31B43F867003CF895 /* main.m */; };
 		A17B7CF71B43F867003CF895 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A17B7CF61B43F867003CF895 /* AppDelegate.m */; };
 		A17B7CFD1B43F867003CF895 /* MainSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A17B7CFB1B43F867003CF895 /* MainSB.storyboard */; };
 		A17B7CFF1B43F867003CF895 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A17B7CFE1B43F867003CF895 /* Images.xcassets */; };
 		A17B7D021B43F867003CF895 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A17B7D001B43F867003CF895 /* LaunchScreen.xib */; };
 		A17B7D0E1B43F867003CF895 /* ddtTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A17B7D0D1B43F867003CF895 /* ddtTests.m */; };
-		A17D0CD11BD4C0DE00E465A7 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = A17D0CD01BD4C0DE00E465A7 /* ChineseToPinyin.m */; settings = {ASSET_TAGS = (); }; };
+		A17D0CD11BD4C0DE00E465A7 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = A17D0CD01BD4C0DE00E465A7 /* ChineseToPinyin.m */; settings = {ASSET_TAGS = (); COMPILER_FLAGS = "-w"; }; };
 		A1AC85551BC8DB460099C7F7 /* NGCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AC85531BC8DB460099C7F7 /* NGCollectionReusableView.m */; };
 		A1AC85561BC8DB460099C7F7 /* NGCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1AC85541BC8DB460099C7F7 /* NGCollectionReusableView.xib */; };
 		A1AC85581BC8F2FA0099C7F7 /* menuItem.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1AC85571BC8F2FA0099C7F7 /* menuItem.plist */; };
@@ -243,6 +246,11 @@
 		A15A95241BC7C3F200643170 /* NGCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCollectionViewCell.h; sourceTree = "<group>"; };
 		A15A95251BC7C3F200643170 /* NGCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGCollectionViewCell.m; sourceTree = "<group>"; };
 		A15A95261BC7C3F200643170 /* NGCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGCollectionViewCell.xib; sourceTree = "<group>"; };
+		A15F1C441BD5D67500E854A7 /* UIButton+setBtnArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+setBtnArg.h"; sourceTree = "<group>"; };
+		A15F1C451BD5D67500E854A7 /* UIButton+setBtnArg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+setBtnArg.m"; sourceTree = "<group>"; };
+		A15F1C471BD615A600E854A7 /* NGSecondListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSecondListCell.h; sourceTree = "<group>"; };
+		A15F1C481BD615A600E854A7 /* NGSecondListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSecondListCell.m; sourceTree = "<group>"; };
+		A15F1C491BD615A600E854A7 /* NGSecondListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGSecondListCell.xib; sourceTree = "<group>"; };
 		A17B7CEE1B43F867003CF895 /* ddt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ddt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A17B7CF21B43F867003CF895 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A17B7CF31B43F867003CF895 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -558,6 +566,9 @@
 				A1AC85521BC8DB460099C7F7 /* NGCollectionReusableView.h */,
 				A1AC85531BC8DB460099C7F7 /* NGCollectionReusableView.m */,
 				A1AC85541BC8DB460099C7F7 /* NGCollectionReusableView.xib */,
+				A15F1C471BD615A600E854A7 /* NGSecondListCell.h */,
+				A15F1C481BD615A600E854A7 /* NGSecondListCell.m */,
+				A15F1C491BD615A600E854A7 /* NGSecondListCell.xib */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -690,6 +701,8 @@
 			children = (
 				9FEE0A511BCDFA4F00EA5261 /* UIViewExt.h */,
 				9FEE0A521BCDFA4F00EA5261 /* UIViewExt.m */,
+				A15F1C441BD5D67500E854A7 /* UIButton+setBtnArg.h */,
+				A15F1C451BD5D67500E854A7 /* UIButton+setBtnArg.m */,
 			);
 			name = category;
 			sourceTree = "<group>";
@@ -889,6 +902,7 @@
 				A12442071BD0F6A100D2588C /* cities.xml in Resources */,
 				A143F83D1BCC96E50029E555 /* me.storyboard in Resources */,
 				9FEFFCCF1BCFAFE80036C23D /* checkbox1_checked@2x.png in Resources */,
+				A15F1C4B1BD615A600E854A7 /* NGSecondListCell.xib in Resources */,
 				9FEFFCD11BCFAFE80036C23D /* checkbox1_unchecked@2x.png in Resources */,
 				A17B7D021B43F867003CF895 /* LaunchScreen.xib in Resources */,
 				A12442091BD0F6A100D2588C /* provinces.xml in Resources */,
@@ -975,6 +989,7 @@
 				9FEE0A531BCDFA4F00EA5261 /* UIViewExt.m in Sources */,
 				9FEFFCD21BCFAFE80036C23D /* QCheckBox.m in Sources */,
 				9FFEE94B1BD0CDF100D53553 /* RegisterViewController.m in Sources */,
+				A15F1C4A1BD615A600E854A7 /* NGSecondListCell.m in Sources */,
 				A12441CA1BD0EDD200D2588C /* MJRefreshBackFooter.m in Sources */,
 				A12441FF1BD0EFD900D2588C /* NSObject+LKDBHelper.m in Sources */,
 				A12442001BD0EFD900D2588C /* NSObject+LKModel.m in Sources */,
@@ -1004,6 +1019,7 @@
 				A12C56BC1BCDEDF600C6BF79 /* NGPopListView.m in Sources */,
 				A12441FC1BD0EFD900D2588C /* LKDB+Mapping.m in Sources */,
 				A12441DB1BD0EDD200D2588C /* UIView+MJExtension.m in Sources */,
+				A15F1C461BD5D67500E854A7 /* UIButton+setBtnArg.m in Sources */,
 				ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */,
 				A12441FD1BD0EFD900D2588C /* LKDBHelper.m in Sources */,
 				A12441FA1BD0EFD900D2588C /* FMDatabaseQueue.m in Sources */,

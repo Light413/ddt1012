@@ -11,5 +11,5 @@
 @interface NGItemsDetailVC : NGBaseTableVC
 
 @property(nonatomic,retain)NSDictionary *superdic;//上级传递的参数
-
+@property(nonatomic,copy)NSString *optional_info;//附加信息(可选)
 @end

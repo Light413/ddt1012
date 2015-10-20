@@ -165,5 +165,10 @@
     return 44;
 }
 
+//-(NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
+//{
+//    
+////    NSAttributedString *_s= [[NSAttributedString alloc]initWithString:<#(nonnull NSString *)#> attributes:<#(nullable NSDictionary<NSString *,id> *)#>];
+//}
 @end
 

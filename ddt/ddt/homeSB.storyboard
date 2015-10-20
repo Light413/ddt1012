@@ -135,9 +135,9 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JzP-FZ-EUi">
-                                                            <rect key="frame" x="88" y="51" width="496" height="35"/>
+                                                            <rect key="frame" x="83" y="51" width="501" height="35"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <state key="normal" title="全部" image="btn_down">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
@@ -152,9 +152,9 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IY1-6X-dOJ">
-                                                            <rect key="frame" x="88" y="97" width="496" height="35"/>
+                                                            <rect key="frame" x="83" y="97" width="501" height="35"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <state key="normal" title="全部" image="btn_down">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
@@ -168,10 +168,13 @@
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入搜索关键字" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zyW-HG-xTB">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入搜索关键字" textAlignment="natural" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zyW-HG-xTB">
                                                             <rect key="frame" x="88" y="143" width="496" height="36"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="o9Y-ji-4LY" id="GVc-Ud-Csq"/>
+                                                            </connections>
                                                         </textField>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5l6-bH-nPp">
                                                             <rect key="frame" x="88" y="5" width="80" height="35"/>
@@ -202,7 +205,7 @@
                                                         <constraint firstItem="qpB-cN-UBz" firstAttribute="top" secondItem="IWh-Jg-sFV" secondAttribute="bottom" constant="12" id="CgZ-FF-OUX"/>
                                                         <constraint firstItem="5l6-bH-nPp" firstAttribute="centerY" secondItem="r6Q-tg-4nV" secondAttribute="centerY" id="E0f-pk-ltJ"/>
                                                         <constraint firstAttribute="bottom" secondItem="zyW-HG-xTB" secondAttribute="bottom" constant="5" id="GG0-qR-hF7"/>
-                                                        <constraint firstItem="IY1-6X-dOJ" firstAttribute="leading" secondItem="qpB-cN-UBz" secondAttribute="trailing" constant="10" id="HrA-kk-RS2"/>
+                                                        <constraint firstItem="IY1-6X-dOJ" firstAttribute="leading" secondItem="qpB-cN-UBz" secondAttribute="trailing" constant="5" id="HrA-kk-RS2"/>
                                                         <constraint firstAttribute="trailing" secondItem="zyW-HG-xTB" secondAttribute="trailing" id="HvY-7C-gNA"/>
                                                         <constraint firstAttribute="trailing" secondItem="PUK-mj-AWc" secondAttribute="trailing" id="LCV-AX-F4S"/>
                                                         <constraint firstItem="IWh-Jg-sFV" firstAttribute="leading" secondItem="PUK-mj-AWc" secondAttribute="leading" id="Ltc-F4-JLc"/>
@@ -215,7 +218,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="jmM-9u-q5T" secondAttribute="bottom" constant="10" id="S5F-Ea-uCY"/>
                                                         <constraint firstItem="Qbc-Vb-U3f" firstAttribute="top" secondItem="IWh-Jg-sFV" secondAttribute="bottom" constant="45" id="TZw-8X-t78"/>
                                                         <constraint firstItem="XR5-fx-PEy" firstAttribute="width" secondItem="5l6-bH-nPp" secondAttribute="width" id="Tax-JO-6uc"/>
-                                                        <constraint firstItem="JzP-FZ-EUi" firstAttribute="leading" secondItem="wJQ-ar-cPJ" secondAttribute="trailing" constant="10" id="WqX-2U-OpW"/>
+                                                        <constraint firstItem="JzP-FZ-EUi" firstAttribute="leading" secondItem="wJQ-ar-cPJ" secondAttribute="trailing" constant="5" id="WqX-2U-OpW"/>
                                                         <constraint firstItem="zyW-HG-xTB" firstAttribute="centerY" secondItem="jmM-9u-q5T" secondAttribute="centerY" id="Wr5-60-lcc"/>
                                                         <constraint firstAttribute="bottom" secondItem="Qbc-Vb-U3f" secondAttribute="bottom" constant="49" id="Xr1-wz-5po"/>
                                                         <constraint firstItem="Qbc-Vb-U3f" firstAttribute="top" secondItem="IY1-6X-dOJ" secondAttribute="bottom" constant="5" id="Ylu-ad-aaY"/>

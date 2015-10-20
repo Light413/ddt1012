@@ -258,32 +258,37 @@
     NSMutableArray *_arr = [[NSMutableArray alloc]init];
     NSString*searchStr =key?[NSString stringWithFormat:@"level = '%@' and key like '%@%%'",level,key]: [NSString stringWithFormat:@"level = '%@'",level];
     
-    NSArray *_cities = [_helper search:[NGXMLDataModel class] where:searchStr orderBy:@"key asc" offset:0 count:INT16_MAX];
+    NSArray *_tmp = [_helper search:[NGXMLDataModel class] where:searchStr orderBy:@"rowid asc" offset:0 count:INT16_MAX];
     
-    [_cities enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *_id = ((NGXMLDataModel*)obj).key ? ((NGXMLDataModel*)obj).key : @"";
-        NSString *_name =((NGXMLDataModel*)obj).name?((NGXMLDataModel*)obj).name:@"";
+//    [_tmp enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSString *_id = ((NGXMLDataModel*)obj).key ? ((NGXMLDataModel*)obj).key : @"";
+//        NSString *_name =((NGXMLDataModel*)obj).name?((NGXMLDataModel*)obj).name:@"";
+//        if (_id && _name) {
+//            NSDictionary *_d = [NSDictionary dictionaryWithObjectsAndKeys:_id,@"ID",_name,@"NAME", nil];
+//            [_arr addObject:_d];
+//        }
+//    }];
+    
+    for (int i =0; i < _tmp.count; i++) {
+        NGXMLDataModel *_m = [_tmp objectAtIndex:i];
+        NSString *_id = _m.key ? _m.key : @"";
+        NSString *_name =_m.name?_m.name:@"";
         if (_id && _name) {
             NSDictionary *_d = [NSDictionary dictionaryWithObjectsAndKeys:_id,@"ID",_name,@"NAME", nil];
             [_arr addObject:_d];
         }
-    }];
-    
-    [_cities enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-    }];
-    
+    }
     return _arr;
 }
 
-+(NSArray*)getBaseTypeDataWithKey:(NSString*)key andLevel:(NSString*)level
++(NSArray*)getBaseTypeDataWithKey:(NSString*)key //andLevel:(NSString*)level
 {
-    return [[self share]getBaseTypeDataWithKey:key andLevel:level];
+    return [[self share]getBaseTypeDataWithKey:key andLevel:@"two"];
 }
 
 +(NSArray*)getBaseTypeData
 {
-    return [self getBaseTypeDataWithKey:nil andLevel:@"one"];
+    return [[self share]getBaseTypeDataWithKey:nil andLevel:@"one"];
 }
 
 

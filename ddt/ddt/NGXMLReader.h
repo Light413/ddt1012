@@ -72,14 +72,13 @@
 +(NSArray*)getBaseTypeData;
 
 /**
- *  根据指定参数获取基础类型数据
+ *  根据指定参数获取基础类型数据(获取子节点元素)
  *
  *  @param key   上一级的数据编码
- *  @param level 子数据的level值<eg,one,two,three> one：第一级数据，two：第二级数据
  *
  *  @return 基础数据(元素类型字典 ：ID－编码, NAME : 名称)
  */
-+(NSArray*)getBaseTypeDataWithKey:(NSString*)key andLevel:(NSString*)level;
++(NSArray*)getBaseTypeDataWithKey:(NSString*)key;
 
 
 @end

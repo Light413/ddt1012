@@ -24,7 +24,7 @@
         _tf.layer.borderWidth = 1;
         _tf.font  =[UIFont systemFontOfSize:13];
         _tf.returnKeyType = UIReturnKeySearch;
-        
+        _tf.backgroundColor = [UIColor whiteColor];
         UIButton *_btn = [UIButton buttonWithType:UIButtonTypeCustom];
         _btn.frame = CGRectMake(0, 0, 35, 15);
         [_btn setImageEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 10)];

@@ -14,9 +14,11 @@
 
 #define ScrollViewHeight    100
 #define CollectionHeaderViewHight 140
+#define FootRecordData @"FootRecordData"
+#define TapStr @"最近访问的类别会出现在这里"
+
 
 static NSString *NGCollectionHeaderReuseID = @"NGCollectionHeaderReuseID";
-
 static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item 详情页Id
 
 @interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
@@ -33,6 +35,7 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
     
     NSArray *_itemArray;//item元素项
     NSDictionary *_selectItemDic;//选中cell的数据项
+    NSString *_option_info;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,6 +79,7 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
 {
     [super viewWillAppear:animated];
     [_timer setFireDate:[NSDate distantPast]];
+    [_collectionView reloadData];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -202,6 +206,40 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
     }
 }
 
+//记录访问足迹
+-(NSString *)footerRecord:(NSString*)str
+{
+    NSMutableString *_des = [[NSMutableString alloc]init];
+    NSArray *_arr =  [[NSUserDefaults standardUserDefaults] objectForKey:FootRecordData];
+    if (str) {
+        if (_arr) {
+            NSMutableArray *_tmp = [NSMutableArray arrayWithArray:_arr];
+            if ([_tmp containsObject:str]) {
+                [_tmp removeObject:str];
+            }
+            [_tmp insertObject:str atIndex:0];
+            if (_tmp.count > 3) {
+                [_tmp removeLastObject];
+            }
+            [[NSUserDefaults standardUserDefaults]setObject:_tmp forKey:FootRecordData];
+        }
+        else
+        {
+            [[NSUserDefaults standardUserDefaults]setObject:@[str] forKey:FootRecordData];
+        }
+    }
+    else
+    {
+        if (_arr) {
+            for (int i =0; i < _arr.count; i++) {
+                [_des appendString:[NSString stringWithFormat:@" %@",_arr[i]]];
+            }
+            return _des;
+        }
+    }
+
+    return TapStr;
+}
 
 #pragma mark -UICollectionViewDelegate
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -249,13 +287,13 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
         UILabel*_footLab = [[UILabel alloc]initWithFrame:CGRectMake(_igv.frame.origin.x + 20, ScrollViewHeight+(CollectionHeaderViewHight - 20 -ScrollViewHeight)/2.0, 200, 20)];
         _footLab.font = [UIFont systemFontOfSize:11];
         [reuseView addSubview:_footLab];
-        _footLab.text = [NSString stringWithFormat:@"足迹: %@ %@ %@",@"信用卡相关",@"信用卡相关",@"信用相关"];//...
+        NSString *_ss = [self footerRecord:nil];
+        _footLab.text =[NSString stringWithFormat:@"足迹:%@",_ss] ;//...
         //        _footLab.backgroundColor = [UIColor lightGrayColor];
         _footLab.textColor =[UIColor colorWithRed:0.624 green:0.624 blue:0.624 alpha:1];
         
         UIButton *_shareBtn =[UIButton buttonWithType:UIButtonTypeCustom];
         _shareBtn.frame = CGRectMake(CurrentScreenWidth -90,ScrollViewHeight+ 0, 90, CollectionHeaderViewHight -ScrollViewHeight);
-        //        _shareBtn.backgroundColor = [UIColor redColor];
         [reuseView addSubview:_shareBtn];
         [_shareBtn setTitle:@"分享赚积分" forState:UIControlStateNormal];
         [_shareBtn setImage:[UIImage imageNamed:@"share_icon"] forState:UIControlStateNormal];
@@ -276,11 +314,14 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%d - %d",indexPath.section,indexPath.row);
-    NSLog(@"....%@",[[_itemArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row]);
     //key,title
+    _option_info =nil;
     _selectItemDic =[[_itemArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row];
+    if (indexPath.section == 0) {
+        _option_info = indexPath.row < 4 ? @"个人":(indexPath.row < 8 ?@"企业":@"");
+    }
     
+    [self footerRecord:[_selectItemDic objectForKey:@"title"]];
     [self performSegueWithIdentifier:showItemDetailIdentifier sender:nil];
 }
 
@@ -316,6 +357,7 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
     if ([segue.identifier isEqualToString:showItemDetailIdentifier]) {//item详情页
         NGItemsDetailVC *_vc = [segue destinationViewController];
         _vc.superdic = _selectItemDic;
+        _vc.optional_info = _option_info;
     }
 //    else if (1)
 //    {
