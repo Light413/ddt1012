@@ -15,7 +15,7 @@
 
 @required
 
-//----top button
+//top button方法
 ////获取Section的个数，即btn的个数
 -(NSInteger)numberOfSectionInPopView:(NGPopListView*)poplistview;
 
@@ -24,13 +24,13 @@
 
 
 //YES : 类型必须是数组 NO:必须是字典
--(id)dataSourceOfPoplistviewIsArray:(BOOL)isyes;
+-(NSArray*)dataSourceOfPoplistviewWithIndex:(NSInteger)index;
 
 
 
-//----tableiview------------------------------
+//tableiview方法
 //获取popListView 的row 数据源
--(NSInteger)popListView:(NGPopListView *)popListView numberOfRowsInSection:(NSInteger)section;
+-(NSInteger)popListView:(NGPopListView *)popListView numberOfRowsWithIndex:(NSInteger)index;
 
 //popListView 选中事件
 -(void)popListView:(NGPopListView *)popListView  didSelectRowAtIndex:(NSInteger )index;

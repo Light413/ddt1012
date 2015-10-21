@@ -12,10 +12,14 @@
 @protocol NGBaseListDelegate <NSObject>
 
 @required
-//tablevie 个数 为1 ：dataSourceOfBaseView 数据源为数组类型  2：dataSourceOfBaseView 为字典类型
+//tablevie个数dataSourceOfBaseView 数据源为数组类型
 -(NSInteger)numOfTableViewInBaseView :(NGBaseListView *)baseListView;
 
--(id)dataSourceOfBaseView;
+//获取一级列表数据源
+-(NSArray*)dataSourceOfBaseView;
+
+//获取二级列表数据源 keyValue ： 一级列表所选元素项的Id值
+-(NSArray*)dataSourceOfBaseViewWithKey:(NSString *)keyValue;
 
 -(void)baseView:(NGBaseListView *)baseListView didSelectObj:(id)obj1 secondObj:(id)obj2;
 

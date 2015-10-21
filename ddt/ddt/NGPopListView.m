@@ -98,7 +98,7 @@
     
     CGRect rec = _listView.frame;
     
-    float _maxHeigt = [self.delegate popListView:self numberOfRowsInSection:0] * 44.0 ;
+    float _maxHeigt = [self.delegate popListView:self numberOfRowsWithIndex:_selectedBtnTag - 1000] * 44.0 ;
     _maxHeigt = _maxHeigt >_maskView.frame.size.height - 60? _maskView.frame.size.height - 60:_maxHeigt;
     
     rec.size.height = _maxHeigt + 2;
@@ -111,7 +111,6 @@
 
 -(void)disappear
 {
-
     [_listView removeFromSuperview];
     [_maskView removeFromSuperview];
     _listView = nil;
@@ -127,16 +126,25 @@
     return _selectedBtnTag == 1001 ? 2 : 1;
 }
 
--(id)dataSourceOfBaseView
+-(NSArray*)dataSourceOfBaseView
 {
-    return [self.delegate dataSourceOfPoplistviewIsArray:_selectedBtnTag != 1001];//传递参数
+    return [self.delegate dataSourceOfPoplistviewWithIndex:_selectedBtnTag - 1000];//传递参数
+}
+
+-(NSArray *)dataSourceOfBaseViewWithKey:(NSString *)keyValue
+{
+    return [NGXMLReader getBaseTypeDataWithKey:keyValue];
 }
 
 -(void)baseView:(NGBaseListView *)baseListView didSelectObj:(id)obj1 secondObj:(id)obj2
 {
     NSLog(@"obj1 : %@ ---- obj2 :%@",obj1,obj2);
+//    [0]	(null)	@"ID" : @"719"
+//    [1]	(null)	@"NAME" : @"黄浦区"
+    NSString *_title =obj2?[obj2 objectForKey:@"NAME"]:([obj1 isKindOfClass:[NSDictionary class]] ? [obj1 objectForKey:@"NAME"]:obj1);
     
-    [_selectedBtn setTitle:obj2?obj2:obj1 forState:UIControlStateNormal];
+    [_selectedBtn setTitle:_title forState:UIControlStateNormal];
+    
     [self disappear];
     
     //...获取btn 参数列表
@@ -144,61 +152,6 @@
         [self.delegate popListView:self didSelectRowAtIndex:0];
     }
 }
-
-
-
-/*
-#pragma mark- tableview delegate
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.delegate popListView:self numberOfRowsInSection:section];
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([self.delegate respondsToSelector:@selector(popListView:heightForRowAtIndexPath:)]) {
-        return [self.delegate popListView:self heightForRowAtIndexPath:indexPath.row];
-    }
-    return 44.0;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"id"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"id"];
-        cell.textLabel.font = [UIFont systemFontOfSize:13];
-    }
-    
-    NSString *_title = [self.delegate titleOfCellInPopView:self atIndex:indexPath.row];
-    cell.textLabel.text = _title ? _title :@"";
-    return cell;
-}
-
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-//        [_tableView setSeparatorInset:UIEdgeInsetsZero];
-//    }
-//    if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-//        [_tableView setLayoutMargins:UIEdgeInsetsZero];
-//    }
-}
-
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.delegate popListView:self didSelectRowAtIndex:indexPath.row];
-}
-
-*/
-
-
-
-
-
-
 
 
 /*

@@ -77,20 +77,13 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 //        [0]	(null)	@"ID" : @"719"
 //        [1]	(null)	@"NAME" : @"黄浦区"
         NSArray *_a =[NGXMLReader getCurrentLocationAreas];;
-        NSString*name = [[NSUserDefaults standardUserDefaults]objectForKey:CURRENT_LOCATION_CITY];
-        NSMutableArray *_a2 = [[NSMutableArray alloc]initWithObjects:@{@"ID":@"",@"NAME":@"全部"},@{@"ID":@"",@"NAME":[NSString stringWithFormat:@"全%@",name]}, nil];
-        [_a2 addObjectsFromArray:_a];
-        _pickViewDataArr =_a2 ;
+        _pickViewDataArr =_a ;
     }
     else if (type == NGSelectDataTypeTaskType)
     {
-//        [0]	(null)	@"ID" : @"121"
-//        [1]	(null)	@"NAME" : @"房产"
         if (self.itemKey) {
             NSArray *_a =[NGXMLReader getBaseTypeDataWithKey:self.itemKey];
-            NSMutableArray *_a2 = [[NSMutableArray alloc]initWithObjects:@{@"ID":@"",@"NAME":@"全部"}, nil];
-            [_a2 addObjectsFromArray:_a];
-            _pickViewDataArr =_a2 ;
+            _pickViewDataArr =_a ;
         }
     }
 }

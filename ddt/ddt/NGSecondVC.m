@@ -5,6 +5,10 @@
 //  Created by gener on 15/10/13.
 //  Copyright (c) 2015年 Light. All rights reserved.
 //
+//NGVCTypeId_1  同行Id
+//NGVCTypeId_2  公司Id
+//NGVCTypeId_3
+//NGVCTypeId_4
 
 #import "NGSecondVC.h"
 #import "NGSearchBar.h"
@@ -19,7 +23,9 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
     UITableView *_tableView;
     
     //pop view相关
-    NSArray *tonghang_btnTitleArr; //同行-选择按钮的默认标题
+    NSArray *   _common_pop_btnTitleArr; //同行-选择按钮的默认标题
+    NSArray *   _common_pop_btnListArr;//列表数据
+    
     NSArray *tonghang_dataSourceArr; //同行-pop data
     NSDictionary *_dic;
     NSArray *company_btnTitleArr; //同行-选择按钮的默认标题
@@ -45,13 +51,44 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
 -(void)initData
 {
     //pop
-    _isTHvc = self.tabBarController.selectedIndex == 1;
-    tonghang_btnTitleArr = @[@"服务区域",@"业务类型",@"类别"];
+    NSInteger _index = self.tabBarController.selectedIndex;
+    if (_index == 1) {
+        self.vcType = NGVCTypeId_1;
+    }
+    else if (_index == 2)
+    {
+        self.vcType = NGVCTypeId_2;
+    }
+    
+    //btn title
+    NSArray *_btnTitleArr1 = @[@"服务区域",@"业务类型",@"类别"];//同行
+    NSArray *_btnTitleArr2 = @[@"服务区域",@"业务类型"];//公司
+    NSArray *_btnTitleArr3 = @[@"服务区域",@"业务类型",@"时间"];//接单
+    
+    NSArray *_sexArr = @[@"全部",@"男",@"女"];//性别
+    NSArray *_areaArr = [NGXMLReader getCurrentLocationAreas];//区域
+    NSArray *_typeArr = [NGXMLReader getBaseTypeData];//基本业务类型
+    
+    switch (self.vcType) {
+        case NGVCTypeId_1:
+        {
+            _common_pop_btnTitleArr = _btnTitleArr1;
+            _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
+        } break;
+        case NGVCTypeId_2:
+        {
+            _common_pop_btnTitleArr = _btnTitleArr2;
+            _common_pop_btnListArr  = @[_areaArr,_typeArr];
+        } break;
+            
+        default: break;
+    }
+    
     tonghang_dataSourceArr = @[@"全部",@"男",@"女",@"其他"];
     _dic = [NSDictionary dictionaryWithObjectsAndKeys:@[@"100",@"101"],@"1",@[@"200",@"201",@"202"],@"2", nil];
     
-    //---tableview
-    _tableview_DataArr = [[NSMutableArray alloc]init];
+    //tableview
+    _tableview_DataArr = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6", nil];
 }
 
 #pragma mark- init subviews
@@ -83,8 +120,8 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
 -(void)loadMoreData
 {
     [SVProgressHUD showWithStatus:@"正在加载数据"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [_tableview_DataArr addObjectsFromArray:@[@"",@"",@""]];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [_tableview_DataArr addObjectsFromArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@""]];
         [_tableView reloadData];
         [SVProgressHUD showSuccessWithStatus:@"加载完成"];
         [_tableView.header endRefreshing];
@@ -95,28 +132,23 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
 #pragma mark - NGPopListDelegate
 -(NSInteger)numberOfSectionInPopView:(NGPopListView *)poplistview
 {
-    return _isTHvc? tonghang_btnTitleArr.count:tonghang_btnTitleArr.count - 1;
+    return _common_pop_btnTitleArr?_common_pop_btnTitleArr.count:0;
 }
 
 -(NSString *)titleOfSectionInPopView:(NGPopListView *)poplistview atIndex:(NSInteger)index
 {
-    return [tonghang_btnTitleArr objectAtIndex:index];
+    return [_common_pop_btnTitleArr objectAtIndex:index];
 }
 
--(id)dataSourceOfPoplistviewIsArray:(BOOL)isyes
+//第一个列表显示的数据源,NSArray类型,第二个列表数据源：
+-(NSArray*)dataSourceOfPoplistviewWithIndex:(NSInteger)index
 {
-    if (isyes) {
-       return tonghang_dataSourceArr;
-    }
-    else
-    {
-        return _dic;
-    }
+    return [_common_pop_btnListArr objectAtIndex:index];
 }
 
--(NSInteger)popListView:(NGPopListView *)popListView numberOfRowsInSection:(NSInteger)section
+-(NSInteger)popListView:(NGPopListView *)popListView numberOfRowsWithIndex:(NSInteger)index
 {
-    return tonghang_dataSourceArr.count;
+    return ((NSArray*)[_common_pop_btnListArr objectAtIndex:index]).count;
 }
 
 

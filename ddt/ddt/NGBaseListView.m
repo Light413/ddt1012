@@ -15,7 +15,8 @@
 @implementation NGBaseListView
 {
     NSInteger _numberTableview;
-    id _dataSource;
+    NSArray * _dataSource;
+    NSArray * _dataSource_2;
     
     id _tableview1_selectedObj;//tableview1 选中的对象
     id _tableview2_selectedObj;//tableview2 选中的对象 ,若无tableview2 则为nil
@@ -27,6 +28,7 @@
         self.delegate = delegate;
         _numberTableview = [self.delegate numOfTableViewInBaseView:self];
         _dataSource = [self.delegate dataSourceOfBaseView];
+        _dataSource_2 = nil;
         _tableview1_selectedObj = nil;
         _tableview2_selectedObj = nil;
         
@@ -64,22 +66,29 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([self.delegate respondsToSelector:@selector(dataSourceOfBaseView)]) {
-        id _obj = [self.delegate dataSourceOfBaseView];
-        if (tableView.tag == 300) {
+    if (tableView.tag == 300) {
+        if ([self.delegate respondsToSelector:@selector(dataSourceOfBaseView)]) {
+            id _obj = [self.delegate dataSourceOfBaseView];
             if ([_obj isKindOfClass:[NSArray class]]) {
-                return ((NSArray*)_obj).count;
+                    return ((NSArray*)_obj).count;
+                }
             }
-            else if([_obj isKindOfClass:[NSDictionary class]])
-            {
-                return [((NSDictionary*)_obj) allKeys].count;
+    }
+    else if (tableView.tag == 301)
+    {
+        if (_tableview1_selectedObj) {
+            if (_dataSource_2) {
+                return _dataSource_2.count;
             }
-        }
-        else if (tableView.tag == 301)
-        {
-            return [[((NSDictionary*)_obj) objectForKey:_tableview1_selectedObj] count];
+            if ([self.delegate respondsToSelector:@selector(dataSourceOfBaseViewWithKey:)]) {
+                _dataSource_2 = [self.delegate dataSourceOfBaseViewWithKey:[_tableview1_selectedObj objectForKey:@"ID"]];
+                if ([_dataSource_2 isKindOfClass:[NSArray class]]) {
+                    return _dataSource_2.count;
+                }
+            }
         }
     }
+    
     return  0;
 }
 
@@ -97,7 +106,6 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellReuseIdentifier"];
         cell.textLabel.font = [UIFont systemFontOfSize:13];
     }
-    
     for (id _obj in cell.subviews) {
         if ([_obj isKindOfClass:[UILabel class]]) {
             [((UILabel*)_obj) removeFromSuperview];
@@ -105,14 +113,20 @@
     }
     
     if (tableView.tag == 300) {
+        NSArray *_arr = _dataSource;
+        id _obj = [_arr objectAtIndex:indexPath.row];
         if (_numberTableview == 1) {
-            NSArray *_arr = (NSArray*)_dataSource;
-            _title = [_arr objectAtIndex:indexPath.row];
+            if ([_obj isKindOfClass:[NSString class]]) {
+               _title = _obj;
+            }
+            else if ([_obj isKindOfClass:[NSDictionary class]])
+            {
+                _title = [((NSDictionary*)_obj) objectForKey:@"NAME"];
+            }
         }
         else if (_numberTableview == 2)
         {
-            NSDictionary *_dic = (NSDictionary*)_dataSource;
-            _title = [[_dic allKeys] objectAtIndex:indexPath.row];
+            _title = [((NSDictionary*)_obj) objectForKey:@"NAME"];
         }
         
         UILabel *_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, cell.frame.size.height  -1, cell.frame.size.width, 1)];
@@ -123,12 +137,17 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     else
-    {
+    {//...
         cell.backgroundColor = SubListViewCellNormalColor;
         cell.selectedBackgroundView = nil;
-        NSDictionary *_dic = (NSDictionary*)_dataSource;
-        NSArray *_arr1 = [_dic objectForKey:_tableview1_selectedObj];
-        _title = [_arr1 objectAtIndex:indexPath.row];
+        NSDictionary *_dic = nil;
+        if (_dataSource_2 == nil) {
+            if ([self.delegate respondsToSelector:@selector(dataSourceOfBaseViewWithKey:)]) {
+                _dataSource_2 = [self.delegate dataSourceOfBaseViewWithKey:[_tableview1_selectedObj objectForKey:@"ID"]];
+            }
+        }
+        _dic = [_dataSource_2 objectAtIndex:indexPath.row];
+        _title = [_dic objectForKey:@"NAME"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.accessoryType = UITableViewCellAccessoryNone;
@@ -138,28 +157,26 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *_selectStr = nil;
    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
     if (tableView.tag == 300) {
+        _tableview1_selectedObj =[_dataSource objectAtIndex:indexPath.row];
         if (_numberTableview == 1) {
-            _selectStr = cell.textLabel.text;
             if ([self.delegate respondsToSelector:@selector(baseView:didSelectObj:secondObj:)]) {
-                [self.delegate baseView:self didSelectObj:_selectStr secondObj:_tableview2_selectedObj];
+                [self.delegate baseView:self didSelectObj:_tableview1_selectedObj secondObj:nil];
             }
         }
         else
         {
-            _tableview1_selectedObj =cell.textLabel.text;
-              UITableView *_t = (UITableView *) [self viewWithTag:301];
+            _dataSource_2 = nil;
+            //刷新二级列表
+            UITableView *_t = (UITableView *) [self viewWithTag:301];
             [_t reloadData];
         }
     }
     else
     {
-        _selectStr = cell.textLabel.text;
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        _tableview2_selectedObj = _selectStr;
+        _tableview2_selectedObj = [_dataSource_2 objectAtIndex:indexPath.row];
         if ([self.delegate respondsToSelector:@selector(baseView:didSelectObj:secondObj:)]) {
             [self.delegate baseView:self didSelectObj:_tableview1_selectedObj secondObj:_tableview2_selectedObj];
         }

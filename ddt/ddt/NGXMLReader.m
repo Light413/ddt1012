@@ -224,7 +224,12 @@
 {
     NSString*name = [[NSUserDefaults standardUserDefaults]objectForKey:CURRENT_LOCATION_CITY];
     NSString*cityid = [[self share]getIDWithCityName:name];
-    return [[self share]getAllAreaWithCityID:cityid];
+    NSArray *_area = [[self share]getAllAreaWithCityID:cityid];
+    NSMutableArray *_des = [[NSMutableArray alloc]initWithObjects:@{@"ID":@"",@"NAME":@"全部"},@{@"ID":@"",@"NAME":[NSString stringWithFormat:@"全%@",name]}, nil];
+    if (_area) {
+          [_des addObjectsFromArray:_area];  
+    }
+    return _des;
 }
 
 
@@ -281,14 +286,25 @@
     return _arr;
 }
 
+//如果 key= nil 获取全部二级节点数据
 +(NSArray*)getBaseTypeDataWithKey:(NSString*)key //andLevel:(NSString*)level
 {
-    return [[self share]getBaseTypeDataWithKey:key andLevel:@"two"];
+    NSMutableArray *_a2 = [[NSMutableArray alloc]initWithObjects:@{@"ID":@"",@"NAME":@"全部"}, nil];
+    NSArray *_a = [[self share]getBaseTypeDataWithKey:key andLevel:@"two"];
+    if (_a) {
+        [_a2 addObjectsFromArray:_a];
+    }
+    return _a2;
 }
 
 +(NSArray*)getBaseTypeData
 {
-    return [[self share]getBaseTypeDataWithKey:nil andLevel:@"one"];
+    NSMutableArray *_a2 = [[NSMutableArray alloc]initWithObjects:@{@"ID":@"",@"NAME":@"全部"}, nil];
+    NSArray *_a = [[self share]getBaseTypeDataWithKey:nil andLevel:@"one"];
+    if (_a) {
+        [_a2 addObjectsFromArray:_a];
+    }
+    return _a2;
 }
 
 
