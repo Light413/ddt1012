@@ -33,9 +33,38 @@
     remeberPasswordandPhone.checked = YES;
     autoLoginNextime.checked = YES;
     [self initViews];
+    //注册键盘收起的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
     // Do any additional setup after loading the view.
 }
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    [UIView animateWithDuration:1.0 animations:^{
+        for (UIView *sview in self.view.subviews)
+        {
+            sview.transform=CGAffineTransformMakeTranslation(0, -46);
+        }
+    } completion:^(BOOL finished) {
+    }];
+}
 
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    [UIView animateWithDuration:1.0 animations:^{
+        for (UIView *sview in self.view.subviews)
+        {
+            sview.transform=CGAffineTransformIdentity;
+        }
+    } completion:^(BOOL finished) {
+    }];
+}
 -(void)goback:(UIButton *)btn{
     [self dismissViewControllerAnimated:YES completion:nil];
 }

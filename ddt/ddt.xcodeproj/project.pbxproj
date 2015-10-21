@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		05B69C2E05AB6F177D83E56F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA432C30201FEF046829C54 /* libPods.a */; };
+		9F690B001BD73AA600DDCED6 /* MyBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690AFF1BD73AA600DDCED6 /* MyBaseTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9F690B031BD73AE200DDCED6 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690B021BD73AE200DDCED6 /* PersonalInfoViewController.m */; settings = {ASSET_TAGS = (); }; };
 		9FEE0A501BCDEC1700EA5261 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE0A4F1BCDEC1700EA5261 /* LoginViewController.m */; };
 		9FEE0A531BCDFA4F00EA5261 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE0A521BCDFA4F00EA5261 /* UIViewExt.m */; };
 		9FEFFCCF1BCFAFE80036C23D /* checkbox1_checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FEFFCC91BCFAFE80036C23D /* checkbox1_checked@2x.png */; };
@@ -118,6 +120,10 @@
 /* Begin PBXFileReference section */
 		50008DDEF01D3EC79847C509 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9BA432C30201FEF046829C54 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F690AFE1BD73AA600DDCED6 /* MyBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBaseTableViewController.h; sourceTree = "<group>"; };
+		9F690AFF1BD73AA600DDCED6 /* MyBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBaseTableViewController.m; sourceTree = "<group>"; };
+		9F690B011BD73AE200DDCED6 /* PersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoViewController.h; sourceTree = "<group>"; };
+		9F690B021BD73AE200DDCED6 /* PersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoViewController.m; sourceTree = "<group>"; };
 		9FEE0A4E1BCDEC1700EA5261 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9FEE0A4F1BCDEC1700EA5261 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9FEE0A511BCDFA4F00EA5261 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
@@ -775,6 +781,10 @@
 				9FFEE9471BD0AB3D00D53553 /* FindBackPasswordViewController.m */,
 				9FFEE9491BD0CDF100D53553 /* RegisterViewController.h */,
 				9FFEE94A1BD0CDF100D53553 /* RegisterViewController.m */,
+				9F690AFE1BD73AA600DDCED6 /* MyBaseTableViewController.h */,
+				9F690AFF1BD73AA600DDCED6 /* MyBaseTableViewController.m */,
+				9F690B011BD73AE200DDCED6 /* PersonalInfoViewController.h */,
+				9F690B021BD73AE200DDCED6 /* PersonalInfoViewController.m */,
 				9FEFFCD51BCFBADE0036C23D /* MycenterViewController.xib */,
 			);
 			name = me;
@@ -1012,6 +1022,7 @@
 				A1042B811B64D1E600A74215 /* NGHomeVC.m in Sources */,
 				A17B7CF41B43F867003CF895 /* main.m in Sources */,
 				A12441D31BD0EDD200D2588C /* MJRefreshBackStateFooter.m in Sources */,
+				9F690B001BD73AA600DDCED6 /* MyBaseTableViewController.m in Sources */,
 				A12441CF1BD0EDD200D2588C /* MJRefreshAutoNormalFooter.m in Sources */,
 				A149A4411BCF37320098E7C3 /* NGBaseListView.m in Sources */,
 				A12441F61BD0EFD900D2588C /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
@@ -1029,6 +1040,7 @@
 				A12441CC1BD0EDD200D2588C /* MJRefreshFooter.m in Sources */,
 				AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */,
 				A157110E1BD4EAB500D586F6 /* LPickerView.m in Sources */,
+				9F690B031BD73AE200DDCED6 /* PersonalInfoViewController.m in Sources */,
 				AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */,
 				A12441FB1BD0EFD900D2588C /* FMResultSet.m in Sources */,
 				A12CD4DE1BCBA6960020CB27 /* SVProgressHUD.m in Sources */,
