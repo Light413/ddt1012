@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "NGBaseNavigationVC.h"
 #import "PersonalInfoViewController.h"
+#import "MyCollectionViewController.h"
 #define HeaderViewHeight 100.0
 #define iconHeight 15.0
 #define KimageName @"imageName"
@@ -98,7 +99,11 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (indexPath.row ==0) {
+        MyCollectionViewController *collection = [[MyCollectionViewController alloc]init];
+        collection.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:collection animated:YES];
+    }
 }
 #pragma mark--创建尾视图
 -(void)creatFooter{
