@@ -9,5 +9,20 @@
 #import "MyBaseTableViewController.h"
 
 @interface AddCommanyInfoViewController : MyBaseTableViewController
+@property (weak, nonatomic) IBOutlet UITextField *luruCommanynameField;
+@property (weak, nonatomic) IBOutlet UIButton *serviceAreaBtn;
+- (IBAction)serviceAreaBtnClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *chooseBusinessTypeBtn;
+- (IBAction)chooseBusinessTypeBtnClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextView *judgeTextView;
+@property (weak, nonatomic) IBOutlet UILabel *backHolderLabel;
+@property (weak, nonatomic) IBOutlet UITextField *addresscommanyNameField;
+@property (weak, nonatomic) IBOutlet UITextField *jigouCodeFIeld;
+
+@property (weak, nonatomic) IBOutlet UITextField *contactorField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneField;
+@property (weak, nonatomic) IBOutlet UITextField *keywordField;
+
+@property (weak, nonatomic) IBOutlet UIView *backView;
 
 @end

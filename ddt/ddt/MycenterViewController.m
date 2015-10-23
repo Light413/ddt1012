@@ -11,6 +11,10 @@
 #import "NGBaseNavigationVC.h"
 #import "PersonalInfoViewController.h"
 #import "MyCollectionViewController.h"
+#import "MyResumeViewController.h"
+#import "MyListViewController.h"
+#import "AddCommanyInfoViewController.h"
+#import "ReleaseMeetingViewController.h"
 #define HeaderViewHeight 100.0
 #define iconHeight 15.0
 #define KimageName @"imageName"
@@ -103,6 +107,26 @@
         MyCollectionViewController *collection = [[MyCollectionViewController alloc]init];
         collection.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:collection animated:YES];
+    }
+    if (indexPath.row == 1) {
+        MyListViewController *list = [[MyListViewController alloc]init];
+        list .hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:list animated:YES];
+    }
+    if (indexPath.row == 2) {
+        MyResumeViewController *resume = [[MySharetools shared]getViewControllerWithIdentifier:@"MyResume" andstoryboardName:@"me"];
+        resume.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:resume animated:YES];
+    }
+    if (indexPath.row == 3) {
+       ReleaseMeetingViewController *meeting = [[MySharetools shared]getViewControllerWithIdentifier:@"ReleaseMeeting" andstoryboardName:@"me"];
+        meeting.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:meeting animated:YES];
+    }
+    if (indexPath.row == 4) {
+        AddCommanyInfoViewController *commany = [[MySharetools shared]getViewControllerWithIdentifier:@"AddCommany" andstoryboardName:@"me"];
+        commany.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:commany animated:YES];
     }
 }
 #pragma mark--创建尾视图

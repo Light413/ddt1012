@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的简历";
+    self.backView.layer.borderColor = [RGBA(207, 207, 207, 1)CGColor];
+    self.backView.layer.borderWidth = 1;
     // Do any additional setup after loading the view.
 }
 
@@ -24,7 +26,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
 /*
 #pragma mark - Navigation
 
@@ -35,4 +40,18 @@
 }
 */
 
+- (IBAction)businessTypeBtnClick:(id)sender {
+}
+- (IBAction)salaryBtnClick:(id)sender {
+}
+- (IBAction)certificateBtnClick:(id)sender {
+}
+- (IBAction)chooseBusinessTypeBtnClick:(id)sender {
+}
+
+- (IBAction)saveResumeBtnClick:(id)sender {
+}
+
+- (IBAction)areaBtnClick:(id)sender {
+}
 @end

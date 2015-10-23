@@ -16,9 +16,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.backView.layer.borderColor = [RGBA(207, 207, 207, 1)CGColor];
+    self.backView.layer.borderWidth = 1;
     // Do any additional setup after loading the view.
 }
-
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
