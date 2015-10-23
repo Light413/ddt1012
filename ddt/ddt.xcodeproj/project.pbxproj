@@ -8,8 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		05B69C2E05AB6F177D83E56F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA432C30201FEF046829C54 /* libPods.a */; };
+		9F04220B1BD8F45E00D82286 /* MyScTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0422091BD8F45E00D82286 /* MyScTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		9F04220C1BD8F45E00D82286 /* MyScTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F04220A1BD8F45E00D82286 /* MyScTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		9F1DF5151BD77A6E00956512 /* TonghangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1DF5131BD77A6E00956512 /* TonghangTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		9F1DF5161BD77A6E00956512 /* TonghangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F1DF5141BD77A6E00956512 /* TonghangTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		9F49D8651BD8F6FC0048C96C /* MyResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49D8641BD8F6FC0048C96C /* MyResumeViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9F49D8681BD8F7490048C96C /* MyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49D8671BD8F7490048C96C /* MyListViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9F49D86B1BD8F82F0048C96C /* ReleaseMeetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49D86A1BD8F82F0048C96C /* ReleaseMeetingViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9F49D86E1BD8F8510048C96C /* AddCommanyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49D86D1BD8F8510048C96C /* AddCommanyInfoViewController.m */; settings = {ASSET_TAGS = (); }; };
 		9F690B001BD73AA600DDCED6 /* MyBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690AFF1BD73AA600DDCED6 /* MyBaseTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		9F690B031BD73AE200DDCED6 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690B021BD73AE200DDCED6 /* PersonalInfoViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9F690B061BD7426400DDCED6 /* MyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690B051BD7426400DDCED6 /* MyCollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
 		9FEE0A501BCDEC1700EA5261 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE0A4F1BCDEC1700EA5261 /* LoginViewController.m */; };
 		9FEE0A531BCDFA4F00EA5261 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE0A521BCDFA4F00EA5261 /* UIViewExt.m */; };
 		9FEFFCCF1BCFAFE80036C23D /* checkbox1_checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FEFFCC91BCFAFE80036C23D /* checkbox1_checked@2x.png */; };
@@ -120,10 +129,26 @@
 /* Begin PBXFileReference section */
 		50008DDEF01D3EC79847C509 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9BA432C30201FEF046829C54 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F0422081BD8F45E00D82286 /* MyScTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScTableViewCell.h; sourceTree = "<group>"; };
+		9F0422091BD8F45E00D82286 /* MyScTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyScTableViewCell.m; sourceTree = "<group>"; };
+		9F04220A1BD8F45E00D82286 /* MyScTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyScTableViewCell.xib; sourceTree = "<group>"; };
+		9F1DF5121BD77A6E00956512 /* TonghangTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TonghangTableViewCell.h; sourceTree = "<group>"; };
+		9F1DF5131BD77A6E00956512 /* TonghangTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TonghangTableViewCell.m; sourceTree = "<group>"; };
+		9F1DF5141BD77A6E00956512 /* TonghangTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TonghangTableViewCell.xib; sourceTree = "<group>"; };
+		9F49D8631BD8F6FC0048C96C /* MyResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyResumeViewController.h; sourceTree = "<group>"; };
+		9F49D8641BD8F6FC0048C96C /* MyResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyResumeViewController.m; sourceTree = "<group>"; };
+		9F49D8661BD8F7490048C96C /* MyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyListViewController.h; sourceTree = "<group>"; };
+		9F49D8671BD8F7490048C96C /* MyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyListViewController.m; sourceTree = "<group>"; };
+		9F49D8691BD8F82F0048C96C /* ReleaseMeetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReleaseMeetingViewController.h; sourceTree = "<group>"; };
+		9F49D86A1BD8F82F0048C96C /* ReleaseMeetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReleaseMeetingViewController.m; sourceTree = "<group>"; };
+		9F49D86C1BD8F8510048C96C /* AddCommanyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCommanyInfoViewController.h; sourceTree = "<group>"; };
+		9F49D86D1BD8F8510048C96C /* AddCommanyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommanyInfoViewController.m; sourceTree = "<group>"; };
 		9F690AFE1BD73AA600DDCED6 /* MyBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBaseTableViewController.h; sourceTree = "<group>"; };
 		9F690AFF1BD73AA600DDCED6 /* MyBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBaseTableViewController.m; sourceTree = "<group>"; };
 		9F690B011BD73AE200DDCED6 /* PersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoViewController.h; sourceTree = "<group>"; };
 		9F690B021BD73AE200DDCED6 /* PersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoViewController.m; sourceTree = "<group>"; };
+		9F690B041BD7426400DDCED6 /* MyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewController.h; sourceTree = "<group>"; };
+		9F690B051BD7426400DDCED6 /* MyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewController.m; sourceTree = "<group>"; };
 		9FEE0A4E1BCDEC1700EA5261 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9FEE0A4F1BCDEC1700EA5261 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9FEE0A511BCDFA4F00EA5261 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
@@ -316,6 +341,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F1DF5111BD77A4A00956512 /* MycenterViews */ = {
+			isa = PBXGroup;
+			children = (
+				9F1DF5121BD77A6E00956512 /* TonghangTableViewCell.h */,
+				9F1DF5131BD77A6E00956512 /* TonghangTableViewCell.m */,
+				9F1DF5141BD77A6E00956512 /* TonghangTableViewCell.xib */,
+			);
+			path = MycenterViews;
+			sourceTree = "<group>";
+		};
 		9FEFFCC71BCFAFE80036C23D /* QCheckbox */ = {
 			isa = PBXGroup;
 			children = (
@@ -771,6 +806,7 @@
 		A1DAAE731B49399B004F634B /* me */ = {
 			isa = PBXGroup;
 			children = (
+				9F1DF5111BD77A4A00956512 /* MycenterViews */,
 				9FEE0A4E1BCDEC1700EA5261 /* LoginViewController.h */,
 				9FEE0A4F1BCDEC1700EA5261 /* LoginViewController.m */,
 				9FEFFCD31BCFBADE0036C23D /* MycenterViewController.h */,
@@ -785,6 +821,19 @@
 				9F690AFF1BD73AA600DDCED6 /* MyBaseTableViewController.m */,
 				9F690B011BD73AE200DDCED6 /* PersonalInfoViewController.h */,
 				9F690B021BD73AE200DDCED6 /* PersonalInfoViewController.m */,
+				9F690B041BD7426400DDCED6 /* MyCollectionViewController.h */,
+				9F690B051BD7426400DDCED6 /* MyCollectionViewController.m */,
+				9F0422081BD8F45E00D82286 /* MyScTableViewCell.h */,
+				9F0422091BD8F45E00D82286 /* MyScTableViewCell.m */,
+				9F04220A1BD8F45E00D82286 /* MyScTableViewCell.xib */,
+				9F49D8631BD8F6FC0048C96C /* MyResumeViewController.h */,
+				9F49D8641BD8F6FC0048C96C /* MyResumeViewController.m */,
+				9F49D8661BD8F7490048C96C /* MyListViewController.h */,
+				9F49D8671BD8F7490048C96C /* MyListViewController.m */,
+				9F49D8691BD8F82F0048C96C /* ReleaseMeetingViewController.h */,
+				9F49D86A1BD8F82F0048C96C /* ReleaseMeetingViewController.m */,
+				9F49D86C1BD8F8510048C96C /* AddCommanyInfoViewController.h */,
+				9F49D86D1BD8F8510048C96C /* AddCommanyInfoViewController.m */,
 				9FEFFCD51BCFBADE0036C23D /* MycenterViewController.xib */,
 			);
 			name = me;
@@ -872,7 +921,6 @@
 				TargetAttributes = {
 					A17B7CED1B43F867003CF895 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 8R29X3H9MY;
 					};
 					A17B7D061B43F867003CF895 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -904,10 +952,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F1DF5161BD77A6E00956512 /* TonghangTableViewCell.xib in Resources */,
 				A17B7CFD1B43F867003CF895 /* MainSB.storyboard in Resources */,
 				A1042B871B64D55400A74215 /* image0.png in Resources */,
 				A12CD4F61BCBAC990020CB27 /* LICENSE in Resources */,
 				A1AC85561BC8DB460099C7F7 /* NGCollectionReusableView.xib in Resources */,
+				9F04220C1BD8F45E00D82286 /* MyScTableViewCell.xib in Resources */,
 				A15A95281BC7C3F200643170 /* NGCollectionViewCell.xib in Resources */,
 				A12442071BD0F6A100D2588C /* cities.xml in Resources */,
 				A143F83D1BCC96E50029E555 /* me.storyboard in Resources */,
@@ -986,9 +1036,11 @@
 				A15A95271BC7C3F200643170 /* NGCollectionViewCell.m in Sources */,
 				A12441F71BD0EFD900D2588C /* FMDatabase.m in Sources */,
 				A12441D01BD0EDD200D2588C /* MJRefreshAutoStateFooter.m in Sources */,
+				9F49D8681BD8F7490048C96C /* MyListViewController.m in Sources */,
 				A12441F91BD0EFD900D2588C /* FMDatabasePool.m in Sources */,
 				A12CD4F51BCBAC990020CB27 /* UIViewController+RBStoryboardLink.m in Sources */,
 				A1AC85551BC8DB460099C7F7 /* NGCollectionReusableView.m in Sources */,
+				9F49D86B1BD8F82F0048C96C /* ReleaseMeetingViewController.m in Sources */,
 				9FEE0A501BCDEC1700EA5261 /* LoginViewController.m in Sources */,
 				A12441D21BD0EDD200D2588C /* MJRefreshBackNormalFooter.m in Sources */,
 				A12CD4F31BCBAC990020CB27 /* RBStoryboardPushSegue.m in Sources */,
@@ -1001,6 +1053,7 @@
 				9FFEE94B1BD0CDF100D53553 /* RegisterViewController.m in Sources */,
 				A15F1C4A1BD615A600E854A7 /* NGSecondListCell.m in Sources */,
 				A12441CA1BD0EDD200D2588C /* MJRefreshBackFooter.m in Sources */,
+				9F04220B1BD8F45E00D82286 /* MyScTableViewCell.m in Sources */,
 				A12441FF1BD0EFD900D2588C /* NSObject+LKDBHelper.m in Sources */,
 				A12442001BD0EFD900D2588C /* NSObject+LKModel.m in Sources */,
 				A12CD4F71BCBAC990020CB27 /* README.md in Sources */,
@@ -1014,6 +1067,7 @@
 				A1042B7E1B64D0F000A74215 /* NGBaseVC.m in Sources */,
 				A12441CB1BD0EDD200D2588C /* MJRefreshComponent.m in Sources */,
 				A12441CD1BD0EDD200D2588C /* MJRefreshHeader.m in Sources */,
+				9F1DF5151BD77A6E00956512 /* TonghangTableViewCell.m in Sources */,
 				A12CD4F21BCBAC990020CB27 /* RBStoryboardPopoverSegue.m in Sources */,
 				A12441CE1BD0EDD200D2588C /* MJRefreshAutoGifFooter.m in Sources */,
 				A12CD4DC1BCBA6960020CB27 /* SVIndefiniteAnimatedView.m in Sources */,
@@ -1026,6 +1080,7 @@
 				A12441CF1BD0EDD200D2588C /* MJRefreshAutoNormalFooter.m in Sources */,
 				A149A4411BCF37320098E7C3 /* NGBaseListView.m in Sources */,
 				A12441F61BD0EFD900D2588C /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
+				9F690B061BD7426400DDCED6 /* MyCollectionViewController.m in Sources */,
 				A12441FE1BD0EFD900D2588C /* LKDBUtils.m in Sources */,
 				A12C56BC1BCDEDF600C6BF79 /* NGPopListView.m in Sources */,
 				A12441FC1BD0EFD900D2588C /* LKDB+Mapping.m in Sources */,
@@ -1042,7 +1097,9 @@
 				A157110E1BD4EAB500D586F6 /* LPickerView.m in Sources */,
 				9F690B031BD73AE200DDCED6 /* PersonalInfoViewController.m in Sources */,
 				AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */,
+				9F49D8651BD8F6FC0048C96C /* MyResumeViewController.m in Sources */,
 				A12441FB1BD0EFD900D2588C /* FMResultSet.m in Sources */,
+				9F49D86E1BD8F8510048C96C /* AddCommanyInfoViewController.m in Sources */,
 				A12CD4DE1BCBA6960020CB27 /* SVProgressHUD.m in Sources */,
 				A12441D51BD0EDD200D2588C /* MJRefreshNormalHeader.m in Sources */,
 				A1C309F91BC65DD300B46BC2 /* LocationManger.m in Sources */,
