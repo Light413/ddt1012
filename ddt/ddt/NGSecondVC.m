@@ -7,8 +7,10 @@
 //
 //NGVCTypeId_1  同行Id
 //NGVCTypeId_2  公司Id
-//NGVCTypeId_3
-//NGVCTypeId_4
+//NGVCTypeId_3  附近同行
+//NGVCTypeId_4  接单
+//NGVCTypeId_5  求职
+//NGVCTypeId_6  招聘
 
 #import "NGSecondVC.h"
 #import "NGSearchBar.h"
@@ -44,6 +46,9 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initData];
+//    if (_vcType > 2) {
+//        self.hidesBottomBarWhenPushed = YES;
+//    }
     [self initSubviews];
 
 }
@@ -101,7 +106,9 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
     searchBar.placeholder = @"请输入搜索关键字";
     [self.view addSubview:searchBar];
     
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, searchBar.frame.origin.y + searchBar.frame.size.height, CurrentScreenWidth, CurrentScreenHeight -64-44 -40-30 -2) style:UITableViewStylePlain];
+    NSInteger _heightValue = _vcType > 2 ? CurrentScreenHeight -64 -40-30 -2 : CurrentScreenHeight -64-44 -40-30 -2;
+    
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, searchBar.frame.origin.y + searchBar.frame.size.height, CurrentScreenWidth,_heightValue ) style:UITableViewStylePlain];
     _tableView.delegate =self;
     _tableView.dataSource  =self;
     [self.view  addSubview:_tableView];

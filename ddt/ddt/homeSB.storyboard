@@ -24,6 +24,11 @@
                     <connections>
                         <segue destination="wkz-vK-zWR" kind="presentation" identifier="searchCityIdentifier" id="T4N-uH-xhZ"/>
                         <segue destination="o9Y-ji-4LY" kind="show" identifier="showItemDetailIdentifier" id="Spb-Kj-aFS"/>
+                        <segue destination="Eex-A1-zhv" kind="show" identifier="showSecondVCID" id="DaH-Ee-gqW"/>
+                        <segue destination="76K-Jb-sft" kind="show" identifier="showTHContactID" id="NXW-AF-8aD"/>
+                        <segue destination="oHm-CW-rco" kind="show" identifier="showShuaiDanID" id="5CL-v5-tMi"/>
+                        <segue destination="J3N-Kj-b3v" kind="show" identifier="showCarPriceVCID" id="Y6T-U9-ThJ"/>
+                        <segue destination="9nm-V4-c5B" kind="show" identifier="showFeedBackVCID" id="ZU5-Kh-Ezu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cix-hC-A6A" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -47,7 +52,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hKF-Ei-8XC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1461" y="-72"/>
+            <point key="canvasLocation" x="1009" y="-1163"/>
+        </scene>
+        <!--意见反馈-->
+        <scene sceneID="yXf-Vg-u00">
+            <objects>
+                <viewController title="意见反馈" id="9nm-V4-c5B" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="amK-wp-sS6"/>
+                        <viewControllerLayoutGuide type="bottom" id="65G-hr-48t"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1VY-GO-tzd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qcv-ts-sh8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1027" y="2142"/>
         </scene>
         <!--Items DetailVC-->
         <scene sceneID="WJx-ZB-OwF">
@@ -311,7 +334,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mag-hm-hZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="649" y="764"/>
+            <point key="canvasLocation" x="-596" y="2034"/>
         </scene>
         <!--Base NavigationVC-->
         <scene sceneID="1ef-JP-c62">
@@ -329,7 +352,80 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqU-2b-Sa8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="649" y="-72"/>
+            <point key="canvasLocation" x="227" y="-1163"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="7lx-rP-gsa">
+            <objects>
+                <viewController id="Eex-A1-zhv" customClass="NGSecondVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fkf-Xj-cAA"/>
+                        <viewControllerLayoutGuide type="bottom" id="waF-B0-T3Z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C4q-Mv-aPI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="etY-7E-Nvm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UAo-y2-1vD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="227" y="-433"/>
+        </scene>
+        <!--同行交流会-->
+        <scene sceneID="66C-mM-l3e">
+            <objects>
+                <viewController title="同行交流会" id="76K-Jb-sft" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x36-M9-EtW"/>
+                        <viewControllerLayoutGuide type="bottom" id="l3K-DZ-PSi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HuQ-rR-Aia">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hmh-De-GfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="227" y="356"/>
+        </scene>
+        <!--甩单-->
+        <scene sceneID="yLy-0g-ddk">
+            <objects>
+                <viewController title="甩单" id="oHm-CW-rco" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CCt-t0-ISw"/>
+                        <viewControllerLayoutGuide type="bottom" id="zVR-N4-TBP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b1g-ug-opy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hx0-oB-XvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="227" y="1293"/>
+        </scene>
+        <!--车价评估-->
+        <scene sceneID="X3v-hl-C8k">
+            <objects>
+                <viewController title="车价评估" id="J3N-Kj-b3v" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zr2-II-NE6"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dkw-Kw-esa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kOB-Of-Fhl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BXh-I9-r4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="227" y="2142"/>
         </scene>
     </scenes>
     <resources>

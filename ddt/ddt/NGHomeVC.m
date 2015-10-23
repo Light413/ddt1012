@@ -11,15 +11,23 @@
 #import "NGXMLReader.h"
 #import "NGItemsDetailVC.h"
 #import "NGSearchCityVC.h"
+#import "NGSecondVC.h"
+
 
 #define ScrollViewHeight    100
 #define CollectionHeaderViewHight 140
 #define FootRecordData @"FootRecordData"
 #define TapStr @"最近访问的类别会出现在这里"
 
-
 static NSString *NGCollectionHeaderReuseID = @"NGCollectionHeaderReuseID";
 static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item 详情页Id
+
+static NSString *showSecondVCID     = @"showSecondVCID";//附近同行、接单、求职招聘
+static NSString *showFeedBackVCID   = @"showFeedBackVCID";//意见反馈
+static NSString *showTHContactID    = @"showTHContactID";//同行交流
+static NSString *showShuaiDanID     = @"showShuaiDanID";//甩单
+static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
+
 
 @interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
@@ -35,12 +43,15 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
     
     NSArray *_itemArray;//item元素项
     NSDictionary *_selectItemDic;//选中cell的数据项
-    NSString *_option_info;
+    NSString *_option_info;//item附件信息，表明企业OR个人
+    NSInteger _selectIndex;//选中cell索引,section =1用到
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSString *path= [[NSBundle mainBundle]pathForResource:@"menuItem" ofType:@"plist"];
     _itemArray = [[NSArray alloc]initWithContentsOfFile:path];
+    _selectIndex = 0;
+    
     [self initCollectionView];
     
     _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
@@ -317,12 +328,51 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
     //key,title
     _option_info =nil;
     _selectItemDic =[[_itemArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row];
+    [self footerRecord:[_selectItemDic objectForKey:@"title"]];
     if (indexPath.section == 0) {
         _option_info = indexPath.row < 4 ? @"个人":(indexPath.row < 8 ?@"企业":@"");
+        [self performSegueWithIdentifier:showItemDetailIdentifier sender:nil];
+
     }
-    
-    [self footerRecord:[_selectItemDic objectForKey:@"title"]];
-    [self performSegueWithIdentifier:showItemDetailIdentifier sender:nil];
+    else if (indexPath.section == 1)
+    {
+        switch (indexPath.row) {
+            case 0:
+            {
+                _selectIndex = 3;
+                [self performSegueWithIdentifier:showSecondVCID sender:nil];
+            }break;
+                
+            case 1:break;
+            case 2:break;
+            case 3:break;
+                
+            case 4:
+            {
+                _selectIndex = 4;
+                [self performSegueWithIdentifier:showSecondVCID sender:nil];
+            }break;
+                
+            case 5:
+            {
+            
+            }break;
+                
+            case 6:
+            {
+                _selectIndex = 5;
+                [self performSegueWithIdentifier:showSecondVCID sender:nil];
+            }break;
+            case 7:
+            {
+                _selectIndex = 6;
+                [self performSegueWithIdentifier:showSecondVCID sender:nil];
+            }break;
+            default:
+                break;
+        }
+
+    }
 }
 
 #pragma mark --UICollectionViewDelegateFlowLayout
@@ -359,10 +409,13 @@ static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item �
         _vc.superdic = _selectItemDic;
         _vc.optional_info = _option_info;
     }
-//    else if (1)
-//    {
-//    
-//    }
+    else if ([segue.identifier isEqualToString:showSecondVCID])
+    {
+        NGSecondVC *_vc = [segue destinationViewController];
+        _vc.hidesBottomBarWhenPushed = YES;
+        _vc.title = @"test";
+        _vc.vcType = _selectIndex;
+    }
 }
 
 
