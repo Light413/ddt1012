@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="492" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="492" height="79"/>
+                <rect key="frame" x="0.0" y="0.0" width="492" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fTI-16-zjm">
@@ -29,18 +29,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车贷融资" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deP-a0-fxX">
-                        <rect key="frame" x="73" y="32" width="48" height="15"/>
+                        <rect key="frame" x="73" y="32.5" width="48" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="民间抵押个人-车辆" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RD-30-dCq">
-                        <rect key="frame" x="73" y="60" width="111" height="16"/>
+                        <rect key="frame" x="73" y="60" width="110.5" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="139999090" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GcL-MW-gVq">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="139999090" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GcL-MW-gVq">
                         <rect key="frame" x="117" y="4" width="72" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -85,7 +85,9 @@
                     <constraint firstAttribute="trailingMargin" secondItem="RJx-vW-D32" secondAttribute="trailing" id="Sfa-mx-1bI"/>
                     <constraint firstItem="RJx-vW-D32" firstAttribute="centerY" secondItem="JHu-AI-03E" secondAttribute="centerY" id="YEZ-bK-gnW"/>
                     <constraint firstAttribute="bottomMargin" secondItem="fTI-16-zjm" secondAttribute="bottom" constant="4" id="bAT-VK-dYl"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="GcL-MW-gVq" secondAttribute="trailing" constant="295" id="d9E-4h-46Z"/>
                     <constraint firstItem="deP-a0-fxX" firstAttribute="top" secondItem="ful-fk-uW6" secondAttribute="bottom" constant="8" id="hM3-zP-5X0"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="GcL-MW-gVq" secondAttribute="trailing" constant="295" id="ho8-DZ-RbB"/>
                     <constraint firstItem="GcL-MW-gVq" firstAttribute="leading" secondItem="ful-fk-uW6" secondAttribute="trailing" constant="8" id="jKy-HQ-ykI"/>
                     <constraint firstItem="deP-a0-fxX" firstAttribute="centerY" secondItem="fTI-16-zjm" secondAttribute="centerY" id="oHS-Be-XVu"/>
                     <constraint firstItem="4RD-30-dCq" firstAttribute="leading" secondItem="fTI-16-zjm" secondAttribute="trailing" constant="34" id="ssG-UF-WNh"/>
@@ -100,6 +102,8 @@
                         <exclude reference="Akv-rU-FPq"/>
                         <exclude reference="GO6-GY-6Ez"/>
                         <exclude reference="ssG-UF-WNh"/>
+                        <exclude reference="d9E-4h-46Z"/>
+                        <exclude reference="ho8-DZ-RbB"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
@@ -110,7 +114,7 @@
                 <outlet property="lab_phone" destination="GcL-MW-gVq" id="pJg-yf-wRX"/>
                 <outlet property="lab_type" destination="deP-a0-fxX" id="3w2-Ls-m30"/>
             </connections>
-            <point key="canvasLocation" x="592" y="502"/>
+            <point key="canvasLocation" x="468" y="240"/>
         </tableViewCell>
     </objects>
     <resources>

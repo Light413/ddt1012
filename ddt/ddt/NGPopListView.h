@@ -50,5 +50,6 @@
 
 -(instancetype)initWithFrame:(CGRect)frame withDelegate :(id)delegate withSuperView:(UIView*)superView;
 
+-(void)disappear;
 
 @end

@@ -33,7 +33,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cix-hC-A6A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-596" y="233"/>
+            <point key="canvasLocation" x="-1956" y="-583"/>
         </scene>
         <!--贷易通-->
         <scene sceneID="Grk-6k-qtg">
@@ -52,7 +52,97 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hKF-Ei-8XC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1009" y="-1163"/>
+            <point key="canvasLocation" x="-255" y="-1651"/>
+        </scene>
+        <!--同行信息-->
+        <scene sceneID="kwW-5q-2hn">
+            <objects>
+                <viewController title="同行信息" id="IAU-iw-6h9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1dL-OM-mvI"/>
+                        <viewControllerLayoutGuide type="bottom" id="lbu-rr-veY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3oS-3r-k3J">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2qn-Jj-KdQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1362" y="-1651"/>
+        </scene>
+        <!--公司信息-->
+        <scene sceneID="8wf-m8-p6E">
+            <objects>
+                <viewController title="公司信息" id="GLD-GK-NVm" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="omD-UU-FEQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="dx7-Z8-BoJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dyx-uf-4Nm">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Wu-lo-RoW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1362" y="-766"/>
+        </scene>
+        <!--我要接单-->
+        <scene sceneID="5mq-k0-BhY">
+            <objects>
+                <viewController title="我要接单" id="QRh-6B-xyv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SVL-vU-x4f"/>
+                        <viewControllerLayoutGuide type="bottom" id="l4h-M9-uWB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fr7-fh-Lex">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="at4-xK-dBD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1362" y="80"/>
+        </scene>
+        <!--我要求职-->
+        <scene sceneID="UT9-Fa-ueq">
+            <objects>
+                <viewController title="我要求职" id="5vw-xF-GT5" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zH4-TS-7s3"/>
+                        <viewControllerLayoutGuide type="bottom" id="omC-4K-bLv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xRs-1P-bwP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rEH-eL-bUG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1370" y="895"/>
+        </scene>
+        <!--我要招聘-->
+        <scene sceneID="AlZ-qT-Hp4">
+            <objects>
+                <viewController title="我要招聘" id="EOQ-0m-nq3" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="82X-Mx-yiP"/>
+                        <viewControllerLayoutGuide type="bottom" id="5DJ-Sy-mwJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GyB-wm-wg1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qik-nT-OVr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1386" y="1671"/>
         </scene>
         <!--意见反馈-->
         <scene sceneID="yXf-Vg-u00">
@@ -70,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qcv-ts-sh8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1027" y="2142"/>
+            <point key="canvasLocation" x="-381" y="2046"/>
         </scene>
         <!--Items DetailVC-->
         <scene sceneID="WJx-ZB-OwF">
@@ -334,7 +424,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mag-hm-hZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-596" y="2034"/>
+            <point key="canvasLocation" x="-1964" y="1026"/>
         </scene>
         <!--Base NavigationVC-->
         <scene sceneID="1ef-JP-c62">
@@ -352,7 +442,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqU-2b-Sa8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="227" y="-1163"/>
+            <point key="canvasLocation" x="-1205" y="-1643"/>
         </scene>
         <!--Title-->
         <scene sceneID="7lx-rP-gsa">
@@ -368,10 +458,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="etY-7E-Nvm"/>
+                    <connections>
+                        <segue destination="IAU-iw-6h9" kind="show" identifier="showTongHangVcID" id="vXZ-Pg-c64"/>
+                        <segue destination="GLD-GK-NVm" kind="show" identifier="showCompanyVcID" id="HNT-L0-ib0"/>
+                        <segue destination="QRh-6B-xyv" kind="show" identifier="showJieDanVcID" id="gbG-Yj-aoQ"/>
+                        <segue destination="5vw-xF-GT5" kind="show" identifier="showQinZhiVcID" id="qHm-w6-a9u"/>
+                        <segue destination="EOQ-0m-nq3" kind="show" identifier="showZhaoPinVcID" id="utT-Es-Hz1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UAo-y2-1vD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="227" y="-433"/>
+            <point key="canvasLocation" x="-1165" y="-583"/>
         </scene>
         <!--同行交流会-->
         <scene sceneID="66C-mM-l3e">
@@ -389,7 +486,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hmh-De-GfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="227" y="356"/>
+            <point key="canvasLocation" x="-1165" y="412"/>
         </scene>
         <!--甩单-->
         <scene sceneID="yLy-0g-ddk">
@@ -407,7 +504,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hx0-oB-XvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="227" y="1293"/>
+            <point key="canvasLocation" x="-1205" y="1109"/>
         </scene>
         <!--车价评估-->
         <scene sceneID="X3v-hl-C8k">
@@ -425,7 +522,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXh-I9-r4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="227" y="2142"/>
+            <point key="canvasLocation" x="-1205" y="2014"/>
         </scene>
     </scenes>
     <resources>

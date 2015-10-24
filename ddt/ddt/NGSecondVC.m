@@ -17,27 +17,30 @@
 #import "NGPopListView.h"
 
 #import "NGSecondListCell.h"
+#import "DTCompanyListCell.h"
+
+static NSString * showTongHangVcID  = @"showTongHangVcID";
+static NSString * showCompanyVcID   = @"showCompanyVcID";
+static NSString * showJieDanVcID    = @"showJieDanVcID";
+static NSString * showQinZhiVcID    = @"showQinZhiVcID";
+static NSString * showZhaoPinVcID   = @"showZhaoPinVcID";
 
 static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
+static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 
 @interface NGSecondVC ()<NGSearchBarDelegate,NGPopListDelegate,UITableViewDataSource,UITableViewDelegate>
 {
-    UITableView *_tableView;
-    
     //pop view相关
-    NSArray *   _common_pop_btnTitleArr; //同行-选择按钮的默认标题
-    NSArray *   _common_pop_btnListArr;//列表数据
-    
-    NSArray *tonghang_dataSourceArr; //同行-pop data
-    NSDictionary *_dic;
-    NSArray *company_btnTitleArr; //同行-选择按钮的默认标题
-    NSArray *company_dataSourceArr; //同行-list data
+    NGPopListView *popView;
+    NSArray * _common_pop_btnTitleArr; //同行-选择按钮的默认标题
+    NSArray * _common_pop_btnListArr;//列表数据
     
     //tableview相关
-    NSMutableArray *_tableview_DataArr;
-
-    
-    BOOL _isTHvc;//YES :同行页面，NO：公司页面
+    UITableView     * _tableView;
+    NSMutableArray  * _common_list_dataSource;//数据源
+    NSArray         * _common_cellId_arr;//复用cell ID
+    NSString        * _common_list_cellReuseId;//当前复用cellID
+    NSString        * _common_list_cellClassStr;//当前cell class
 }
 @end
 
@@ -47,6 +50,19 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
     [super viewDidLoad];
     [self initData];
     [self initSubviews];
+    [self createLeftBarItemWithBackTitle];
+
+}
+-(void)awakeFromNib
+{
+    UIBarButtonItem *_backitem =[ [UIBarButtonItem alloc]init];
+    _backitem.title = @"";
+    self.navigationItem.backBarButtonItem = _backitem;
+}
+-(void)goback:(UIButton *)btn
+{
+    [popView disappear];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)initData
@@ -65,7 +81,6 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
     NSArray *_sexArr = @[@"全部",@"男",@"女"];//性别
     NSArray *_areaArr = [NGXMLReader getCurrentLocationAreas];//区域
     NSArray *_typeArr = [NGXMLReader getBaseTypeData];//基本业务类型
-    
     switch (self.vcType) {
         case NGVCTypeId_1:
         {//同行
@@ -115,8 +130,21 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
     }
     
     
-    //tableview
-    _tableview_DataArr = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6", nil];
+    //...test   tableview
+    _common_list_dataSource = [[NSMutableArray alloc]init];
+    _common_cellId_arr = @[NGSecondListCellReuseId,NGCompanyListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId];
+    _common_list_cellReuseId = [_common_cellId_arr objectAtIndex:self.vcType - 1];
+    
+    NSArray *_arr = @[
+  @[@{@"1":@"cell_avatar_default",@"2":@"张三18016381234",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
+  @[@{@"1":@"车贷金融",@"2":@"民间信贷－房产地眼粉色经典福克斯附近的时刻复活节恢复建设的附近发生地方防护服热风 i 好烦好烦搜索健康发生的进口附加税开发分热放复活节妇女地方加拿大籍分妇女健康的妇女舒服",@"3":@"车辆抵押，信用贷款／信用卡付款"}],
+    @[@{@"1":@"cell_avatar_default",@"2":@"张三18016381234",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
+    @[@{@"1":@"cell_avatar_default",@"2":@"张三18016381234",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
+    @[@{@"1":@"cell_avatar_default",@"2":@"张三18016381234",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
+    @[@{@"1":@"cell_avatar_default",@"2":@"张三18016381234",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}]
+  ];
+    
+    [_common_list_dataSource addObjectsFromArray:[_arr objectAtIndex:self.vcType - 1]];
 }
 
 #pragma mark- init subviews
@@ -125,7 +153,7 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
     NSArray *_titleArr = @[@"贷款同行名片",@"贷款公司名片",@"附近同行",@"我要接单",@"我要求职",@"我要招聘"];
     self.title = [_titleArr objectAtIndex:self.vcType - 1];
     
-    NGPopListView *popView = [[NGPopListView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, 40) withDelegate:self withSuperView:self.view];
+    popView = [[NGPopListView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, 40) withDelegate:self withSuperView:self.view];
     [self.view addSubview:popView];
     NGSearchBar *searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(2, popView.frame.origin.y + popView.frame.size.height + 1, CurrentScreenWidth -4 , 30)];
     searchBar.delegate  =self;
@@ -133,7 +161,6 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
     [self.view addSubview:searchBar];
     
     NSInteger _heightValue = _vcType > 2 ? CurrentScreenHeight -64 -40-30 -2 : CurrentScreenHeight -64-44 -40-30 -2;
-    
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, searchBar.frame.origin.y + searchBar.frame.size.height, CurrentScreenWidth,_heightValue ) style:UITableViewStylePlain];
     _tableView.delegate =self;
     _tableView.dataSource  =self;
@@ -141,6 +168,7 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
     [_tableView setContentInset:UIEdgeInsetsMake(0, 0, 5, 0)];
     _tableView.tableFooterView = [[UIView alloc]init];
     [_tableView registerNib:[UINib nibWithNibName:@"NGSecondListCell" bundle:nil] forCellReuseIdentifier:NGSecondListCellReuseId];
+    [_tableView registerNib:[UINib nibWithNibName:@"DTCompanyListCell" bundle:nil] forCellReuseIdentifier:NGCompanyListCellReuseId];
     
     //添加下拉刷新
     __weak __typeof(self) weakSelf = self;
@@ -154,7 +182,7 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
 {
     [SVProgressHUD showWithStatus:@"正在加载数据"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [_tableview_DataArr addObjectsFromArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@""]];
+        [_common_list_dataSource addObjectsFromArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@""]];
         [_tableView reloadData];
         [SVProgressHUD showSuccessWithStatus:@"加载完成"];
         [_tableView.header endRefreshing];
@@ -209,17 +237,17 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _tableview_DataArr.count;
+    return _common_list_dataSource.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NGSecondListCell *cell = [tableView dequeueReusableCellWithIdentifier:NGSecondListCellReuseId forIndexPath:indexPath];
-    NSDictionary *_dic0 = @{@"1":@"cell_avatar_default",@"2":@"张三丰",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"};
+    DTCompanyListCell *cell = [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
+    NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:0];
     [cell setCellWith:_dic0];
     
     cell.btnClickBlock = ^(NSInteger tag){
-        NSLog(@"...cell btn click : %d",tag);
+        NSLog(@"...cell btn click : %ld",tag);
     };
     
     return cell;
@@ -233,11 +261,12 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"....tableview cell select");
+    [self performSegueWithIdentifier:showTongHangVcID sender:nil];
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == _tableview_DataArr.count - 1) {
+    if (indexPath.row == _common_list_dataSource.count - 1) {
         [self loadMoreData];
     }
 }

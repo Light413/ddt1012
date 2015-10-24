@@ -32,6 +32,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
@@ -62,7 +63,7 @@
 //    [self presentViewController:nav animated:YES completion:nil];
 }
 -(void)creatTableView{
-    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, CurrentScreenHeight-64-49) style:UITableViewStylePlain];
+    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, CurrentScreenHeight-49) style:UITableViewStylePlain];
     myTableView.delegate = self;
     myTableView.dataSource = self;
     myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;

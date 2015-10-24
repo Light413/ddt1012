@@ -111,6 +111,9 @@
 		A1DAAE6C1B492FC2004F634B /* NGBaseTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DAAE6B1B492FC2004F634B /* NGBaseTableVC.m */; };
 		AD5B11CC1BDB236F00285255 /* common_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD5B11CB1BDB236F00285255 /* common_data.plist */; settings = {ASSET_TAGS = (); }; };
 		AD5B11D01BDB360C00285255 /* DTComDataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11CF1BDB360C00285255 /* DTComDataManger.m */; settings = {ASSET_TAGS = (); }; };
+		AD5B11D41BDB694C00285255 /* DTCompanyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11D21BDB694C00285255 /* DTCompanyListCell.m */; settings = {ASSET_TAGS = (); }; };
+		AD5B11D51BDB694C00285255 /* DTCompanyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD5B11D31BDB694C00285255 /* DTCompanyListCell.xib */; settings = {ASSET_TAGS = (); }; };
+		AD5B11D81BDBA43700285255 /* NGTongHDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11D71BDBA43700285255 /* NGTongHDetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB921BD21E3000C23992 /* NGXMLReader.m */; settings = {ASSET_TAGS = (); }; };
 		AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */; settings = {ASSET_TAGS = (); }; };
 		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; settings = {ASSET_TAGS = (); }; };
@@ -313,6 +316,11 @@
 		AD5B11CB1BDB236F00285255 /* common_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = common_data.plist; sourceTree = "<group>"; };
 		AD5B11CE1BDB360C00285255 /* DTComDataManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTComDataManger.h; sourceTree = "<group>"; };
 		AD5B11CF1BDB360C00285255 /* DTComDataManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTComDataManger.m; sourceTree = "<group>"; };
+		AD5B11D11BDB694C00285255 /* DTCompanyListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCompanyListCell.h; sourceTree = "<group>"; };
+		AD5B11D21BDB694C00285255 /* DTCompanyListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCompanyListCell.m; sourceTree = "<group>"; };
+		AD5B11D31BDB694C00285255 /* DTCompanyListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DTCompanyListCell.xib; sourceTree = "<group>"; };
+		AD5B11D61BDBA43700285255 /* NGTongHDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTongHDetailVC.h; sourceTree = "<group>"; };
+		AD5B11D71BDBA43700285255 /* NGTongHDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGTongHDetailVC.m; sourceTree = "<group>"; };
 		AD92EB911BD21E3000C23992 /* NGXMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGXMLReader.h; sourceTree = "<group>"; };
 		AD92EB921BD21E3000C23992 /* NGXMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGXMLReader.m; sourceTree = "<group>"; };
 		AD92EB941BD22A6400C23992 /* NGXMLDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGXMLDataModel.h; sourceTree = "<group>"; };
@@ -616,6 +624,9 @@
 				A15F1C471BD615A600E854A7 /* NGSecondListCell.h */,
 				A15F1C481BD615A600E854A7 /* NGSecondListCell.m */,
 				A15F1C491BD615A600E854A7 /* NGSecondListCell.xib */,
+				AD5B11D11BDB694C00285255 /* DTCompanyListCell.h */,
+				AD5B11D21BDB694C00285255 /* DTCompanyListCell.m */,
+				AD5B11D31BDB694C00285255 /* DTCompanyListCell.xib */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -799,6 +810,8 @@
 			children = (
 				A143F83E1BCCA5D60029E555 /* NGSecondVC.h */,
 				A143F83F1BCCA5D60029E555 /* NGSecondVC.m */,
+				AD5B11D61BDBA43700285255 /* NGTongHDetailVC.h */,
+				AD5B11D71BDBA43700285255 /* NGTongHDetailVC.m */,
 			);
 			name = tonghang;
 			sourceTree = "<group>";
@@ -998,6 +1011,7 @@
 				A1042B891B64D55400A74215 /* image2.png in Resources */,
 				AD5B11CC1BDB236F00285255 /* common_data.plist in Resources */,
 				A1AC85581BC8F2FA0099C7F7 /* menuItem.plist in Resources */,
+				AD5B11D51BDB694C00285255 /* DTCompanyListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1060,11 +1074,13 @@
 				A12CD4F51BCBAC990020CB27 /* UIViewController+RBStoryboardLink.m in Sources */,
 				A1AC85551BC8DB460099C7F7 /* NGCollectionReusableView.m in Sources */,
 				9F49D86B1BD8F82F0048C96C /* ReleaseMeetingViewController.m in Sources */,
+				AD5B11D81BDBA43700285255 /* NGTongHDetailVC.m in Sources */,
 				9FEE0A501BCDEC1700EA5261 /* LoginViewController.m in Sources */,
 				A12441D21BD0EDD200D2588C /* MJRefreshBackNormalFooter.m in Sources */,
 				A12CD4F31BCBAC990020CB27 /* RBStoryboardPushSegue.m in Sources */,
 				A12441DA1BD0EDD200D2588C /* UIScrollView+MJRefresh.m in Sources */,
 				AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */,
+				AD5B11D41BDB694C00285255 /* DTCompanyListCell.m in Sources */,
 				A12441D91BD0EDD200D2588C /* UIScrollView+MJExtension.m in Sources */,
 				A12CD4F41BCBAC990020CB27 /* RBStoryboardSegue.m in Sources */,
 				9FEE0A531BCDFA4F00EA5261 /* UIViewExt.m in Sources */,
