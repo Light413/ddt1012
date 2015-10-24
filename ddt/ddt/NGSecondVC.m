@@ -93,6 +93,8 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
             NSArray *_btnTitleArr2 = @[@"服务区域",@"业务类型"];
             _common_pop_btnTitleArr = _btnTitleArr2;
             _common_pop_btnListArr  = @[_areaArr,_typeArr];
+            
+
         } break;
         case NGVCTypeId_3:
         {//附近同行
@@ -261,7 +263,34 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"....tableview cell select");
-    [self performSegueWithIdentifier:showTongHangVcID sender:nil];
+    switch (self.vcType) {
+        case NGVCTypeId_1:
+        {
+            [self performSegueWithIdentifier:showTongHangVcID sender:nil];
+        }break;
+        case NGVCTypeId_2:
+        {
+            [self performSegueWithIdentifier:showCompanyVcID sender:nil];
+        }break;
+        case NGVCTypeId_3:
+        {
+            [self performSegueWithIdentifier:showTongHangVcID sender:nil];
+        }break;
+        case NGVCTypeId_4://接单
+        {
+            [self performSegueWithIdentifier:showJieDanVcID sender:nil];
+        }break;
+        case NGVCTypeId_5://求职
+        {
+            [self performSegueWithIdentifier:showQinZhiVcID sender:nil];
+        }break;
+        case NGVCTypeId_6://招聘
+        {
+            [self performSegueWithIdentifier:showZhaoPinVcID sender:nil];
+        }break;
+        default:
+            break;
+    }
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

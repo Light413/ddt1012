@@ -119,6 +119,7 @@
 		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; settings = {ASSET_TAGS = (); }; };
 		ADCEAF8F1BD393AA006F1E56 /* NGSearchCityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF8E1BD393AA006F1E56 /* NGSearchCityVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */; settings = {ASSET_TAGS = (); }; };
+		ADE8CF8C1BDBD420006CBC95 /* NGCompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -331,6 +332,8 @@
 		ADCEAF8E1BD393AA006F1E56 /* NGSearchCityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSearchCityVC.m; sourceTree = "<group>"; };
 		ADCEAF901BD39B35006F1E56 /* NGItemsDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGItemsDetailVC.h; sourceTree = "<group>"; };
 		ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGItemsDetailVC.m; sourceTree = "<group>"; };
+		ADE8CF8A1BDBD420006CBC95 /* NGCompanyDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCompanyDetailVC.h; sourceTree = "<group>"; };
+		ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGCompanyDetailVC.m; sourceTree = "<group>"; };
 		CE8468AE545F99D5CA121C5E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -812,6 +815,8 @@
 				A143F83F1BCCA5D60029E555 /* NGSecondVC.m */,
 				AD5B11D61BDBA43700285255 /* NGTongHDetailVC.h */,
 				AD5B11D71BDBA43700285255 /* NGTongHDetailVC.m */,
+				ADE8CF8A1BDBD420006CBC95 /* NGCompanyDetailVC.h */,
+				ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */,
 			);
 			name = tonghang;
 			sourceTree = "<group>";
@@ -1116,6 +1121,7 @@
 				A149A4411BCF37320098E7C3 /* NGBaseListView.m in Sources */,
 				A12441F61BD0EFD900D2588C /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
 				9F690B061BD7426400DDCED6 /* MyCollectionViewController.m in Sources */,
+				ADE8CF8C1BDBD420006CBC95 /* NGCompanyDetailVC.m in Sources */,
 				A12441FE1BD0EFD900D2588C /* LKDBUtils.m in Sources */,
 				A12C56BC1BCDEDF600C6BF79 /* NGPopListView.m in Sources */,
 				A12441FC1BD0EFD900D2588C /* LKDB+Mapping.m in Sources */,
