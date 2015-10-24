@@ -46,11 +46,7 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initData];
-//    if (_vcType > 2) {
-//        self.hidesBottomBarWhenPushed = YES;
-//    }
     [self initSubviews];
-
 }
 
 -(void)initData
@@ -66,31 +62,58 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
     }
     
     //btn title
-    NSArray *_btnTitleArr1 = @[@"服务区域",@"业务类型",@"类别"];//同行
-    NSArray *_btnTitleArr2 = @[@"服务区域",@"业务类型"];//公司
-    NSArray *_btnTitleArr3 = @[@"服务区域",@"业务类型",@"时间"];//接单
-    
     NSArray *_sexArr = @[@"全部",@"男",@"女"];//性别
     NSArray *_areaArr = [NGXMLReader getCurrentLocationAreas];//区域
     NSArray *_typeArr = [NGXMLReader getBaseTypeData];//基本业务类型
     
     switch (self.vcType) {
         case NGVCTypeId_1:
-        {
+        {//同行
+            NSArray *_btnTitleArr1 = @[@"服务区域",@"业务类型",@"性别"];
             _common_pop_btnTitleArr = _btnTitleArr1;
             _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
         } break;
         case NGVCTypeId_2:
-        {
+        {//公司
+            NSArray *_btnTitleArr2 = @[@"服务区域",@"业务类型"];
             _common_pop_btnTitleArr = _btnTitleArr2;
             _common_pop_btnListArr  = @[_areaArr,_typeArr];
+        } break;
+        case NGVCTypeId_3:
+        {//附近同行
+            NSArray *tmp = @[@"服务区域",@"业务类型",@"性别"];
+            _common_pop_btnTitleArr = tmp;
+            _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
+        } break;
+        case NGVCTypeId_4:
+        {//接单
+            NSArray *tmp = @[@"服务区域",@"业务类型",@"时间"];
+            _common_pop_btnTitleArr = tmp;
+            _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
+        } break;
+            
+        case NGVCTypeId_5:
+        {//求职
+            NSArray *tmp = @[@"区域",@"类型",@"工资",@"职位",@"经验"];
+            NSArray *_a1 = [DTComDataManger getData_qwxz];
+            NSArray *_a2 = [DTComDataManger getData_gwlx];
+            NSArray *_a3 = [DTComDataManger getData_gzjy];
+            _common_pop_btnTitleArr = tmp;
+            _common_pop_btnListArr  = @[_areaArr,_typeArr,_a1,_a2,_a3];
+        } break;
+            
+        case NGVCTypeId_6:
+        {//招聘
+            NSArray *tmp = @[@"区域",@"类型",@"性别",@"职位",@"经验"];
+            NSArray *_a2 = [DTComDataManger getData_gwlx];
+            NSArray *_a3 = [DTComDataManger getData_gzjy];
+            _common_pop_btnTitleArr = tmp;
+            _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr,_a2,_a3];
         } break;
             
         default: break;
     }
     
-    tonghang_dataSourceArr = @[@"全部",@"男",@"女",@"其他"];
-    _dic = [NSDictionary dictionaryWithObjectsAndKeys:@[@"100",@"101"],@"1",@[@"200",@"201",@"202"],@"2", nil];
     
     //tableview
     _tableview_DataArr = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6", nil];
@@ -99,6 +122,9 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
 #pragma mark- init subviews
 -(void)initSubviews
 {
+    NSArray *_titleArr = @[@"贷款同行名片",@"贷款公司名片",@"附近同行",@"我要接单",@"我要求职",@"我要招聘"];
+    self.title = [_titleArr objectAtIndex:self.vcType - 1];
+    
     NGPopListView *popView = [[NGPopListView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, 40) withDelegate:self withSuperView:self.view];
     [self.view addSubview:popView];
     NGSearchBar *searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(2, popView.frame.origin.y + popView.frame.size.height + 1, CurrentScreenWidth -4 , 30)];

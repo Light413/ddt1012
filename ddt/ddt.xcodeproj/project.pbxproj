@@ -109,6 +109,8 @@
 		A1C309F91BC65DD300B46BC2 /* LocationManger.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C309F81BC65DD300B46BC2 /* LocationManger.m */; };
 		A1DAAE691B492F84004F634B /* NGBaseNavigationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DAAE681B492F84004F634B /* NGBaseNavigationVC.m */; };
 		A1DAAE6C1B492FC2004F634B /* NGBaseTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DAAE6B1B492FC2004F634B /* NGBaseTableVC.m */; };
+		AD5B11CC1BDB236F00285255 /* common_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD5B11CB1BDB236F00285255 /* common_data.plist */; settings = {ASSET_TAGS = (); }; };
+		AD5B11D01BDB360C00285255 /* DTComDataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11CF1BDB360C00285255 /* DTComDataManger.m */; settings = {ASSET_TAGS = (); }; };
 		AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB921BD21E3000C23992 /* NGXMLReader.m */; settings = {ASSET_TAGS = (); }; };
 		AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */; settings = {ASSET_TAGS = (); }; };
 		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; settings = {ASSET_TAGS = (); }; };
@@ -308,6 +310,9 @@
 		A1DAAE6B1B492FC2004F634B /* NGBaseTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGBaseTableVC.m; sourceTree = "<group>"; };
 		A1DAAE6D1B493100004F634B /* DDT_SYS_CONSTIST.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDT_SYS_CONSTIST.h; sourceTree = "<group>"; };
 		A1DAAE6E1B49332B004F634B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		AD5B11CB1BDB236F00285255 /* common_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = common_data.plist; sourceTree = "<group>"; };
+		AD5B11CE1BDB360C00285255 /* DTComDataManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTComDataManger.h; sourceTree = "<group>"; };
+		AD5B11CF1BDB360C00285255 /* DTComDataManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTComDataManger.m; sourceTree = "<group>"; };
 		AD92EB911BD21E3000C23992 /* NGXMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGXMLReader.h; sourceTree = "<group>"; };
 		AD92EB921BD21E3000C23992 /* NGXMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGXMLReader.m; sourceTree = "<group>"; };
 		AD92EB941BD22A6400C23992 /* NGXMLDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGXMLDataModel.h; sourceTree = "<group>"; };
@@ -528,6 +533,7 @@
 				A12442061BD0F6A100D2588C /* provinces.xml */,
 				A124420A1BD0F6DE00D2588C /* base_data.xml */,
 				A1AC85571BC8F2FA0099C7F7 /* menuItem.plist */,
+				AD5B11CB1BDB236F00285255 /* common_data.plist */,
 			);
 			name = basedata;
 			sourceTree = "<group>";
@@ -706,6 +712,7 @@
 		A1C1D5911B48E658008BF54B /* commin */ = {
 			isa = PBXGroup;
 			children = (
+				AD5B11CD1BDB35CD00285255 /* core */,
 				A1D5E7BE1BD1104000CAA653 /* category */,
 				A1D5E7BD1BD10EAE00CAA653 /* toolClass */,
 				A12CD4FA1BCBBEDF0020CB27 /* thirdparty */,
@@ -848,6 +855,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AD5B11CD1BDB35CD00285255 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				AD5B11CE1BDB360C00285255 /* DTComDataManger.h */,
+				AD5B11CF1BDB360C00285255 /* DTComDataManger.m */,
+			);
+			name = core;
+			sourceTree = "<group>";
+		};
 		AD92EB901BD21E0000C23992 /* NGXMLReader */ = {
 			isa = PBXGroup;
 			children = (
@@ -921,6 +937,7 @@
 				TargetAttributes = {
 					A17B7CED1B43F867003CF895 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 8R29X3H9MY;
 					};
 					A17B7D061B43F867003CF895 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -979,6 +996,7 @@
 				A1C1D59A1B4919B0008BF54B /* Icon@3x.png in Resources */,
 				A17B7CFF1B43F867003CF895 /* Images.xcassets in Resources */,
 				A1042B891B64D55400A74215 /* image2.png in Resources */,
+				AD5B11CC1BDB236F00285255 /* common_data.plist in Resources */,
 				A1AC85581BC8F2FA0099C7F7 /* menuItem.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1035,6 +1053,7 @@
 				ADCEAF8F1BD393AA006F1E56 /* NGSearchCityVC.m in Sources */,
 				A15A95271BC7C3F200643170 /* NGCollectionViewCell.m in Sources */,
 				A12441F71BD0EFD900D2588C /* FMDatabase.m in Sources */,
+				AD5B11D01BDB360C00285255 /* DTComDataManger.m in Sources */,
 				A12441D01BD0EDD200D2588C /* MJRefreshAutoStateFooter.m in Sources */,
 				9F49D8681BD8F7490048C96C /* MyListViewController.m in Sources */,
 				A12441F91BD0EFD900D2588C /* FMDatabasePool.m in Sources */,
@@ -1231,12 +1250,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ddt/PrefixHeader.pch";
 				INFOPLIST_FILE = ddt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1246,12 +1267,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ddt/PrefixHeader.pch";
 				INFOPLIST_FILE = ddt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -22,6 +22,9 @@
 #import "NGXMLReader.h"
 #import "LPickerView.h"
 
+#import "DTComDataManger.h"
+
+
 //category
 #import "UIButton+setBtnArg.h"
 

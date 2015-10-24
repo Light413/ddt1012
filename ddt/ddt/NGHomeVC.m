@@ -73,16 +73,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     
     
     //...test
-    //    NSArray *_arr = [NGXMLReader getAllCities];
-    //    根据城市名获取id
-    //    NSString*_str = [NGXMLReader getIDWithCityName:@"上海"];
-    //    根据城市ID获取所有区域
-    //    NSArray*_arr = [NGXMLReader getAllAreaWithCityID:@"73"];
-    
-//    NSArray*_arr = [NGXMLReader getCurrentLocationAreas];
-    
-//    NSArray*_arr = [NGXMLReader getBaseTypeDataWithKey:@"11" andLevel:@"two"];
-       NSArray *_a = self.navigationController.viewControllers;
+    NSArray *_d = [DTComDataManger getData_gwlx];
     
 }
 
