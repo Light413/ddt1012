@@ -14,6 +14,7 @@
 {
     UITableView *myTableView;
     UISegmentedControl *mysegment;
+    NSMutableArray *_dataArr;
 }
 @end
 
@@ -24,48 +25,43 @@
     [self createLeftBarItemWithBackTitle];
     self.title = @"我的收藏";
     NSArray *segmentArr = @[@"单子收藏",@"同行好友",@"公司收藏"];
-//    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(30, 10, CurrentScreenWidth-60, 30)];
-//    backView.layer.cornerRadius = 3;
-//    backView.layer.borderColor = [RGBA(207, 207, 207, 1)CGColor];
-//    backView.layer.borderWidth = 1;
-//    UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-//    btn1.frame = CGRectMake(0, 0, backView.width/3, backView.height);
-//    [backView addSubview:btn1];
-//    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-   
     mysegment = [[UISegmentedControl alloc]initWithItems:segmentArr];
         mysegment.frame = CGRectMake(30, 10, CurrentScreenWidth-60, 30);
         [mysegment addTarget:self action:@selector(segmentClick:) forControlEvents:UIControlEventValueChanged];
     mysegment.tintColor= RGBA(76.0, 132.0, 120.0, 1.0);
     mysegment.enabled = YES;
     mysegment.selectedSegmentIndex = 0;
-    //[segment insertSegmentWithImage:[UIImage imageNamed:@"bg_credit"] atIndex:0 animated:YES];
-    //    segment.layer.borderWidth = 1;
-    //    segment.layer.borderColor = [RGBA(207, 207, 207, 1)CGColor];
-    //    //segment.layer.cornerRadius = 5;
-    //    //[RGBA(207, 207, 207, 1)CGColor];
-    //    segment.selectedSegmentIndex = 0;
-    //    segment.momentary = NO;
-    //
-    ////    segment insertSegmentWithImage:<#(UIImage *)#> atIndex:<#(NSUInteger)#> animated:<#(BOOL)#>
-    //    segment.tintColor = [UIColor grayColor];
-    //    //segment.tintColor = [UIColor redColor];
     [self.view addSubview:mysegment];
     NGSearchBar *searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(10, mysegment.bottom+10, CurrentScreenWidth -20 , 30)];
     searchBar.delegate  =self;
     searchBar.placeholder = @"搜索";
     [self.view addSubview:searchBar];
-    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, searchBar.bottom+10, CurrentScreenWidth, CurrentScreenHeight-searchBar.bottom-10) style:UITableViewStylePlain];
+    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, searchBar.bottom+10, CurrentScreenWidth, CurrentScreenHeight-searchBar.bottom-10-64) style:UITableViewStylePlain];
     myTableView.delegate = self;
     myTableView.dataSource = self;
     [self.view addSubview:myTableView];
-    [self addheader:myTableView];
-    [self addfooter:myTableView];
+    //添加下拉刷新
+    __weak __typeof(self) weakSelf = self;
+    myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf loadData];
+    }];
+
+//    [self addheader:myTableView];
+//    [self addfooter:myTableView];
     // Do any additional setup after loading the view.
+}
+-(void)loadData{
+    [SVProgressHUD showWithStatus:@"正在加载数据"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        // [_common_list_dataSource addObjectsFromArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@""]];
+        [myTableView reloadData];
+        [SVProgressHUD showSuccessWithStatus:@"加载完成"];
+        [myTableView.header endRefreshing];
+    });
 }
 #pragma mark --tableview 代理
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44;
+    return 102;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -111,13 +107,28 @@
     NSInteger index = segment.selectedSegmentIndex;
     switch (index) {
         case 0:
-            
+        {
+            __weak __typeof(self) weakSelf = self;
+            myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                [weakSelf loadData];
+            }];
+        }
             break;
         case 1:
-            
+        {
+            __weak __typeof(self) weakSelf = self;
+            myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                [weakSelf loadData];
+            }];
+        }
             break;
         case 2:
-            
+        {
+            __weak __typeof(self) weakSelf = self;
+            myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                [weakSelf loadData];
+            }];
+        }
             break;
         default:
             break;

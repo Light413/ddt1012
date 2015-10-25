@@ -15,6 +15,7 @@
 #import "MyListViewController.h"
 #import "AddCommanyInfoViewController.h"
 #import "ReleaseMeetingViewController.h"
+#import "SystemCenterViewController.h"
 #define HeaderViewHeight 100.0
 #define iconHeight 15.0
 #define KimageName @"imageName"
@@ -63,7 +64,7 @@
 //    [self presentViewController:nav animated:YES completion:nil];
 }
 -(void)creatTableView{
-    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, CurrentScreenHeight-49) style:UITableViewStylePlain];
+    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, CurrentScreenHeight-49-64) style:UITableViewStylePlain];
     myTableView.delegate = self;
     myTableView.dataSource = self;
     myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -101,33 +102,57 @@
     dimageview.frame=CGRectMake(0, 43, CurrentScreenWidth, 1);
     dimageview.backgroundColor=RGBA(215, 215, 215, 1);
     [cell.contentView addSubview:dimageview];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row ==0) {
-        MyCollectionViewController *collection = [[MyCollectionViewController alloc]init];
-        collection.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:collection animated:YES];
-    }
-    if (indexPath.row == 1) {
-        MyListViewController *list = [[MyListViewController alloc]init];
-        list .hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:list animated:YES];
-    }
-    if (indexPath.row == 2) {
-        MyResumeViewController *resume = [[MySharetools shared]getViewControllerWithIdentifier:@"MyResume" andstoryboardName:@"me"];
-        resume.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:resume animated:YES];
-    }
-    if (indexPath.row == 3) {
-       ReleaseMeetingViewController *meeting = [[MySharetools shared]getViewControllerWithIdentifier:@"ReleaseMeeting" andstoryboardName:@"me"];
-        meeting.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:meeting animated:YES];
-    }
-    if (indexPath.row == 4) {
-        AddCommanyInfoViewController *commany = [[MySharetools shared]getViewControllerWithIdentifier:@"AddCommany" andstoryboardName:@"me"];
-        commany.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:commany animated:YES];
+    NSInteger index = indexPath.row;
+    switch (index) {
+        case 0:
+        {
+            MyCollectionViewController *collection = [[MyCollectionViewController alloc]init];
+            collection.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:collection animated:YES];
+        }
+            break;
+        case 1:
+        {
+            MyListViewController *list = [[MyListViewController alloc]init];
+            list .hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:list animated:YES];
+        }
+            break;
+        case 2:
+        {
+            MyResumeViewController *resume = [[MySharetools shared]getViewControllerWithIdentifier:@"MyResume" andstoryboardName:@"me"];
+            resume.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:resume animated:YES];
+        }
+            break;
+        case 3:
+        {
+            ReleaseMeetingViewController *meeting = [[MySharetools shared]getViewControllerWithIdentifier:@"ReleaseMeeting" andstoryboardName:@"me"];
+            meeting.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:meeting animated:YES];
+        }
+            break;
+        case 4:
+        {
+            AddCommanyInfoViewController *commany = [[MySharetools shared]getViewControllerWithIdentifier:@"AddCommany" andstoryboardName:@"me"];
+            commany.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:commany animated:YES];
+        }
+            break;
+        case 5:
+        {
+            SystemCenterViewController *system = [[SystemCenterViewController alloc]init];
+            system.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:system animated:YES];
+        }
+            break;
+            
+        default:
+            break;
     }
 }
 #pragma mark--创建尾视图

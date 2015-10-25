@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MyBaseTableViewController : UITableViewController
-
+@property(nonatomic,strong)UIWindow *window ;
 @end

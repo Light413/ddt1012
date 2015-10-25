@@ -121,6 +121,10 @@
 		ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */; settings = {ASSET_TAGS = (); }; };
 		ADE8CF8C1BDBD420006CBC95 /* NGCompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */; settings = {ASSET_TAGS = (); }; };
+		B2879BD71BDCC8B400B39021 /* SystemCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BD61BDCC8B400B39021 /* SystemCenterViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B2879BDF1BDCC92900B39021 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDA1BDCC92900B39021 /* AboutUsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B2879BE01BDCC92900B39021 /* DeviceFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDC1BDCC92900B39021 /* DeviceFeedBackViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B2879BE11BDCC92900B39021 /* JoinUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDE1BDCC92900B39021 /* JoinUsViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -337,6 +341,14 @@
 		ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsClass.m; sourceTree = "<group>"; };
 		ADE8CF8A1BDBD420006CBC95 /* NGCompanyDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCompanyDetailVC.h; sourceTree = "<group>"; };
 		ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGCompanyDetailVC.m; sourceTree = "<group>"; };
+		B2879BD51BDCC8B400B39021 /* SystemCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemCenterViewController.h; sourceTree = "<group>"; };
+		B2879BD61BDCC8B400B39021 /* SystemCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemCenterViewController.m; sourceTree = "<group>"; };
+		B2879BD91BDCC92900B39021 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
+		B2879BDA1BDCC92900B39021 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		B2879BDB1BDCC92900B39021 /* DeviceFeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceFeedBackViewController.h; sourceTree = "<group>"; };
+		B2879BDC1BDCC92900B39021 /* DeviceFeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceFeedBackViewController.m; sourceTree = "<group>"; };
+		B2879BDD1BDCC92900B39021 /* JoinUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinUsViewController.h; sourceTree = "<group>"; };
+		B2879BDE1BDCC92900B39021 /* JoinUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinUsViewController.m; sourceTree = "<group>"; };
 		CE8468AE545F99D5CA121C5E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -862,6 +874,9 @@
 				9F49D86A1BD8F82F0048C96C /* ReleaseMeetingViewController.m */,
 				9F49D86C1BD8F8510048C96C /* AddCommanyInfoViewController.h */,
 				9F49D86D1BD8F8510048C96C /* AddCommanyInfoViewController.m */,
+				B2879BD51BDCC8B400B39021 /* SystemCenterViewController.h */,
+				B2879BD61BDCC8B400B39021 /* SystemCenterViewController.m */,
+				B2879BD81BDCC92900B39021 /* SystemCenter */,
 				9FEFFCD51BCFBADE0036C23D /* MycenterViewController.xib */,
 			);
 			name = me;
@@ -898,6 +913,19 @@
 				AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */,
 			);
 			name = NGXMLReader;
+			sourceTree = "<group>";
+		};
+		B2879BD81BDCC92900B39021 /* SystemCenter */ = {
+			isa = PBXGroup;
+			children = (
+				B2879BD91BDCC92900B39021 /* AboutUsViewController.h */,
+				B2879BDA1BDCC92900B39021 /* AboutUsViewController.m */,
+				B2879BDB1BDCC92900B39021 /* DeviceFeedBackViewController.h */,
+				B2879BDC1BDCC92900B39021 /* DeviceFeedBackViewController.m */,
+				B2879BDD1BDCC92900B39021 /* JoinUsViewController.h */,
+				B2879BDE1BDCC92900B39021 /* JoinUsViewController.m */,
+			);
+			path = SystemCenter;
 			sourceTree = "<group>";
 		};
 		F47EFBFD64168D5798D650B0 /* Frameworks */ = {
@@ -1079,14 +1107,18 @@
 				A12441F71BD0EFD900D2588C /* FMDatabase.m in Sources */,
 				AD5B11D01BDB360C00285255 /* DTComDataManger.m in Sources */,
 				A12441D01BD0EDD200D2588C /* MJRefreshAutoStateFooter.m in Sources */,
+				B2879BE11BDCC92900B39021 /* JoinUsViewController.m in Sources */,
 				9F49D8681BD8F7490048C96C /* MyListViewController.m in Sources */,
+				B2879BD71BDCC8B400B39021 /* SystemCenterViewController.m in Sources */,
 				A12441F91BD0EFD900D2588C /* FMDatabasePool.m in Sources */,
 				A12CD4F51BCBAC990020CB27 /* UIViewController+RBStoryboardLink.m in Sources */,
 				A1AC85551BC8DB460099C7F7 /* NGCollectionReusableView.m in Sources */,
+				B2879BDF1BDCC92900B39021 /* AboutUsViewController.m in Sources */,
 				9F49D86B1BD8F82F0048C96C /* ReleaseMeetingViewController.m in Sources */,
 				AD5B11D81BDBA43700285255 /* NGTongHDetailVC.m in Sources */,
 				9FEE0A501BCDEC1700EA5261 /* LoginViewController.m in Sources */,
 				A12441D21BD0EDD200D2588C /* MJRefreshBackNormalFooter.m in Sources */,
+				B2879BE01BDCC92900B39021 /* DeviceFeedBackViewController.m in Sources */,
 				A12CD4F31BCBAC990020CB27 /* RBStoryboardPushSegue.m in Sources */,
 				A12441DA1BD0EDD200D2588C /* UIScrollView+MJRefresh.m in Sources */,
 				AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */,
