@@ -8,7 +8,7 @@
 
 #import "PersonanlBusinessViewController.h"
 #import "NGBaseListView.h"
-@interface PersonanlBusinessViewController ()
+@interface PersonanlBusinessViewController ()<NGBaseListDelegate>
 {
      NGBaseListView *_listView;
 }
@@ -18,19 +18,43 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"选择业务类型";
     if (_listView == nil) {
         _listView =  [[NGBaseListView alloc]initWithFrame:CGRectZero withDelegate:self];
     }
-    _listView.frame  = CGRectMake(0, 0,CurrentScreenWidth, 0);
-    
-    CGRect rec = _listView.frame;
-    // Do any additional setup after loading the view.
+    _listView.frame  = CGRectMake(0, 0,CurrentScreenWidth, CurrentScreenHeight-64);
+
+    [self.view addSubview:_listView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark - NGBaseListDelegate
+
+-(NSInteger)numOfTableViewInBaseView:(NGBaseListView *)baseListView
+{
+    return  2 ;
+}
+
+-(NSArray*)dataSourceOfBaseView
+{
+    return [NGXMLReader getBaseTypeData];//基本业务类型
+}
+
+-(NSArray *)dataSourceOfBaseViewWithKey:(NSString *)keyValue
+{
+    return [NGXMLReader getBaseTypeDataWithKey:keyValue];
+}
+
+-(void)baseView:(NGBaseListView *)baseListView didSelectObj:(id)obj1 secondObj:(id)obj2
+{
+    NSLog(@"obj1 : %@ ---- obj2 :%@",obj1,obj2);
+}
+
 
 /*
 #pragma mark - Navigation

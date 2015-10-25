@@ -336,7 +336,10 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
                 
             case 1:break;
             case 2:break;
-            case 3:break;
+            case 3:
+            {
+                [self performSegueWithIdentifier:showFeedBackVCID sender:nil];
+            }break;
                 
             case 4:
             {

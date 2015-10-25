@@ -8,7 +8,7 @@
 
 #import "NGCompanyDetailVC.h"
 
-#define Font    [UIFont systemFontOfSize:13]
+#define Font    [UIFont systemFontOfSize:15]
 #define Size    CGSizeMake(CurrentScreenWidth - 50, 1000)
 
 @interface NGCompanyDetailVC ()
@@ -48,8 +48,8 @@
 
 -(void)initSubviews
 {
-    UIFont *titleFont = [UIFont boldSystemFontOfSize:13];
-    _nameLab.font = [UIFont boldSystemFontOfSize:15];;
+    UIFont *titleFont = [UIFont boldSystemFontOfSize:15];
+    _nameLab.font = [UIFont boldSystemFontOfSize:16];;
    _nameLab.textColor = [UIColor colorWithRed:0.875 green:0.718 blue:0.329 alpha:1];
     _areaLab.font = titleFont;
     _taskLab.font = titleFont;

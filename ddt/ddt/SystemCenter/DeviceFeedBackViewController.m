@@ -27,6 +27,10 @@
     deviceTextView.delegate = self;
     // Do any additional setup after loading the view.
 }
+-(void)awakeFromNib
+{
+    self.hidesBottomBarWhenPushed = YES;
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 1;
