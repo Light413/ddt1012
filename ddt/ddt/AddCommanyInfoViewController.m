@@ -11,9 +11,20 @@
 @interface AddCommanyInfoViewController ()
 
 @end
-
+typedef NS_ENUM(NSUInteger, NGSelectDataType) {
+    NGSelectDataTypeNone,  //0
+    NGSelectDataTypeBusiness,     //选择业务
+    NGSelectDataTypeworkingYears, //选择业务类型
+    NGSelectDataTypeSalary,//工资
+    NGSelectDataTypeArea//工作区域
+};
 @implementation AddCommanyInfoViewController
-
+{
+    NSArray *_pickViewDataArr;
+    
+    NGSelectDataType _pickerViewType;
+    UIButton *_selectedBtn;//当前被选中的btn
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.backView.layer.borderColor = [RGBA(207, 207, 207, 1)CGColor];
@@ -40,7 +51,48 @@
 */
 
 - (IBAction)serviceAreaBtnClick:(id)sender {
+    _pickerViewType = NGSelectDataTypeArea;
+    
+    [self giveDataToPickerWithTypee:_pickerViewType];
+    _selectedBtn = sender;
+    
+    LPickerView *_pickview = [[LPickerView alloc]initWithDelegate:self];
+    [_pickview showIn:self.view];
 }
+-(void)giveDataToPickerWithTypee:(NGSelectDataType)type
+{
+    if (type == NGSelectDataTypeArea) {
+        //        [0]	(null)	@"ID" : @"719"
+        //        [1]	(null)	@"NAME" : @"黄浦区"
+        NSArray *_a =[NGXMLReader getCurrentLocationAreas];;
+        _pickViewDataArr =_a ;
+    }
+}
+#pragma mark --UITextField delegate
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma mark-pickViewDelegate
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return _pickViewDataArr.count;
+}
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSDictionary *_dic = [_pickViewDataArr objectAtIndex:row];
+    return [_dic objectForKey:@"NAME"];
+}
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    _pickerViewType = NGSelectDataTypeNone;
+    NSDictionary *_d = [_pickViewDataArr objectAtIndex:row];
+    [_selectedBtn setNormalTitle:[_d objectForKey:@"NAME"] andID:nil];
+    _pickViewDataArr = nil;
+}
+
 - (IBAction)chooseBusinessTypeBtnClick:(id)sender {
 }
 @end

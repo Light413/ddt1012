@@ -7,7 +7,7 @@
 //
 
 #import "PersonalInfoViewController.h"
-
+#import "PersonanlBusinessViewController.h"
 @interface PersonalInfoViewController ()<UITextFieldDelegate,UITextViewDelegate>
 
 @end
@@ -139,11 +139,14 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 }
 
 - (IBAction)bussinessSortBtnClick:(id)sender {
-    _pickerViewType = NGSelectDataTypeTaskType;
-    [self giveDataToPickerWithTypee:_pickerViewType];
-    _selectedBtn = sender;
-    LPickerView *_pickview = [[LPickerView alloc]initWithDelegate:self];
-    [_pickview showIn:self.view];
+    PersonanlBusinessViewController *person = [[PersonanlBusinessViewController alloc]init];
+    person.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:person animated:YES];
+//    _pickerViewType = NGSelectDataTypeTaskType;
+//    [self giveDataToPickerWithTypee:_pickerViewType];
+//    _selectedBtn = sender;
+//    LPickerView *_pickview = [[LPickerView alloc]initWithDelegate:self];
+//    [_pickview showIn:self.view];
 }
 - (IBAction)saveInfoBtnClick:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];

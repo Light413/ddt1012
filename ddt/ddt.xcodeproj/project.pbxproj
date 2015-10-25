@@ -125,6 +125,7 @@
 		B2879BDF1BDCC92900B39021 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDA1BDCC92900B39021 /* AboutUsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B2879BE01BDCC92900B39021 /* DeviceFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDC1BDCC92900B39021 /* DeviceFeedBackViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B2879BE11BDCC92900B39021 /* JoinUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDE1BDCC92900B39021 /* JoinUsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B2977DE11BDCDEFD007B3021 /* PersonanlBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2977DE01BDCDEFD007B3021 /* PersonanlBusinessViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -349,6 +350,8 @@
 		B2879BDC1BDCC92900B39021 /* DeviceFeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceFeedBackViewController.m; sourceTree = "<group>"; };
 		B2879BDD1BDCC92900B39021 /* JoinUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinUsViewController.h; sourceTree = "<group>"; };
 		B2879BDE1BDCC92900B39021 /* JoinUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinUsViewController.m; sourceTree = "<group>"; };
+		B2977DDF1BDCDEFD007B3021 /* PersonanlBusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonanlBusinessViewController.h; sourceTree = "<group>"; };
+		B2977DE01BDCDEFD007B3021 /* PersonanlBusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonanlBusinessViewController.m; sourceTree = "<group>"; };
 		CE8468AE545F99D5CA121C5E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -924,6 +927,8 @@
 				B2879BDC1BDCC92900B39021 /* DeviceFeedBackViewController.m */,
 				B2879BDD1BDCC92900B39021 /* JoinUsViewController.h */,
 				B2879BDE1BDCC92900B39021 /* JoinUsViewController.m */,
+				B2977DDF1BDCDEFD007B3021 /* PersonanlBusinessViewController.h */,
+				B2977DE01BDCDEFD007B3021 /* PersonanlBusinessViewController.m */,
 			);
 			path = SystemCenter;
 			sourceTree = "<group>";
@@ -1175,6 +1180,7 @@
 				AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */,
 				A157110E1BD4EAB500D586F6 /* LPickerView.m in Sources */,
 				9F690B031BD73AE200DDCED6 /* PersonalInfoViewController.m in Sources */,
+				B2977DE11BDCDEFD007B3021 /* PersonanlBusinessViewController.m in Sources */,
 				AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */,
 				9F49D8651BD8F6FC0048C96C /* MyResumeViewController.m in Sources */,
 				A12441FB1BD0EFD900D2588C /* FMResultSet.m in Sources */,

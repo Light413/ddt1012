@@ -979,7 +979,7 @@
         <scene sceneID="4GK-Mc-jCa">
             <objects>
                 <tableViewController storyboardIdentifier="MyResume" title="我的简历" id="fQr-dx-aYD" customClass="MyResumeViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="479" sectionHeaderHeight="22" sectionFooterHeight="22" id="gmj-h3-eki">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="479" sectionHeaderHeight="22" sectionFooterHeight="22" id="gmj-h3-eki">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -990,7 +990,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="479"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gRf-eG-mIe" id="hj3-5S-Ofh">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="478"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="479"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WCG-uj-uQQ">
@@ -1117,6 +1117,9 @@
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="workingYearsBtnClick:" destination="fQr-dx-aYD" eventType="touchUpInside" id="4yW-MJ-5pp"/>
+                                                            </connections>
                                                         </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y5p-do-ZYa">
                                                             <rect key="frame" x="560" y="135" width="15" height="15"/>
@@ -1421,7 +1424,6 @@
                         <outlet property="judgeholderLabel" destination="K5e-Pq-jHc" id="27N-rO-onP"/>
                         <outlet property="salaryBtn" destination="vqm-nJ-kVg" id="ikp-5P-EMu"/>
                         <outlet property="workingYearsBtn" destination="nVa-J1-sfi" id="3wi-Q9-Oj8"/>
-                        <outlet property="workingYearsBtnClick" destination="nVa-J1-sfi" id="xtq-t4-DXr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="szu-Sr-26Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1632,7 +1634,7 @@
         <scene sceneID="Lnp-vZ-PjX">
             <objects>
                 <tableViewController storyboardIdentifier="AddCommany" title="添加公司资料" id="CPf-mM-Zis" customClass="AddCommanyInfoViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="481" sectionHeaderHeight="22" sectionFooterHeight="22" id="bwE-aI-FiE">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="481" sectionHeaderHeight="22" sectionFooterHeight="22" id="bwE-aI-FiE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1643,7 +1645,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l3k-MN-6UC" id="INt-Ga-4Ye">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="549"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hH8-GU-RbD">

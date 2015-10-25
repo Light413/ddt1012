@@ -17,7 +17,8 @@
 - (IBAction)certificateBtnClick:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *workingYearsBtn;
-@property (weak, nonatomic) IBOutlet UIButton *workingYearsBtnClick;
+- (IBAction)workingYearsBtnClick:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIButton *salaryBtn;
 - (IBAction)salaryBtnClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *areaBtn;
