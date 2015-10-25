@@ -203,7 +203,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     return [_common_pop_btnTitleArr objectAtIndex:index];
 }
 
-//第一个列表显示的数据源,NSArray类型,第二个列表数据源：
+//第一个列表显示的数据源,NSArray类型
 -(NSArray*)dataSourceOfPoplistviewWithIndex:(NSInteger)index
 {
     return [_common_pop_btnListArr objectAtIndex:index];

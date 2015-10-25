@@ -120,6 +120,12 @@
 		ADCEAF8F1BD393AA006F1E56 /* NGSearchCityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF8E1BD393AA006F1E56 /* NGSearchCityVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */; settings = {ASSET_TAGS = (); }; };
+		ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305311BDCFFD7002F5BAE /* NGTHContactVC.m */; settings = {ASSET_TAGS = (); }; };
+		ADD305351BDD005D002F5BAE /* NGReleaseContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305341BDD005D002F5BAE /* NGReleaseContactVC.m */; settings = {ASSET_TAGS = (); }; };
+		ADD305381BDD0086002F5BAE /* NGContactDetaillVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305371BDD0086002F5BAE /* NGContactDetaillVC.m */; settings = {ASSET_TAGS = (); }; };
+		ADD3053B1BDD00DE002F5BAE /* NGCarPriceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3053A1BDD00DE002F5BAE /* NGCarPriceVC.m */; settings = {ASSET_TAGS = (); }; };
+		ADD3053E1BDD011C002F5BAE /* NGShuaiDantVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3053D1BDD011C002F5BAE /* NGShuaiDantVC.m */; settings = {ASSET_TAGS = (); }; };
+		ADD305411BDD0156002F5BAE /* NGJieDanDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305401BDD0156002F5BAE /* NGJieDanDetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADE8CF8C1BDBD420006CBC95 /* NGCompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		B2879BD71BDCC8B400B39021 /* SystemCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BD61BDCC8B400B39021 /* SystemCenterViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B2879BDF1BDCC92900B39021 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDA1BDCC92900B39021 /* AboutUsViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -340,6 +346,18 @@
 		ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGItemsDetailVC.m; sourceTree = "<group>"; };
 		ADD3052D1BDC72FA002F5BAE /* ToolsClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsClass.h; sourceTree = "<group>"; };
 		ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsClass.m; sourceTree = "<group>"; };
+		ADD305301BDCFFD7002F5BAE /* NGTHContactVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTHContactVC.h; sourceTree = "<group>"; };
+		ADD305311BDCFFD7002F5BAE /* NGTHContactVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGTHContactVC.m; sourceTree = "<group>"; };
+		ADD305331BDD005D002F5BAE /* NGReleaseContactVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGReleaseContactVC.h; sourceTree = "<group>"; };
+		ADD305341BDD005D002F5BAE /* NGReleaseContactVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGReleaseContactVC.m; sourceTree = "<group>"; };
+		ADD305361BDD0086002F5BAE /* NGContactDetaillVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGContactDetaillVC.h; sourceTree = "<group>"; };
+		ADD305371BDD0086002F5BAE /* NGContactDetaillVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGContactDetaillVC.m; sourceTree = "<group>"; };
+		ADD305391BDD00DE002F5BAE /* NGCarPriceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCarPriceVC.h; sourceTree = "<group>"; };
+		ADD3053A1BDD00DE002F5BAE /* NGCarPriceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGCarPriceVC.m; sourceTree = "<group>"; };
+		ADD3053C1BDD011C002F5BAE /* NGShuaiDantVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGShuaiDantVC.h; sourceTree = "<group>"; };
+		ADD3053D1BDD011C002F5BAE /* NGShuaiDantVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGShuaiDantVC.m; sourceTree = "<group>"; };
+		ADD3053F1BDD0156002F5BAE /* NGJieDanDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGJieDanDetailVC.h; sourceTree = "<group>"; };
+		ADD305401BDD0156002F5BAE /* NGJieDanDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGJieDanDetailVC.m; sourceTree = "<group>"; };
 		ADE8CF8A1BDBD420006CBC95 /* NGCompanyDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCompanyDetailVC.h; sourceTree = "<group>"; };
 		ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGCompanyDetailVC.m; sourceTree = "<group>"; };
 		B2879BD51BDCC8B400B39021 /* SystemCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemCenterViewController.h; sourceTree = "<group>"; };
@@ -822,6 +840,18 @@
 				ADCEAF8E1BD393AA006F1E56 /* NGSearchCityVC.m */,
 				ADCEAF901BD39B35006F1E56 /* NGItemsDetailVC.h */,
 				ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */,
+				ADD305301BDCFFD7002F5BAE /* NGTHContactVC.h */,
+				ADD305311BDCFFD7002F5BAE /* NGTHContactVC.m */,
+				ADD305331BDD005D002F5BAE /* NGReleaseContactVC.h */,
+				ADD305341BDD005D002F5BAE /* NGReleaseContactVC.m */,
+				ADD305361BDD0086002F5BAE /* NGContactDetaillVC.h */,
+				ADD305371BDD0086002F5BAE /* NGContactDetaillVC.m */,
+				ADD305391BDD00DE002F5BAE /* NGCarPriceVC.h */,
+				ADD3053A1BDD00DE002F5BAE /* NGCarPriceVC.m */,
+				ADD3053C1BDD011C002F5BAE /* NGShuaiDantVC.h */,
+				ADD3053D1BDD011C002F5BAE /* NGShuaiDantVC.m */,
+				ADD3053F1BDD0156002F5BAE /* NGJieDanDetailVC.h */,
+				ADD305401BDD0156002F5BAE /* NGJieDanDetailVC.m */,
 			);
 			name = home;
 			sourceTree = "<group>";
@@ -1107,6 +1137,7 @@
 			files = (
 				A12441D41BD0EDD200D2588C /* MJRefreshGifHeader.m in Sources */,
 				A1DAAE691B492F84004F634B /* NGBaseNavigationVC.m in Sources */,
+				ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */,
 				ADCEAF8F1BD393AA006F1E56 /* NGSearchCityVC.m in Sources */,
 				A15A95271BC7C3F200643170 /* NGCollectionViewCell.m in Sources */,
 				A12441F71BD0EFD900D2588C /* FMDatabase.m in Sources */,
@@ -1114,6 +1145,7 @@
 				A12441D01BD0EDD200D2588C /* MJRefreshAutoStateFooter.m in Sources */,
 				B2879BE11BDCC92900B39021 /* JoinUsViewController.m in Sources */,
 				9F49D8681BD8F7490048C96C /* MyListViewController.m in Sources */,
+				ADD3053E1BDD011C002F5BAE /* NGShuaiDantVC.m in Sources */,
 				B2879BD71BDCC8B400B39021 /* SystemCenterViewController.m in Sources */,
 				A12441F91BD0EFD900D2588C /* FMDatabasePool.m in Sources */,
 				A12CD4F51BCBAC990020CB27 /* UIViewController+RBStoryboardLink.m in Sources */,
@@ -1130,11 +1162,13 @@
 				AD5B11D41BDB694C00285255 /* DTCompanyListCell.m in Sources */,
 				A12441D91BD0EDD200D2588C /* UIScrollView+MJExtension.m in Sources */,
 				A12CD4F41BCBAC990020CB27 /* RBStoryboardSegue.m in Sources */,
+				ADD305351BDD005D002F5BAE /* NGReleaseContactVC.m in Sources */,
 				9FEE0A531BCDFA4F00EA5261 /* UIViewExt.m in Sources */,
 				9FEFFCD21BCFAFE80036C23D /* QCheckBox.m in Sources */,
 				9FFEE94B1BD0CDF100D53553 /* RegisterViewController.m in Sources */,
 				A15F1C4A1BD615A600E854A7 /* NGSecondListCell.m in Sources */,
 				A12441CA1BD0EDD200D2588C /* MJRefreshBackFooter.m in Sources */,
+				ADD305381BDD0086002F5BAE /* NGContactDetaillVC.m in Sources */,
 				9F04220B1BD8F45E00D82286 /* MyScTableViewCell.m in Sources */,
 				A12441FF1BD0EFD900D2588C /* NSObject+LKDBHelper.m in Sources */,
 				A12442001BD0EFD900D2588C /* NSObject+LKModel.m in Sources */,
@@ -1174,6 +1208,7 @@
 				A12441FD1BD0EFD900D2588C /* LKDBHelper.m in Sources */,
 				A12441FA1BD0EFD900D2588C /* FMDatabaseQueue.m in Sources */,
 				A12441C91BD0EDD200D2588C /* MJRefreshAutoFooter.m in Sources */,
+				ADD305411BDD0156002F5BAE /* NGJieDanDetailVC.m in Sources */,
 				A12441D81BD0EDD200D2588C /* MJRefreshConst.m in Sources */,
 				A12441F81BD0EFD900D2588C /* FMDatabaseAdditions.m in Sources */,
 				A12441CC1BD0EDD200D2588C /* MJRefreshFooter.m in Sources */,
@@ -1184,6 +1219,7 @@
 				AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */,
 				9F49D8651BD8F6FC0048C96C /* MyResumeViewController.m in Sources */,
 				A12441FB1BD0EFD900D2588C /* FMResultSet.m in Sources */,
+				ADD3053B1BDD00DE002F5BAE /* NGCarPriceVC.m in Sources */,
 				9F49D86E1BD8F8510048C96C /* AddCommanyInfoViewController.m in Sources */,
 				A12CD4DE1BCBA6960020CB27 /* SVProgressHUD.m in Sources */,
 				A12441D51BD0EDD200D2588C /* MJRefreshNormalHeader.m in Sources */,

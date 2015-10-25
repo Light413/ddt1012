@@ -334,8 +334,16 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
                 [self performSegueWithIdentifier:showSecondVCID sender:nil];
             }break;
                 
-            case 1:break;
-            case 2:break;
+            case 1:
+            {
+                [self performSegueWithIdentifier:showTHContactID sender:nil];
+            }break;
+                
+            case 2:
+            {
+                [self performSegueWithIdentifier:showCarPriceVCID sender:nil];
+            }break;
+                
             case 3:
             {
                 [self performSegueWithIdentifier:showFeedBackVCID sender:nil];
@@ -349,7 +357,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
                 
             case 5:
             {
-            
+                [self performSegueWithIdentifier:showShuaiDanID sender:nil];
             }break;
                 
             case 6:

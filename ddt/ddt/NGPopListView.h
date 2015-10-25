@@ -23,7 +23,7 @@
 -(NSString *)titleOfSectionInPopView:(NGPopListView*)poplistview atIndex :(NSInteger)index;
 
 
-//YES : 类型必须是数组 NO:必须是字典
+//对应btn弹出列表的数据源
 -(NSArray*)dataSourceOfPoplistviewWithIndex:(NSInteger)index;
 
 
