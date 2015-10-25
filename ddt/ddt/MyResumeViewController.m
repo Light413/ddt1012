@@ -14,7 +14,8 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     NGSelectDataTypeBusiness,     //选择业务
     NGSelectDataTypeworkingYears, //选择业务类型
     NGSelectDataTypeSalary,//工资
-    NGSelectDataTypeArea//工作区域
+    NGSelectDataTypeArea,//工作区域
+    NGSelectDataTypeZGXL//最高学历
 };
 @end
 
@@ -95,6 +96,9 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     }else if (type == NGSelectDataTypeArea){
         NSArray *_a =[NGXMLReader getCurrentLocationAreas];;
         _pickViewDataArr =_a ;
+    }else if (type == NGSelectDataTypeZGXL){
+        NSArray *_a = [DTComDataManger getData_zgxl];
+        _pickViewDataArr =_a ;
     }
 }
 - (IBAction)salaryBtnClick:(id)sender {
@@ -108,6 +112,13 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 
 }
 - (IBAction)certificateBtnClick:(id)sender {
+    _pickerViewType = NGSelectDataTypeZGXL;
+    
+    [self giveDataToPickerWithTypee:_pickerViewType];
+    _selectedBtn = sender;
+    
+    LPickerView *_pickview = [[LPickerView alloc]initWithDelegate:self];
+     [_pickview showIn:self.view];
 }
 - (IBAction)chooseBusinessTypeBtnClick:(id)sender {
 }
