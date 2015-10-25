@@ -28,6 +28,7 @@
 //category
 #import "UIButton+setBtnArg.h"
 
-
+//toolsclass
+#import "ToolsClass.h"
 
 #endif

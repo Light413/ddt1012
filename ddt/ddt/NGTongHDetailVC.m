@@ -7,13 +7,29 @@
 //
 
 #import "NGTongHDetailVC.h"
+#define Font    [UIFont systemFontOfSize:13]
+#define Size    CGSizeMake(CurrentScreenWidth - 50, 1000)
+
+#define Color_4 [UIColor colorWithRed:0.835 green:0.722 blue:0.439 alpha:1]
+
 
 @interface NGTongHDetailVC ()
+{
+    NSString *_s1;
+    NSString *_s2;
+    NSString *_s3;
+    NSString *_s4;
+    NSString *_s5;
+}
 @property (weak, nonatomic) IBOutlet UILabel *telLab;
 @property (weak, nonatomic) IBOutlet UILabel *ywlxLab;
 @property (weak, nonatomic) IBOutlet UILabel *ssgsLab;
 @property (weak, nonatomic) IBOutlet UILabel *ywsmLab;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
+
+@property (weak, nonatomic) IBOutlet UILabel *lable_1;//业务类型
+@property (weak, nonatomic) IBOutlet UILabel *lable_2;//所属公司
+@property (weak, nonatomic) IBOutlet UILabel *lable_3;//业务说明
 
 @end
 
@@ -24,7 +40,16 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
     
     [self initHeaderView];
+    [self initSubviews];
 }
+
+-(void)initSubviews
+{
+    _s1 = @"信和郑州公司";
+    _s2 = @"内存泄漏形象的比喻是操作系统可提供给所有";
+    _s3 = @"所以“内存泄漏”是从操作系统的角度来看的。这里的存储空间并不是指物理内存，而是指虚拟内存大小，这个虚拟内存大小取决于磁盘交换区设定的大小";
+}
+
 
 -(void)initHeaderView
 {
@@ -111,7 +136,39 @@
 }
 
 
+#define heightValue 60
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    float _h= 30.0;
+    switch (indexPath.row) {
+        case 0:
+        {
+            CGFloat _f = [ToolsClass calculateSizeForText:_s2 :Size font:Font].height;
+            _h = _h + _f ;
+            
+        }break;
+        case 1:
+        {
+            _h += [ToolsClass calculateSizeForText:_s3 :Size font:Font].height;
+            
+        }break;
+        case 2:
+        {
+            _h += [ToolsClass calculateSizeForText:_s4 :Size font:Font].height;
+        }break;
+        case 3:
+        {
+            _h += [ToolsClass calculateSizeForText:_s5 :Size font:Font].height;
+            
+        }break;
+            
+        default:return 0;
+            break;
+    }
+    
+    return _h > heightValue ? _h : heightValue;
+}
 
 
 
