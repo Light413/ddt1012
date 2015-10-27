@@ -7,7 +7,7 @@
 //
 
 #import "MyResumeViewController.h"
-
+#import "PersonanlBusinessViewController.h"
 @interface MyResumeViewController ()
 typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     NGSelectDataTypeNone,  //0
@@ -121,6 +121,12 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
      [_pickview showIn:self.view];
 }
 - (IBAction)chooseBusinessTypeBtnClick:(id)sender {
+    PersonanlBusinessViewController *person = [[PersonanlBusinessViewController alloc]init];
+    person.hidesBottomBarWhenPushed = YES;
+    person.btnClickBlock = ^(NSString *name){
+        [self.chooseBusinessTypeBtn setTitle:name forState:UIControlStateNormal];
+    };
+    [self.navigationController pushViewController:person animated:YES];
 }
 
 - (IBAction)saveResumeBtnClick:(id)sender {

@@ -7,7 +7,7 @@
 //
 
 #import "AddCommanyInfoViewController.h"
-
+#import "PersonanlBusinessViewController.h"
 @interface AddCommanyInfoViewController ()
 
 @end
@@ -94,5 +94,11 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 }
 
 - (IBAction)chooseBusinessTypeBtnClick:(id)sender {
+    PersonanlBusinessViewController *person = [[PersonanlBusinessViewController alloc]init];
+    person.hidesBottomBarWhenPushed = YES;
+    person.btnClickBlock = ^(NSString *name){
+        [self.chooseBusinessTypeBtn setTitle:name forState:UIControlStateNormal];
+    };
+    [self.navigationController pushViewController:person animated:YES];
 }
 @end

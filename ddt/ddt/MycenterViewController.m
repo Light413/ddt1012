@@ -16,6 +16,7 @@
 #import "AddCommanyInfoViewController.h"
 #import "ReleaseMeetingViewController.h"
 #import "SystemCenterViewController.h"
+#import "ModifyPasswordViewController.h"
 #define HeaderViewHeight 100.0
 #define iconHeight 15.0
 #define KimageName @"imageName"
@@ -179,7 +180,9 @@
     [footView addSubview:logouBtn];
 }
 -(void)modifyPassword:(UIButton *)btn{
-    NSLog(@"ni");
+    ModifyPasswordViewController *modify = [[ModifyPasswordViewController alloc]init];
+    modify.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:modify animated:YES];
 }
 -(void)logout:(UIButton *)btn{
     NSLog(@"ni");

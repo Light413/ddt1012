@@ -141,6 +141,9 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 - (IBAction)bussinessSortBtnClick:(id)sender {
     PersonanlBusinessViewController *person = [[PersonanlBusinessViewController alloc]init];
     person.hidesBottomBarWhenPushed = YES;
+    person.btnClickBlock = ^(NSString *name){
+        [bussinessSortBtn setTitle:name forState:UIControlStateNormal];
+    };
     [self.navigationController pushViewController:person animated:YES];
 //    _pickerViewType = NGSelectDataTypeTaskType;
 //    [self giveDataToPickerWithTypee:_pickerViewType];
