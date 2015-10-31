@@ -10,7 +10,7 @@
 #import "NGCollectionViewCell.h"
 #import "NGXMLReader.h"
 #import "NGItemsDetailVC.h"
-#import "NGSearchCityVC.h"
+#import "NGSearchCitiesVC.h"
 #import "NGSecondVC.h"
 
 
