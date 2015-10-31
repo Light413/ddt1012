@@ -35,24 +35,55 @@
             </objects>
             <point key="canvasLocation" x="-1956" y="-583"/>
         </scene>
-        <!--贷易通-->
-        <scene sceneID="Grk-6k-qtg">
+        <!--城市列表-->
+        <scene sceneID="qmX-25-0Cf">
             <objects>
-                <viewController title="贷易通" id="vWx-tJ-Tji" customClass="NGSearchCityVC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cjU-vI-e9P"/>
-                        <viewControllerLayoutGuide type="bottom" id="AbU-m8-ex2"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QKk-NB-rY9">
+                <tableViewController title="城市列表" id="vu9-U2-EEx" customClass="NGSearchCitiesVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="aSP-7g-PQd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="贷易通" id="ubP-el-xDT"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hKF-Ei-8XC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="prominent" placeholder="输入城市名字" id="H8w-VF-MGR">
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="barTintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="vu9-U2-EEx" id="5au-XI-TSS"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NGCityCellID" id="HnP-Ja-1jg">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HnP-Ja-1jg" id="pru-W9-luc">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vu9-U2-EEx" id="ouX-ho-0wi"/>
+                            <outlet property="delegate" destination="vu9-U2-EEx" id="MAS-lj-9QV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="jDf-re-gVJ"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="8ys-oK-nhM" id="mAa-qm-h13"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6CD-jF-K0Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="8ys-oK-nhM">
+                    <connections>
+                        <outlet property="delegate" destination="vu9-U2-EEx" id="5Kr-mi-yXh"/>
+                        <outlet property="searchBar" destination="H8w-VF-MGR" id="uAg-o4-nvY"/>
+                        <outlet property="searchContentsController" destination="vu9-U2-EEx" id="I6g-99-drY"/>
+                        <outlet property="searchResultsDataSource" destination="vu9-U2-EEx" id="tM0-nj-QEr"/>
+                        <outlet property="searchResultsDelegate" destination="vu9-U2-EEx" id="HI9-y0-mkB"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-255" y="-1651"/>
+            <point key="canvasLocation" x="-342" y="-1643"/>
         </scene>
         <!--我要接单-->
         <scene sceneID="5mq-k0-BhY">
@@ -383,7 +414,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="vWx-tJ-Tji" kind="relationship" relationship="rootViewController" id="zhb-oe-Zea"/>
+                        <segue destination="vu9-U2-EEx" kind="relationship" relationship="rootViewController" id="tT6-V3-Gqc"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqU-2b-Sa8" userLabel="First Responder" sceneMemberID="firstResponder"/>
