@@ -8,7 +8,7 @@
 
 #import "MyResumeViewController.h"
 #import "PersonanlBusinessViewController.h"
-@interface MyResumeViewController ()
+@interface MyResumeViewController ()<UITextViewDelegate>
 typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     NGSelectDataTypeNone,  //0
     NGSelectDataTypeBusiness,     //选择业务
@@ -31,6 +31,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     self.title = @"我的简历";
     self.backView.layer.borderColor = [RGBA(207, 207, 207, 1)CGColor];
     self.backView.layer.borderWidth = 1;
+    self.judgeTextView.delegate = self;
     // Do any additional setup after loading the view.
 }
 
@@ -41,6 +42,13 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 1;
+}
+-(void)textViewDidChange:(UITextView *)textView{
+    if (textView.text.length>0) {
+        self.judgeholderLabel.hidden = YES;
+    }else{
+        self.judgeholderLabel.hidden = NO;
+    }
 }
 /*
 #pragma mark - Navigation
@@ -70,6 +78,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 }
 
 - (IBAction)businessTypeBtnClick:(id)sender {
+    [self hideKeyBoard];
     _pickerViewType = NGSelectDataTypeBusiness;
     
     [self giveDataToPickerWithTypee:_pickerViewType];
@@ -109,7 +118,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     
     LPickerView *_pickview = [[LPickerView alloc]initWithDelegate:self];
     [_pickview showIn:self.view];
-
+    [self hideKeyBoard];
 }
 - (IBAction)certificateBtnClick:(id)sender {
     _pickerViewType = NGSelectDataTypeZGXL;
@@ -119,6 +128,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     
     LPickerView *_pickview = [[LPickerView alloc]initWithDelegate:self];
      [_pickview showIn:self.view];
+    [self hideKeyBoard];
 }
 - (IBAction)chooseBusinessTypeBtnClick:(id)sender {
     PersonanlBusinessViewController *person = [[PersonanlBusinessViewController alloc]init];
@@ -127,12 +137,15 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
         [self.chooseBusinessTypeBtn setTitle:name forState:UIControlStateNormal];
     };
     [self.navigationController pushViewController:person animated:YES];
+    [self hideKeyBoard];
 }
 
 - (IBAction)saveResumeBtnClick:(id)sender {
+    [self hideKeyBoard];
 }
 
 - (IBAction)areaBtnClick:(id)sender {
+    [self hideKeyBoard];
     _pickerViewType = NGSelectDataTypeArea;
     
     [self giveDataToPickerWithTypee:_pickerViewType];
@@ -142,6 +155,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     [_pickview showIn:self.view];
 }
 - (IBAction)workingYearsBtnClick:(id)sender {
+    [self hideKeyBoard];
     _pickerViewType = NGSelectDataTypeworkingYears;
     
     [self giveDataToPickerWithTypee:_pickerViewType];
@@ -149,5 +163,13 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     
     LPickerView *_pickview = [[LPickerView alloc]initWithDelegate:self];
     [_pickview showIn:self.view];
+}
+-(void)hideKeyBoard{
+    if ([self.hopeWorkingField isFirstResponder]) {
+        [self.hopeWorkingField resignFirstResponder];
+    }
+    if ([self.judgeTextView isFirstResponder]) {
+        [self.judgeTextView resignFirstResponder];
+    }
 }
 @end

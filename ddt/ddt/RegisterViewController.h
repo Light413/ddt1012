@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *mailField;
 - (IBAction)registerBtnClick:(id)sender;
 - (IBAction)registerProtocol:(id)sender;
+- (IBAction)verifyNumBtnClick:(id)sender;
 
 @end

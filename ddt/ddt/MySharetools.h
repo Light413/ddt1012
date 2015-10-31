@@ -11,4 +11,5 @@
 @interface MySharetools : NSObject
 +(MySharetools *)shared;
 -(id)getViewControllerWithIdentifier:(NSString *)Identifier andstoryboardName:(NSString *)storyboardname;
++ (void)msgBox:(NSString *)msg;
 @end

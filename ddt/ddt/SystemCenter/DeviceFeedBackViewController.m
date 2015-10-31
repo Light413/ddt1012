@@ -74,6 +74,8 @@
 */
 
 - (IBAction)cancelBtnClick:(id)sender {
+    deviceTextView.text = @"";
+    wordNumLabel.text = @"0/100";
 }
 - (IBAction)submitingBtnClick:(id)sender {
 }

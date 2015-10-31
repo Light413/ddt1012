@@ -10,4 +10,7 @@
 
 @interface MyBaseTableViewController : UITableViewController
 @property(nonatomic,strong)UIWindow *window ;
+-(void)moreAction:(UIBarButtonItem *)barButtonItem;
+-(void)createRightBarItemWithBackTitle:(NSString *)moreTitle
+                          andImageName:(NSString *)imageName;
 @end

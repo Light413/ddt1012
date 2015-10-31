@@ -23,7 +23,50 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
+//创建导航栏右侧按钮
+-(void)createRightBarItemWithBackTitle:(NSString *)moreTitle
+                          andImageName:(NSString *)imageName
+{
+    
+    //
+    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundColor:[UIColor clearColor]];
+    if (moreTitle.length>2)
+    {
+        [button setFrame:CGRectMake(0, 0, 80, 40)];
+    }
+    else
+    {
+        [button setFrame:CGRectMake(0, 0, 60, 40)];
+    }
+    [button.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    [button setTitle:moreTitle forState:UIControlStateNormal];
+    
+    
+    UIImage* image1111=[UIImage imageNamed:imageName];
+    UIImageView* backImage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,image1111.size.width/2-5 ,image1111.size.height/2-5)];
+    if (IOS7LATER)
+    {
+        [backImage setFrame:CGRectMake(30, 0,image1111.size.width/2 ,image1111.size.height/2)];
+    }
+    [backImage setBackgroundColor:[UIColor clearColor]];
+    [backImage setImage:image1111];
+    [button addSubview:backImage];
+    
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, 15, 0, 0)];
+    if (IOS7LATER && moreTitle.length)
+    {
+        [button setTitleEdgeInsets:UIEdgeInsetsMake(0,  30, 0, 0)];
+    }
+    [button addTarget:self action:@selector(moreAction:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* item=[[UIBarButtonItem alloc]initWithCustomView:button];
+    [self.navigationItem setRightBarButtonItem:item];
+}
+//右侧按钮事件
+-(void)moreAction:(UIBarButtonItem *)barButtonItem
+{
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

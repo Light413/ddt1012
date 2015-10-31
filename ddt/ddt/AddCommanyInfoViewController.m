@@ -8,7 +8,7 @@
 
 #import "AddCommanyInfoViewController.h"
 #import "PersonanlBusinessViewController.h"
-@interface AddCommanyInfoViewController ()
+@interface AddCommanyInfoViewController ()<UITextViewDelegate>
 
 @end
 typedef NS_ENUM(NSUInteger, NGSelectDataType) {
@@ -29,6 +29,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     [super viewDidLoad];
     self.backView.layer.borderColor = [RGBA(207, 207, 207, 1)CGColor];
     self.backView.layer.borderWidth = 1;
+    self.judgeTextView.delegate = self;
     // Do any additional setup after loading the view.
 }
 
@@ -100,5 +101,12 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
         [self.chooseBusinessTypeBtn setTitle:name forState:UIControlStateNormal];
     };
     [self.navigationController pushViewController:person animated:YES];
+}
+-(void)textViewDidChange:(UITextView *)textView{
+    if (textView.text.length>0) {
+        self.backHolderLabel.hidden = YES;
+    }else{
+        self.backHolderLabel.hidden = NO;
+    }
 }
 @end

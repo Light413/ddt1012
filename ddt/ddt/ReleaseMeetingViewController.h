@@ -17,4 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *placeHolderLabel;
 @property (weak, nonatomic) IBOutlet UIView *backView;
 
+@property (weak, nonatomic) IBOutlet UIButton *meetingTimeBtn;
+- (IBAction)meetingBtnClick:(id)sender;
+
+
 @end

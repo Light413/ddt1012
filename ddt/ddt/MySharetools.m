@@ -23,4 +23,12 @@ static MySharetools *instance = nil;
     id ViewController = [storyboard instantiateViewControllerWithIdentifier:Identifier];
     return ViewController;
 }
+//提示窗口
++ (void)msgBox:(NSString *)msg{
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:msg
+                                                   delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alert show];
+    
+}
 @end
