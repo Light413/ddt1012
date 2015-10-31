@@ -12,7 +12,7 @@
 #import "NGItemsDetailVC.h"
 #import "NGSearchCitiesVC.h"
 #import "NGSecondVC.h"
-
+#import "NGSearchBar.h"
 
 #define ScrollViewHeight    100
 #define CollectionHeaderViewHight 140
@@ -29,7 +29,7 @@ static NSString *showShuaiDanID     = @"showShuaiDanID";//甩单
 static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 
 
-@interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,NGSearchBarDelegate>
 
 @end
 
@@ -122,8 +122,27 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
     
     //搜索栏初始化
+    UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(leftBtn.right+10, 0, CurrentScreenWidth -leftBtn.width-rightBtn.width-35, 20)];
+    UITextField *searchField = [[UITextField alloc]initWithFrame:CGRectMake(5, 0, searchView.width, searchView.height)];
+    searchField.backgroundColor = [UIColor whiteColor];
+    searchField.font = [UIFont systemFontOfSize:12];
+    searchField.placeholder = @"点击开始搜索";
+    searchField.layer.masksToBounds = YES;
+    searchField.layer.cornerRadius = 3;
+    [searchView addSubview:searchField];
     
-    //topScrollView
+    UIButton *_btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _btn.frame = CGRectMake(0, 0, 35, 15);
+    [_btn setImageEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+    [_btn setImage:[UIImage imageNamed:@"search_icon"] forState:UIControlStateNormal];
+    searchField.rightView =_btn ;
+    searchField.rightViewMode = UITextFieldViewModeAlways;
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, searchView.width, 20);
+    [btn addTarget:self action:@selector(jumpTosearch) forControlEvents:UIControlEventTouchUpInside];
+    [searchView addSubview:btn];
+    self.navigationItem.titleView = searchView;
+
     _pageCtr = [[UIPageControl alloc]initWithFrame:CGRectMake((CurrentScreenWidth - 100)/2.0, ScrollViewHeight - 20, 100, 20)];
     _pageCtr.numberOfPages  = 4;
     _pageCtr.currentPageIndicatorTintColor =[UIColor colorWithRed:0.345 green:0.678 blue:0.910 alpha:1];
@@ -420,8 +439,9 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
         _vc.vcType = _selectIndex;
     }
 }
-
-
+-(void)jumpTosearch{
+    NSLog(@"nihao");//点击搜索在此跳转
+}
 @end
 
 
