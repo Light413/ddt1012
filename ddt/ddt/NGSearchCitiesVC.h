@@ -10,4 +10,6 @@
 
 @interface NGSearchCitiesVC : NGBaseTableVC
 
+@property(nonatomic,copy)void(^popViewBackBlock)(id obj);
+
 @end

@@ -29,7 +29,7 @@ static NSString *showShuaiDanID     = @"showShuaiDanID";//甩单
 static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 
 
-@interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,NGSearchBarDelegate>
+@interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,NGSearchBarDelegate,DDPopVCDelegate>
 
 @end
 
@@ -178,6 +178,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     
     _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, CurrentScreenWidth, CurrentScreenHeight -64-44) collectionViewLayout:_layout];
     _collectionView.backgroundColor = [UIColor whiteColor];
+//    _collectionView.bounces = NO;
     [self.view addSubview:_collectionView];
     _collectionView.delegate = self;
     _collectionView.dataSource  = self;
@@ -215,6 +216,11 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     
 }
 
+#pragma mark -DDPopVCDelegate
+-(void)popViewControllerBack:(id)obj
+{
+
+}
 
 #pragma mark -UIScrollViewDelegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -438,10 +444,29 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
         _vc.title = @"test";
         _vc.vcType = _selectIndex;
     }
+    else if ([segue.identifier isEqualToString:@"searchCityIdentifier"])
+    {
+        NGSearchCitiesVC *vc = (NGSearchCitiesVC *)[((NGBaseNavigationVC*)[segue destinationViewController]) topViewController];
+        
+        vc.popViewBackBlock = ^(id obj){
+            NSDictionary *_d = (NSDictionary*)obj;
+            [leftBtn setNormalTitle:[_d objectForKey:@"NAME"] andID:[_d objectForKey:@"ID"]];
+            [[NSUserDefaults standardUserDefaults]setObject:[_d objectForKey:@"NAME"] forKey:CURRENT_LOCATION_CITY];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+        };
+    }
 }
+
+
 -(void)jumpTosearch{
     NSLog(@"nihao");//点击搜索在此跳转
 }
+
+
+
+
 @end
+
+
 
 

@@ -22,6 +22,7 @@
 #import "NGXMLReader.h"
 #import "LPickerView.h"
 
+#import "NGBaseNavigationVC.h"
 #import "DTComDataManger.h"
 
 
