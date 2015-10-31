@@ -117,7 +117,6 @@
 		AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB921BD21E3000C23992 /* NGXMLReader.m */; settings = {ASSET_TAGS = (); }; };
 		AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */; settings = {ASSET_TAGS = (); }; };
 		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; settings = {ASSET_TAGS = (); }; };
-		ADCEAF8F1BD393AA006F1E56 /* NGSearchCityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF8E1BD393AA006F1E56 /* NGSearchCityVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */; settings = {ASSET_TAGS = (); }; };
 		ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305311BDCFFD7002F5BAE /* NGTHContactVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -126,6 +125,7 @@
 		ADD3053B1BDD00DE002F5BAE /* NGCarPriceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3053A1BDD00DE002F5BAE /* NGCarPriceVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADD3053E1BDD011C002F5BAE /* NGShuaiDantVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3053D1BDD011C002F5BAE /* NGShuaiDantVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADD305411BDD0156002F5BAE /* NGJieDanDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305401BDD0156002F5BAE /* NGJieDanDetailVC.m */; settings = {ASSET_TAGS = (); }; };
+		ADD4308C1BE481D5000C03D8 /* NGSearchCitiesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4308B1BE481D5000C03D8 /* NGSearchCitiesVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADE8CF8C1BDBD420006CBC95 /* NGCompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		B27BB3AB1BDFAAAF007DB68B /* ModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BB3AA1BDFAAAF007DB68B /* ModifyPasswordViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B27BB3B21BE466BA007DB68B /* NGDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BB3B11BE466BA007DB68B /* NGDatePicker.m */; settings = {ASSET_TAGS = (); }; };
@@ -342,8 +342,6 @@
 		AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGXMLDataModel.m; sourceTree = "<group>"; };
 		AD92EB971BD24A0300C23992 /* NGXMLBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGXMLBaseModel.h; sourceTree = "<group>"; };
 		AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGXMLBaseModel.m; sourceTree = "<group>"; };
-		ADCEAF8D1BD393AA006F1E56 /* NGSearchCityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSearchCityVC.h; sourceTree = "<group>"; };
-		ADCEAF8E1BD393AA006F1E56 /* NGSearchCityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSearchCityVC.m; sourceTree = "<group>"; };
 		ADCEAF901BD39B35006F1E56 /* NGItemsDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGItemsDetailVC.h; sourceTree = "<group>"; };
 		ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGItemsDetailVC.m; sourceTree = "<group>"; };
 		ADD3052D1BDC72FA002F5BAE /* ToolsClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsClass.h; sourceTree = "<group>"; };
@@ -360,6 +358,8 @@
 		ADD3053D1BDD011C002F5BAE /* NGShuaiDantVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGShuaiDantVC.m; sourceTree = "<group>"; };
 		ADD3053F1BDD0156002F5BAE /* NGJieDanDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGJieDanDetailVC.h; sourceTree = "<group>"; };
 		ADD305401BDD0156002F5BAE /* NGJieDanDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGJieDanDetailVC.m; sourceTree = "<group>"; };
+		ADD4308B1BE481D5000C03D8 /* NGSearchCitiesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSearchCitiesVC.m; sourceTree = "<group>"; };
+		ADD4308D1BE48D2C000C03D8 /* NGSearchCitiesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSearchCitiesVC.h; sourceTree = "<group>"; };
 		ADE8CF8A1BDBD420006CBC95 /* NGCompanyDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCompanyDetailVC.h; sourceTree = "<group>"; };
 		ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGCompanyDetailVC.m; sourceTree = "<group>"; };
 		B27BB3A91BDFAAAF007DB68B /* ModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPasswordViewController.h; sourceTree = "<group>"; };
@@ -843,8 +843,8 @@
 			children = (
 				A1042B7F1B64D1E600A74215 /* NGHomeVC.h */,
 				A1042B801B64D1E600A74215 /* NGHomeVC.m */,
-				ADCEAF8D1BD393AA006F1E56 /* NGSearchCityVC.h */,
-				ADCEAF8E1BD393AA006F1E56 /* NGSearchCityVC.m */,
+				ADD4308D1BE48D2C000C03D8 /* NGSearchCitiesVC.h */,
+				ADD4308B1BE481D5000C03D8 /* NGSearchCitiesVC.m */,
 				ADCEAF901BD39B35006F1E56 /* NGItemsDetailVC.h */,
 				ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */,
 				ADD305301BDCFFD7002F5BAE /* NGTHContactVC.h */,
@@ -1156,7 +1156,6 @@
 				A12441D41BD0EDD200D2588C /* MJRefreshGifHeader.m in Sources */,
 				A1DAAE691B492F84004F634B /* NGBaseNavigationVC.m in Sources */,
 				ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */,
-				ADCEAF8F1BD393AA006F1E56 /* NGSearchCityVC.m in Sources */,
 				A15A95271BC7C3F200643170 /* NGCollectionViewCell.m in Sources */,
 				A12441F71BD0EFD900D2588C /* FMDatabase.m in Sources */,
 				AD5B11D01BDB360C00285255 /* DTComDataManger.m in Sources */,
@@ -1225,6 +1224,7 @@
 				A15F1C461BD5D67500E854A7 /* UIButton+setBtnArg.m in Sources */,
 				ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */,
 				A12441FD1BD0EFD900D2588C /* LKDBHelper.m in Sources */,
+				ADD4308C1BE481D5000C03D8 /* NGSearchCitiesVC.m in Sources */,
 				A12441FA1BD0EFD900D2588C /* FMDatabaseQueue.m in Sources */,
 				A12441C91BD0EDD200D2588C /* MJRefreshAutoFooter.m in Sources */,
 				ADD305411BDD0156002F5BAE /* NGJieDanDetailVC.m in Sources */,

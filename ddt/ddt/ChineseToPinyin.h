@@ -7,4 +7,4 @@
 + (NSString *) pinyinFromChiniseString:(NSString *)string;
 + (char) sortSectionTitle:(NSString *)string; 
 
-@end
+@end 

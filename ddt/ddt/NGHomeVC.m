@@ -10,7 +10,7 @@
 #import "NGCollectionViewCell.h"
 #import "NGXMLReader.h"
 #import "NGItemsDetailVC.h"
-#import "NGSearchCityVC.h"
+#import "NGSearchCitiesVC.h"
 #import "NGSecondVC.h"
 
 
@@ -184,12 +184,13 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     }];
 }
 
-#pragma mark -btn Action
+#pragma mark -选择城市
 -(void)locationBtnAction :(UIButton*)btn
 {
     [self performSegueWithIdentifier:@"searchCityIdentifier" sender:nil];
 }
 
+//签到
 -(void)siginBtnAction :(UIButton*)btn
 {
     
