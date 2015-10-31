@@ -139,7 +139,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     
     NSArray *_arr = @[
   @[@{@"1":@"cell_avatar_default",@"2":@"张三18016381234",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
-  @[@{@"1":@"车贷金融",@"2":@"民间信贷－房产地眼粉色经典福克斯附近的时刻复活节恢复建设的附近发生地方防护服热风 i 好烦好烦搜索健康发生的进口附加税开发分热放复活节妇女地方加拿大籍分妇女健康的妇女舒服",@"3":@"车辆抵押，信用贷款／信用卡付款"}],
+  @[@{@"1":@"车贷金融发过节费公司公司",@"2":@"民间信贷－房产地眼粉色经典福克斯附近的时刻复活节恢复建设的附近发生地方防护服热风 i 好烦好烦搜索健康发生的进口附加税开发分热放复活节妇女地方加拿大籍分妇女健康的妇女舒服",@"3":@"车辆抵押，信用贷款／信用卡付款"}],
     @[@{@"1":@"cell_avatar_default",@"2":@"张三18016381234",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
     @[@{@"1":@"cell_avatar_default",@"2":@"张三18016381234",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
     @[@{@"1":@"cell_avatar_default",@"2":@"张三18016381234",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
@@ -177,6 +177,8 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     _tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf loadMoreData];
     }];
+    
+    
 }
 
 #pragma mark --加载数据
@@ -257,6 +259,21 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    switch (self.vcType) {
+        case NGVCTypeId_2:
+        {
+            NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:0];
+            NSString * str = [_dic0 objectForKey:@"2"];
+            CGSize _size = CGSizeMake(CurrentScreenWidth -100, 999);
+            UIFont *font = [UIFont systemFontOfSize:14];
+            CGSize _new =  [ToolsClass calculateSizeForText:str :_size font:font];
+           
+            return _new.height + 20;
+        }break;
+            
+        default:
+            break;
+    }
     return 80;
 }
 
