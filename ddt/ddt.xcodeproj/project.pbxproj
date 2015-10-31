@@ -127,6 +127,7 @@
 		ADD3053E1BDD011C002F5BAE /* NGShuaiDantVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3053D1BDD011C002F5BAE /* NGShuaiDantVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADD305411BDD0156002F5BAE /* NGJieDanDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305401BDD0156002F5BAE /* NGJieDanDetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADE8CF8C1BDBD420006CBC95 /* NGCompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */; settings = {ASSET_TAGS = (); }; };
+		B27BB3AB1BDFAAAF007DB68B /* ModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BB3AA1BDFAAAF007DB68B /* ModifyPasswordViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B2879BD71BDCC8B400B39021 /* SystemCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BD61BDCC8B400B39021 /* SystemCenterViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B2879BDF1BDCC92900B39021 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDA1BDCC92900B39021 /* AboutUsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B2879BE01BDCC92900B39021 /* DeviceFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDC1BDCC92900B39021 /* DeviceFeedBackViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -360,6 +361,8 @@
 		ADD305401BDD0156002F5BAE /* NGJieDanDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGJieDanDetailVC.m; sourceTree = "<group>"; };
 		ADE8CF8A1BDBD420006CBC95 /* NGCompanyDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCompanyDetailVC.h; sourceTree = "<group>"; };
 		ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGCompanyDetailVC.m; sourceTree = "<group>"; };
+		B27BB3A91BDFAAAF007DB68B /* ModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPasswordViewController.h; sourceTree = "<group>"; };
+		B27BB3AA1BDFAAAF007DB68B /* ModifyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPasswordViewController.m; sourceTree = "<group>"; };
 		B2879BD51BDCC8B400B39021 /* SystemCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemCenterViewController.h; sourceTree = "<group>"; };
 		B2879BD61BDCC8B400B39021 /* SystemCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemCenterViewController.m; sourceTree = "<group>"; };
 		B2879BD91BDCC92900B39021 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
@@ -909,6 +912,8 @@
 				9F49D86D1BD8F8510048C96C /* AddCommanyInfoViewController.m */,
 				B2879BD51BDCC8B400B39021 /* SystemCenterViewController.h */,
 				B2879BD61BDCC8B400B39021 /* SystemCenterViewController.m */,
+				B27BB3A91BDFAAAF007DB68B /* ModifyPasswordViewController.h */,
+				B27BB3AA1BDFAAAF007DB68B /* ModifyPasswordViewController.m */,
 				B2879BD81BDCC92900B39021 /* SystemCenter */,
 				9FEFFCD51BCFBADE0036C23D /* MycenterViewController.xib */,
 			);
@@ -1195,6 +1200,7 @@
 				ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */,
 				9F690B001BD73AA600DDCED6 /* MyBaseTableViewController.m in Sources */,
 				A12441CF1BD0EDD200D2588C /* MJRefreshAutoNormalFooter.m in Sources */,
+				B27BB3AB1BDFAAAF007DB68B /* ModifyPasswordViewController.m in Sources */,
 				A149A4411BCF37320098E7C3 /* NGBaseListView.m in Sources */,
 				A12441F61BD0EFD900D2588C /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
 				9F690B061BD7426400DDCED6 /* MyCollectionViewController.m in Sources */,

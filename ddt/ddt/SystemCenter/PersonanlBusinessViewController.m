@@ -53,6 +53,8 @@
 -(void)baseView:(NGBaseListView *)baseListView didSelectObj:(id)obj1 secondObj:(id)obj2
 {
     NSLog(@"obj1 : %@ ---- obj2 :%@",obj1,obj2);
+    self.btnClickBlock([obj2 objectForKey:@"NAME"]);
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

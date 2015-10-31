@@ -9,5 +9,5 @@
 #import "NGBaseVC.h"
 
 @interface PersonanlBusinessViewController : NGBaseVC
-
+@property(nonatomic,copy)void(^btnClickBlock)(NSString *);
 @end
