@@ -9,8 +9,11 @@
 #import "NGSearchCitiesVC.h"
 #import "ChineseToPinyin.h"
 
-@interface NGSearchCitiesVC ()
+@interface NGSearchCitiesVC ()<UISearchBarDelegate>
 {
+    NSArray *_allcity;
+    NSArray *_searchResultArr;
+    
     NSMutableArray *_allKey;
     NSMutableDictionary *_dataSourceDic;
 }
@@ -23,14 +26,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initData];
+}
+
+-(void)initData
+{
+    
+    self.tableView.backgroundView = nil;
+//    self.backgroundColor = [UIColor whiteColor];
+    
     self.title = @"城市列表";
     _allKey = [[NSMutableArray alloc]init];
     _dataSourceDic = [[NSMutableDictionary alloc]init];
-    //    [0]	(null)	@"ID" : @"3"
-    //    [1]	(null)	@"NAME" : @"石家庄市"
-    NSArray *_arr = [NGXMLReader getAllCities];
-    [self addDataWithArr:_arr];
-    
+    self.isSearchStatus= NO;
+    _allcity = [NGXMLReader getAllCities];
+    [self addDataWithArr:_allcity];
     [self.tableView reloadData];
 }
 
@@ -45,6 +55,7 @@
     UIBarButtonItem* item=[[UIBarButtonItem alloc]initWithCustomView:button];
     [self.navigationItem setLeftBarButtonItem:item];
     [button setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)] ;
+
 }
 -(void)goback:(id)btn
 {
@@ -52,6 +63,8 @@
         
     }];
 }
+
+
 //按名字首字母分类
 -(void)addDataWithArr :(NSArray*)arr
 {
@@ -80,6 +93,54 @@
 }
 
 
+-(NSArray *)searchDatawith:(NSString *)key
+{
+    NSString *_strkey = [ChineseToPinyin pinyinFromChiniseString:key];
+    NSMutableArray *_desarr =[[NSMutableArray alloc]init];
+    [_allcity enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSDictionary *dic = (NSDictionary*)obj;
+        NSString *_str2 = [ChineseToPinyin pinyinFromChiniseString:[dic objectForKey:@"NAME"]];
+        if (dic && [_str2 rangeOfString:_strkey].location != NSNotFound) {
+            [_desarr addObject:obj];
+        }
+    }];
+    
+    return _desarr;
+}
+
+
+#pragma mark -- UISearchBar delegate
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    self.isSearchStatus = YES;
+    _searchResultArr = nil;
+    return YES;
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+   _searchResultArr = [self searchDatawith:searchBar.text];
+    if (_searchResultArr) {
+        [self.searchDisplayController.searchResultsTableView reloadData];
+    }
+
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    self.isSearchStatus = NO;
+    [self.tableView reloadData];
+}
+
+- (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+{
+//    for (UIView *v in controller.searchBar.subviews) {
+//        if ([v isKindOfClass:[UIButton class]]) {
+//            [(UIButton *)v setTitle:@"返回" forState:UIControlStateNormal];
+//        }
+//    }
+}
+
 #pragma mark -- UITableView delegate
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -95,7 +156,7 @@
 {
     if(self.isSearchStatus)
     {
-        return 0;
+        return _searchResultArr.count;
     }
     else
     {
@@ -108,37 +169,67 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if(self.isSearchStatus)return nil;
+    
     return [_allKey objectAtIndex:section];
 }
 -(NSArray*)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     if(self.isSearchStatus)return nil;
-    return _allKey;
+    NSMutableArray *_arr = [[NSMutableArray alloc]initWithObjects:@"🔍", nil];
+    [_arr addObjectsFromArray:_allKey];
+    return _arr;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
     if(self.isSearchStatus)return 0;
-    return index;
+    return index - 1;
 }
 
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NGCityCellID"];
-    NSString *_str = [_allKey objectAtIndex:indexPath.section];
-    NSArray*_arr = [_dataSourceDic objectForKey:_str];
-    NSDictionary*userDic = [_arr objectAtIndex:indexPath.row];
+    UITableViewCell *cell = nil;
+    NSDictionary *_dic = nil;
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",[userDic objectForKey:@"NAME"]];
+    if (!self.isSearchStatus) {
+        NSString *_str = [_allKey objectAtIndex:indexPath.section];
+        NSArray*_arr = [_dataSourceDic objectForKey:_str];
+        _dic = [_arr objectAtIndex:indexPath.row];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"NGCityCellID"];
+    }
+    else
+    {
+        _dic = [_searchResultArr objectAtIndex:indexPath.row];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"searchStatueCellId" ];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchStatueCellId"];
+        }
+    }
     
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",[_dic objectForKey:@"NAME"]];
+    cell.textLabel.font = [UIFont systemFontOfSize:15];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    NSDictionary *_dic = nil;
+    if (self.isSearchStatus) {
+        _dic = [_searchResultArr objectAtIndex:indexPath.row];
+    }
+    
+    else
+    {
+        NSString *_str = [_allKey objectAtIndex:indexPath.section];
+        NSArray*_arr = [_dataSourceDic objectForKey:_str];
+        _dic = [_arr objectAtIndex:indexPath.row];
+    }
+    
+    _popViewBackBlock(_dic);
+    
+    [self goback:nil];
 }
 
 

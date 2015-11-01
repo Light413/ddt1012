@@ -29,7 +29,7 @@ static NSString *showShuaiDanID     = @"showShuaiDanID";//甩单
 static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 
 
-@interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,NGSearchBarDelegate>
+@interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITextFieldDelegate>
 
 @end
 
@@ -107,8 +107,9 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     [leftBtn setImage:[UIImage imageNamed:@"bar_down_icon"] forState:UIControlStateNormal];
     [leftBtn setTitle:@"选择城市" forState:UIControlStateNormal];
     leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [leftBtn setTitleEdgeInsets:UIEdgeInsetsMake(3, -18, 3, -5)];
-    [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(5, -12, 5, 52)];
+    leftBtn.titleLabel.textAlignment  = NSTextAlignmentLeft;
+    [leftBtn setTitleEdgeInsets:UIEdgeInsetsMake(3, -20, 3, -5)];
+    [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(5, -15, 5, 52)];
     [leftBtn addTarget:self action:@selector(locationBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftBtn];
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -116,20 +117,21 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     [rightBtn setImage:[UIImage imageNamed:@"bar_qiandao_icon"] forState:UIControlStateNormal];
     [rightBtn setTitle:@"签到" forState:UIControlStateNormal];
     rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, -10)];
-    [rightBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 8, 0, -10)];
+    [rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -5, 0, -35)];
+    [rightBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 22, 0, -10)];
     [rightBtn addTarget:self action:@selector(siginBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
     
     //搜索栏初始化
-    UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(leftBtn.right+10, 0, CurrentScreenWidth -leftBtn.width-rightBtn.width-35, 20)];
-    UITextField *searchField = [[UITextField alloc]initWithFrame:CGRectMake(5, 0, searchView.width, searchView.height)];
+    UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(leftBtn.right+5, 0, CurrentScreenWidth -leftBtn.width-rightBtn.width-25, 25)];
+    UITextField *searchField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, searchView.width, searchView.height)];
     searchField.backgroundColor = [UIColor whiteColor];
     searchField.font = [UIFont systemFontOfSize:12];
-    searchField.placeholder = @"点击开始搜索";
+    searchField.placeholder = @" 点击开始搜索";
     searchField.layer.masksToBounds = YES;
     searchField.layer.cornerRadius = 3;
     [searchView addSubview:searchField];
+    searchField.delegate = self;
     
     UIButton *_btn = [UIButton buttonWithType:UIButtonTypeCustom];
     _btn.frame = CGRectMake(0, 0, 35, 15);
@@ -178,6 +180,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     
     _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, CurrentScreenWidth, CurrentScreenHeight -64-44) collectionViewLayout:_layout];
     _collectionView.backgroundColor = [UIColor whiteColor];
+//    _collectionView.bounces = NO;
     [self.view addSubview:_collectionView];
     _collectionView.delegate = self;
     _collectionView.dataSource  = self;
@@ -212,9 +215,15 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 //签到
 -(void)siginBtnAction :(UIButton*)btn
 {
-    
+    [SVProgressHUD showSuccessWithStatus:@"签到成功"];
 }
 
+#pragma mark -UITextFieldDelegate
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    
+    return NO;
+}
 
 #pragma mark -UIScrollViewDelegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -306,8 +315,8 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
         UIImageView *_igv = [[UIImageView alloc]initWithFrame:CGRectMake(0,ScrollViewHeight+ (CollectionHeaderViewHight - 20 - ScrollViewHeight)/2.0, 20, 20)];
         _igv.image = [UIImage imageNamed:@"footer"];
         [reuseView addSubview:_igv];
-        UILabel*_footLab = [[UILabel alloc]initWithFrame:CGRectMake(_igv.frame.origin.x + 20, ScrollViewHeight+(CollectionHeaderViewHight - 20 -ScrollViewHeight)/2.0, 200, 20)];
-        _footLab.font = [UIFont systemFontOfSize:11];
+        UILabel*_footLab = [[UILabel alloc]initWithFrame:CGRectMake(_igv.frame.origin.x + 20, ScrollViewHeight+(CollectionHeaderViewHight - 20 -ScrollViewHeight)/2.0, 250, 20)];
+        _footLab.font = [UIFont systemFontOfSize:13];
         [reuseView addSubview:_footLab];
         NSString *_ss = [self footerRecord:nil];
         _footLab.text =[NSString stringWithFormat:@"足迹:%@",_ss] ;//...
@@ -315,12 +324,12 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
         _footLab.textColor =[UIColor colorWithRed:0.624 green:0.624 blue:0.624 alpha:1];
         
         UIButton *_shareBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-        _shareBtn.frame = CGRectMake(CurrentScreenWidth -90,ScrollViewHeight+ 0, 90, CollectionHeaderViewHight -ScrollViewHeight);
+        _shareBtn.frame = CGRectMake(CurrentScreenWidth -80,ScrollViewHeight+ 0, 80, CollectionHeaderViewHight -ScrollViewHeight);
         [reuseView addSubview:_shareBtn];
         [_shareBtn setTitle:@"分享赚积分" forState:UIControlStateNormal];
         [_shareBtn setImage:[UIImage imageNamed:@"share_icon"] forState:UIControlStateNormal];
         [_shareBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 0, 5, 60)];
-        [_shareBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
+        [_shareBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -8, 0, -5)];
         [_shareBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         _shareBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         [_shareBtn addTarget:self action:@selector(shareBtnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -418,6 +427,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 -(void)shareBtnAction
 {
     NSLog(@"...shareAction");
+    [SVProgressHUD showSuccessWithStatus:@"分享给好友"];
 }
 
 
@@ -438,10 +448,29 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
         _vc.title = @"test";
         _vc.vcType = _selectIndex;
     }
+    else if ([segue.identifier isEqualToString:@"searchCityIdentifier"])
+    {
+        NGSearchCitiesVC *vc = (NGSearchCitiesVC *)[((NGBaseNavigationVC*)[segue destinationViewController]) topViewController];
+        
+        vc.popViewBackBlock = ^(id obj){
+            NSDictionary *_d = (NSDictionary*)obj;
+            [leftBtn setNormalTitle:[_d objectForKey:@"NAME"] andID:[_d objectForKey:@"ID"]];
+            [[NSUserDefaults standardUserDefaults]setObject:[_d objectForKey:@"NAME"] forKey:CURRENT_LOCATION_CITY];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+        };
+    }
 }
+
+
 -(void)jumpTosearch{
     NSLog(@"nihao");//点击搜索在此跳转
 }
+
+
+
+
 @end
+
+
 
 
