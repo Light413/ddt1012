@@ -183,6 +183,9 @@
 -(NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
     if(self.isSearchStatus)return 0;
+    if (index == 0) {
+        return 0;
+    }
     return index - 1;
 }
 

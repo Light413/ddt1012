@@ -153,6 +153,8 @@
 		ADD4316E1BE50BFB000C03D8 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4316D1BE50BFB000C03D8 /* libstdc++.tbd */; };
 		ADD431701BE50C25000C03D8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4316F1BE50C25000C03D8 /* libz.tbd */; };
 		ADD431721BE50C8A000C03D8 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431711BE50C8A000C03D8 /* CoreTelephony.framework */; };
+		ADD5E69D1BE61E300035FC0F /* NGSearchWithKeyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5E69C1BE61E300035FC0F /* NGSearchWithKeyVC.m */; settings = {ASSET_TAGS = (); }; };
+		ADD5E6A01BE61E590035FC0F /* NGSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5E69F1BE61E590035FC0F /* NGSearchResultVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADE8CF8C1BDBD420006CBC95 /* NGCompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		B27BB3AB1BDFAAAF007DB68B /* ModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BB3AA1BDFAAAF007DB68B /* ModifyPasswordViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B27BB3B21BE466BA007DB68B /* NGDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BB3B11BE466BA007DB68B /* NGDatePicker.m */; settings = {ASSET_TAGS = (); }; };
@@ -435,6 +437,10 @@
 		ADD4316D1BE50BFB000C03D8 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		ADD4316F1BE50C25000C03D8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		ADD431711BE50C8A000C03D8 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		ADD5E69B1BE61E300035FC0F /* NGSearchWithKeyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSearchWithKeyVC.h; sourceTree = "<group>"; };
+		ADD5E69C1BE61E300035FC0F /* NGSearchWithKeyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSearchWithKeyVC.m; sourceTree = "<group>"; };
+		ADD5E69E1BE61E590035FC0F /* NGSearchResultVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSearchResultVC.h; sourceTree = "<group>"; };
+		ADD5E69F1BE61E590035FC0F /* NGSearchResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSearchResultVC.m; sourceTree = "<group>"; };
 		ADE8CF8A1BDBD420006CBC95 /* NGCompanyDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCompanyDetailVC.h; sourceTree = "<group>"; };
 		ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGCompanyDetailVC.m; sourceTree = "<group>"; };
 		B27BB3A91BDFAAAF007DB68B /* ModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPasswordViewController.h; sourceTree = "<group>"; };
@@ -937,6 +943,10 @@
 				A1042B801B64D1E600A74215 /* NGHomeVC.m */,
 				ADD4308D1BE48D2C000C03D8 /* NGSearchCitiesVC.h */,
 				ADD4308B1BE481D5000C03D8 /* NGSearchCitiesVC.m */,
+				ADD5E69B1BE61E300035FC0F /* NGSearchWithKeyVC.h */,
+				ADD5E69C1BE61E300035FC0F /* NGSearchWithKeyVC.m */,
+				ADD5E69E1BE61E590035FC0F /* NGSearchResultVC.h */,
+				ADD5E69F1BE61E590035FC0F /* NGSearchResultVC.m */,
 				ADCEAF901BD39B35006F1E56 /* NGItemsDetailVC.h */,
 				ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */,
 				ADD305301BDCFFD7002F5BAE /* NGTHContactVC.h */,
@@ -1404,6 +1414,7 @@
 				A12441D21BD0EDD200D2588C /* MJRefreshBackNormalFooter.m in Sources */,
 				B2879BE01BDCC92900B39021 /* DeviceFeedBackViewController.m in Sources */,
 				A12CD4F31BCBAC990020CB27 /* RBStoryboardPushSegue.m in Sources */,
+				ADD5E69D1BE61E300035FC0F /* NGSearchWithKeyVC.m in Sources */,
 				A12441DA1BD0EDD200D2588C /* UIScrollView+MJRefresh.m in Sources */,
 				AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */,
 				AD5B11D41BDB694C00285255 /* DTCompanyListCell.m in Sources */,
@@ -1462,6 +1473,7 @@
 				A12441F81BD0EFD900D2588C /* FMDatabaseAdditions.m in Sources */,
 				A12441CC1BD0EDD200D2588C /* MJRefreshFooter.m in Sources */,
 				AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */,
+				ADD5E6A01BE61E590035FC0F /* NGSearchResultVC.m in Sources */,
 				A157110E1BD4EAB500D586F6 /* LPickerView.m in Sources */,
 				9F690B031BD73AE200DDCED6 /* PersonalInfoViewController.m in Sources */,
 				B2977DE11BDCDEFD007B3021 /* PersonanlBusinessViewController.m in Sources */,

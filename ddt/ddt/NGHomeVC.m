@@ -94,7 +94,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     
     UIBarButtonItem *backitem = [[UIBarButtonItem alloc]init];
 //    backitem.image = [UIImage imageNamed:@"leftArrow"];
-    backitem.title = @"返回";
+    backitem.title = @"";
     self.navigationItem.backBarButtonItem =backitem ;
 }
 
@@ -123,7 +123,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
     
     //搜索栏初始化
-    UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(leftBtn.right+5, 0, CurrentScreenWidth -leftBtn.width-rightBtn.width-25, 25)];
+    UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(leftBtn.right+5, 0, CurrentScreenWidth -leftBtn.width-rightBtn.width-30, 25)];
     UITextField *searchField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, searchView.width, searchView.height)];
     searchField.backgroundColor = [UIColor whiteColor];
     searchField.font = [UIFont systemFontOfSize:12];
@@ -462,8 +462,9 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 }
 
 
+#pragma mark -- 点击搜索在此跳转
 -(void)jumpTosearch{
-    NSLog(@"nihao");//点击搜索在此跳转
+    [self performSegueWithIdentifier:@"showUserSearchId" sender:nil];
 }
 
 
