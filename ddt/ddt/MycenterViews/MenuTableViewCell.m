@@ -1,19 +1,17 @@
 //
-//  TonghangTableViewCell.m
+//  MenuTableViewCell.m
 //  ddt
 //
-//  Created by allen on 15/10/21.
+//  Created by huishuyi on 15/11/1.
 //  Copyright © 2015年 Light. All rights reserved.
 //
 
-#import "TonghangTableViewCell.h"
+#import "MenuTableViewCell.h"
 
-@implementation TonghangTableViewCell
+@implementation MenuTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
-    self.userIconBtn.layer.masksToBounds = YES;
-    self.userIconBtn.layer.cornerRadius = 30;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -22,6 +20,4 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)messageBtnClick:(id)sender {
-}
 @end

@@ -10,6 +10,7 @@
 #import "NGSearchBar.h"
 #import "TonghangTableViewCell.h"
 #import "MyScTableViewCell.h"
+#import "MenuTableViewCell.h"
 @interface MyCollectionViewController ()<NGSearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *myTableView;
@@ -69,7 +70,14 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger index = mysegment.selectedSegmentIndex;
-    if (index == 1) {
+    if (index == 0) {
+        static NSString *menuCellID = @"menuCell";
+        MenuTableViewCell *cell = [myTableView dequeueReusableCellWithIdentifier:menuCellID];
+        if (!cell) {
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"MenuTableViewCell" owner:self options:nil]lastObject];
+        }
+        return cell;
+    }else if (index == 1) {
         static NSString *CellId = @"tonghangcell";
         TonghangTableViewCell *cell = [myTableView dequeueReusableCellWithIdentifier:CellId];
         if (!cell) {

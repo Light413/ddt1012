@@ -7,10 +7,11 @@
 //
 
 #import "MyListViewController.h"
-
-@interface MyListViewController ()
+#import "MenuTableViewCell.h"
+@interface MyListViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UISegmentedControl *mysegment;
+    UITableView *myTableView;
 }
 @end
 
@@ -27,6 +28,16 @@
     mysegment.enabled = YES;
     mysegment.selectedSegmentIndex = 0;
     [self.view addSubview:mysegment];
+    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, mysegment.bottom+10, CurrentScreenWidth, CurrentScreenHeight-mysegment.bottom-10-64) style:UITableViewStylePlain];
+    myTableView.delegate = self;
+    myTableView.dataSource = self;
+    [self.view addSubview:myTableView];
+    //添加下拉刷新
+    __weak __typeof(self) weakSelf = self;
+    myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf loadData];
+    }];
+
     // Do any additional setup after loading the view.
 }
 -(void)segmentClick:(UISegmentedControl *)segment{
@@ -41,6 +52,32 @@
         default:
             break;
     }
+}
+-(void)loadData{
+    [SVProgressHUD showWithStatus:@"正在加载数据"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        // [_common_list_dataSource addObjectsFromArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@""]];
+        [myTableView reloadData];
+        [SVProgressHUD showSuccessWithStatus:@"加载完成"];
+        [myTableView.header endRefreshing];
+    });
+}
+#pragma mark --tableview 代理
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 102;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 5;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger index = mysegment.selectedSegmentIndex;
+    static NSString *menuCellID = @"menuCell";
+    MenuTableViewCell *cell = [myTableView dequeueReusableCellWithIdentifier:menuCellID];
+    if (!cell) {
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"MenuTableViewCell" owner:self options:nil]lastObject];
+    }
+    return cell;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

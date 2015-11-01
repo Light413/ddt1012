@@ -127,6 +127,9 @@
 		ADD305411BDD0156002F5BAE /* NGJieDanDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305401BDD0156002F5BAE /* NGJieDanDetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADD4308C1BE481D5000C03D8 /* NGSearchCitiesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4308B1BE481D5000C03D8 /* NGSearchCitiesVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADE8CF8C1BDBD420006CBC95 /* NGCompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */; settings = {ASSET_TAGS = (); }; };
+		B269C4E91BE5A88000127226 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B269C4E71BE5A88000127226 /* MenuTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		B269C4EA1BE5A88000127226 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B269C4E81BE5A88000127226 /* MenuTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		B269C4ED1BE5B7AB00127226 /* menuDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B269C4EC1BE5B7AB00127226 /* menuDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B27BB3AB1BDFAAAF007DB68B /* ModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BB3AA1BDFAAAF007DB68B /* ModifyPasswordViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B27BB3B21BE466BA007DB68B /* NGDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BB3B11BE466BA007DB68B /* NGDatePicker.m */; settings = {ASSET_TAGS = (); }; };
 		B2879BD71BDCC8B400B39021 /* SystemCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BD61BDCC8B400B39021 /* SystemCenterViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -362,6 +365,11 @@
 		ADD4308D1BE48D2C000C03D8 /* NGSearchCitiesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSearchCitiesVC.h; sourceTree = "<group>"; };
 		ADE8CF8A1BDBD420006CBC95 /* NGCompanyDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCompanyDetailVC.h; sourceTree = "<group>"; };
 		ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGCompanyDetailVC.m; sourceTree = "<group>"; };
+		B269C4E61BE5A88000127226 /* MenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
+		B269C4E71BE5A88000127226 /* MenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewCell.m; sourceTree = "<group>"; };
+		B269C4E81BE5A88000127226 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
+		B269C4EB1BE5B7AB00127226 /* menuDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menuDetailViewController.h; sourceTree = "<group>"; };
+		B269C4EC1BE5B7AB00127226 /* menuDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = menuDetailViewController.m; sourceTree = "<group>"; };
 		B27BB3A91BDFAAAF007DB68B /* ModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPasswordViewController.h; sourceTree = "<group>"; };
 		B27BB3AA1BDFAAAF007DB68B /* ModifyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPasswordViewController.m; sourceTree = "<group>"; };
 		B27BB3B01BE466BA007DB68B /* NGDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGDatePicker.h; sourceTree = "<group>"; };
@@ -405,6 +413,9 @@
 				9F1DF5121BD77A6E00956512 /* TonghangTableViewCell.h */,
 				9F1DF5131BD77A6E00956512 /* TonghangTableViewCell.m */,
 				9F1DF5141BD77A6E00956512 /* TonghangTableViewCell.xib */,
+				B269C4E61BE5A88000127226 /* MenuTableViewCell.h */,
+				B269C4E71BE5A88000127226 /* MenuTableViewCell.m */,
+				B269C4E81BE5A88000127226 /* MenuTableViewCell.xib */,
 			);
 			path = MycenterViews;
 			sourceTree = "<group>";
@@ -918,6 +929,8 @@
 				B2879BD61BDCC8B400B39021 /* SystemCenterViewController.m */,
 				B27BB3A91BDFAAAF007DB68B /* ModifyPasswordViewController.h */,
 				B27BB3AA1BDFAAAF007DB68B /* ModifyPasswordViewController.m */,
+				B269C4EB1BE5B7AB00127226 /* menuDetailViewController.h */,
+				B269C4EC1BE5B7AB00127226 /* menuDetailViewController.m */,
 				B2879BD81BDCC92900B39021 /* SystemCenter */,
 				9FEFFCD51BCFBADE0036C23D /* MycenterViewController.xib */,
 			);
@@ -1082,6 +1095,7 @@
 				A15A95281BC7C3F200643170 /* NGCollectionViewCell.xib in Resources */,
 				A12442071BD0F6A100D2588C /* cities.xml in Resources */,
 				A143F83D1BCC96E50029E555 /* me.storyboard in Resources */,
+				B269C4EA1BE5A88000127226 /* MenuTableViewCell.xib in Resources */,
 				9FEFFCCF1BCFAFE80036C23D /* checkbox1_checked@2x.png in Resources */,
 				A15F1C4B1BD615A600E854A7 /* NGSecondListCell.xib in Resources */,
 				9FEFFCD11BCFAFE80036C23D /* checkbox1_unchecked@2x.png in Resources */,
@@ -1175,11 +1189,13 @@
 				B2879BE01BDCC92900B39021 /* DeviceFeedBackViewController.m in Sources */,
 				A12CD4F31BCBAC990020CB27 /* RBStoryboardPushSegue.m in Sources */,
 				A12441DA1BD0EDD200D2588C /* UIScrollView+MJRefresh.m in Sources */,
+				B269C4E91BE5A88000127226 /* MenuTableViewCell.m in Sources */,
 				AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */,
 				AD5B11D41BDB694C00285255 /* DTCompanyListCell.m in Sources */,
 				A12441D91BD0EDD200D2588C /* UIScrollView+MJExtension.m in Sources */,
 				A12CD4F41BCBAC990020CB27 /* RBStoryboardSegue.m in Sources */,
 				ADD305351BDD005D002F5BAE /* NGReleaseContactVC.m in Sources */,
+				B269C4ED1BE5B7AB00127226 /* menuDetailViewController.m in Sources */,
 				9FEE0A531BCDFA4F00EA5261 /* UIViewExt.m in Sources */,
 				9FEFFCD21BCFAFE80036C23D /* QCheckBox.m in Sources */,
 				9FFEE94B1BD0CDF100D53553 /* RegisterViewController.m in Sources */,
