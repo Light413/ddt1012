@@ -8,6 +8,7 @@
 
 #import "MyListViewController.h"
 #import "MenuTableViewCell.h"
+#import "menuDetailViewController.h"
 @interface MyListViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UISegmentedControl *mysegment;
@@ -78,6 +79,11 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"MenuTableViewCell" owner:self options:nil]lastObject];
     }
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    menuDetailViewController *menu =[[MySharetools shared]getViewControllerWithIdentifier:@"menuDetail" andstoryboardName:@"me"];
+    menu.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:menu animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

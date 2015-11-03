@@ -9,5 +9,16 @@
 #import "MyBaseTableViewController.h"
 
 @interface menuDetailViewController : MyBaseTableViewController
+@property (weak, nonatomic) IBOutlet UILabel *customerInfoLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *customerInfoLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *loanLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailInfoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *menuInfoLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *menuInfoLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *suodingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UIButton *phoneImage;
+- (IBAction)phoneBtnClick:(id)sender;
 
 @end
