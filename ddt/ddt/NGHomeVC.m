@@ -72,8 +72,25 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     }];
     
     
+    NSDate *localDate = [NSDate date]; //获取当前时间
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
+    
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeString = [NSString stringWithFormat:@"%ld", a];//转为字符型
+    
+    NSString *token = [NSString stringWithFormat:@"13564689371(!)*^*%@",timeString];
     //...test
-    NSArray *_d = [DTComDataManger getData_gwlx];
+    NSString *_url = @"/mydyt/web_service.php?doc=regsin";
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"13564689371",@"mobile", @"123456789qq",@"pwd",token,@"token",nil];
+    
+    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:_url parms:dic andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } faileBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    }];
+    
+//    [HttpRequestManager doPostOperationWithTask:_task];
     
 }
 

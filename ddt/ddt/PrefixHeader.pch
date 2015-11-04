@@ -25,6 +25,8 @@
 #import "NGBaseNavigationVC.h"
 #import "DTComDataManger.h"
 
+//Http op
+#import "HttpRequestManager.h"
 
 //category
 #import "UIButton+setBtnArg.h"

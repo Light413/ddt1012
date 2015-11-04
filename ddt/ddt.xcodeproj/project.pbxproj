@@ -118,6 +118,8 @@
 		AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */; settings = {ASSET_TAGS = (); }; };
 		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; settings = {ASSET_TAGS = (); }; };
 		ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */; settings = {ASSET_TAGS = (); }; };
+		ADD023D11BEA39710047BA17 /* HttpRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD023D01BEA39710047BA17 /* HttpRequestManager.m */; settings = {ASSET_TAGS = (); }; };
+		ADD023D41BEA4B0B0047BA17 /* RequestTaskHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD023D31BEA4B0B0047BA17 /* RequestTaskHandle.m */; settings = {ASSET_TAGS = (); }; };
 		ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */; settings = {ASSET_TAGS = (); }; };
 		ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305311BDCFFD7002F5BAE /* NGTHContactVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADD305351BDD005D002F5BAE /* NGReleaseContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305341BDD005D002F5BAE /* NGReleaseContactVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -376,6 +378,10 @@
 		AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGXMLBaseModel.m; sourceTree = "<group>"; };
 		ADCEAF901BD39B35006F1E56 /* NGItemsDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGItemsDetailVC.h; sourceTree = "<group>"; };
 		ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGItemsDetailVC.m; sourceTree = "<group>"; };
+		ADD023CF1BEA39710047BA17 /* HttpRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequestManager.h; sourceTree = "<group>"; };
+		ADD023D01BEA39710047BA17 /* HttpRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequestManager.m; sourceTree = "<group>"; };
+		ADD023D21BEA4B0B0047BA17 /* RequestTaskHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestTaskHandle.h; sourceTree = "<group>"; };
+		ADD023D31BEA4B0B0047BA17 /* RequestTaskHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestTaskHandle.m; sourceTree = "<group>"; };
 		ADD3052D1BDC72FA002F5BAE /* ToolsClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsClass.h; sourceTree = "<group>"; };
 		ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsClass.m; sourceTree = "<group>"; };
 		ADD305301BDCFFD7002F5BAE /* NGTHContactVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTHContactVC.h; sourceTree = "<group>"; };
@@ -899,6 +905,7 @@
 		A1D5E7BD1BD10EAE00CAA653 /* toolClass */ = {
 			isa = PBXGroup;
 			children = (
+				ADD023CE1BEA38E20047BA17 /* http */,
 				B27BB3AC1BE46569007DB68B /* NGDatePickerView */,
 				A17D0CD21BD4C0FD00E465A7 /* NGUIPickerView */,
 				A17D0CCE1BD4C0B100E465A7 /* chineseToPin */,
@@ -1070,6 +1077,17 @@
 				AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */,
 			);
 			name = NGXMLReader;
+			sourceTree = "<group>";
+		};
+		ADD023CE1BEA38E20047BA17 /* http */ = {
+			isa = PBXGroup;
+			children = (
+				ADD023D21BEA4B0B0047BA17 /* RequestTaskHandle.h */,
+				ADD023D31BEA4B0B0047BA17 /* RequestTaskHandle.m */,
+				ADD023CF1BEA39710047BA17 /* HttpRequestManager.h */,
+				ADD023D01BEA39710047BA17 /* HttpRequestManager.m */,
+			);
+			name = http;
 			sourceTree = "<group>";
 		};
 		ADD4311D1BE509CD000C03D8 /* UMSocail */ = {
@@ -1445,6 +1463,7 @@
 				ADD305381BDD0086002F5BAE /* NGContactDetaillVC.m in Sources */,
 				9F04220B1BD8F45E00D82286 /* MyScTableViewCell.m in Sources */,
 				A12441FF1BD0EFD900D2588C /* NSObject+LKDBHelper.m in Sources */,
+				ADD023D41BEA4B0B0047BA17 /* RequestTaskHandle.m in Sources */,
 				A12442001BD0EFD900D2588C /* NSObject+LKModel.m in Sources */,
 				A12CD4F71BCBAC990020CB27 /* README.md in Sources */,
 				A12441D11BD0EDD200D2588C /* MJRefreshBackGifFooter.m in Sources */,
@@ -1499,6 +1518,7 @@
 				ADD3053B1BDD00DE002F5BAE /* NGCarPriceVC.m in Sources */,
 				9F49D86E1BD8F8510048C96C /* AddCommanyInfoViewController.m in Sources */,
 				A12CD4DE1BCBA6960020CB27 /* SVProgressHUD.m in Sources */,
+				ADD023D11BEA39710047BA17 /* HttpRequestManager.m in Sources */,
 				B27BB3B21BE466BA007DB68B /* NGDatePicker.m in Sources */,
 				A12441D51BD0EDD200D2588C /* MJRefreshNormalHeader.m in Sources */,
 				A1C309F91BC65DD300B46BC2 /* LocationManger.m in Sources */,
