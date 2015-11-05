@@ -30,6 +30,8 @@
 
 //category
 #import "UIButton+setBtnArg.h"
+#import "NSString+ToJson.h"
+
 
 //toolsclass
 #import "ToolsClass.h"
