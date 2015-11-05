@@ -8,12 +8,14 @@
 
 #import "NGSearchWithKeyVC.h"
 #import "NGSearchBar.h"
+#import "MyCollectionViewController.h"
 
 #define btnTagBase  130
 
 @interface NGSearchWithKeyVC ()<UISearchBarDelegate>
 {
     NSArray *_btnTitleArr;
+    UISearchBar *searchbar;
 }
 @end
 
@@ -35,13 +37,20 @@
     [self initTopSubview];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [searchbar resignFirstResponder];
+}
+
+
 -(void)initTopSubview
 {
-    UISearchBar *searchbar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 200, 0)];
+    searchbar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 200, 0)];
     searchbar.delegate = self;
     searchbar.showsCancelButton = YES;
     searchbar.placeholder = @"请输入搜索关键字";
-    searchbar.tintColor = [UIColor redColor];
+    searchbar.tintColor = [UIColor blackColor];
 
 //    UIView *_v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 300, 30)];
 //    _v.backgroundColor = [UIColor redColor];
@@ -53,7 +62,11 @@
 #pragma mark --btn action
 - (IBAction)btnClickAction:(UIButton *)sender {
     
-    [self performSegueWithIdentifier:@"showUserSearchDetailId" sender:nil];
+//    [self performSegueWithIdentifier:@"showUserSearchDetailId" sender:nil];
+    MyCollectionViewController *collection = [[MyCollectionViewController alloc]init];
+    collection.vcType = 2;
+    collection.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:collection animated:YES];
     
 }
 
@@ -71,7 +84,11 @@
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
-    [self performSegueWithIdentifier:@"showUserSearchDetailId" sender:nil];
+//    [self performSegueWithIdentifier:@"showUserSearchDetailId" sender:nil];
+    MyCollectionViewController *collection = [[MyCollectionViewController alloc]init];
+    collection.vcType = 2;
+    collection.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:collection animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

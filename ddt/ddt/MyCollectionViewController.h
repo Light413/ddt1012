@@ -7,9 +7,27 @@
 //
 
 #import "NGBaseVC.h"
+
+//控制器类型(和搜索控制器复用)
+typedef NS_ENUM(NSInteger,VcTypeValue)
+{
+    VcTypeValue_0,//default
+    VcTypeValue_1,// collection
+    VcTypeValue_2,//search result
+};
+
+
+
 @interface MyCollectionViewController : NGBaseVC
 {
 //    MJRefreshHeader *_anheader;
 //    MJRefreshFooter *_footer;
 }
+
+@property(nonatomic,assign)VcTypeValue vcType;
+
+
+
+
+
 @end

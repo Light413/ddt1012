@@ -24,8 +24,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createLeftBarItemWithBackTitle];
-    self.title = @"我的收藏";
-    NSArray *segmentArr = @[@"单子收藏",@"同行好友",@"公司收藏"];
+    self.title =self.vcType==VcTypeValue_2?@"搜索结果" :@"我的收藏";
+    NSArray *segmentArr =self.vcType==VcTypeValue_2?@[@"搜单子",@"搜同行",@"搜公司"]: @[@"单子收藏",@"同行好友",@"公司收藏"];
+    
+    
     mysegment = [[UISegmentedControl alloc]initWithItems:segmentArr];
         mysegment.frame = CGRectMake(30, 10, CurrentScreenWidth-60, 30);
         [mysegment addTarget:self action:@selector(segmentClick:) forControlEvents:UIControlEventValueChanged];
@@ -33,6 +35,8 @@
     mysegment.enabled = YES;
     mysegment.selectedSegmentIndex = 0;
     [self.view addSubview:mysegment];
+    
+    
     NGSearchBar *searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(10, mysegment.bottom+10, CurrentScreenWidth -20 , 30)];
     searchBar.delegate  =self;
     searchBar.placeholder = @"搜索";

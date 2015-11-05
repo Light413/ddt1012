@@ -22,6 +22,8 @@
 //        _tf.clearButtonMode = UITextFieldViewModeAlways;
         _tf.layer.borderColor = [UIColor lightGrayColor].CGColor;
         _tf.layer.borderWidth = 1;
+        _tf.layer.cornerRadius = 10;
+        
         _tf.font  =[UIFont systemFontOfSize:13];
         _tf.returnKeyType = UIReturnKeySearch;
         _tf.backgroundColor = [UIColor whiteColor];
@@ -35,7 +37,7 @@
         _tf.rightView =_btn ;
         _tf.rightViewMode = UITextFieldViewModeAlways;
         
-       [self addSubview:_tf]; 
+       [self addSubview:_tf];
     }
     return self;
 }
