@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  ddt
+
+  Created by wyg on 15/11/5.
+  Copyright © 2015年 Light. All rights reserved.
+*/
+
+"base_url" = "http://www.123dyt.com";
+
+//jsondata={"mobile":"15136216190","pwd":"111","token":"15136216190(!)*^*1446701200"
+//用户注册 参数：jsondata
+"url_register" = "/mydyt/web_service.php?doc=regsin";
+
+//登录 参数：jsondata
+"url_login" = "/mydyt/web_service.php?doc=login";
+ 

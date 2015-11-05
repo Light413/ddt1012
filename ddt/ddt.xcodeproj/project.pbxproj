@@ -121,6 +121,7 @@
 		ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADD023D11BEA39710047BA17 /* HttpRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD023D01BEA39710047BA17 /* HttpRequestManager.m */; settings = {ASSET_TAGS = (); }; };
 		ADD023D41BEA4B0B0047BA17 /* RequestTaskHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD023D31BEA4B0B0047BA17 /* RequestTaskHandle.m */; settings = {ASSET_TAGS = (); }; };
+		ADD085C41BEB98C900D2EBC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADD085C61BEB98C900D2EBC4 /* Localizable.strings */; };
 		ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */; settings = {ASSET_TAGS = (); }; };
 		ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305311BDCFFD7002F5BAE /* NGTHContactVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADD305351BDD005D002F5BAE /* NGReleaseContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305341BDD005D002F5BAE /* NGReleaseContactVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -385,6 +386,8 @@
 		ADD023D01BEA39710047BA17 /* HttpRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequestManager.m; sourceTree = "<group>"; };
 		ADD023D21BEA4B0B0047BA17 /* RequestTaskHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestTaskHandle.h; sourceTree = "<group>"; };
 		ADD023D31BEA4B0B0047BA17 /* RequestTaskHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestTaskHandle.m; sourceTree = "<group>"; };
+		ADD085C51BEB98C900D2EBC4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		ADD085C71BEB9A2C00D2EBC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ADD3052D1BDC72FA002F5BAE /* ToolsClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsClass.h; sourceTree = "<group>"; };
 		ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsClass.m; sourceTree = "<group>"; };
 		ADD305301BDCFFD7002F5BAE /* NGTHContactVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTHContactVC.h; sourceTree = "<group>"; };
@@ -844,6 +847,7 @@
 				A17B7CF21B43F867003CF895 /* Info.plist */,
 				A17B7CF31B43F867003CF895 /* main.m */,
 				A1DAAE6E1B49332B004F634B /* PrefixHeader.pch */,
+				ADD085C61BEB98C900D2EBC4 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1016,6 +1020,7 @@
 				9FEE0A4F1BCDEC1700EA5261 /* LoginViewController.m */,
 				9FEFFCD31BCFBADE0036C23D /* MycenterViewController.h */,
 				9FEFFCD41BCFBADE0036C23D /* MycenterViewController.m */,
+				9FEFFCD51BCFBADE0036C23D /* MycenterViewController.xib */,
 				9FEFFCD81BCFBDEE0036C23D /* MySharetools.h */,
 				9FEFFCD91BCFBDEE0036C23D /* MySharetools.m */,
 				9FFEE9461BD0AB3D00D53553 /* FindBackPasswordViewController.h */,
@@ -1046,7 +1051,6 @@
 				B269C4EB1BE5B7AB00127226 /* menuDetailViewController.h */,
 				B269C4EC1BE5B7AB00127226 /* menuDetailViewController.m */,
 				B2879BD81BDCC92900B39021 /* SystemCenter */,
-				9FEFFCD51BCFBADE0036C23D /* MycenterViewController.xib */,
 			);
 			name = me;
 			sourceTree = "<group>";
@@ -1346,6 +1350,7 @@
 				A1AC85561BC8DB460099C7F7 /* NGCollectionReusableView.xib in Resources */,
 				9F04220C1BD8F45E00D82286 /* MyScTableViewCell.xib in Resources */,
 				A15A95281BC7C3F200643170 /* NGCollectionViewCell.xib in Resources */,
+				ADD085C41BEB98C900D2EBC4 /* Localizable.strings in Resources */,
 				ADD4315A1BE509EE000C03D8 /* UMSShareListController.xib in Resources */,
 				A12442071BD0F6A100D2588C /* cities.xml in Resources */,
 				A143F83D1BCC96E50029E555 /* me.storyboard in Resources */,
@@ -1567,6 +1572,15 @@
 				A17B7D011B43F867003CF895 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		ADD085C61BEB98C900D2EBC4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ADD085C51BEB98C900D2EBC4 /* zh-Hans */,
+				ADD085C71BEB9A2C00D2EBC4 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		ADD4311F1BE509EE000C03D8 /* UMSocialLocalizable.strings */ = {

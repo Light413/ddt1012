@@ -106,6 +106,31 @@
 }
 */
 - (IBAction)loginBtnClick:(id)sender {
+    //    jsondata={"mobile":"15136216190","pwd":"111","token":"15136216190(!)*^*1446701200"
+    NSDate *localDate = [NSDate date]; //获取当前时间
+    NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
+    NSString *token = [NSString stringWithFormat:@"18016373660(!)*^*%@",timeString];
+    //...test
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"18016373660",@"mobile", @"123456789www",@"pwd",token,@"token",nil];
+    NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
+    
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata", nil];
+    [SVProgressHUD showWithStatus:@"正在提交"];
+    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_login", @"") parms:dic2 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"...responseObject  :%@",responseObject);
+        
+        if ([[responseObject objectForKey:@"result"]integerValue] == 0) {
+            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+        }
+        else
+        {
+            [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+        }
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"请求服务器失败,请重试"];
+    }];
+    
+    [HttpRequestManager doPostOperationWithTask:_task];
 }
 
 - (IBAction)registerBtnClick:(id)sender {

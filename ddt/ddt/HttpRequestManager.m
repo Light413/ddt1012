@@ -62,7 +62,7 @@
 //操作初始化
 -(void)buildAddress
 {
-    NSString *_basestr = @"http://www.123dyt.com";
+    NSString *_basestr = NSLocalizedString(@"base_url", @"");
     NSURL *_baseurl = [NSURL URLWithString:_basestr];
     httpRequestManager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:_baseurl];
     

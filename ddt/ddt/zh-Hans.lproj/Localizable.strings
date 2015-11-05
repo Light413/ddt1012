@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  ddt
+
+  Created by wyg on 15/11/5.
+  Copyright © 2015年 Light. All rights reserved.
+*/
+
+"url_register" = "/mydyt/web_service.php?doc=regsin";

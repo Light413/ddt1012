@@ -12,7 +12,7 @@
 
 typedef  void(^HttpResponseSuccessBlock)(AFHTTPRequestOperation *operation, id responseObject);
 
-typedef  void(^HttpResponseFaileBlock)(AFHTTPRequestOperation *operation, id responseObject);
+typedef  void(^HttpResponseFaileBlock)(AFHTTPRequestOperation *operation, NSError *error);
 
 
 @interface RequestTaskHandle : NSObject
