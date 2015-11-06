@@ -33,4 +33,5 @@
 //当前定位城市名称
 #define CURRENT_LOCATION_CITY   @"CURRENT_LOCATION_CITY"
 
+#define umengkey  @"563c50f8e0f55a9272003d67"
 #endif

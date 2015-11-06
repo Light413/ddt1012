@@ -71,7 +71,8 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
         [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];
     }];
     
-    
+    NSDictionary *_dd = [[NSBundle mainBundle]infoDictionary];
+    NSLog(@"%@",_dd);
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -424,7 +425,14 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 -(void)shareBtnAction
 {
     NSLog(@"...shareAction");
-    [SVProgressHUD showSuccessWithStatus:@"分享给好友"];
+
+    //注意：分享到微信好友、微信朋友圈、微信收藏、QQ空间、QQ好友、来往好友、来往朋友圈、易信好友、易信朋友圈、Facebook、Twitter、Instagram等平台需要参考各自的集成方法
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:umengkey
+                                      shareText:@"贷易通-你身边的贷款专家"
+                                     shareImage:[UIImage imageNamed:@"icon.png"]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToQQ,nil]
+                                       delegate:self];
 }
 
 

@@ -8,6 +8,6 @@
 
 #import "NGBaseVC.h"
 
-@interface NGHomeVC : NGBaseVC
+@interface NGHomeVC : NGBaseVC<UMSocialUIDelegate>
 
 @end

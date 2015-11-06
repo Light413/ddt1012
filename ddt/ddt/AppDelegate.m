@@ -17,6 +17,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [UMSocialData setAppKey:umengkey];
+    
     self.rootTabVC = (UITabBarController*)self.window.rootViewController;
     [self initTabBar];
     [self initsystem];

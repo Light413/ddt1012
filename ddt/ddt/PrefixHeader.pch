@@ -24,6 +24,7 @@
 
 #import "NGBaseNavigationVC.h"
 #import "DTComDataManger.h"
+#import "UMSocial.h"
 
 //Http op
 #import "HttpRequestManager.h"
