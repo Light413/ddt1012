@@ -161,7 +161,7 @@
     footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, 120)];
     UIButton *modifyBtn =[UIButton buttonWithType:UIButtonTypeCustom];
     modifyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:13];
-    modifyBtn.frame = CGRectMake(10, 20, CurrentScreenWidth-20, 25);
+    modifyBtn.frame = CGRectMake(10, 20, CurrentScreenWidth-20, 35);
     modifyBtn.backgroundColor = RGBA(100, 177, 62, 1);
     [modifyBtn setTitle:@"修改密码" forState:UIControlStateNormal];
     [modifyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -171,7 +171,7 @@
     
     UIButton *logouBtn =[UIButton buttonWithType:UIButtonTypeCustom];
     logouBtn.titleLabel.font = [UIFont boldSystemFontOfSize:13];
-    logouBtn.frame = CGRectMake(10, modifyBtn.bottom+10, CurrentScreenWidth-20, 25);
+    logouBtn.frame = CGRectMake(10, modifyBtn.bottom+10, CurrentScreenWidth-20, 35);
     logouBtn.backgroundColor = RGBA(100, 177, 62, 1);
     [logouBtn setTitle:@"退出账号" forState:UIControlStateNormal];
     [logouBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
