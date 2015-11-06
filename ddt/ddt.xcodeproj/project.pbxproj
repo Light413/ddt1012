@@ -158,6 +158,7 @@
 		ADD4316E1BE50BFB000C03D8 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4316D1BE50BFB000C03D8 /* libstdc++.tbd */; };
 		ADD431701BE50C25000C03D8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4316F1BE50C25000C03D8 /* libz.tbd */; };
 		ADD431721BE50C8A000C03D8 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431711BE50C8A000C03D8 /* CoreTelephony.framework */; };
+		ADD4F8661BECF6BA005F57F0 /* NGTHContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4F8651BECF6BA005F57F0 /* NGTHContactCell.m */; settings = {ASSET_TAGS = (); }; };
 		ADD5E69D1BE61E300035FC0F /* NGSearchWithKeyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5E69C1BE61E300035FC0F /* NGSearchWithKeyVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADD5E6A01BE61E590035FC0F /* NGSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5E69F1BE61E590035FC0F /* NGSearchResultVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADE8CF8C1BDBD420006CBC95 /* NGCompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -454,6 +455,8 @@
 		ADD4316D1BE50BFB000C03D8 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		ADD4316F1BE50C25000C03D8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		ADD431711BE50C8A000C03D8 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		ADD4F8641BECF6BA005F57F0 /* NGTHContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTHContactCell.h; sourceTree = "<group>"; };
+		ADD4F8651BECF6BA005F57F0 /* NGTHContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGTHContactCell.m; sourceTree = "<group>"; };
 		ADD5E69B1BE61E300035FC0F /* NGSearchWithKeyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSearchWithKeyVC.h; sourceTree = "<group>"; };
 		ADD5E69C1BE61E300035FC0F /* NGSearchWithKeyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSearchWithKeyVC.m; sourceTree = "<group>"; };
 		ADD5E69E1BE61E590035FC0F /* NGSearchResultVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSearchResultVC.h; sourceTree = "<group>"; };
@@ -795,6 +798,8 @@
 				AD5B11D11BDB694C00285255 /* DTCompanyListCell.h */,
 				AD5B11D21BDB694C00285255 /* DTCompanyListCell.m */,
 				AD5B11D31BDB694C00285255 /* DTCompanyListCell.xib */,
+				ADD4F8641BECF6BA005F57F0 /* NGTHContactCell.h */,
+				ADD4F8651BECF6BA005F57F0 /* NGTHContactCell.m */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1489,6 +1494,7 @@
 				9FEFFCD61BCFBADE0036C23D /* MycenterViewController.m in Sources */,
 				A1042B7E1B64D0F000A74215 /* NGBaseVC.m in Sources */,
 				A12441CB1BD0EDD200D2588C /* MJRefreshComponent.m in Sources */,
+				ADD4F8661BECF6BA005F57F0 /* NGTHContactCell.m in Sources */,
 				A12441CD1BD0EDD200D2588C /* MJRefreshHeader.m in Sources */,
 				9F1DF5151BD77A6E00956512 /* TonghangTableViewCell.m in Sources */,
 				A12CD4F21BCBAC990020CB27 /* RBStoryboardPopoverSegue.m in Sources */,
