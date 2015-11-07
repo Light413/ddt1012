@@ -11,6 +11,9 @@
 #import "TonghangTableViewCell.h"
 #import "MyScTableViewCell.h"
 #import "MenuTableViewCell.h"
+#import "menuDetailViewController.h"
+#import "NGTongHDetailVC.h"
+#import "NGCompanyDetailVC.h"
 @interface MyCollectionViewController ()<NGSearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *myTableView;
@@ -66,7 +69,23 @@
 }
 #pragma mark --tableview 代理
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 102;
+    CGFloat height = 0.0f;
+    NSInteger index = mysegment.selectedSegmentIndex;
+    switch (index) {
+        case 0:
+            height = 102;
+            break;
+        case 1:
+            height = 102;
+            break;
+        case 2:
+            height = 60;
+            break;
+            
+        default:
+            break;
+    }
+    return height;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -100,6 +119,33 @@
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         
         return cell;
+    }
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger index = mysegment.selectedSegmentIndex;
+    switch (index) {
+        case 0:{
+            menuDetailViewController *menu =[[MySharetools shared]getViewControllerWithIdentifier:@"menuDetail" andstoryboardName:@"me"];
+            menu.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:menu animated:YES];
+        }            
+            break;
+        case 1:{
+            NGTongHDetailVC *vc = [[MySharetools shared]getViewControllerWithIdentifier:@"TongHDetailVC" andstoryboardName:@"secondSB"];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        
+        }
+            break;
+        case 2:{
+            NGCompanyDetailVC *vc = [[MySharetools shared]getViewControllerWithIdentifier:@"CompanyDetailVC" andstoryboardName:@"companySB"];;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
     }
 }
 - (void)addheader:(UITableView *)freshTableView{
