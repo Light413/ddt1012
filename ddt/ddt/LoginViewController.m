@@ -109,9 +109,9 @@
     //    jsondata={"mobile":"15136216190","pwd":"111","token":"15136216190(!)*^*1446701200"
     NSDate *localDate = [NSDate date]; //获取当前时间
     NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
-    NSString *token = [NSString stringWithFormat:@"18016373660(!)*^*%@",timeString];
+    NSString *token = [NSString stringWithFormat:@"13564689371(!)*^*%@",timeString];
     //...test
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"18016373660",@"mobile", @"123456789www",@"pwd",token,@"token",nil];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"13564689371",@"mobile", @"bbgs7t",@"pwd",token,@"token",nil];
     NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
     
     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata", nil];
