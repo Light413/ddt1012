@@ -7,6 +7,7 @@
 //
 
 #import "NGCarPriceVC.h"
+#import "NGWebView.h"
 
 @interface NGCarPriceVC ()
 
@@ -17,7 +18,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tableView.tableFooterView = [[UIView alloc]init];
+    NGWebView *_view = [[NGWebView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, CurrentScreenHeight - 64) withUrl:@"http://news.cnr.cn/native/gd/20151106/t20151106_520419363.shtml?bdnews"];
+    
+    [self.tableView addSubview:_view];
 }
+
+-(void)awakeFromNib
+{
+    self.hidesBottomBarWhenPushed = YES;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

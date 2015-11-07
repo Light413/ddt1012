@@ -79,6 +79,7 @@
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar

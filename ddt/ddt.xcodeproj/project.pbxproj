@@ -120,6 +120,7 @@
 		AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */; settings = {ASSET_TAGS = (); }; };
 		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; settings = {ASSET_TAGS = (); }; };
 		ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */; settings = {ASSET_TAGS = (); }; };
+		ADCF91E01BEDA5F000DC6CF7 /* NGWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCF91DF1BEDA5F000DC6CF7 /* NGWebView.m */; settings = {ASSET_TAGS = (); }; };
 		ADD023D11BEA39710047BA17 /* HttpRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD023D01BEA39710047BA17 /* HttpRequestManager.m */; settings = {ASSET_TAGS = (); }; };
 		ADD023D41BEA4B0B0047BA17 /* RequestTaskHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD023D31BEA4B0B0047BA17 /* RequestTaskHandle.m */; settings = {ASSET_TAGS = (); }; };
 		ADD085C41BEB98C900D2EBC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADD085C61BEB98C900D2EBC4 /* Localizable.strings */; };
@@ -385,6 +386,8 @@
 		AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGXMLBaseModel.m; sourceTree = "<group>"; };
 		ADCEAF901BD39B35006F1E56 /* NGItemsDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGItemsDetailVC.h; sourceTree = "<group>"; };
 		ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGItemsDetailVC.m; sourceTree = "<group>"; };
+		ADCF91DE1BEDA5F000DC6CF7 /* NGWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGWebView.h; sourceTree = "<group>"; };
+		ADCF91DF1BEDA5F000DC6CF7 /* NGWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGWebView.m; sourceTree = "<group>"; };
 		ADD023CF1BEA39710047BA17 /* HttpRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequestManager.h; sourceTree = "<group>"; };
 		ADD023D01BEA39710047BA17 /* HttpRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequestManager.m; sourceTree = "<group>"; };
 		ADD023D21BEA4B0B0047BA17 /* RequestTaskHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestTaskHandle.h; sourceTree = "<group>"; };
@@ -919,6 +922,7 @@
 		A1D5E7BD1BD10EAE00CAA653 /* toolClass */ = {
 			isa = PBXGroup;
 			children = (
+				ADCF91E11BEDA60A00DC6CF7 /* view */,
 				ADD023CE1BEA38E20047BA17 /* http */,
 				B27BB3AC1BE46569007DB68B /* NGDatePickerView */,
 				A17D0CD21BD4C0FD00E465A7 /* NGUIPickerView */,
@@ -1093,6 +1097,15 @@
 				AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */,
 			);
 			name = NGXMLReader;
+			sourceTree = "<group>";
+		};
+		ADCF91E11BEDA60A00DC6CF7 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				ADCF91DE1BEDA5F000DC6CF7 /* NGWebView.h */,
+				ADCF91DF1BEDA5F000DC6CF7 /* NGWebView.m */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		ADD023CE1BEA38E20047BA17 /* http */ = {
@@ -1443,6 +1456,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADCF91E01BEDA5F000DC6CF7 /* NGWebView.m in Sources */,
 				A12441D41BD0EDD200D2588C /* MJRefreshGifHeader.m in Sources */,
 				A1DAAE691B492F84004F634B /* NGBaseNavigationVC.m in Sources */,
 				ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */,

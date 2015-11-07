@@ -19,6 +19,13 @@
     // Do any additional setup after loading the view.
 }
 
+
+-(void)awakeFromNib
+{
+    self.hidesBottomBarWhenPushed = YES;
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
