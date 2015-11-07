@@ -32,7 +32,7 @@
         <!--公司信息-->
         <scene sceneID="fPP-ZB-b7h">
             <objects>
-                <tableViewController storyboardIdentifier="CompanyDetailVC" title="公司信息" id="dVF-wC-QYT" customClass="NGCompanyDetailVC" sceneMemberID="viewController">
+                <tableViewController title="公司信息" id="dVF-wC-QYT" customClass="NGCompanyDetailVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="KE8-wJ-qg7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,7 +48,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="信用贷款／生意贷款" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3c-IR-YCc">
+<<<<<<< HEAD
                                                     <rect key="frame" x="23" y="33" width="569" height="19"/>
+=======
+                                                    <rect key="frame" x="23" y="33" width="569" height="18.5"/>
+>>>>>>> parent of 4d552c8... 收藏跳转，单子等
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -90,13 +94,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="黄河大道福克斯的决定是否看电视" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doa-Q7-4YM">
+<<<<<<< HEAD
                                                     <rect key="frame" x="23" y="28" width="569" height="24"/>
+=======
+                                                    <rect key="frame" x="23" y="28" width="569" height="23.5"/>
+>>>>>>> parent of 4d552c8... 收藏跳转，单子等
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公司地址:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9U-YO-T7U">
-                                                    <rect key="frame" x="13" y="8" width="65" height="20"/>
+                                                    <rect key="frame" x="13" y="8" width="64.5" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="1jd-h5-ghg"/>
                                                     </constraints>
@@ -135,7 +143,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服务区域:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7A-k8-HNz">
-                                                    <rect key="frame" x="13" y="8" width="65" height="20"/>
+                                                    <rect key="frame" x="13" y="8" width="64.5" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="rbA-Ye-jNM"/>
                                                     </constraints>
@@ -162,7 +170,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="业务说明:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gy9-bA-G7A">
-                                                    <rect key="frame" x="13" y="8" width="65" height="20"/>
+                                                    <rect key="frame" x="13" y="8" width="64.5" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="o0C-2p-BJr"/>
                                                     </constraints>
@@ -170,7 +178,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天升级Xcode ，同样遇到这个问题，请问怎么解决？？UIViewControllerBasedStat" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WvR-mx-Aar">
+<<<<<<< HEAD
                                                     <rect key="frame" x="23" y="28" width="569" height="24"/>
+=======
+                                                    <rect key="frame" x="23" y="28" width="569" height="23.5"/>
+>>>>>>> parent of 4d552c8... 收藏跳转，单子等
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
