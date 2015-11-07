@@ -66,7 +66,14 @@
     }];
 }
 -(void)goback:(UIButton *)btn{
-    [self dismissViewControllerAnimated:YES completion:nil];
+   // [self dismissViewControllerAnimated:YES completion:nil];
+    if ([MySharetools shared].isFromMycenter) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+            [MySharetools shared].isFirstSignupViewController = YES;
+        }];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 -(void)initViews{
     phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
@@ -106,12 +113,12 @@
 }
 */
 - (IBAction)loginBtnClick:(id)sender {
-    //    jsondata={"mobile":"15136216190","pwd":"111","token":"15136216190(!)*^*1446701200"
+    //    jsondata={"mobile":"15136216190","pwd":"111","token":"15136216190(!)*^*1446701200"//18016373660,123456789www wyg
     NSDate *localDate = [NSDate date]; //获取当前时间
     NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
-    NSString *token = [NSString stringWithFormat:@"13564689371(!)*^*%@",timeString];
+    NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",phoneNumTextField.text,timeString];
     //...test
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"13564689371",@"mobile", @"bbgs7t",@"pwd",token,@"token",nil];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:phoneNumTextField.text,@"mobile", passwordTextField.text,@"pwd",token,@"token",nil];
     NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
     
     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata", nil];
@@ -121,6 +128,14 @@
         
         if ([[responseObject objectForKey:@"result"]integerValue] == 0) {
             [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            [[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"login"];
+            if ([MySharetools shared].isFromMycenter) {
+                [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                    [MySharetools shared].isFirstSignupViewController = YES;
+                }];
+            }else{
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         }
         else
         {

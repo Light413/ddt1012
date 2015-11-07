@@ -33,13 +33,24 @@
 @implementation MycenterViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    if (![[[NSUserDefaults standardUserDefaults]objectForKey:@"login"] isEqual:@"1"]) {
+        if ([MySharetools shared].isFirstSignupViewController == YES) {
+            [MySharetools shared].isFirstSignupViewController = NO;
+            [MySharetools shared].isFromMycenter = YES;
+            LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
+            NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
+            [self.tabBarController presentViewController:nav animated:YES completion:nil];
+        }else{
+            self.tabBarController.selectedIndex = 0;
+        }
+    }else{
+        
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
-    NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
-    [self presentViewController:nav animated:YES completion:nil];
+    
     self.title = @"我的";
     [self createLeftBarItemWithBackTitle];
     [self createHeader];

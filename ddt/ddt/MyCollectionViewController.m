@@ -48,6 +48,8 @@
     myTableView.delegate = self;
     myTableView.dataSource = self;
     [self.view addSubview:myTableView];
+    myTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+    [self loadData];
     //添加下拉刷新
     __weak __typeof(self) weakSelf = self;
     myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -73,7 +75,7 @@
     NSInteger index = mysegment.selectedSegmentIndex;
     switch (index) {
         case 0:
-            height = 102;
+            height = 90;
             break;
         case 1:
             height = 102;
@@ -167,25 +169,25 @@
         case 0:
         {
             __weak __typeof(self) weakSelf = self;
-            myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            //myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
                 [weakSelf loadData];
-            }];
+           // }];
         }
             break;
         case 1:
         {
             __weak __typeof(self) weakSelf = self;
-            myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+           // myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
                 [weakSelf loadData];
-            }];
+           // }];
         }
             break;
         case 2:
         {
             __weak __typeof(self) weakSelf = self;
-            myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+           // myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
                 [weakSelf loadData];
-            }];
+            //}];
         }
             break;
         default:

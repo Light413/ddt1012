@@ -33,6 +33,7 @@
     myTableView.delegate = self;
     myTableView.dataSource = self;
     [self.view addSubview:myTableView];
+    [self loadData];
     //添加下拉刷新
     __weak __typeof(self) weakSelf = self;
     myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -45,10 +46,10 @@
     NSInteger index = segment.selectedSegmentIndex;
     switch (index) {
         case 0:
-            
+            [self loadData];
             break;
         case 1:
-            
+            [self loadData];
             break;
         default:
             break;
@@ -65,7 +66,7 @@
 }
 #pragma mark --tableview 代理
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 102;
+    return 95;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

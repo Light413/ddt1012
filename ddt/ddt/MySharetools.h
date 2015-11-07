@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface MySharetools : NSObject
+@property (nonatomic) BOOL isFirstSignupViewController;
+@property (nonatomic) BOOL isFromMycenter;
 +(MySharetools *)shared;
 -(id)getViewControllerWithIdentifier:(NSString *)Identifier andstoryboardName:(NSString *)storyboardname;
 + (void)msgBox:(NSString *)msg;
