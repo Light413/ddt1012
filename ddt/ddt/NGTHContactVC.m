@@ -9,6 +9,7 @@
 #import "NGTHContactVC.h"
 #import "NGTHContactCell.h"
 #import "NGContactDetaillVC.h"
+#import "ReleaseMeetingViewController.h"
 
 @interface NGTHContactVC ()
 {
@@ -42,9 +43,14 @@ static NSString * thcontactCellReuseId = @"thcontactCellReuseId";
     self.navigationItem.rightBarButtonItem = rightitem;
 }
 
+
+#pragma mark --发布交流会
 -(void)rightItemClick
 {
-    [self performSegueWithIdentifier:@"showReleaseContactID" sender:nil];
+//    [self performSegueWithIdentifier:@"showReleaseContactID" sender:nil];
+    ReleaseMeetingViewController *meeting = [[MySharetools shared]getViewControllerWithIdentifier:@"ReleaseMeeting" andstoryboardName:@"me"];
+    meeting.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:meeting animated:YES];
 }
 
 #pragma mark - Table view data source
