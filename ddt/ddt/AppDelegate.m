@@ -25,6 +25,7 @@
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [self.window makeKeyAndVisible];
     NSLog(@"homedir  :%@",NSHomeDirectory());
+    [MySharetools shared].isFirstSignupViewController = YES;
     return YES;
 }
 

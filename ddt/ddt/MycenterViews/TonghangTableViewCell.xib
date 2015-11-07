@@ -21,9 +21,9 @@
                             <constraint firstAttribute="height" constant="60" id="CWe-wx-CZe"/>
                             <constraint firstAttribute="width" constant="60" id="RHu-X8-G5C"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
+                        <state key="normal" backgroundImage="head_noregist"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="努力奋斗" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1C-qL-POV">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="詹姆斯" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1C-qL-POV">
                         <rect key="frame" x="10" y="75" width="60" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="6RR-8s-H8l"/>
@@ -33,13 +33,13 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="努力奋斗" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9G8-zb-lxP">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="民间抵押个人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9G8-zb-lxP">
                         <rect key="frame" x="80" y="10" width="230" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ER-B3-vk5">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="洁容咨询" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ER-B3-vk5">
                         <rect key="frame" x="80" y="40" width="174" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -51,7 +51,7 @@
                             <constraint firstAttribute="height" constant="20" id="LtP-Q6-YAj"/>
                             <constraint firstAttribute="width" constant="20" id="bWu-Gl-MyD"/>
                         </constraints>
-                        <state key="normal" title="Button" backgroundImage="uc_say"/>
+                        <state key="normal" backgroundImage="item_28"/>
                         <connections>
                             <action selector="messageBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tP5-lc-lrZ"/>
                         </connections>
@@ -64,7 +64,7 @@
                             <constraint firstAttribute="width" constant="20" id="a93-Hn-Zjk"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="lP9-PJ-p97"/>
                         </constraints>
-                        <state key="normal" title="Button" backgroundImage="uc_say"/>
+                        <state key="normal" backgroundImage="cell_phone"/>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="Exx-Mh-zAg"/>
@@ -72,7 +72,7 @@
                             </mask>
                         </variation>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mv0-5j-1O9">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12345678901" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mv0-5j-1O9">
                         <rect key="frame" x="80" y="79" width="230" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -113,6 +113,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="uc_say" width="20" height="20"/>
+        <image name="cell_phone" width="25" height="25"/>
+        <image name="head_noregist" width="39" height="39"/>
+        <image name="item_28" width="43" height="38"/>
     </resources>
 </document>

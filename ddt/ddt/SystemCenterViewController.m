@@ -10,6 +10,7 @@
 #import "AboutUsViewController.h"
 #import "DeviceFeedBackViewController.h"
 #import "JoinUsViewController.h"
+#import "ResetNewPhoneViewController.h"
 #define KimageName @"imageName"
 #define KlabelName @"labelName"
 @interface SystemCenterViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -34,6 +35,8 @@
                    KlabelName:@"意见反馈"},
                  @{KimageName: @"uc_fabu.png",
                    KlabelName:@"加入我们"},
+                 @{KimageName: @"uc_say.png",
+                   KlabelName:@"重置手机号"},
                  ];
 
     // Do any additional setup after loading the view.
@@ -92,6 +95,11 @@
         JoinUsViewController *joinUS = [[JoinUsViewController alloc]init];
         joinUS.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:joinUS animated:YES];
+    }
+    if (indexPath.row == 4) {
+        ResetNewPhoneViewController *reset = [[ResetNewPhoneViewController alloc]init];
+        reset.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:reset animated:YES];
     }
     
 }

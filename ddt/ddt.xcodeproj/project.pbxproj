@@ -8,17 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		05B69C2E05AB6F177D83E56F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA432C30201FEF046829C54 /* libPods.a */; };
-		9F04220B1BD8F45E00D82286 /* MyScTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0422091BD8F45E00D82286 /* MyScTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		9F04220C1BD8F45E00D82286 /* MyScTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F04220A1BD8F45E00D82286 /* MyScTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
-		9F1DF5151BD77A6E00956512 /* TonghangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1DF5131BD77A6E00956512 /* TonghangTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		9F1DF5161BD77A6E00956512 /* TonghangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F1DF5141BD77A6E00956512 /* TonghangTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
-		9F49D8651BD8F6FC0048C96C /* MyResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49D8641BD8F6FC0048C96C /* MyResumeViewController.m */; settings = {ASSET_TAGS = (); }; };
-		9F49D8681BD8F7490048C96C /* MyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49D8671BD8F7490048C96C /* MyListViewController.m */; settings = {ASSET_TAGS = (); }; };
-		9F49D86B1BD8F82F0048C96C /* ReleaseMeetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49D86A1BD8F82F0048C96C /* ReleaseMeetingViewController.m */; settings = {ASSET_TAGS = (); }; };
-		9F49D86E1BD8F8510048C96C /* AddCommanyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49D86D1BD8F8510048C96C /* AddCommanyInfoViewController.m */; settings = {ASSET_TAGS = (); }; };
-		9F690B001BD73AA600DDCED6 /* MyBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690AFF1BD73AA600DDCED6 /* MyBaseTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		9F690B031BD73AE200DDCED6 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690B021BD73AE200DDCED6 /* PersonalInfoViewController.m */; settings = {ASSET_TAGS = (); }; };
-		9F690B061BD7426400DDCED6 /* MyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690B051BD7426400DDCED6 /* MyCollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9F04220B1BD8F45E00D82286 /* MyScTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0422091BD8F45E00D82286 /* MyScTableViewCell.m */; };
+		9F04220C1BD8F45E00D82286 /* MyScTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F04220A1BD8F45E00D82286 /* MyScTableViewCell.xib */; };
+		9F1DF5151BD77A6E00956512 /* TonghangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1DF5131BD77A6E00956512 /* TonghangTableViewCell.m */; };
+		9F1DF5161BD77A6E00956512 /* TonghangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F1DF5141BD77A6E00956512 /* TonghangTableViewCell.xib */; };
+		9F49D8651BD8F6FC0048C96C /* MyResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49D8641BD8F6FC0048C96C /* MyResumeViewController.m */; };
+		9F49D8681BD8F7490048C96C /* MyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49D8671BD8F7490048C96C /* MyListViewController.m */; };
+		9F49D86B1BD8F82F0048C96C /* ReleaseMeetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49D86A1BD8F82F0048C96C /* ReleaseMeetingViewController.m */; };
+		9F49D86E1BD8F8510048C96C /* AddCommanyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49D86D1BD8F8510048C96C /* AddCommanyInfoViewController.m */; };
+		9F690B001BD73AA600DDCED6 /* MyBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690AFF1BD73AA600DDCED6 /* MyBaseTableViewController.m */; };
+		9F690B031BD73AE200DDCED6 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690B021BD73AE200DDCED6 /* PersonalInfoViewController.m */; };
+		9F690B061BD7426400DDCED6 /* MyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690B051BD7426400DDCED6 /* MyCollectionViewController.m */; };
 		9FEE0A501BCDEC1700EA5261 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE0A4F1BCDEC1700EA5261 /* LoginViewController.m */; };
 		9FEE0A531BCDFA4F00EA5261 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE0A521BCDFA4F00EA5261 /* UIViewExt.m */; };
 		9FEFFCCF1BCFAFE80036C23D /* checkbox1_checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FEFFCC91BCFAFE80036C23D /* checkbox1_checked@2x.png */; };
@@ -88,70 +88,70 @@
 		A143F83B1BCC96D50029E555 /* companySB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A143F83A1BCC96D50029E555 /* companySB.storyboard */; };
 		A143F83D1BCC96E50029E555 /* me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A143F83C1BCC96E50029E555 /* me.storyboard */; };
 		A143F8401BCCA5D60029E555 /* NGSecondVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A143F83F1BCCA5D60029E555 /* NGSecondVC.m */; };
-		A1487A401BEB3CCD00326359 /* NSString+ToJson.m in Sources */ = {isa = PBXBuildFile; fileRef = A1487A3F1BEB3CCC00326359 /* NSString+ToJson.m */; settings = {ASSET_TAGS = (); }; };
+		A1487A401BEB3CCD00326359 /* NSString+ToJson.m in Sources */ = {isa = PBXBuildFile; fileRef = A1487A3F1BEB3CCC00326359 /* NSString+ToJson.m */; };
 		A149A4411BCF37320098E7C3 /* NGBaseListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A149A4401BCF37320098E7C3 /* NGBaseListView.m */; };
-		A157110E1BD4EAB500D586F6 /* LPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A157110D1BD4EAB500D586F6 /* LPickerView.m */; settings = {ASSET_TAGS = (); }; };
+		A157110E1BD4EAB500D586F6 /* LPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A157110D1BD4EAB500D586F6 /* LPickerView.m */; };
 		A15A95271BC7C3F200643170 /* NGCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A15A95251BC7C3F200643170 /* NGCollectionViewCell.m */; };
 		A15A95281BC7C3F200643170 /* NGCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15A95261BC7C3F200643170 /* NGCollectionViewCell.xib */; };
-		A15F1C461BD5D67500E854A7 /* UIButton+setBtnArg.m in Sources */ = {isa = PBXBuildFile; fileRef = A15F1C451BD5D67500E854A7 /* UIButton+setBtnArg.m */; settings = {ASSET_TAGS = (); }; };
-		A15F1C4A1BD615A600E854A7 /* NGSecondListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A15F1C481BD615A600E854A7 /* NGSecondListCell.m */; settings = {ASSET_TAGS = (); }; };
-		A15F1C4B1BD615A600E854A7 /* NGSecondListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15F1C491BD615A600E854A7 /* NGSecondListCell.xib */; settings = {ASSET_TAGS = (); }; };
+		A15F1C461BD5D67500E854A7 /* UIButton+setBtnArg.m in Sources */ = {isa = PBXBuildFile; fileRef = A15F1C451BD5D67500E854A7 /* UIButton+setBtnArg.m */; };
+		A15F1C4A1BD615A600E854A7 /* NGSecondListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A15F1C481BD615A600E854A7 /* NGSecondListCell.m */; };
+		A15F1C4B1BD615A600E854A7 /* NGSecondListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15F1C491BD615A600E854A7 /* NGSecondListCell.xib */; };
 		A17B7CF41B43F867003CF895 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A17B7CF31B43F867003CF895 /* main.m */; };
 		A17B7CF71B43F867003CF895 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A17B7CF61B43F867003CF895 /* AppDelegate.m */; };
 		A17B7CFD1B43F867003CF895 /* MainSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A17B7CFB1B43F867003CF895 /* MainSB.storyboard */; };
 		A17B7CFF1B43F867003CF895 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A17B7CFE1B43F867003CF895 /* Images.xcassets */; };
 		A17B7D021B43F867003CF895 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A17B7D001B43F867003CF895 /* LaunchScreen.xib */; };
 		A17B7D0E1B43F867003CF895 /* ddtTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A17B7D0D1B43F867003CF895 /* ddtTests.m */; };
-		A17D0CD11BD4C0DE00E465A7 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = A17D0CD01BD4C0DE00E465A7 /* ChineseToPinyin.m */; settings = {ASSET_TAGS = (); COMPILER_FLAGS = "-w"; }; };
+		A17D0CD11BD4C0DE00E465A7 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = A17D0CD01BD4C0DE00E465A7 /* ChineseToPinyin.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		A1AC85551BC8DB460099C7F7 /* NGCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AC85531BC8DB460099C7F7 /* NGCollectionReusableView.m */; };
 		A1AC85561BC8DB460099C7F7 /* NGCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1AC85541BC8DB460099C7F7 /* NGCollectionReusableView.xib */; };
 		A1AC85581BC8F2FA0099C7F7 /* menuItem.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1AC85571BC8F2FA0099C7F7 /* menuItem.plist */; };
 		A1C309F91BC65DD300B46BC2 /* LocationManger.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C309F81BC65DD300B46BC2 /* LocationManger.m */; };
 		A1DAAE691B492F84004F634B /* NGBaseNavigationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DAAE681B492F84004F634B /* NGBaseNavigationVC.m */; };
 		A1DAAE6C1B492FC2004F634B /* NGBaseTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DAAE6B1B492FC2004F634B /* NGBaseTableVC.m */; };
-		A1F0FB691BECA97C00FFC02F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1F0FB671BECA97C00FFC02F /* Info.plist */; settings = {ASSET_TAGS = (); }; };
+		A1F0FB691BECA97C00FFC02F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1F0FB671BECA97C00FFC02F /* Info.plist */; };
 		A1F0FB6C1BECA9BC00FFC02F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1F0FB6E1BECA9BC00FFC02F /* InfoPlist.strings */; };
-		AD5B11CC1BDB236F00285255 /* common_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD5B11CB1BDB236F00285255 /* common_data.plist */; settings = {ASSET_TAGS = (); }; };
-		AD5B11D01BDB360C00285255 /* DTComDataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11CF1BDB360C00285255 /* DTComDataManger.m */; settings = {ASSET_TAGS = (); }; };
-		AD5B11D41BDB694C00285255 /* DTCompanyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11D21BDB694C00285255 /* DTCompanyListCell.m */; settings = {ASSET_TAGS = (); }; };
-		AD5B11D51BDB694C00285255 /* DTCompanyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD5B11D31BDB694C00285255 /* DTCompanyListCell.xib */; settings = {ASSET_TAGS = (); }; };
-		AD5B11D81BDBA43700285255 /* NGTongHDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11D71BDBA43700285255 /* NGTongHDetailVC.m */; settings = {ASSET_TAGS = (); }; };
-		AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB921BD21E3000C23992 /* NGXMLReader.m */; settings = {ASSET_TAGS = (); }; };
-		AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */; settings = {ASSET_TAGS = (); }; };
-		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; settings = {ASSET_TAGS = (); }; };
-		ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */; settings = {ASSET_TAGS = (); }; };
-		ADCF91E01BEDA5F000DC6CF7 /* NGWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCF91DF1BEDA5F000DC6CF7 /* NGWebView.m */; settings = {ASSET_TAGS = (); }; };
-		ADD023D11BEA39710047BA17 /* HttpRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD023D01BEA39710047BA17 /* HttpRequestManager.m */; settings = {ASSET_TAGS = (); }; };
-		ADD023D41BEA4B0B0047BA17 /* RequestTaskHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD023D31BEA4B0B0047BA17 /* RequestTaskHandle.m */; settings = {ASSET_TAGS = (); }; };
+		AD5B11CC1BDB236F00285255 /* common_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD5B11CB1BDB236F00285255 /* common_data.plist */; };
+		AD5B11D01BDB360C00285255 /* DTComDataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11CF1BDB360C00285255 /* DTComDataManger.m */; };
+		AD5B11D41BDB694C00285255 /* DTCompanyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11D21BDB694C00285255 /* DTCompanyListCell.m */; };
+		AD5B11D51BDB694C00285255 /* DTCompanyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD5B11D31BDB694C00285255 /* DTCompanyListCell.xib */; };
+		AD5B11D81BDBA43700285255 /* NGTongHDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11D71BDBA43700285255 /* NGTongHDetailVC.m */; };
+		AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB921BD21E3000C23992 /* NGXMLReader.m */; };
+		AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */; };
+		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; };
+		ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */; };
+		ADCF91E01BEDA5F000DC6CF7 /* NGWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCF91DF1BEDA5F000DC6CF7 /* NGWebView.m */; };
+		ADD023D11BEA39710047BA17 /* HttpRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD023D01BEA39710047BA17 /* HttpRequestManager.m */; };
+		ADD023D41BEA4B0B0047BA17 /* RequestTaskHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD023D31BEA4B0B0047BA17 /* RequestTaskHandle.m */; };
 		ADD085C41BEB98C900D2EBC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADD085C61BEB98C900D2EBC4 /* Localizable.strings */; };
-		ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */; settings = {ASSET_TAGS = (); }; };
-		ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305311BDCFFD7002F5BAE /* NGTHContactVC.m */; settings = {ASSET_TAGS = (); }; };
-		ADD305351BDD005D002F5BAE /* NGReleaseContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305341BDD005D002F5BAE /* NGReleaseContactVC.m */; settings = {ASSET_TAGS = (); }; };
-		ADD305381BDD0086002F5BAE /* NGContactDetaillVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305371BDD0086002F5BAE /* NGContactDetaillVC.m */; settings = {ASSET_TAGS = (); }; };
-		ADD3053B1BDD00DE002F5BAE /* NGCarPriceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3053A1BDD00DE002F5BAE /* NGCarPriceVC.m */; settings = {ASSET_TAGS = (); }; };
-		ADD3053E1BDD011C002F5BAE /* NGShuaiDantVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3053D1BDD011C002F5BAE /* NGShuaiDantVC.m */; settings = {ASSET_TAGS = (); }; };
-		ADD305411BDD0156002F5BAE /* NGJieDanDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305401BDD0156002F5BAE /* NGJieDanDetailVC.m */; settings = {ASSET_TAGS = (); }; };
-		ADD4308C1BE481D5000C03D8 /* NGSearchCitiesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4308B1BE481D5000C03D8 /* NGSearchCitiesVC.m */; settings = {ASSET_TAGS = (); }; };
-		ADD431511BE509EE000C03D8 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADD4311F1BE509EE000C03D8 /* UMSocialLocalizable.strings */; settings = {ASSET_TAGS = (); }; };
-		ADD431521BE509EE000C03D8 /* libUMSocial_Sdk_4.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4312D1BE509EE000C03D8 /* libUMSocial_Sdk_4.3.a */; settings = {ASSET_TAGS = (); }; };
-		ADD431531BE509EE000C03D8 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD4312F1BE509EE000C03D8 /* UMSCommentDetailController.xib */; settings = {ASSET_TAGS = (); }; };
-		ADD431541BE509EE000C03D8 /* UMSCommentInputController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD431301BE509EE000C03D8 /* UMSCommentInputController.xib */; settings = {ASSET_TAGS = (); }; };
-		ADD431551BE509EE000C03D8 /* UMSCommentInputControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD431311BE509EE000C03D8 /* UMSCommentInputControlleriPad.xib */; settings = {ASSET_TAGS = (); }; };
-		ADD431561BE509EE000C03D8 /* UMShareEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD431321BE509EE000C03D8 /* UMShareEditViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		ADD431571BE509EE000C03D8 /* UMShareEditViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD431331BE509EE000C03D8 /* UMShareEditViewControlleriPad.xib */; settings = {ASSET_TAGS = (); }; };
-		ADD431581BE509EE000C03D8 /* UMSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD431341BE509EE000C03D8 /* UMSLoginViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		ADD431591BE509EE000C03D8 /* UMSnsAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD431351BE509EE000C03D8 /* UMSnsAccountViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		ADD4315A1BE509EE000C03D8 /* UMSShareListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD431361BE509EE000C03D8 /* UMSShareListController.xib */; settings = {ASSET_TAGS = (); }; };
-		ADD4315B1BE509EE000C03D8 /* UMSocialSDKResourcesNew.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADD431371BE509EE000C03D8 /* UMSocialSDKResourcesNew.bundle */; settings = {ASSET_TAGS = (); }; };
-		ADD4315C1BE509EE000C03D8 /* libSocialLaiWang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4313B1BE509EE000C03D8 /* libSocialLaiWang.a */; settings = {ASSET_TAGS = (); }; };
-		ADD4315D1BE509EE000C03D8 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4313E1BE509EE000C03D8 /* libSocialSina.a */; settings = {ASSET_TAGS = (); }; };
-		ADD4315E1BE509EE000C03D8 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431411BE509EE000C03D8 /* libSocialQQ.a */; settings = {ASSET_TAGS = (); }; };
-		ADD4315F1BE509EE000C03D8 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431421BE509EE000C03D8 /* TencentOpenAPI.framework */; settings = {ASSET_TAGS = (); }; };
-		ADD431601BE509EE000C03D8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADD431431BE509EE000C03D8 /* TencentOpenApi_IOS_Bundle.bundle */; settings = {ASSET_TAGS = (); }; };
-		ADD431611BE509EE000C03D8 /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431461BE509EE000C03D8 /* libSocialWechat.a */; settings = {ASSET_TAGS = (); }; };
-		ADD431621BE509EE000C03D8 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431471BE509EE000C03D8 /* libWeChatSDK.a */; settings = {ASSET_TAGS = (); }; };
-		ADD431631BE509EE000C03D8 /* libSocialYiXin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4314C1BE509EE000C03D8 /* libSocialYiXin.a */; settings = {ASSET_TAGS = (); }; };
-		ADD431641BE509EE000C03D8 /* libYixinSDK_V2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4314D1BE509EE000C03D8 /* libYixinSDK_V2.2.a */; settings = {ASSET_TAGS = (); }; };
+		ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */; };
+		ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305311BDCFFD7002F5BAE /* NGTHContactVC.m */; };
+		ADD305351BDD005D002F5BAE /* NGReleaseContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305341BDD005D002F5BAE /* NGReleaseContactVC.m */; };
+		ADD305381BDD0086002F5BAE /* NGContactDetaillVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305371BDD0086002F5BAE /* NGContactDetaillVC.m */; };
+		ADD3053B1BDD00DE002F5BAE /* NGCarPriceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3053A1BDD00DE002F5BAE /* NGCarPriceVC.m */; };
+		ADD3053E1BDD011C002F5BAE /* NGShuaiDantVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3053D1BDD011C002F5BAE /* NGShuaiDantVC.m */; };
+		ADD305411BDD0156002F5BAE /* NGJieDanDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305401BDD0156002F5BAE /* NGJieDanDetailVC.m */; };
+		ADD4308C1BE481D5000C03D8 /* NGSearchCitiesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4308B1BE481D5000C03D8 /* NGSearchCitiesVC.m */; };
+		ADD431511BE509EE000C03D8 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADD4311F1BE509EE000C03D8 /* UMSocialLocalizable.strings */; };
+		ADD431521BE509EE000C03D8 /* libUMSocial_Sdk_4.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4312D1BE509EE000C03D8 /* libUMSocial_Sdk_4.3.a */; };
+		ADD431531BE509EE000C03D8 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD4312F1BE509EE000C03D8 /* UMSCommentDetailController.xib */; };
+		ADD431541BE509EE000C03D8 /* UMSCommentInputController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD431301BE509EE000C03D8 /* UMSCommentInputController.xib */; };
+		ADD431551BE509EE000C03D8 /* UMSCommentInputControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD431311BE509EE000C03D8 /* UMSCommentInputControlleriPad.xib */; };
+		ADD431561BE509EE000C03D8 /* UMShareEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD431321BE509EE000C03D8 /* UMShareEditViewController.xib */; };
+		ADD431571BE509EE000C03D8 /* UMShareEditViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD431331BE509EE000C03D8 /* UMShareEditViewControlleriPad.xib */; };
+		ADD431581BE509EE000C03D8 /* UMSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD431341BE509EE000C03D8 /* UMSLoginViewController.xib */; };
+		ADD431591BE509EE000C03D8 /* UMSnsAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD431351BE509EE000C03D8 /* UMSnsAccountViewController.xib */; };
+		ADD4315A1BE509EE000C03D8 /* UMSShareListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD431361BE509EE000C03D8 /* UMSShareListController.xib */; };
+		ADD4315B1BE509EE000C03D8 /* UMSocialSDKResourcesNew.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADD431371BE509EE000C03D8 /* UMSocialSDKResourcesNew.bundle */; };
+		ADD4315C1BE509EE000C03D8 /* libSocialLaiWang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4313B1BE509EE000C03D8 /* libSocialLaiWang.a */; };
+		ADD4315D1BE509EE000C03D8 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4313E1BE509EE000C03D8 /* libSocialSina.a */; };
+		ADD4315E1BE509EE000C03D8 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431411BE509EE000C03D8 /* libSocialQQ.a */; };
+		ADD4315F1BE509EE000C03D8 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431421BE509EE000C03D8 /* TencentOpenAPI.framework */; };
+		ADD431601BE509EE000C03D8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADD431431BE509EE000C03D8 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		ADD431611BE509EE000C03D8 /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431461BE509EE000C03D8 /* libSocialWechat.a */; };
+		ADD431621BE509EE000C03D8 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431471BE509EE000C03D8 /* libWeChatSDK.a */; };
+		ADD431631BE509EE000C03D8 /* libSocialYiXin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4314C1BE509EE000C03D8 /* libSocialYiXin.a */; };
+		ADD431641BE509EE000C03D8 /* libYixinSDK_V2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4314D1BE509EE000C03D8 /* libYixinSDK_V2.2.a */; };
 		ADD431661BE50B2C000C03D8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431651BE50B2C000C03D8 /* SystemConfiguration.framework */; };
 		ADD431681BE50B7C000C03D8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431671BE50B7C000C03D8 /* Security.framework */; };
 		ADD4316A1BE50BA9000C03D8 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431691BE50BA9000C03D8 /* libiconv.tbd */; };
@@ -159,20 +159,21 @@
 		ADD4316E1BE50BFB000C03D8 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4316D1BE50BFB000C03D8 /* libstdc++.tbd */; };
 		ADD431701BE50C25000C03D8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4316F1BE50C25000C03D8 /* libz.tbd */; };
 		ADD431721BE50C8A000C03D8 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431711BE50C8A000C03D8 /* CoreTelephony.framework */; };
-		ADD4F8661BECF6BA005F57F0 /* NGTHContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4F8651BECF6BA005F57F0 /* NGTHContactCell.m */; settings = {ASSET_TAGS = (); }; };
-		ADD5E69D1BE61E300035FC0F /* NGSearchWithKeyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5E69C1BE61E300035FC0F /* NGSearchWithKeyVC.m */; settings = {ASSET_TAGS = (); }; };
-		ADD5E6A01BE61E590035FC0F /* NGSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5E69F1BE61E590035FC0F /* NGSearchResultVC.m */; settings = {ASSET_TAGS = (); }; };
-		ADE8CF8C1BDBD420006CBC95 /* NGCompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */; settings = {ASSET_TAGS = (); }; };
-		B269C4E91BE5A88000127226 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B269C4E71BE5A88000127226 /* MenuTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		B269C4EA1BE5A88000127226 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B269C4E81BE5A88000127226 /* MenuTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
-		B269C4ED1BE5B7AB00127226 /* menuDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B269C4EC1BE5B7AB00127226 /* menuDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
-		B27BB3AB1BDFAAAF007DB68B /* ModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BB3AA1BDFAAAF007DB68B /* ModifyPasswordViewController.m */; settings = {ASSET_TAGS = (); }; };
-		B27BB3B21BE466BA007DB68B /* NGDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BB3B11BE466BA007DB68B /* NGDatePicker.m */; settings = {ASSET_TAGS = (); }; };
-		B2879BD71BDCC8B400B39021 /* SystemCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BD61BDCC8B400B39021 /* SystemCenterViewController.m */; settings = {ASSET_TAGS = (); }; };
-		B2879BDF1BDCC92900B39021 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDA1BDCC92900B39021 /* AboutUsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		B2879BE01BDCC92900B39021 /* DeviceFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDC1BDCC92900B39021 /* DeviceFeedBackViewController.m */; settings = {ASSET_TAGS = (); }; };
-		B2879BE11BDCC92900B39021 /* JoinUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDE1BDCC92900B39021 /* JoinUsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		B2977DE11BDCDEFD007B3021 /* PersonanlBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2977DE01BDCDEFD007B3021 /* PersonanlBusinessViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ADD4F8661BECF6BA005F57F0 /* NGTHContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4F8651BECF6BA005F57F0 /* NGTHContactCell.m */; };
+		ADD5E69D1BE61E300035FC0F /* NGSearchWithKeyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5E69C1BE61E300035FC0F /* NGSearchWithKeyVC.m */; };
+		ADD5E6A01BE61E590035FC0F /* NGSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5E69F1BE61E590035FC0F /* NGSearchResultVC.m */; };
+		ADE8CF8C1BDBD420006CBC95 /* NGCompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */; };
+		B269C4E91BE5A88000127226 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B269C4E71BE5A88000127226 /* MenuTableViewCell.m */; };
+		B269C4EA1BE5A88000127226 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B269C4E81BE5A88000127226 /* MenuTableViewCell.xib */; };
+		B269C4ED1BE5B7AB00127226 /* menuDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B269C4EC1BE5B7AB00127226 /* menuDetailViewController.m */; };
+		B27BB3AB1BDFAAAF007DB68B /* ModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BB3AA1BDFAAAF007DB68B /* ModifyPasswordViewController.m */; };
+		B27BB3B21BE466BA007DB68B /* NGDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BB3B11BE466BA007DB68B /* NGDatePicker.m */; };
+		B2879BD71BDCC8B400B39021 /* SystemCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BD61BDCC8B400B39021 /* SystemCenterViewController.m */; };
+		B2879BDF1BDCC92900B39021 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDA1BDCC92900B39021 /* AboutUsViewController.m */; };
+		B2879BE01BDCC92900B39021 /* DeviceFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDC1BDCC92900B39021 /* DeviceFeedBackViewController.m */; };
+		B2879BE11BDCC92900B39021 /* JoinUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDE1BDCC92900B39021 /* JoinUsViewController.m */; };
+		B2977DE11BDCDEFD007B3021 /* PersonanlBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2977DE01BDCDEFD007B3021 /* PersonanlBusinessViewController.m */; };
+		B2C94BCE1BEE0C2B0015B040 /* ResetNewPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C94BCD1BEE0C2B0015B040 /* ResetNewPhoneViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -485,6 +486,8 @@
 		B2879BDE1BDCC92900B39021 /* JoinUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinUsViewController.m; sourceTree = "<group>"; };
 		B2977DDF1BDCDEFD007B3021 /* PersonanlBusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonanlBusinessViewController.h; sourceTree = "<group>"; };
 		B2977DE01BDCDEFD007B3021 /* PersonanlBusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonanlBusinessViewController.m; sourceTree = "<group>"; };
+		B2C94BCC1BEE0C2B0015B040 /* ResetNewPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetNewPhoneViewController.h; sourceTree = "<group>"; };
+		B2C94BCD1BEE0C2B0015B040 /* ResetNewPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetNewPhoneViewController.m; sourceTree = "<group>"; };
 		CE8468AE545F99D5CA121C5E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1038,8 +1041,8 @@
 				9FFEE9471BD0AB3D00D53553 /* FindBackPasswordViewController.m */,
 				9FFEE9491BD0CDF100D53553 /* RegisterViewController.h */,
 				9FFEE94A1BD0CDF100D53553 /* RegisterViewController.m */,
-				9F690AFE1BD73AA600DDCED6 /* MyBaseTableViewController.h */,
 				9F690AFF1BD73AA600DDCED6 /* MyBaseTableViewController.m */,
+				9F690AFE1BD73AA600DDCED6 /* MyBaseTableViewController.h */,
 				9F690B011BD73AE200DDCED6 /* PersonalInfoViewController.h */,
 				9F690B021BD73AE200DDCED6 /* PersonalInfoViewController.m */,
 				9F690B041BD7426400DDCED6 /* MyCollectionViewController.h */,
@@ -1258,6 +1261,8 @@
 				B2879BDE1BDCC92900B39021 /* JoinUsViewController.m */,
 				B2977DDF1BDCDEFD007B3021 /* PersonanlBusinessViewController.h */,
 				B2977DE01BDCDEFD007B3021 /* PersonanlBusinessViewController.m */,
+				B2C94BCC1BEE0C2B0015B040 /* ResetNewPhoneViewController.h */,
+				B2C94BCD1BEE0C2B0015B040 /* ResetNewPhoneViewController.m */,
 			);
 			path = SystemCenter;
 			sourceTree = "<group>";
@@ -1462,6 +1467,7 @@
 				ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */,
 				A15A95271BC7C3F200643170 /* NGCollectionViewCell.m in Sources */,
 				A12441F71BD0EFD900D2588C /* FMDatabase.m in Sources */,
+				B2C94BCE1BEE0C2B0015B040 /* ResetNewPhoneViewController.m in Sources */,
 				AD5B11D01BDB360C00285255 /* DTComDataManger.m in Sources */,
 				A12441D01BD0EDD200D2588C /* MJRefreshAutoStateFooter.m in Sources */,
 				B2879BE11BDCC92900B39021 /* JoinUsViewController.m in Sources */,

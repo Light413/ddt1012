@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="解蓉车贷" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGa-jV-mrB">
-                        <rect key="frame" x="10" y="10" width="64" height="21"/>
+                        <rect key="frame" x="10" y="8" width="64" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="jcN-zg-tIa"/>
                         </constraints>
@@ -23,7 +23,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEF-Il-r9l">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="民间信贷个人" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEF-Il-r9l">
                         <rect key="frame" x="84" y="10" width="226" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,7 +42,7 @@
                 <constraints>
                     <constraint firstItem="IEF-Il-r9l" firstAttribute="leading" secondItem="RGa-jV-mrB" secondAttribute="trailing" constant="10" id="5Qg-Ia-X0R"/>
                     <constraint firstAttribute="trailing" secondItem="IEF-Il-r9l" secondAttribute="trailing" constant="10" id="Lsf-0E-QJb"/>
-                    <constraint firstItem="RGa-jV-mrB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="ThS-k0-hTI"/>
+                    <constraint firstItem="RGa-jV-mrB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="ThS-k0-hTI"/>
                     <constraint firstAttribute="bottom" secondItem="WqV-h4-X9Z" secondAttribute="bottom" constant="8" id="UYJ-OV-0sM"/>
                     <constraint firstItem="RGa-jV-mrB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="iWi-Ts-A9Z"/>
                     <constraint firstItem="WqV-h4-X9Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="kSt-ne-Fdx"/>
