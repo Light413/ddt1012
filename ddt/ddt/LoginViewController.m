@@ -10,7 +10,8 @@
 #define UserIconWidth 10
 #import "FindBackPasswordViewController.h"
 #import "RegisterViewController.h"
-@interface LoginViewController ()<UITextFieldDelegate>
+#import "NSString+MD5Addition.h"
+@interface LoginViewController ()<UITextFieldDelegate,QCheckBoxDelegate>
 
 @end
 
@@ -32,6 +33,8 @@
     mainView.layer.borderWidth = 1;
     remeberPasswordandPhone.checked = YES;
     autoLoginNextime.checked = YES;
+    remeberPasswordandPhone.delegate = self;
+    autoLoginNextime.delegate = self;
     [self initViews];
     //注册键盘收起的通知
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -82,6 +85,10 @@
     phoneNumTextField.delegate = self;
     passwordTextField.secureTextEntry = YES;
     passwordTextField.font = [UIFont systemFontOfSize:14];
+    if ([[MySharetools shared]isRemeberPasswordandPhone]) {
+        phoneNumTextField.text = [[MySharetools shared]getPhoneNumber];
+        passwordTextField.text = [[MySharetools shared]getPassWord];
+    }
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     if ([phoneNumTextField isFirstResponder]) {
@@ -118,7 +125,7 @@
     NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
     NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",phoneNumTextField.text,timeString];
     //...test
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:phoneNumTextField.text,@"mobile", passwordTextField.text,@"pwd",token,@"token",nil];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:phoneNumTextField.text,@"mobile", [passwordTextField.text stringFromMD5],@"pwd",token,@"token",nil];
     NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
     
     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata", nil];
@@ -128,10 +135,42 @@
         
         if ([[responseObject objectForKey:@"result"]integerValue] == 0) {
             [SVProgressHUD showSuccessWithStatus:@"登录成功"];
-            [[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"login"];
+            
+            NSDictionary *dict = [responseObject objectForKey:@"data"];
+            if ([dict isKindOfClass:[NSDictionary class]]&&dict) {
+                [[NSUserDefaults standardUserDefaults]setObject:dict forKey:@"loginSuccessInfo"];
+                NSString *sessionid = [dict objectForKey:@"sessionid"];
+                if (sessionid!=nil) {
+                    [[NSUserDefaults standardUserDefaults]setObject:sessionid forKey:@"sessionid"];
+                }
+                NSString *nickName = [dict objectForKey:@"xm"];
+                if (nickName) {
+                    [[NSUserDefaults standardUserDefaults]setObject:nickName forKey:@"nickName"];
+                }
+                [[NSUserDefaults standardUserDefaults]synchronize];
+            }
+            if (remeberPasswordandPhone.checked) {
+                [[NSUserDefaults standardUserDefaults]setObject:phoneNumTextField.text forKey:@"rememberPhone"];
+                [[NSUserDefaults standardUserDefaults]setObject:passwordTextField.text forKey:@"remeberPassword"];
+                [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isRemeberPasswordandPhone"];
+            }else{
+                [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"remeberPassword"];
+                [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"rememberPhone"];
+                [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"isRemeberPasswordandPhone"];
+            }
+            
+            if (autoLoginNextime.checked) {
+                [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isAutoLogin"];
+            }else{
+                [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"isAutoLogin"];
+            }
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            [MySharetools shared].isFirstLoginSuccess = YES;
+            
             if ([MySharetools shared].isFromMycenter) {
+                [MySharetools shared].isFirstSignupViewController = NO;
                 [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                    [MySharetools shared].isFirstSignupViewController = YES;
+                    //[MySharetools shared].isFirstSignupViewController = YES;
                 }];
             }else{
                 [self.navigationController popViewControllerAnimated:YES];
@@ -139,6 +178,7 @@
         }
         else
         {
+            //[MySharetools shared].isFirstSignupViewController = YES;
             [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
         }
     } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -156,5 +196,24 @@
 - (IBAction)findBackBtnClick:(id)sender {
     FindBackPasswordViewController *find = [[FindBackPasswordViewController alloc]init];
     [self.navigationController pushViewController:find animated:YES];
+}
+- (void)didSelectedCheckBox:(QCheckBox *)checkbox checked:(BOOL)checked{
+    if (checkbox == remeberPasswordandPhone) {
+        if (remeberPasswordandPhone.checked == NO) {
+            remeberPasswordandPhone.checked =remeberPasswordandPhone.checked;
+            autoLoginNextime.checked = NO;
+        }else{
+            remeberPasswordandPhone.checked =remeberPasswordandPhone.checked;
+            autoLoginNextime.checked = autoLoginNextime.checked;
+        }
+    }else{
+        if (autoLoginNextime.checked) {
+            remeberPasswordandPhone.checked = YES;
+            autoLoginNextime.checked = autoLoginNextime.checked;
+        }else{
+            remeberPasswordandPhone.checked =remeberPasswordandPhone.checked;
+            autoLoginNextime.checked = autoLoginNextime.checked;
+        }
+    }
 }
 @end

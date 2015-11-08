@@ -33,7 +33,7 @@
 @implementation MycenterViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    if (![[[NSUserDefaults standardUserDefaults]objectForKey:@"login"] isEqual:@"1"]) {
+    if (![[MySharetools shared]isSessionid]) {
         if ([MySharetools shared].isFirstSignupViewController == YES) {
             [MySharetools shared].isFirstSignupViewController = NO;
             [MySharetools shared].isFromMycenter = YES;
@@ -43,11 +43,78 @@
         }else{
             self.tabBarController.selectedIndex = 0;
         }
+        myTableView.hidden = YES;
     }else{
-        
+        if ([[MySharetools shared]isAutoLogin]) {
+            if([MySharetools shared].isFirstLoginSuccess){
+                [MySharetools shared].isFirstLoginSuccess = NO;
+                self.tabBarController.selectedIndex = 0;
+            }
+            [self showMydata];
+            //myTableView.hidden = NO;
+        }else{
+            if ([MySharetools shared].isFirstSignupViewController == YES) {
+                myTableView.hidden = YES;
+                [MySharetools shared].isFirstSignupViewController = NO;
+                [MySharetools shared].isFromMycenter = YES;
+                LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
+                NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
+                [self.tabBarController presentViewController:nav animated:YES completion:nil];
+            }else if([MySharetools shared].isFirstLoginSuccess){
+                [MySharetools shared].isFirstLoginSuccess = NO;
+                self.tabBarController.selectedIndex = 0;
+                [self showMydata];
+            }else{
+                //myTableView.hidden = NO;
+            }
+        }
+//        [self showMydata];
     }
 }
-
+-(void)showMydata{
+    UILabel *nickNameLabel = (UILabel *)[self.view viewWithTag:101];
+    nickNameLabel.text = [[MySharetools shared]getNickName];
+    [nickNameLabel sizeToFit];
+    UIButton *modifyBtn = (UIButton *)[self.view viewWithTag:105];
+    modifyBtn.frame = CGRectMake(nickNameLabel.right+10, 10, 50, 15);
+    UIImageView *line = (UIImageView *)[self.view viewWithTag:106];
+    line.frame = CGRectMake(modifyBtn.left, modifyBtn.bottom, modifyBtn.frame.size.width, 1);
+    
+    UILabel *jifenLabel = (UILabel *)[self.view viewWithTag:102];
+    NSString *jifen = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"fee"]];
+    if (![jifen isEqual:@"(null)"]) {
+        if (jifen.length>0) {
+            jifenLabel.text = jifen;
+        }else{
+            jifenLabel.text = @"0";
+        }
+    }else{
+        jifenLabel.text = @"0";
+    }
+    UILabel *browseLabel = (UILabel *)[self.view viewWithTag:103];
+    NSString *see = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"see"]];
+    if (![see isEqual:@"(null)"]) {
+        if (see.length>0) {
+            browseLabel.text = see;
+        }else{
+            browseLabel.text = @"0";
+        }
+    }else{
+        browseLabel.text = @"0";
+    }
+    UILabel *judegeName = (UILabel *)[self.view viewWithTag:104];
+    NSString *judge = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"judge"]];
+    if (![judge isEqual:@"(null)"]) {
+        if (judge.length>0) {
+            judegeName.text = judge;
+        }else{
+            judegeName.text = @"0";
+        }
+    }else{
+        judegeName.text = @"0";
+    }
+    myTableView.hidden = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -81,6 +148,7 @@
     myTableView.dataSource = self;
     myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:myTableView];
+    myTableView.hidden = YES;
     [myTableView setTableHeaderView:backVIew];
     [myTableView setTableFooterView:footView];
 }
@@ -198,7 +266,11 @@
     [self.navigationController pushViewController:modify animated:YES];
 }
 -(void)logout:(UIButton *)btn{
-    NSLog(@"ni");
+    [[MySharetools shared]removeSessionid];
+    [MySharetools shared].isFromMycenter = YES;
+    LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
+    NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
+    [self.tabBarController presentViewController:nav animated:YES completion:nil];
 }
 
 -(void)createHeader{
@@ -214,15 +286,25 @@
     [userIcon setBackgroundImage:[UIImage imageNamed:@"head_noregist"] forState:UIControlStateNormal];
     [userIcon addTarget:self action:@selector(usericonBtn:) forControlEvents:UIControlEventTouchUpInside];
     [backVIew addSubview:userIcon];
+    UILabel *nickNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(userIcon.right+10, 10, 0, 15)];
+    //nickNameLabel.text = [[MySharetools shared]getNickName];
+    nickNameLabel.font = [UIFont systemFontOfSize:13];
+    nickNameLabel.textColor = [UIColor greenColor];
+    //nickNameLabel.backgroundColor = [UIColor blackColor];
+    nickNameLabel.tag = 101;
+    [nickNameLabel sizeToFit];
+    [backVIew addSubview:nickNameLabel];
     
     UIButton *modifyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    modifyBtn.frame = CGRectMake(userIcon.right+10, 10, 50, 15);
+    modifyBtn.frame = CGRectMake(nickNameLabel.right+10, 10, 50, 15);
     [modifyBtn setTitle:@"点击修改" forState:UIControlStateNormal];
     modifyBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    modifyBtn.tag = 105;
     [modifyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [modifyBtn addTarget:self action:@selector(modifyInfo:) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *line = [[UIImageView alloc]initWithFrame:CGRectMake(modifyBtn.left, modifyBtn.bottom, modifyBtn.frame.size.width, 1)];
     line.backgroundColor = [UIColor blackColor];
+    line.tag = 106;
     [backVIew addSubview:modifyBtn];
     [backVIew addSubview:line];
     
@@ -237,7 +319,16 @@
     UILabel *jifenLabel = [[UILabel alloc]initWithFrame:CGRectMake(jifenicon.left,jifenicon.bottom+5,iconHeight+30, 20)];
     jifenLabel.font = [UIFont systemFontOfSize:12];
     jifenLabel.textAlignment = NSTextAlignmentCenter;
-    jifenLabel.text = @"200";
+    jifenLabel.tag = 102;
+//    NSString *jifen = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"fee"]];
+//    if (![jifen isEqual:@"(null)"]) {
+//        if (jifen.length>0) {
+//            jifenLabel.text = jifen;
+//        }else{
+//            jifenLabel.text = @"0";
+//        }
+//    }
+    
     
     UIImageView *browseicon = [[UIImageView alloc]initWithFrame:CGRectMake(jifenName.right+5, line.bottom+22, iconHeight, iconHeight)];
     browseicon.image = [UIImage imageNamed:@"uc_add"];
@@ -248,8 +339,15 @@
     UILabel *browseLabel = [[UILabel alloc]initWithFrame:CGRectMake(browseicon.left, jifenicon.bottom+5, iconHeight+30, 20)];
     browseLabel.font = [UIFont systemFontOfSize:12];
     browseLabel.textAlignment = NSTextAlignmentCenter;
-    browseLabel.text = @"150";
-    
+    browseLabel.tag = 103;
+//    NSString *see = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"see"]];
+//    if (![see isEqual:@"(null)"]) {
+//        if (see.length>0) {
+//            browseLabel.text = see;
+//        }else{
+//            browseLabel.text = @"0";
+//        }
+//    }
     
     UIImageView *judgeicon = [[UIImageView alloc]initWithFrame:CGRectMake(browseName.right+5, line.bottom+22, iconHeight, iconHeight)];
     judgeicon.image = [UIImage imageNamed:@"uc_say"];
@@ -258,9 +356,10 @@
     judegeName.textAlignment = NSTextAlignmentRight;
     judegeName.font = [UIFont systemFontOfSize:12];
     UILabel *judgeLabel = [[UILabel alloc]initWithFrame:CGRectMake(judgeicon.left, jifenicon.bottom+5, iconHeight+30, 20)];
-    judgeLabel.text = @"100";
+    //judgeLabel.text = @"";
     judgeLabel.font = [UIFont systemFontOfSize:12];
     judgeLabel.textAlignment = NSTextAlignmentCenter;
+    judgeLabel.tag = 104;
     
     [backVIew addSubview:jifenLabel];
     [backVIew addSubview:jifenicon];
