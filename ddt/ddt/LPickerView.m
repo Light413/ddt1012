@@ -38,6 +38,7 @@
     _maskView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     _maskView.backgroundColor = [UIColor blackColor];
     _maskView.alpha = .3;
+//    _maskView.userInteractionEnabled  =NO;
     
     _bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 280)];
     _bgView.backgroundColor = [UIColor whiteColor];
@@ -73,6 +74,9 @@
  */
 -(void)btncancel:(UIButton*)btn
 {
+    if ([self.delegate respondsToSelector:@selector(pickerViewCanecelClick)]) {
+        [self.delegate pickerViewCanecelClick];
+    }
     [self hideself];
 }
 -(void)btnok:(UIButton*)btn
@@ -114,13 +118,13 @@
 
 -(void)showIn:(id)superView
 {
-    [self addSubview:_maskView];
-    [self addSubview:_bgView];
+//    [self addSubview:_maskView];
+//    [self addSubview:_bgView];
 
-//    UIWindow *_w = [[UIApplication sharedApplication]keyWindow];
-//    [_w addSubview:_maskView];
-//    [_w addSubview:_bgView];
-    
+    UIWindow *_w = [[UIApplication sharedApplication]keyWindow];
+    [_w addSubview:_maskView];
+    [_w addSubview:_bgView];
+        [self down];
     if ([superView isKindOfClass:[UIViewController class]]) {
         [((UIViewController*)superView).view addSubview:self];
     }
@@ -128,7 +132,7 @@
     {
         [(UIView*)superView addSubview:self];
     }
-    [self down];
+
     
     [UIView animateWithDuration:0.5 animations:^{
         [self up];

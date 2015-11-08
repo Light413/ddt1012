@@ -19,6 +19,9 @@
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component;
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component;
 
+//取消操作
+-(void)pickerViewCanecelClick;
+
 @end
 
 @interface LPickerView : UIView<UIPickerViewDelegate,UIPickerViewDataSource>

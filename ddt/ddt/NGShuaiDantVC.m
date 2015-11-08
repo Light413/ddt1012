@@ -7,10 +7,21 @@
 //
 
 #import "NGShuaiDantVC.h"
+#import "PersonanlBusinessViewController.h"
 
 #define btnbasetag  330
 
-@interface NGShuaiDantVC ()<UITextFieldDelegate,UITextViewDelegate>
+typedef NS_ENUM(NSUInteger, NGSelectDataType) {
+    NGSelectDataTypeNone,  //0
+    NGSelectDataTypeAge,   //年龄
+    NGSelectDataTypeTDaikuan, //贷款金额
+    NGSelectDataTypeTDaikuanTime,//贷款期限
+    NGSelectDataTypeYwlx, //选择业务类型
+    NGSelectDataTypeArea  //选择区域数据
+};
+
+
+@interface NGShuaiDantVC ()<UITextFieldDelegate,UITextViewDelegate,pickViewDelegate>
 {
     BOOL _textviewHasStart;
     LPickerView * _pickview;
@@ -19,6 +30,9 @@
     NSArray *_kehusfArr;
     NSString * _zxstatus;//征信状态
     NSArray *_zxstatusArr;
+    
+    NSArray * _pickViewDataArr;//pickview dataSource
+    UIButton *_selectedBtn;//选择的btn
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *tf_name;
@@ -62,12 +76,16 @@
 
     _kehusfArr = @[@"上班",@"个体",@"企业"];
     _zxstatusArr =@[@"正常",@"异常",@"白户"];
+    
+    self.tf_jifen.keyboardType = UIKeyboardTypeNumberPad;
 }
 
 //textview相关方法
 -(void)inputbtnAction
 {
-    [self textviewDetaultDisp:YES];
+    if (!_textviewHasStart || self.textview.text.length < 1) {
+        [self textviewDetaultDisp:YES];
+    }
     [self.textview resignFirstResponder];
 }
 
@@ -105,18 +123,56 @@
         tmp == btn?1: (tmp.selected = NO);
     }
     
-    isfirst ? ( {_kehusf = btn.selected? _kehusfArr[btn.tag - starttag]  :@"";}):({_zxstatus = btn.selected? _zxstatusArr[btn.tag - starttag]  :@"";});
+    isfirst ? ( {_kehusf = btn.selected? _kehusfArr[btn.tag - starttag]  :nil;}):({_zxstatus = btn.selected? _zxstatusArr[btn.tag - starttag]  :nil;});
     
     NSLog(@"...kehushenfen : %@",_zxstatus);
 }
 
 
 - (IBAction)btnClickAction:(UIButton *)sender {
+    BOOL needpickview = NO;
+
+    if (self.tf_jifen.isFirstResponder) {
+        [self.tf_jifen resignFirstResponder];
+    }
+    else if (self.tf_name.isFirstResponder)
+    {
+        [self.tf_name resignFirstResponder];
+    }
     
     switch (sender.tag - btnbasetag) {
         case 0://客户身份
         case 1:
         case 2:[self kehuisf_select:sender withstartfirst:YES];break;
+         
+        case 3://年龄
+        {
+          _pickViewDataArr =  [DTComDataManger getData_age];
+            needpickview = YES;
+        }break;
+        case 4://贷款金额
+        {
+            _pickViewDataArr =  [DTComDataManger getData_daikuanjine];
+              needpickview = YES;
+        }break;
+        case 5://贷款期限
+        {
+            _pickViewDataArr =  [DTComDataManger getData_daikuanTime];
+              needpickview = YES;
+        }break;
+        case 6://业务类型
+        {
+            PersonanlBusinessViewController *person = [[PersonanlBusinessViewController alloc]init];
+            person.btnClickBlock = ^(NSString *name){
+                [sender setNormalTitle:name andID:@"ok"];
+            };
+            [self.navigationController pushViewController:person animated:YES];
+        }break;
+        case 7://区域
+        {
+            _pickViewDataArr =  [NGXMLReader getCurrentLocationAreas];
+              needpickview = YES;
+        }break;
             
         case 8://征信状态
         case 9:
@@ -126,15 +182,126 @@
         default:break;
     }
     
-    
+    if (needpickview) {
+        _selectedBtn = sender;
+        _pickview = [[LPickerView alloc]initWithDelegate:self];
+        [_pickview showIn:self.view];
+        needpickview = NO;
+        self.tableView.scrollEnabled = NO;
+    }
+
 }
 
 //立即甩单操作
 - (IBAction)submintAction:(id)sender {
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     
-    
+    if ([self checkAllDataIsValid]) {
+       //所有参数都合法
+        
+    }
     
 }
+
+//检测参数有效性
+-(BOOL)checkAllDataIsValid
+{
+    if (self.tf_name.text.length < 1) {
+        [SVProgressHUD showInfoWithStatus:@"请输入客户名称"];
+        return NO;
+    }else if (_kehusf == nil)
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入客户身份"];
+        return NO;
+    }
+    else if (self.btn_age.ID == nil)
+    {
+        [SVProgressHUD showInfoWithStatus:@"请选择年龄"];
+        return NO;
+    }
+    else if (self.btn_jine.ID == nil)
+    {
+        [SVProgressHUD showInfoWithStatus:@"请选择贷款金额"];
+        return NO;
+    }
+    else if (self.btn_timelimit.ID == nil)
+    {
+        [SVProgressHUD showInfoWithStatus:@"请选择贷款期限"];
+        return NO;
+    }
+    else if (self.btn_yewutype.ID == nil)
+    {
+        [SVProgressHUD showInfoWithStatus:@"请选择业务类型"];
+        return NO;
+    }
+    else if (self.btn_area.ID == nil)
+    {
+        [SVProgressHUD showInfoWithStatus:@"请选择区域"];
+        return NO;
+    }
+    
+    else if (_zxstatus == nil)
+    {
+        [SVProgressHUD showInfoWithStatus:@"请选择征信状态"];
+        return NO;
+    }
+    else if (self.textview.text.length < 1)
+    {
+        [SVProgressHUD showInfoWithStatus:@"请填写详细说明"];
+        return NO;
+    }
+    else if (self.tf_jifen.text.length < 1)
+    {
+        [SVProgressHUD showInfoWithStatus:@"请填写接单积分"];
+        return NO;
+    }
+    
+    return YES;
+}
+
+
+#pragma mark --UITextFieldDelegate
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    return YES;
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+}
+
+#pragma mark-pickViewDelegate
+-(void)pickerViewCanecelClick
+{
+        self.tableView.scrollEnabled = YES;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return _pickViewDataArr.count;
+}
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSDictionary *_dic = [_pickViewDataArr objectAtIndex:row];
+    return [_dic objectForKey:@"NAME"];
+}
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    self.tableView.scrollEnabled = YES;
+    NSDictionary *_d = [_pickViewDataArr objectAtIndex:row];
+    [_selectedBtn setNormalTitle:[_d objectForKey:@"NAME"] andID:[_d objectForKey:@"ID"]];
+    _pickViewDataArr = nil;
+    _selectedBtn  = nil;
+}
+
+
 
 #pragma mark -- UITextViewDelegate
 
