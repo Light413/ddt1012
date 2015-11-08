@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"密码修改";
+    self.title = @"重置手机号";
     [self creatViews];
 
     // Do any additional setup after loading the view.
