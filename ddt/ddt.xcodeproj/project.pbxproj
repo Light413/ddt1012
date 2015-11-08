@@ -119,6 +119,7 @@
 		AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB921BD21E3000C23992 /* NGXMLReader.m */; };
 		AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */; };
 		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; };
+		ADCE01C61BEEEC59007E874E /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCE01C51BEEEC59007E874E /* NSString+MD5Addition.m */; settings = {ASSET_TAGS = (); }; };
 		ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */; };
 		ADCF91E01BEDA5F000DC6CF7 /* NGWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCF91DF1BEDA5F000DC6CF7 /* NGWebView.m */; };
 		ADD023D11BEA39710047BA17 /* HttpRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD023D01BEA39710047BA17 /* HttpRequestManager.m */; };
@@ -385,6 +386,8 @@
 		AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGXMLDataModel.m; sourceTree = "<group>"; };
 		AD92EB971BD24A0300C23992 /* NGXMLBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGXMLBaseModel.h; sourceTree = "<group>"; };
 		AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGXMLBaseModel.m; sourceTree = "<group>"; };
+		ADCE01C41BEEEC59007E874E /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
+		ADCE01C51BEEEC59007E874E /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		ADCEAF901BD39B35006F1E56 /* NGItemsDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGItemsDetailVC.h; sourceTree = "<group>"; };
 		ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGItemsDetailVC.m; sourceTree = "<group>"; };
 		ADCF91DE1BEDA5F000DC6CF7 /* NGWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGWebView.h; sourceTree = "<group>"; };
@@ -925,6 +928,7 @@
 		A1D5E7BD1BD10EAE00CAA653 /* toolClass */ = {
 			isa = PBXGroup;
 			children = (
+				ADCE01C31BEEEC59007E874E /* MD5 */,
 				ADCF91E11BEDA60A00DC6CF7 /* view */,
 				ADD023CE1BEA38E20047BA17 /* http */,
 				B27BB3AC1BE46569007DB68B /* NGDatePickerView */,
@@ -1100,6 +1104,16 @@
 				AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */,
 			);
 			name = NGXMLReader;
+			sourceTree = "<group>";
+		};
+		ADCE01C31BEEEC59007E874E /* MD5 */ = {
+			isa = PBXGroup;
+			children = (
+				ADCE01C41BEEEC59007E874E /* NSString+MD5Addition.h */,
+				ADCE01C51BEEEC59007E874E /* NSString+MD5Addition.m */,
+			);
+			name = MD5;
+			path = "MD5加密";
 			sourceTree = "<group>";
 		};
 		ADCF91E11BEDA60A00DC6CF7 /* view */ = {
@@ -1462,6 +1476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADCF91E01BEDA5F000DC6CF7 /* NGWebView.m in Sources */,
+				ADCE01C61BEEEC59007E874E /* NSString+MD5Addition.m in Sources */,
 				A12441D41BD0EDD200D2588C /* MJRefreshGifHeader.m in Sources */,
 				A1DAAE691B492F84004F634B /* NGBaseNavigationVC.m in Sources */,
 				ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */,

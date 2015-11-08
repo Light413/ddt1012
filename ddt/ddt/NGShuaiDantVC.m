@@ -43,14 +43,29 @@
     self.textviewbg.layer.borderColor = [UIColor lightTextColor].CGColor;
     self.textviewbg.layer.cornerRadius = 5;
     self.textviewbg.layer.masksToBounds = YES;
-    [self textviewDetaultDisp:NO];
+    
+    UIButton *inputBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    inputBtn.frame = CGRectMake(0, 0, 100, 30);
+    inputBtn.backgroundColor = [UIColor lightGrayColor];
+    [inputBtn setTitle:@"完成" forState:UIControlStateNormal];
+    [inputBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    inputBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [inputBtn addTarget:self action:@selector(inputbtnAction) forControlEvents:UIControlEventTouchUpInside];
+    self.textview.inputAccessoryView = inputBtn;
+    [self textviewDetaultDisp:YES];
 
     
 }
 
+-(void)inputbtnAction
+{
+    [self textviewDetaultDisp:YES];
+    [self.textview resignFirstResponder];
+}
+
 -(void)textviewDetaultDisp:(BOOL)has
 {
-    if (!has) {
+    if (has) {
         self.textview.text = @"详细说明: 户口所在地、社保、公积金、保单、资产情况、负债情况、工资形式、工资金额、工作年限、流水金额、借款用途、还款来源等详细说明。不要出现电话号码、QQ等其他联系方式";
         self.textview.textColor = [UIColor lightGrayColor];
             _textviewHasStart = NO;
@@ -91,14 +106,14 @@
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
     if (!_textviewHasStart) {
-        [self textviewDetaultDisp:YES];
+        [self textviewDetaultDisp:NO];
     }
 }
 
 -(void)textViewDidChange:(UITextView *)textView{
 
     if (textView.text == 0) {
-      [self textviewDetaultDisp:NO];
+      [self textviewDetaultDisp:YES];
     }
     if (textView.text.length<=100) {
         self.textviewNumLab.text = [NSString stringWithFormat:@"%ld/100",textView.text.length];
