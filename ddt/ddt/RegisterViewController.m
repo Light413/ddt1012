@@ -136,7 +136,7 @@
     NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
     
     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata", nil];
-    [SVProgressHUD showWithStatus:@"正在提交"];
+//    [SVProgressHUD showWithStatus:@"正在提交"];
     RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_register", @"") parms:dic2 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"...responseObject  :%@",responseObject);
         
@@ -152,7 +152,10 @@
         [SVProgressHUD showInfoWithStatus:@"请求服务器失败,请重试"]; 
     }];
     
-    [HttpRequestManager doPostOperationWithTask:_task];
+//    [HttpRequestManager doPostOperationWithTask:_task];
+  [self.navigationController dismissViewControllerAnimated:YES completion:^{
+      
+  }];
 }
 
 - (IBAction)registerProtocol:(id)sender {

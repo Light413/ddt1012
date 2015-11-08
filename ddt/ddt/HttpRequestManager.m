@@ -7,10 +7,7 @@
 //
 
 #import "HttpRequestManager.h"
-#import <AFNetworking.h>
 #import <UIKit+AFNetworking.h>
-
-
 
 #define DEFAULT_CONCURRENT_OPERATION_COUNT 6
 #define DEFAULT_HTTPREQUESR_TIMEOUT 50
@@ -119,9 +116,41 @@
 }
 
 
+//post 请求+上传文件
+-(AFHTTPRequestOperation*)requestPostOperationWithTask:(RequestTaskHandle*)task constructingBodyWithBlock:(void(^)(id<AFMultipartFormData>))formData
+{
+    if (!task ) {
+        return nil;
+    }
+    
+    NSLog(@"---url : %@",task.requestUrl);
+    
+    AFHTTPRequestOperation *_op = [httpRequestManager POST:task.requestUrl parameters:task.disParm constructingBodyWithBlock:formData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[AFNetworkActivityIndicatorManager sharedManager]decrementActivityCount];
+            if (task && task.responseSuccessblock) {
+                task.responseSuccessblock(operation,responseObject);
+            }
+        });
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error post requset : %@",[error localizedDescription]);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[AFNetworkActivityIndicatorManager sharedManager]decrementActivityCount];
+            if (task && task.responseSuccessblock) {
+                task.responseSuccessblock(operation,error);
+            }
+        });
+    }];
+    
+    _op.completionGroup = taskGroup;
+    _op.completionQueue = taskQueue;
+    return _op;
+}
 
-
-
++(AFHTTPRequestOperation*)doPostOperationWithTask:(RequestTaskHandle*)task constructingBodyWithBlock:(void(^)(id<AFMultipartFormData>))formData
+{
+    return [[HttpRequestManager shareManger]requestPostOperationWithTask:task constructingBodyWithBlock:formData];
+}
 
 
 @end

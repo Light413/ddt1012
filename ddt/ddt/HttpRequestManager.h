@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "RequestTaskHandle.h"
-
+#import <AFNetworking.h>
 
 @interface HttpRequestManager : NSObject
 
@@ -21,6 +21,18 @@
  *  @return op
  */
 +(AFHTTPRequestOperation*)doPostOperationWithTask:(RequestTaskHandle*)task;
+
+
+
+/**
+ *  post请求操作 + 文件
+ *
+ *  @param task     task
+ *  @param formData formdata
+ *
+ *  @return op
+ */
++(AFHTTPRequestOperation*)doPostOperationWithTask:(RequestTaskHandle*)task constructingBodyWithBlock:(void(^)(id<AFMultipartFormData>))formData;
 
 
 
