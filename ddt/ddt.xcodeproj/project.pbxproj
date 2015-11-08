@@ -119,7 +119,7 @@
 		AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB921BD21E3000C23992 /* NGXMLReader.m */; };
 		AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */; };
 		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; };
-		ADCE01C61BEEEC59007E874E /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCE01C51BEEEC59007E874E /* NSString+MD5Addition.m */; settings = {ASSET_TAGS = (); }; };
+		ADCE01C61BEEEC59007E874E /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCE01C51BEEEC59007E874E /* NSString+MD5Addition.m */; };
 		ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */; };
 		ADCF91E01BEDA5F000DC6CF7 /* NGWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCF91DF1BEDA5F000DC6CF7 /* NGWebView.m */; };
 		ADD023D11BEA39710047BA17 /* HttpRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD023D01BEA39710047BA17 /* HttpRequestManager.m */; };
@@ -175,6 +175,7 @@
 		B2879BE11BDCC92900B39021 /* JoinUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2879BDE1BDCC92900B39021 /* JoinUsViewController.m */; };
 		B2977DE11BDCDEFD007B3021 /* PersonanlBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2977DE01BDCDEFD007B3021 /* PersonanlBusinessViewController.m */; };
 		B2C94BCE1BEE0C2B0015B040 /* ResetNewPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C94BCD1BEE0C2B0015B040 /* ResetNewPhoneViewController.m */; };
+		B2EEC4FF1BEF4ED400EFBBEB /* ServiceProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EEC4FE1BEF4ED400EFBBEB /* ServiceProtocolViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -491,6 +492,8 @@
 		B2977DE01BDCDEFD007B3021 /* PersonanlBusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonanlBusinessViewController.m; sourceTree = "<group>"; };
 		B2C94BCC1BEE0C2B0015B040 /* ResetNewPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetNewPhoneViewController.h; sourceTree = "<group>"; };
 		B2C94BCD1BEE0C2B0015B040 /* ResetNewPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetNewPhoneViewController.m; sourceTree = "<group>"; };
+		B2EEC4FD1BEF4ED400EFBBEB /* ServiceProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceProtocolViewController.h; sourceTree = "<group>"; };
+		B2EEC4FE1BEF4ED400EFBBEB /* ServiceProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceProtocolViewController.m; sourceTree = "<group>"; };
 		CE8468AE545F99D5CA121C5E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1045,6 +1048,8 @@
 				9FFEE9471BD0AB3D00D53553 /* FindBackPasswordViewController.m */,
 				9FFEE9491BD0CDF100D53553 /* RegisterViewController.h */,
 				9FFEE94A1BD0CDF100D53553 /* RegisterViewController.m */,
+				B2EEC4FD1BEF4ED400EFBBEB /* ServiceProtocolViewController.h */,
+				B2EEC4FE1BEF4ED400EFBBEB /* ServiceProtocolViewController.m */,
 				9F690AFF1BD73AA600DDCED6 /* MyBaseTableViewController.m */,
 				9F690AFE1BD73AA600DDCED6 /* MyBaseTableViewController.h */,
 				9F690B011BD73AE200DDCED6 /* PersonalInfoViewController.h */,
@@ -1545,6 +1550,7 @@
 				A12441CF1BD0EDD200D2588C /* MJRefreshAutoNormalFooter.m in Sources */,
 				B27BB3AB1BDFAAAF007DB68B /* ModifyPasswordViewController.m in Sources */,
 				A149A4411BCF37320098E7C3 /* NGBaseListView.m in Sources */,
+				B2EEC4FF1BEF4ED400EFBBEB /* ServiceProtocolViewController.m in Sources */,
 				A12441F61BD0EFD900D2588C /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
 				9F690B061BD7426400DDCED6 /* MyCollectionViewController.m in Sources */,
 				ADE8CF8C1BDBD420006CBC95 /* NGCompanyDetailVC.m in Sources */,

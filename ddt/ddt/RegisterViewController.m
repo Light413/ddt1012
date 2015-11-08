@@ -7,6 +7,8 @@
 //
 
 #import "RegisterViewController.h"
+#import "NSString+MD5Addition.h"
+#import "ServiceProtocolViewController.h"
 #define ViewHeight 163.0
 #define space 5.0
 @interface RegisterViewController ()<UITextFieldDelegate>
@@ -110,11 +112,27 @@
 #pragma mark --注册操作
 - (IBAction)registerBtnClick:(id)sender {
     //    jsondata={"mobile":"15136216190","pwd":"111","token":"15136216190(!)*^*1446701200"
+    if (phoneNumField.text.length != 11) {
+        [SVProgressHUD showInfoWithStatus:@"请填入正确的手机号"];
+        return;
+    }
+    if (passwordField.text.length ==0) {
+        [SVProgressHUD showInfoWithStatus:@"请填入密码"];
+        return;
+    }
+    if (confirmPasswordField.text.length ==0) {
+        [SVProgressHUD showInfoWithStatus:@"请填入密码"];
+        return;
+    }
+    if (![passwordField.text isEqual:confirmPasswordField.text]) {
+        [SVProgressHUD showInfoWithStatus:@"两次密码输入不同，请重新输入"];
+        return;
+    }
     NSDate *localDate = [NSDate date]; //获取当前时间
     NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
-    NSString *token = [NSString stringWithFormat:@"13564689371(!)*^*%@",timeString];
+    NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",phoneNumField.text,timeString];
     //...test
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"13564689371",@"mobile", @"123456789qq",@"pwd",token,@"token",nil];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:phoneNumField.text,@"mobile",[passwordField.text  stringFromMD5],@"pwd",token,@"token",nil];
     NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
     
     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata", nil];
@@ -124,6 +142,7 @@
         
         if ([[responseObject objectForKey:@"result"]integerValue] == 0) {
             [SVProgressHUD showSuccessWithStatus:@"注册成功"];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
         else
         {
@@ -137,6 +156,9 @@
 }
 
 - (IBAction)registerProtocol:(id)sender {
+    ServiceProtocolViewController *service = [[ServiceProtocolViewController alloc]init];
+    service.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:service animated:YES];
 }
 
 - (IBAction)verifyNumBtnClick:(id)sender {

@@ -62,10 +62,50 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     [femaleBtn setBackgroundImage:[UIImage imageNamed:@"checkbox1_checked@2x"] forState:UIControlStateSelected];
     _pickerViewType = NGSelectDataTypeNone;
     self.itemKey = @"11";
-
-    // Do any additional setup after loading the view.
+    [self showDefaultData];
+        // Do any additional setup after loading the view.
 }
+-(void)showDefaultData{
+    if ([[[MySharetools shared]getNickName]length]>0) {
+        nameField.text = [[MySharetools shared]getNickName];
+    }
+    if ([[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"xb"] isEqual:@"男"]) {
+        maleBtn.selected = YES;
+        femaleBtn.selected = NO;
+    }else{
+        maleBtn.selected = NO;
+        femaleBtn.selected = YES;
+    }
+    if ([[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"csrq"] length]>0) {
+        [birthBtn setTitle:[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"csrq"] forState:UIControlStateNormal];
+    }
+    
+    if ([[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"weixin"] length]>0) {
+        weixinField.text = [[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"weixin"];
+    }
+    if ([[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"company"]length]>0) {
+        companyField.text = [[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"company"];
+    }
+    NSString *tjr = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"tjr"]];
+    if (![tjr isEqual:@"(null)"]&&tjr.length>0) {
+        [recommandPersonBtn setTitle:tjr forState:UIControlStateNormal];
+    }
+    NSString *area = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"quyu"]];
+    [serviceAreaBtn setTitle:area forState:UIControlStateNormal];
+    NSString *business = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"yewu"]];
+    [bussinessSortBtn setTitle:business forState:UIControlStateNormal];
+    bussinessSortBtn.titleLabel.numberOfLines = 0;
+    bussinessSortBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    keyWordField.text = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"word"]];
+    NSString *content = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"content"]];
+    if (![content isEqual:@"(null)"]&&content.length>0) {
+        InfoTextView.text = content;
+        typeInLabel.hidden = YES;
+    }else{
+        typeInLabel.hidden = NO;
+    }
 
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -272,6 +312,13 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0, 35, CurrentScreenWidth, 216)];
     datePicker.datePickerMode = UIDatePickerModeDate;
     datePicker.locale = [[NSLocale alloc]initWithLocaleIdentifier:@"zh_CN"];
+//    if ([[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"csrq"] length]>0) {
+//        
+//    }else{
+//        [datePicker setDate:[NSDate date]];
+//    }
+
+    
     [datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     [_bgView addSubview:datePicker];
     [self.window addSubview:_bgView];
