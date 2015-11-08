@@ -29,4 +29,20 @@
 //性别
 +(NSArray*)getData_sex;
 
+
+//年龄
++(NSArray*)getData_age;
+
+
+//贷款金额
++(NSArray*)getData_daikuanjine;
+
+
+//贷款期限
++(NSArray*)getData_daikuanTime;
+
 @end
+
+
+
+

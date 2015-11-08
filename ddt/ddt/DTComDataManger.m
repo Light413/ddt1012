@@ -13,6 +13,9 @@ static NSString *zgxl = @"zgxl";//最高学历
 static NSString *gzjy = @"gzjy";//工作经验
 static NSString *qwxz = @"qwxz";//期望薪资
 static NSString *sex = @"sex";//性别
+static NSString *age = @"age";//年龄
+static NSString *daikuanjine = @"daikuaiJine";//贷款金额
+static NSString *daikuanTime = @"daikuaiTime";//贷款期限
 
 @implementation DTComDataManger
 {
@@ -73,6 +76,21 @@ static NSString *sex = @"sex";//性别
 +(NSArray*)getData_sex
 {
     return [[self share]getDataWith:sex];
+}
+
++(NSArray*)getData_age
+{
+    return [[self share]getDataWith:age];
+}
+
++(NSArray*)getData_daikuanjine
+{
+    return [[self share]getDataWith:daikuanjine];
+}
+
++(NSArray*)getData_daikuanTime
+{
+    return [[self share]getDataWith:daikuanTime];
 }
 
 @end

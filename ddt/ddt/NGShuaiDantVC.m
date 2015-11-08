@@ -13,6 +13,12 @@
 @interface NGShuaiDantVC ()<UITextFieldDelegate,UITextViewDelegate>
 {
     BOOL _textviewHasStart;
+    LPickerView * _pickview;
+    
+    NSString * _kehusf;//客户身份
+    NSArray *_kehusfArr;
+    NSString * _zxstatus;//征信状态
+    NSArray *_zxstatusArr;
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *tf_name;
@@ -54,9 +60,11 @@
     self.textview.inputAccessoryView = inputBtn;
     [self textviewDetaultDisp:YES];
 
-    
+    _kehusfArr = @[@"上班",@"个体",@"企业"];
+    _zxstatusArr =@[@"正常",@"异常",@"白户"];
 }
 
+//textview相关方法
 -(void)inputbtnAction
 {
     [self textviewDetaultDisp:YES];
@@ -86,10 +94,37 @@
 }
 
 #pragma mark -- btn action
+//选择客户身份和征信状态
+-(void)kehuisf_select:(UIButton*)btn withstartfirst:(BOOL)isfirst
+{
+    NSInteger starttag = isfirst ? btnbasetag : btnbasetag+8;
+    
+    btn.selected = !btn.selected;
+    for (int i =0; i < 3; i++) {
+      UIButton *tmp = (UIButton *) [self.tableView viewWithTag:i + starttag];
+        tmp == btn?1: (tmp.selected = NO);
+    }
+    
+    isfirst ? ( {_kehusf = btn.selected? _kehusfArr[btn.tag - starttag]  :@"";}):({_zxstatus = btn.selected? _zxstatusArr[btn.tag - starttag]  :@"";});
+    
+    NSLog(@"...kehushenfen : %@",_zxstatus);
+}
+
 
 - (IBAction)btnClickAction:(UIButton *)sender {
     
-    
+    switch (sender.tag - btnbasetag) {
+        case 0://客户身份
+        case 1:
+        case 2:[self kehuisf_select:sender withstartfirst:YES];break;
+            
+        case 8://征信状态
+        case 9:
+        case 10:[self kehuisf_select:sender withstartfirst:NO];break;
+            
+        case 11:[self textviewDetaultDisp:YES];break;
+        default:break;
+    }
     
     
 }
