@@ -36,7 +36,7 @@
     [phoneView addSubview:nameLabel];
     UITextField *phoneNumberField = [[UITextField alloc]initWithFrame:CGRectMake(nameLabel.right, 6, phoneView.width-nameLabel.width-3, 30)];
     phoneNumberField.keyboardType = UIKeyboardTypeNumberPad;
-    phoneNumberField.placeholder = @"请输入新的手机号:";
+    phoneNumberField.placeholder = @"请输入新的手机号";
     phoneNumberField.tag = 201;
     phoneNumberField.font = [UIFont systemFontOfSize:14];
     phoneNumberField.delegate = self;

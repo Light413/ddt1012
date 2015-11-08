@@ -130,13 +130,13 @@
             menuDetailViewController *menu =[[MySharetools shared]getViewControllerWithIdentifier:@"menuDetail" andstoryboardName:@"me"];
             menu.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:menu animated:YES];
-        }            
+        }
             break;
         case 1:{
             NGTongHDetailVC *vc = [[MySharetools shared]getViewControllerWithIdentifier:@"TongHDetailVC" andstoryboardName:@"secondSB"];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
-        
+            
         }
             break;
         case 2:{
@@ -150,6 +150,7 @@
             break;
     }
 }
+
 - (void)addheader:(UITableView *)freshTableView{
     freshTableView.header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadHeaderData)];
     [freshTableView.header beginRefreshing];

@@ -17,5 +17,6 @@
 - (IBAction)registerBtnClick:(id)sender;
 - (IBAction)registerProtocol:(id)sender;
 - (IBAction)verifyNumBtnClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *verifyBtn;
 
 @end

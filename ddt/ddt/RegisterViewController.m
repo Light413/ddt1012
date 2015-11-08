@@ -12,6 +12,8 @@
 @interface RegisterViewController ()<UITextFieldDelegate>
 {
     UIView *textFieldView;
+    NSTimer *_timer;
+    int count ;
 }
 @end
 
@@ -71,6 +73,10 @@
     mailField.delegate = self;
 }
 -(void)goback:(UIButton *)btn{
+    if ([_timer isValid]) {
+        [_timer invalidate];
+        _timer = nil;
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning {
@@ -134,5 +140,25 @@
 }
 
 - (IBAction)verifyNumBtnClick:(id)sender {
+    UIButton *btn = (UIButton *)sender;
+    btn.backgroundColor = RGBA(235, 235, 235, 1.0);
+    count = 60;
+    if (!_timer) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(verifyBtnChange:) userInfo:nil repeats:YES];
+    }
+
+}
+-(void)verifyBtnChange:(NSTimer *)timer{
+    --count;
+    [self.verifyBtn setTitle:[NSString stringWithFormat:@"%d秒后重新获取",count] forState:UIControlStateNormal];
+    self.verifyBtn.userInteractionEnabled = NO;
+    self.verifyBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    if (count == 0) {
+        [timer invalidate];
+        _timer = nil;
+        self.verifyBtn.backgroundColor = RGBA(229, 165, 45, 1);
+        [self.verifyBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+        self.verifyBtn.userInteractionEnabled = YES;
+    }
 }
 @end
