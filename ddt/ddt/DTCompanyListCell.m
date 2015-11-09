@@ -12,7 +12,9 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.name.font = [UIFont boldSystemFontOfSize:14];
+    self.name.font = [UIFont systemFontOfSize:14];
+    self.distructionLab.font = [UIFont systemFontOfSize:13];
+    self.detailLab.font = [UIFont systemFontOfSize:13];
 }
 
 -(void)setCellWith:(NSDictionary*)dic

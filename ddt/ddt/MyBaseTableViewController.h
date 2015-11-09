@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NGBaseTableVC.h"
 
-@interface MyBaseTableViewController : UITableViewController
+@interface MyBaseTableViewController : NGBaseTableVC
 @property(nonatomic,strong)UIWindow *window ;
 -(void)createLeftBarItemWithBackTitle;
 -(void)moreAction:(UIBarButtonItem *)barButtonItem;

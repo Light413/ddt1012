@@ -118,6 +118,9 @@
 		AD5B11D41BDB694C00285255 /* DTCompanyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11D21BDB694C00285255 /* DTCompanyListCell.m */; };
 		AD5B11D51BDB694C00285255 /* DTCompanyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD5B11D31BDB694C00285255 /* DTCompanyListCell.xib */; };
 		AD5B11D81BDBA43700285255 /* NGTongHDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11D71BDBA43700285255 /* NGTongHDetailVC.m */; };
+		AD7206941BF0F15D00573C4C /* DTJieDanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7206921BF0F15D00573C4C /* DTJieDanCell.m */; settings = {ASSET_TAGS = (); }; };
+		AD7206951BF0F15D00573C4C /* DTJieDanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD7206931BF0F15D00573C4C /* DTJieDanCell.xib */; settings = {ASSET_TAGS = (); }; };
+		AD7206981BF0FC9100573C4C /* NGCompanyListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7206971BF0FC9100573C4C /* NGCompanyListVC.m */; settings = {ASSET_TAGS = (); }; };
 		AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB921BD21E3000C23992 /* NGXMLReader.m */; };
 		AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */; };
 		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; };
@@ -385,6 +388,11 @@
 		AD5B11D31BDB694C00285255 /* DTCompanyListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DTCompanyListCell.xib; sourceTree = "<group>"; };
 		AD5B11D61BDBA43700285255 /* NGTongHDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTongHDetailVC.h; sourceTree = "<group>"; };
 		AD5B11D71BDBA43700285255 /* NGTongHDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGTongHDetailVC.m; sourceTree = "<group>"; };
+		AD7206911BF0F15D00573C4C /* DTJieDanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTJieDanCell.h; sourceTree = "<group>"; };
+		AD7206921BF0F15D00573C4C /* DTJieDanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTJieDanCell.m; sourceTree = "<group>"; };
+		AD7206931BF0F15D00573C4C /* DTJieDanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DTJieDanCell.xib; sourceTree = "<group>"; };
+		AD7206961BF0FC9100573C4C /* NGCompanyListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCompanyListVC.h; sourceTree = "<group>"; };
+		AD7206971BF0FC9100573C4C /* NGCompanyListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGCompanyListVC.m; sourceTree = "<group>"; };
 		AD92EB911BD21E3000C23992 /* NGXMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGXMLReader.h; sourceTree = "<group>"; };
 		AD92EB921BD21E3000C23992 /* NGXMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGXMLReader.m; sourceTree = "<group>"; };
 		AD92EB941BD22A6400C23992 /* NGXMLDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGXMLDataModel.h; sourceTree = "<group>"; };
@@ -823,6 +831,9 @@
 				A15F1C471BD615A600E854A7 /* NGSecondListCell.h */,
 				A15F1C481BD615A600E854A7 /* NGSecondListCell.m */,
 				A15F1C491BD615A600E854A7 /* NGSecondListCell.xib */,
+				AD7206911BF0F15D00573C4C /* DTJieDanCell.h */,
+				AD7206921BF0F15D00573C4C /* DTJieDanCell.m */,
+				AD7206931BF0F15D00573C4C /* DTJieDanCell.xib */,
 				AD5B11D11BDB694C00285255 /* DTCompanyListCell.h */,
 				AD5B11D21BDB694C00285255 /* DTCompanyListCell.m */,
 				AD5B11D31BDB694C00285255 /* DTCompanyListCell.xib */,
@@ -1045,6 +1056,8 @@
 		A1DAAE721B493999004F634B /* gongsi */ = {
 			isa = PBXGroup;
 			children = (
+				AD7206961BF0FC9100573C4C /* NGCompanyListVC.h */,
+				AD7206971BF0FC9100573C4C /* NGCompanyListVC.m */,
 			);
 			name = gongsi;
 			sourceTree = "<group>";
@@ -1421,6 +1434,7 @@
 				A15F1C4B1BD615A600E854A7 /* NGSecondListCell.xib in Resources */,
 				9FEFFCD11BCFAFE80036C23D /* checkbox1_unchecked@2x.png in Resources */,
 				A17B7D021B43F867003CF895 /* LaunchScreen.xib in Resources */,
+				AD7206951BF0F15D00573C4C /* DTJieDanCell.xib in Resources */,
 				ADD431571BE509EE000C03D8 /* UMShareEditViewControlleriPad.xib in Resources */,
 				ADD431561BE509EE000C03D8 /* UMShareEditViewController.xib in Resources */,
 				A12442091BD0F6A100D2588C /* provinces.xml in Resources */,
@@ -1513,6 +1527,7 @@
 				A12441F91BD0EFD900D2588C /* FMDatabasePool.m in Sources */,
 				A12CD4F51BCBAC990020CB27 /* UIViewController+RBStoryboardLink.m in Sources */,
 				A1AC85551BC8DB460099C7F7 /* NGCollectionReusableView.m in Sources */,
+				AD7206941BF0F15D00573C4C /* DTJieDanCell.m in Sources */,
 				B2879BDF1BDCC92900B39021 /* AboutUsViewController.m in Sources */,
 				9F49D86B1BD8F82F0048C96C /* ReleaseMeetingViewController.m in Sources */,
 				AD5B11D81BDBA43700285255 /* NGTongHDetailVC.m in Sources */,
@@ -1556,6 +1571,7 @@
 				A12CD4F21BCBAC990020CB27 /* RBStoryboardPopoverSegue.m in Sources */,
 				A12441CE1BD0EDD200D2588C /* MJRefreshAutoGifFooter.m in Sources */,
 				A12CD4DC1BCBA6960020CB27 /* SVIndefiniteAnimatedView.m in Sources */,
+				AD7206981BF0FC9100573C4C /* NGCompanyListVC.m in Sources */,
 				A17B7CF71B43F867003CF895 /* AppDelegate.m in Sources */,
 				A17D0CD11BD4C0DE00E465A7 /* ChineseToPinyin.m in Sources */,
 				A1042B811B64D1E600A74215 /* NGHomeVC.m in Sources */,

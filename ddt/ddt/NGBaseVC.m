@@ -21,6 +21,10 @@
     {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+    
+    UIBarButtonItem *_item = [[UIBarButtonItem alloc]init];
+    _item.title = @"";
+    self.navigationItem.backBarButtonItem = _item;
 }
 
 
@@ -31,13 +35,13 @@
 -(void)createLeftBarItemWithBackTitle{
     UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
     [button setBackgroundColor:[UIColor clearColor]];
-    [button setFrame:CGRectMake(0, 0, 16, 22)] ;
+    [button setFrame:CGRectMake(0, 0, 30, 30)] ;
     [button setImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateNormal] ;
     [button setImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateSelected] ;
     [button addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* item=[[UIBarButtonItem alloc]initWithCustomView:button];
     [self.navigationItem setLeftBarButtonItem:item];
-    [button setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)] ;
+    [button setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)] ;
 }
 -(void)goback:(UIButton *)btn{
 

@@ -1,18 +1,12 @@
 //
-//  NGSecondVC.m
+//  NGCompanyListVC.m
 //  ddt
 //
-//  Created by gener on 15/10/13.
-//  Copyright (c) 2015年 Light. All rights reserved.
+//  Created by wyg on 15/11/10.
+//  Copyright © 2015年 Light. All rights reserved.
 //
-//NGVCTypeId_1  同行Id
-//NGVCTypeId_2  公司Id
-//NGVCTypeId_3  附近同行
-//NGVCTypeId_4  接单
-//NGVCTypeId_5  求职
-//NGVCTypeId_6  招聘
 
-#import "NGSecondVC.h"
+#import "NGCompanyListVC.h"
 #import "NGSearchBar.h"
 #import "NGPopListView.h"
 #import "AddCommanyInfoViewController.h"
@@ -30,7 +24,8 @@ static NSString * showZhaoPinVcID   = @"showZhaoPinVcID";
 static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
 static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 
-@interface NGSecondVC ()<NGSearchBarDelegate,NGPopListDelegate,UITableViewDataSource,UITableViewDelegate>
+
+@interface NGCompanyListVC ()<NGSearchBarDelegate,NGPopListDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     //pop view相关
     NGPopListView *popView;
@@ -43,30 +38,35 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     NSArray         * _common_cellId_arr;//复用cell ID
     NSString        * _common_list_cellReuseId;//当前复用cellID
     NSString        * _common_list_cellClassStr;//当前cell class
-    
-    UIBarButtonItem *rightitem ;
 }
 @end
 
-@implementation NGSecondVC
+@implementation NGCompanyListVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
     [self initData];
     [self initSubviews];
-    [self createLeftBarItemWithBackTitle];
+    
 }
+
 -(void)awakeFromNib
 {
     UIBarButtonItem *_backitem =[ [UIBarButtonItem alloc]init];
     _backitem.title = @"";
     self.navigationItem.backBarButtonItem = _backitem;
-}
+    
+    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc]initWithTitle:@"添加公司" style:UIBarButtonItemStyleBordered target:self action:@selector(rightItemClick)];
 
--(void)goback:(UIButton *)btn
+    self.navigationItem.rightBarButtonItem = rightitem;
+}
+#pragma mark --添加公司
+-(void)rightItemClick
 {
-    [popView disappear];
-    [self.navigationController popViewControllerAnimated:YES];
+    AddCommanyInfoViewController *commany = [[MySharetools shared]getViewControllerWithIdentifier:@"AddCommany" andstoryboardName:@"me"];
+    commany.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:commany animated:YES];
 }
 
 
@@ -98,7 +98,10 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
             NSArray *_btnTitleArr2 = @[@"服务区域",@"业务类型"];
             _common_pop_btnTitleArr = _btnTitleArr2;
             _common_pop_btnListArr  = @[_areaArr,_typeArr];
-
+            //            UIBarButtonItem *rightitem = [[UIBarButtonItem alloc]initWithTitle:@"添加公司" style:UIBarButtonItemStyleBordered target:self action:@selector(rightItemClick)];
+            //
+            //            self.navigationItem.rightBarButtonItem = rightitem;
+            
         } break;
         case NGVCTypeId_3:
         {//附近同行
@@ -148,24 +151,23 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     _common_list_cellReuseId = [_common_cellId_arr objectAtIndex:self.vcType - 1];
     
     NSArray *_arr = @[
-  @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
-  @[@{@"1":@"车贷金融公司",@"2":@"民间信贷－房产地眼粉色经典福克斯附近的时刻复活节恢复建设的附近发生地方防护服",@"3":@"车辆抵押，信用贷款／信用卡付款"}],
-    @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],//附近同行
-    @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
-    @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
-    @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}]
-  ];
+                      @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
+                      @[@{@"1":@"车贷金融公司",@"2":@"民间信贷－房产地眼粉色经典福克斯附近的时刻复活节恢复建设的附近发生地方防护服",@"3":@"车辆抵押，信用贷款／信用卡付款"}],
+                      @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],//附近同行
+                      @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
+                      @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
+                      @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}]
+                      ];
     
     [_common_list_dataSource addObjectsFromArray:[_arr objectAtIndex:self.vcType - 1]];
 }
-
 
 
 #pragma mark- init subviews
 -(void)initSubviews
 {
     NSArray *_titleArr = @[@"贷款同行名片",@"贷款公司名片",@"附近同行",@"我要接单",@"我要求职",@"我要招聘"];
-    self.title = [_titleArr objectAtIndex:self.vcType - 1];
+    self.title = @"贷款公司名片";
     
     popView = [[NGPopListView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, 40) withDelegate:self withSuperView:self.view];
     [self.view addSubview:popView];
@@ -192,6 +194,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     
     
 }
+
 
 #pragma mark --加载数据
 -(void)loadMoreData
@@ -231,12 +234,12 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 
 -(void)popListView:(NGPopListView *)popListView  didSelectRowAtIndex:(NSInteger )index
 {
- //...请求网络
+    //...请求网络
     
 }
 
 
-#pragma mark -NGSearchBarDelegate 
+#pragma mark -NGSearchBarDelegate
 -(void)searchBarWillBeginSearch:(NGSearchBar *)searchBar
 {
     NSLog(@"begin");
@@ -272,7 +275,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
             };
             
         }break;
-         
+            
         case NGVCTypeId_2:
         {
             cell = [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
@@ -282,7 +285,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
                 NSLog(@"...cell btn click : %ld",tag);
             };
         }break;
-        
+            
         case NGVCTypeId_4:
         case NGVCTypeId_5:
         case NGVCTypeId_6:
@@ -294,7 +297,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
             };
             
         }break;
-        
+            
         default:break;
     }
     
@@ -315,7 +318,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
             CGSize _size = CGSizeMake(CurrentScreenWidth -100, 999);
             UIFont *font = [UIFont systemFontOfSize:15];
             CGSize _new =  [ToolsClass calculateSizeForText:str :_size font:font];
-           
+            
             return _new.height + 20;
         }break;
             
@@ -343,7 +346,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
             UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"TongHDetailVC"];
             [self.navigationController pushViewController:vc animated:YES];
             
-//            [self performSegueWithIdentifier:showTongHangVcID sender:nil];
+            //            [self performSegueWithIdentifier:showTongHangVcID sender:nil];
         }break;
         case NGVCTypeId_4://接单
         {
@@ -369,12 +372,23 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -382,6 +396,6 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-
+*/
 
 @end

@@ -355,7 +355,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     else if (indexPath.section == 1)
     {
         switch (indexPath.row) {
-            case 0:
+            case 0://附近同行
             {
                 _selectIndex = 3;
                 [self performSegueWithIdentifier:showSecondVCID sender:nil];

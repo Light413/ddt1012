@@ -14,10 +14,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *lab_phone;
 @property (weak, nonatomic) IBOutlet UILabel *lab_type;
 @property (weak, nonatomic) IBOutlet UILabel *lab_detail;
+@property (weak, nonatomic) IBOutlet UIButton *btn_fujin;
 
 @property(nonatomic,copy)void(^btnClickBlock)(NSInteger);
 
 
--(void)setCellWith:(NSDictionary*)dic;
+-(void)setCellWith:(NSDictionary*)dic withOptionIndex:(NSInteger)index;
 
 @end

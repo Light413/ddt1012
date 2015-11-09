@@ -23,7 +23,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ful-fk-uW6">
-                        <rect key="frame" x="73" y="3" width="36" height="17"/>
+                        <rect key="frame" x="73" y="3" width="35.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -41,7 +41,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="139999090" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GcL-MW-gVq">
-                        <rect key="frame" x="117" y="4" width="72" height="16"/>
+                        <rect key="frame" x="116.5" y="4" width="71.5" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -69,9 +69,23 @@
                             <action selector="cellBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="9lE-zg-nAf"/>
                         </connections>
                     </button>
+                    <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oei-nj-k5J">
+                        <rect key="frame" x="193" y="3" width="60" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="Bum-F6-1uC"/>
+                            <constraint firstAttribute="width" constant="60" id="slZ-sH-58B"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <inset key="titleEdgeInsets" minX="-5" minY="0.0" maxX="-3" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="2" maxX="50" maxY="2"/>
+                        <state key="normal" title="1000千米" image="icon_fujin">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="fTI-16-zjm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1g7-C2-6Q7"/>
+                    <constraint firstItem="Oei-nj-k5J" firstAttribute="centerY" secondItem="GcL-MW-gVq" secondAttribute="centerY" id="4av-W7-Mnd"/>
                     <constraint firstItem="ful-fk-uW6" firstAttribute="leading" secondItem="deP-a0-fxX" secondAttribute="leading" id="4dM-Cm-IXL"/>
                     <constraint firstItem="4RD-30-dCq" firstAttribute="leading" secondItem="deP-a0-fxX" secondAttribute="leading" id="9T2-6G-5iQ"/>
                     <constraint firstItem="4RD-30-dCq" firstAttribute="top" secondItem="deP-a0-fxX" secondAttribute="bottom" constant="8" id="Akv-rU-FPq"/>
@@ -86,10 +100,16 @@
                     <constraint firstItem="RJx-vW-D32" firstAttribute="centerY" secondItem="JHu-AI-03E" secondAttribute="centerY" id="YEZ-bK-gnW"/>
                     <constraint firstAttribute="bottomMargin" secondItem="fTI-16-zjm" secondAttribute="bottom" constant="4" id="bAT-VK-dYl"/>
                     <constraint firstAttribute="trailingMargin" secondItem="GcL-MW-gVq" secondAttribute="trailing" constant="295" id="d9E-4h-46Z"/>
+                    <constraint firstItem="GcL-MW-gVq" firstAttribute="centerY" secondItem="ful-fk-uW6" secondAttribute="centerY" id="epl-Hg-btR"/>
+                    <constraint firstItem="Oei-nj-k5J" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="epp-VY-lxu"/>
+                    <constraint firstItem="Oei-nj-k5J" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="h6j-nG-jcO"/>
                     <constraint firstItem="deP-a0-fxX" firstAttribute="top" secondItem="ful-fk-uW6" secondAttribute="bottom" constant="8" id="hM3-zP-5X0"/>
                     <constraint firstAttribute="trailingMargin" secondItem="GcL-MW-gVq" secondAttribute="trailing" constant="295" id="ho8-DZ-RbB"/>
                     <constraint firstItem="GcL-MW-gVq" firstAttribute="leading" secondItem="ful-fk-uW6" secondAttribute="trailing" constant="8" id="jKy-HQ-ykI"/>
+                    <constraint firstItem="GcL-MW-gVq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="nm4-3J-IH7"/>
                     <constraint firstItem="deP-a0-fxX" firstAttribute="centerY" secondItem="fTI-16-zjm" secondAttribute="centerY" id="oHS-Be-XVu"/>
+                    <constraint firstItem="GcL-MW-gVq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qaO-9o-qoJ"/>
+                    <constraint firstItem="Oei-nj-k5J" firstAttribute="leading" secondItem="GcL-MW-gVq" secondAttribute="trailing" constant="5" id="rdd-dS-g5x"/>
                     <constraint firstItem="4RD-30-dCq" firstAttribute="leading" secondItem="fTI-16-zjm" secondAttribute="trailing" constant="34" id="ssG-UF-WNh"/>
                     <constraint firstAttribute="bottomMargin" secondItem="4RD-30-dCq" secondAttribute="bottom" constant="-5" id="ttr-WN-IGO"/>
                     <constraint firstItem="RJx-vW-D32" firstAttribute="leading" secondItem="JHu-AI-03E" secondAttribute="trailing" constant="2" id="ygR-2Y-IIQ"/>
@@ -103,11 +123,17 @@
                         <exclude reference="GO6-GY-6Ez"/>
                         <exclude reference="ssG-UF-WNh"/>
                         <exclude reference="d9E-4h-46Z"/>
+                        <exclude reference="epl-Hg-btR"/>
                         <exclude reference="ho8-DZ-RbB"/>
+                        <exclude reference="nm4-3J-IH7"/>
+                        <exclude reference="qaO-9o-qoJ"/>
+                        <exclude reference="epp-VY-lxu"/>
+                        <exclude reference="h6j-nG-jcO"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="btn_fujin" destination="Oei-nj-k5J" id="DgO-Zb-1PM"/>
                 <outlet property="img_avatar" destination="fTI-16-zjm" id="2PR-9z-Xh1"/>
                 <outlet property="lab_detail" destination="4RD-30-dCq" id="hs4-PJ-1fu"/>
                 <outlet property="lab_name" destination="ful-fk-uW6" id="QDx-es-zDN"/>
@@ -121,5 +147,6 @@
         <image name="cell_love_no" width="25" height="25"/>
         <image name="cell_love_yes" width="25" height="25"/>
         <image name="cell_phone" width="25" height="25"/>
+        <image name="icon_fujin" width="13" height="17"/>
     </resources>
 </document>
