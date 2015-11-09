@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define pgyAppId  @"3c919769defbf0e03d00180548c33c41"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

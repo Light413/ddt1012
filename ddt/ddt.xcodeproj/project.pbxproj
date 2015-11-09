@@ -88,6 +88,8 @@
 		A143F83B1BCC96D50029E555 /* companySB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A143F83A1BCC96D50029E555 /* companySB.storyboard */; };
 		A143F83D1BCC96E50029E555 /* me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A143F83C1BCC96E50029E555 /* me.storyboard */; };
 		A143F8401BCCA5D60029E555 /* NGSecondVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A143F83F1BCCA5D60029E555 /* NGSecondVC.m */; };
+		A14468E71BF055F7000D6A2B /* PgySDk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14468E51BF055F7000D6A2B /* PgySDk.framework */; settings = {ASSET_TAGS = (); }; };
+		A14468E81BF055F7000D6A2B /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14468E61BF055F7000D6A2B /* PgyUpdate.framework */; settings = {ASSET_TAGS = (); }; };
 		A1487A401BEB3CCD00326359 /* NSString+ToJson.m in Sources */ = {isa = PBXBuildFile; fileRef = A1487A3F1BEB3CCC00326359 /* NSString+ToJson.m */; };
 		A149A4411BCF37320098E7C3 /* NGBaseListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A149A4401BCF37320098E7C3 /* NGBaseListView.m */; };
 		A157110E1BD4EAB500D586F6 /* LPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A157110D1BD4EAB500D586F6 /* LPickerView.m */; };
@@ -332,6 +334,8 @@
 		A143F83C1BCC96E50029E555 /* me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = me.storyboard; sourceTree = "<group>"; };
 		A143F83E1BCCA5D60029E555 /* NGSecondVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSecondVC.h; sourceTree = "<group>"; };
 		A143F83F1BCCA5D60029E555 /* NGSecondVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSecondVC.m; sourceTree = "<group>"; };
+		A14468E51BF055F7000D6A2B /* PgySDk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDk.framework; sourceTree = "<group>"; };
+		A14468E61BF055F7000D6A2B /* PgyUpdate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgyUpdate.framework; sourceTree = "<group>"; };
 		A1487A3E1BEB3CCC00326359 /* NSString+ToJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ToJson.h"; sourceTree = "<group>"; };
 		A1487A3F1BEB3CCC00326359 /* NSString+ToJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ToJson.m"; sourceTree = "<group>"; };
 		A149A43F1BCF37320098E7C3 /* NGBaseListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGBaseListView.h; sourceTree = "<group>"; };
@@ -516,9 +520,11 @@
 				A12442021BD0F1DF00D2588C /* libsqlite3.dylib in Frameworks */,
 				ADD4315D1BE509EE000C03D8 /* libSocialSina.a in Frameworks */,
 				ADD4315C1BE509EE000C03D8 /* libSocialLaiWang.a in Frameworks */,
+				A14468E81BF055F7000D6A2B /* PgyUpdate.framework in Frameworks */,
 				ADD4315F1BE509EE000C03D8 /* TencentOpenAPI.framework in Frameworks */,
 				ADD431641BE509EE000C03D8 /* libYixinSDK_V2.2.a in Frameworks */,
 				ADD431611BE509EE000C03D8 /* libSocialWechat.a in Frameworks */,
+				A14468E71BF055F7000D6A2B /* PgySDk.framework in Frameworks */,
 				05B69C2E05AB6F177D83E56F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -785,6 +791,7 @@
 		A12CD4FA1BCBBEDF0020CB27 /* thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				A14468E41BF055F7000D6A2B /* sdk */,
 				ADD4311D1BE509CD000C03D8 /* UMSocail */,
 				A12441EB1BD0EFD900D2588C /* Helper */,
 				A12441DC1BD0EFD900D2588C /* FMDB */,
@@ -793,6 +800,15 @@
 				A12CD4D51BCBA6960020CB27 /* SVProgressHUD */,
 			);
 			name = thirdparty;
+			sourceTree = "<group>";
+		};
+		A14468E41BF055F7000D6A2B /* sdk */ = {
+			isa = PBXGroup;
+			children = (
+				A14468E51BF055F7000D6A2B /* PgySDk.framework */,
+				A14468E61BF055F7000D6A2B /* PgyUpdate.framework */,
+			);
+			path = sdk;
 			sourceTree = "<group>";
 		};
 		A15A95231BC7C37B00643170 /* cell */ = {
@@ -1752,6 +1768,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/ddt/sdk",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ddt/PrefixHeader.pch";
@@ -1780,12 +1797,13 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/ddt/sdk",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ddt/PrefixHeader.pch";
@@ -1803,7 +1821,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.light.ddt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5ebb9ba5-e406-4d9f-9144-564def68b421";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;

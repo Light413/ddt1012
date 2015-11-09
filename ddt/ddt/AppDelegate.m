@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import <PgySDK/PgyManager.h>
+#import <PgyUpdate/PgyUpdateManager.h>
 
 @interface AppDelegate ()
 
@@ -18,6 +20,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [UMSocialData setAppKey:umengkey];
+    [[PgyUpdateManager sharedPgyManager]startManagerWithAppId:pgyAppId];
+    [[PgyManager sharedPgyManager]startManagerWithAppId:pgyAppId];
     
     self.rootTabVC = (UITabBarController*)self.window.rootViewController;
     [self initTabBar];
