@@ -88,8 +88,8 @@
 		A143F83B1BCC96D50029E555 /* companySB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A143F83A1BCC96D50029E555 /* companySB.storyboard */; };
 		A143F83D1BCC96E50029E555 /* me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A143F83C1BCC96E50029E555 /* me.storyboard */; };
 		A143F8401BCCA5D60029E555 /* NGSecondVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A143F83F1BCCA5D60029E555 /* NGSecondVC.m */; };
-		A14468E71BF055F7000D6A2B /* PgySDk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14468E51BF055F7000D6A2B /* PgySDk.framework */; settings = {ASSET_TAGS = (); }; };
-		A14468E81BF055F7000D6A2B /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14468E61BF055F7000D6A2B /* PgyUpdate.framework */; settings = {ASSET_TAGS = (); }; };
+		A14468E71BF055F7000D6A2B /* PgySDk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14468E51BF055F7000D6A2B /* PgySDk.framework */; };
+		A14468E81BF055F7000D6A2B /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14468E61BF055F7000D6A2B /* PgyUpdate.framework */; };
 		A1487A401BEB3CCD00326359 /* NSString+ToJson.m in Sources */ = {isa = PBXBuildFile; fileRef = A1487A3F1BEB3CCC00326359 /* NSString+ToJson.m */; };
 		A149A4411BCF37320098E7C3 /* NGBaseListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A149A4401BCF37320098E7C3 /* NGBaseListView.m */; };
 		A157110E1BD4EAB500D586F6 /* LPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A157110D1BD4EAB500D586F6 /* LPickerView.m */; };

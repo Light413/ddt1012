@@ -17,11 +17,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.window = [[UIApplication sharedApplication].delegate window] ;
+    //[self.view setBackgroundColor:RGBA(235, 235, 235, 1.0)];
+    if (IOS7LATER)
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+-(void)createLeftBarItemWithBackTitle{
+    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundColor:[UIColor clearColor]];
+    [button setFrame:CGRectMake(0, 0, 16, 22)] ;
+    [button setImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateNormal] ;
+    [button setImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateSelected] ;
+    [button addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* item=[[UIBarButtonItem alloc]initWithCustomView:button];
+    [self.navigationItem setLeftBarButtonItem:item];
+    [button setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)] ;
 }
 //创建导航栏右侧按钮
 -(void)createRightBarItemWithBackTitle:(NSString *)moreTitle

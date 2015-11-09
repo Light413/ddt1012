@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 Light. All rights reserved.
 //
 
-#import "NGBaseVC.h"
+#import "MyBaseTableViewController.h"
 
-@interface RegisterViewController : NGBaseVC
+@interface RegisterViewController : MyBaseTableViewController
 @property (weak, nonatomic) IBOutlet UIView *backView;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;

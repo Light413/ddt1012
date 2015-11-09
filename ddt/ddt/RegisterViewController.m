@@ -31,15 +31,17 @@
     self.title = @"账号注册";
     backView.layer.borderColor = [RGBA(207, 207, 207, 1)CGColor];
     backView.layer.borderWidth = 1;
+    backView.layer.borderColor = [RGBA(207, 207, 207, 1)CGColor];
+    backView.layer.borderWidth = 1;
     [self createRegisterViews];
-    //注册键盘收起的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardWillShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
+//    //注册键盘收起的通知
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(keyboardWasShown:)
+//                                                 name:UIKeyboardWillShowNotification object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(keyboardWillBeHidden:)
+//                                                 name:UIKeyboardWillHideNotification object:nil];
     // Do any additional setup after loading the view.
 }
 - (void)keyboardWasShown:(NSNotification*)aNotification
@@ -84,6 +86,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     if ([phoneNumField isFirstResponder]) {
