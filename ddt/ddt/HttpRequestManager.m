@@ -10,7 +10,7 @@
 #import <UIKit+AFNetworking.h>
 
 #define DEFAULT_CONCURRENT_OPERATION_COUNT 6
-#define DEFAULT_HTTPREQUESR_TIMEOUT 50
+#define DEFAULT_HTTPREQUESR_TIMEOUT 60
 
 
 @interface HttpRequestManager ()
@@ -98,8 +98,8 @@
         NSLog(@"error post requset : %@",[error localizedDescription]);
         dispatch_async(dispatch_get_main_queue(), ^{
             [[AFNetworkActivityIndicatorManager sharedManager]decrementActivityCount];
-            if (task && task.responseSuccessblock) {
-                task.responseSuccessblock(operation,error);
+            if (task && task.responseFaileBlock) {
+                task.responseFaileBlock(operation,error);
             }
         });
     }];
@@ -136,8 +136,8 @@
         NSLog(@"error post requset : %@",[error localizedDescription]);
         dispatch_async(dispatch_get_main_queue(), ^{
             [[AFNetworkActivityIndicatorManager sharedManager]decrementActivityCount];
-            if (task && task.responseSuccessblock) {
-                task.responseSuccessblock(operation,error);
+            if (task && task.responseFaileBlock) {
+                task.responseFaileBlock(operation,error);
             }
         });
     }];

@@ -287,10 +287,10 @@
     [userIcon setBackgroundImage:[UIImage imageNamed:@"head_noregist"] forState:UIControlStateNormal];
     [userIcon addTarget:self action:@selector(usericonBtn:) forControlEvents:UIControlEventTouchUpInside];
     [backVIew addSubview:userIcon];
-    UILabel *nickNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(userIcon.right+10, 10, 0, 15)];
+    UILabel *nickNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(userIcon.right+10, 10, 0, 20)];
     //nickNameLabel.text = [[MySharetools shared]getNickName];
-    nickNameLabel.font = [UIFont systemFontOfSize:13];
-    nickNameLabel.textColor = [UIColor greenColor];
+    nickNameLabel.font = [UIFont systemFontOfSize:14];
+    nickNameLabel.textColor = [UIColor orangeColor];
     //nickNameLabel.backgroundColor = [UIColor blackColor];
     nickNameLabel.tag = 101;
     [nickNameLabel sizeToFit];
@@ -396,6 +396,7 @@
     //    secondView.layer.cornerRadius = 8;
     //    [self.window addSubview:secondView];
     
+    
     UIActionSheet *useraction = [[UIActionSheet alloc]initWithTitle:@"修改头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"选择本地图片",@"拍照", nil];
     [useraction showInView:[UIApplication sharedApplication].keyWindow];
 }
@@ -439,13 +440,12 @@
 }
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+   
     [picker dismissViewControllerAnimated:YES completion:^() {
-        
         NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
         NSString *documentsDirectory =NSTemporaryDirectory();
         
         if ([mediaType isEqualToString:@"public.image"]){
-            
             UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
             
             NSString *imageFile = [documentsDirectory stringByAppendingPathComponent:@"temp0.jpg"];
@@ -455,30 +455,51 @@
             NSData *dataImage = UIImageJPEGRepresentation([[MySharetools shared]formatUploadImage:image], 0.7);
 //            NSMutableArray *dataArray = [[NSMutableArray alloc]init];
 //            [dataArray addObject:dataImage];
-            [self postData:dataImage];
+            
+            //............test data
+            NSData *testData= UIImageJPEGRepresentation([UIImage imageNamed:@"item_01"], 1);
+            [self postData:testData];
         }
     }];
 }
+
 -(void)postData:(NSData *)dataImage{
-    NSDate *localDate = [NSDate date]; //获取当前时间
-    NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
-    NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",[[MySharetools shared]getPhoneNumber],timeString];
-    //...test
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:[[MySharetools shared] getNickName],@"username",@"test.jpg",@"pic",[Base64 stringByEncodingData:dataImage],@"data",token,@"token",nil];
-    NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata", nil];
     
-    [SVProgressHUD showWithStatus:@"正在提交"];
+    //获取json参数字符串
+    NSString * token = [[MySharetools shared]getsessionid];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:[[MySharetools shared] getPhoneNumber],@"username",@"test.jpg",@"pic",[Base64 stringByEncodingData:dataImage],@"data",nil];
+    NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
+    
+    //post请求参数：jsondata + token
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata",token,@"token" ,nil];
+    
+    [SVProgressHUD showWithStatus:@"正在上传头像"];
     RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_usericon", @"") parms:dic2 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
+              [SVProgressHUD showSuccessWithStatus:@"上传完成"];
+              //...设置当前头像的图片
+                
+                
+                
+            }
+            else
+            {
+                [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+            }
+        }
+
         NSLog(@"...responseObject  :%@",responseObject);
     } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
     }];
-    [HttpRequestManager doPostOperationWithTask:_task constructingBodyWithBlock:(void(^)(id<AFMultipartFormData>))dataImage];
-    [HttpRequestManager doPostOperationWithTask:_task constructingBodyWithBlock:^(id<AFMultipartFormData>formData){
-        
-    }];
+
+    [HttpRequestManager doPostOperationWithTask:_task];
 }
+
+
+
+
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:^(){
     }];

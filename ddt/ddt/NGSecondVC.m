@@ -20,6 +20,7 @@
 
 #import "NGSecondListCell.h"
 #import "DTCompanyListCell.h"
+#import "NGJieDanListCell.h"
 
 static NSString * showTongHangVcID  = @"showTongHangVcID";
 static NSString * showCompanyVcID   = @"showCompanyVcID";
@@ -29,6 +30,7 @@ static NSString * showZhaoPinVcID   = @"showZhaoPinVcID";
 
 static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
 static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
+static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 
 @interface NGSecondVC ()<NGSearchBarDelegate,NGPopListDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -144,7 +146,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     
     //...test   tableview
     _common_list_dataSource = [[NSMutableArray alloc]init];
-    _common_cellId_arr = @[NGSecondListCellReuseId,NGCompanyListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId];
+    _common_cellId_arr = @[NGSecondListCellReuseId,NGCompanyListCellReuseId,NGSecondListCellReuseId,JieDanCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId];
     _common_list_cellReuseId = [_common_cellId_arr objectAtIndex:self.vcType - 1];
     
     NSArray *_arr = @[
@@ -183,6 +185,8 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     _tableView.tableFooterView = [[UIView alloc]init];
     [_tableView registerNib:[UINib nibWithNibName:@"NGSecondListCell" bundle:nil] forCellReuseIdentifier:NGSecondListCellReuseId];
     [_tableView registerNib:[UINib nibWithNibName:@"DTCompanyListCell" bundle:nil] forCellReuseIdentifier:NGCompanyListCellReuseId];
+    [_tableView registerNib:[UINib nibWithNibName:@"NGJieDanListCell" bundle:nil] forCellReuseIdentifier:JieDanCellReuseId];
+    
     
     //添加下拉刷新
     __weak __typeof(self) weakSelf = self;
@@ -284,6 +288,14 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
         }break;
         
         case NGVCTypeId_4:
+        {
+            cell =  [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
+//            [(NGSecondListCell *)cell setCellWith:_dic0 withOptionIndex:self.vcType];
+//            ((NGSecondListCell *)cell).btnClickBlock = ^(NSInteger tag){
+//                NSLog(@"...cell btn click : %ld",tag);
+//            };
+        }break;
+            
         case NGVCTypeId_5:
         case NGVCTypeId_6:
         {

@@ -9,8 +9,11 @@
 #import "AppDelegate.h"
 #import <PgySDK/PgyManager.h>
 #import <PgyUpdate/PgyUpdateManager.h>
+
 #import "UMSocialQQHandler.h"
- #import "UMSocialWechatHandler.h"
+#import "UMSocialWechatHandler.h"
+#import "UMSocialSinaHandler.h"
+
 
 @interface AppDelegate ()
 
@@ -22,6 +25,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [UMSocialData setAppKey:umengkey];
+    [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    
     [UMSocialQQHandler setQQWithAppId:@"1104880067" appKey:@"pqNu2AWR1n83gdML" url:@"http://www.umeng.com/social"];
     //设置微信AppId、appSecret，分享url
     [UMSocialWechatHandler setWXAppId:@"wxb2eb04bf9f024905" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" url:@"http://www.umeng.com/social"];
@@ -84,6 +89,27 @@
         [(UIBarButtonItem *)obj setTitle:[titleArr objectAtIndex:idx]];
     }];
 }
+
+
+#pragma mark --第三方 回调方法
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+
+
+
+
 
 
 

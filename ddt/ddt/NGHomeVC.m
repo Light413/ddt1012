@@ -66,6 +66,10 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
         if (str) {
              [leftBtn setTitle:str forState:UIControlStateNormal];
         }
+        else
+        {
+            [leftBtn setTitle:@"定位失败" forState:UIControlStateNormal];
+        }
 
     } andFailBlock:^(NSError *error) {
         [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];
@@ -103,7 +107,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBtn.frame = CGRectMake(0, 0, 60, 40);
     [leftBtn setImage:[UIImage imageNamed:@"bar_down_icon"] forState:UIControlStateNormal];
-    [leftBtn setTitle:@"选择城市" forState:UIControlStateNormal];
+    [leftBtn setTitle:@"定位中" forState:UIControlStateNormal];
     leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     leftBtn.titleLabel.textAlignment  = NSTextAlignmentLeft;
     [leftBtn setTitleEdgeInsets:UIEdgeInsetsMake(3, -20, 3, -5)];

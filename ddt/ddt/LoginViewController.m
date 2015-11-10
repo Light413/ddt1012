@@ -129,7 +129,7 @@
     NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
     
     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata", nil];
-    [SVProgressHUD showWithStatus:@"正在提交"];
+    [SVProgressHUD showWithStatus:@"正在登录"];
     RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_login", @"") parms:dic2 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"...responseObject  :%@",responseObject);
         

@@ -131,6 +131,8 @@
 		ADD023D11BEA39710047BA17 /* HttpRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD023D01BEA39710047BA17 /* HttpRequestManager.m */; };
 		ADD023D41BEA4B0B0047BA17 /* RequestTaskHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD023D31BEA4B0B0047BA17 /* RequestTaskHandle.m */; };
 		ADD085C41BEB98C900D2EBC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADD085C61BEB98C900D2EBC4 /* Localizable.strings */; };
+		ADD15E041BF23F8100CD868C /* NGJieDanListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD15E021BF23F8100CD868C /* NGJieDanListCell.m */; settings = {ASSET_TAGS = (); }; };
+		ADD15E051BF23F8100CD868C /* NGJieDanListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD15E031BF23F8100CD868C /* NGJieDanListCell.xib */; settings = {ASSET_TAGS = (); }; };
 		ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */; };
 		ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305311BDCFFD7002F5BAE /* NGTHContactVC.m */; };
 		ADD305351BDD005D002F5BAE /* NGReleaseContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305341BDD005D002F5BAE /* NGReleaseContactVC.m */; };
@@ -415,6 +417,9 @@
 		ADD023D31BEA4B0B0047BA17 /* RequestTaskHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestTaskHandle.m; sourceTree = "<group>"; };
 		ADD085C51BEB98C900D2EBC4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		ADD085C71BEB9A2C00D2EBC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		ADD15E011BF23F8100CD868C /* NGJieDanListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGJieDanListCell.h; sourceTree = "<group>"; };
+		ADD15E021BF23F8100CD868C /* NGJieDanListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGJieDanListCell.m; sourceTree = "<group>"; };
+		ADD15E031BF23F8100CD868C /* NGJieDanListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGJieDanListCell.xib; sourceTree = "<group>"; };
 		ADD3052D1BDC72FA002F5BAE /* ToolsClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsClass.h; sourceTree = "<group>"; };
 		ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsClass.m; sourceTree = "<group>"; };
 		ADD305301BDCFFD7002F5BAE /* NGTHContactVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTHContactVC.h; sourceTree = "<group>"; };
@@ -853,6 +858,9 @@
 				AD5B11D31BDB694C00285255 /* DTCompanyListCell.xib */,
 				ADD4F8641BECF6BA005F57F0 /* NGTHContactCell.h */,
 				ADD4F8651BECF6BA005F57F0 /* NGTHContactCell.m */,
+				ADD15E011BF23F8100CD868C /* NGJieDanListCell.h */,
+				ADD15E021BF23F8100CD868C /* NGJieDanListCell.m */,
+				ADD15E031BF23F8100CD868C /* NGJieDanListCell.xib */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1460,6 +1468,7 @@
 				A12441D71BD0EDD200D2588C /* MJRefresh.bundle in Resources */,
 				ADD431541BE509EE000C03D8 /* UMSCommentInputController.xib in Resources */,
 				A143F83B1BCC96D50029E555 /* companySB.storyboard in Resources */,
+				ADD15E051BF23F8100CD868C /* NGJieDanListCell.xib in Resources */,
 				ADD431581BE509EE000C03D8 /* UMSLoginViewController.xib in Resources */,
 				A1042B8A1B64D55400A74215 /* image3.png in Resources */,
 				9FEFFCD71BCFBADE0036C23D /* MycenterViewController.xib in Resources */,
@@ -1627,6 +1636,7 @@
 				A12441FB1BD0EFD900D2588C /* FMResultSet.m in Sources */,
 				ADD3053B1BDD00DE002F5BAE /* NGCarPriceVC.m in Sources */,
 				9F49D86E1BD8F8510048C96C /* AddCommanyInfoViewController.m in Sources */,
+				ADD15E041BF23F8100CD868C /* NGJieDanListCell.m in Sources */,
 				A12CD4DE1BCBA6960020CB27 /* SVProgressHUD.m in Sources */,
 				ADD023D11BEA39710047BA17 /* HttpRequestManager.m in Sources */,
 				B27BB3B21BE466BA007DB68B /* NGDatePicker.m in Sources */,

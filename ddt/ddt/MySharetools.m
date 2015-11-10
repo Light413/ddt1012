@@ -84,6 +84,10 @@ static MySharetools *instance = nil;
     NSString *passWord = [[NSUserDefaults standardUserDefaults]objectForKey:@"remeberPassword"];
     return passWord;
 }
+
+
+
+
 -(UIImage*) formatUploadImage:(UIImage*)photoimage
 {
     int kMaxResolution = 960;

@@ -45,7 +45,6 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [self initData];
     [self initSubviews];
     
@@ -166,7 +165,6 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 #pragma mark- init subviews
 -(void)initSubviews
 {
-    NSArray *_titleArr = @[@"贷款同行名片",@"贷款公司名片",@"附近同行",@"我要接单",@"我要求职",@"我要招聘"];
     self.title = @"贷款公司名片";
     
     popView = [[NGPopListView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, 40) withDelegate:self withSuperView:self.view];
