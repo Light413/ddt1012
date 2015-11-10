@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import <PgySDK/PgyManager.h>
 #import <PgyUpdate/PgyUpdateManager.h>
+#import "UMSocialQQHandler.h"
+ #import "UMSocialWechatHandler.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +22,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [UMSocialData setAppKey:umengkey];
+    [UMSocialQQHandler setQQWithAppId:@"1104880067" appKey:@"pqNu2AWR1n83gdML" url:@"http://www.umeng.com/social"];
+    //设置微信AppId、appSecret，分享url
+    [UMSocialWechatHandler setWXAppId:@"wxb2eb04bf9f024905" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" url:@"http://www.umeng.com/social"];
+    
     [[PgyUpdateManager sharedPgyManager]startManagerWithAppId:pgyAppId];
     [[PgyManager sharedPgyManager]startManagerWithAppId:pgyAppId];
     

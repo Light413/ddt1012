@@ -475,6 +475,9 @@
         
     }];
     [HttpRequestManager doPostOperationWithTask:_task constructingBodyWithBlock:(void(^)(id<AFMultipartFormData>))dataImage];
+    [HttpRequestManager doPostOperationWithTask:_task constructingBodyWithBlock:^(id<AFMultipartFormData>formData){
+        
+    }];
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:^(){
