@@ -16,4 +16,7 @@ CFBundleDisplayName="贷易通";
 
 //登录 参数：jsondata
 "url_login" = "/mydyt/web_service.php?doc=login";
+
+//登录 参数：jsondata
+"url_usericon" = "/mydyt/web_service.php?doc=adduserpic";
  

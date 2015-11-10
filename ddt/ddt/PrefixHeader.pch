@@ -36,5 +36,5 @@
 
 //toolsclass
 #import "ToolsClass.h"
-
+#import "Base64.h"
 #endif

@@ -19,6 +19,7 @@
 		9F690B001BD73AA600DDCED6 /* MyBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690AFF1BD73AA600DDCED6 /* MyBaseTableViewController.m */; };
 		9F690B031BD73AE200DDCED6 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690B021BD73AE200DDCED6 /* PersonalInfoViewController.m */; };
 		9F690B061BD7426400DDCED6 /* MyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690B051BD7426400DDCED6 /* MyCollectionViewController.m */; };
+		9FB7458A1BF19E82006977AE /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB745881BF19E82006977AE /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9FEE0A501BCDEC1700EA5261 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE0A4F1BCDEC1700EA5261 /* LoginViewController.m */; };
 		9FEE0A531BCDFA4F00EA5261 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE0A521BCDFA4F00EA5261 /* UIViewExt.m */; };
 		9FEFFCCF1BCFAFE80036C23D /* checkbox1_checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FEFFCC91BCFAFE80036C23D /* checkbox1_checked@2x.png */; };
@@ -118,9 +119,9 @@
 		AD5B11D41BDB694C00285255 /* DTCompanyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11D21BDB694C00285255 /* DTCompanyListCell.m */; };
 		AD5B11D51BDB694C00285255 /* DTCompanyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD5B11D31BDB694C00285255 /* DTCompanyListCell.xib */; };
 		AD5B11D81BDBA43700285255 /* NGTongHDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11D71BDBA43700285255 /* NGTongHDetailVC.m */; };
-		AD7206941BF0F15D00573C4C /* DTJieDanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7206921BF0F15D00573C4C /* DTJieDanCell.m */; settings = {ASSET_TAGS = (); }; };
-		AD7206951BF0F15D00573C4C /* DTJieDanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD7206931BF0F15D00573C4C /* DTJieDanCell.xib */; settings = {ASSET_TAGS = (); }; };
-		AD7206981BF0FC9100573C4C /* NGCompanyListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7206971BF0FC9100573C4C /* NGCompanyListVC.m */; settings = {ASSET_TAGS = (); }; };
+		AD7206941BF0F15D00573C4C /* DTJieDanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7206921BF0F15D00573C4C /* DTJieDanCell.m */; };
+		AD7206951BF0F15D00573C4C /* DTJieDanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD7206931BF0F15D00573C4C /* DTJieDanCell.xib */; };
+		AD7206981BF0FC9100573C4C /* NGCompanyListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7206971BF0FC9100573C4C /* NGCompanyListVC.m */; };
 		AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB921BD21E3000C23992 /* NGXMLReader.m */; };
 		AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */; };
 		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; };
@@ -216,6 +217,9 @@
 		9F690B021BD73AE200DDCED6 /* PersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoViewController.m; sourceTree = "<group>"; };
 		9F690B041BD7426400DDCED6 /* MyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewController.h; sourceTree = "<group>"; };
 		9F690B051BD7426400DDCED6 /* MyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewController.m; sourceTree = "<group>"; };
+		9FB745871BF19E82006977AE /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		9FB745881BF19E82006977AE /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		9FB745891BF19E82006977AE /* Base64Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Defines.h; sourceTree = "<group>"; };
 		9FEE0A4E1BCDEC1700EA5261 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9FEE0A4F1BCDEC1700EA5261 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9FEE0A511BCDFA4F00EA5261 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
@@ -558,6 +562,16 @@
 				B269C4E81BE5A88000127226 /* MenuTableViewCell.xib */,
 			);
 			path = MycenterViews;
+			sourceTree = "<group>";
+		};
+		9FB745861BF19E82006977AE /* base64 */ = {
+			isa = PBXGroup;
+			children = (
+				9FB745871BF19E82006977AE /* Base64.h */,
+				9FB745881BF19E82006977AE /* Base64.m */,
+				9FB745891BF19E82006977AE /* Base64Defines.h */,
+			);
+			path = base64;
 			sourceTree = "<group>";
 		};
 		9FEFFCC71BCFAFE80036C23D /* QCheckbox */ = {
@@ -958,6 +972,7 @@
 		A1D5E7BD1BD10EAE00CAA653 /* toolClass */ = {
 			isa = PBXGroup;
 			children = (
+				9FB745861BF19E82006977AE /* base64 */,
 				ADCE01C31BEEEC59007E874E /* MD5 */,
 				ADCF91E11BEDA60A00DC6CF7 /* view */,
 				ADD023CE1BEA38E20047BA17 /* http */,
@@ -1382,7 +1397,7 @@
 				TargetAttributes = {
 					A17B7CED1B43F867003CF895 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 8R29X3H9MY;
+						DevelopmentTeam = 26D44NYMS3;
 					};
 					A17B7D061B43F867003CF895 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -1533,6 +1548,7 @@
 				AD5B11D81BDBA43700285255 /* NGTongHDetailVC.m in Sources */,
 				9FEE0A501BCDEC1700EA5261 /* LoginViewController.m in Sources */,
 				A1487A401BEB3CCD00326359 /* NSString+ToJson.m in Sources */,
+				9FB7458A1BF19E82006977AE /* Base64.m in Sources */,
 				A12441D21BD0EDD200D2588C /* MJRefreshBackNormalFooter.m in Sources */,
 				B2879BE01BDCC92900B39021 /* DeviceFeedBackViewController.m in Sources */,
 				A12CD4F31BCBAC990020CB27 /* RBStoryboardPushSegue.m in Sources */,
@@ -1711,6 +1727,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1753,6 +1770,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1800,7 +1818,7 @@
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/YiXin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.light.ddt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.light.dd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1813,8 +1831,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1835,9 +1853,9 @@
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/YiXin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.light.ddt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.light.dd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5ebb9ba5-e406-4d9f-9144-564def68b421";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;

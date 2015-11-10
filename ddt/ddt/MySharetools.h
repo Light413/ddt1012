@@ -26,4 +26,5 @@
 - (BOOL)isRemeberPasswordandPhone;
 - (NSString *)getPhoneNumber;//获取手机号
 - (NSString *)getPassWord;//获取密码
+- (UIImage*) formatUploadImage:(UIImage*)photoimage;
 @end

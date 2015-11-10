@@ -282,6 +282,7 @@
     //backImage.backgroundColor = [UIColor redColor];
     [backVIew addSubview:backImage];
     UIButton *userIcon = [UIButton buttonWithType:UIButtonTypeCustom];
+    userIcon.tag = 107;
     userIcon.frame = CGRectMake(10, 10, HeaderViewHeight-20, HeaderViewHeight-20);
     [userIcon setBackgroundImage:[UIImage imageNamed:@"head_noregist"] forState:UIControlStateNormal];
     [userIcon addTarget:self action:@selector(usericonBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -420,6 +421,9 @@
         picker.delegate = self;
         picker.allowsEditing = YES;
     }
+    [self.navigationController presentViewController:picker animated:YES completion:^{
+        
+    }];
 }
 -(void)takePicture{
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -446,10 +450,36 @@
             
             NSString *imageFile = [documentsDirectory stringByAppendingPathComponent:@"temp0.jpg"];
             [UIImageJPEGRepresentation(image, 1.0f) writeToFile:imageFile atomically:YES];
+            UIButton *usericon = (UIButton *)[self.view viewWithTag:107];
+            [usericon setBackgroundImage:image forState:UIControlStateNormal];
+            NSData *dataImage = UIImageJPEGRepresentation([[MySharetools shared]formatUploadImage:image], 0.7);
+//            NSMutableArray *dataArray = [[NSMutableArray alloc]init];
+//            [dataArray addObject:dataImage];
+            [self postData:dataImage];
         }
     }];
 }
-
+-(void)postData:(NSData *)dataImage{
+    NSDate *localDate = [NSDate date]; //获取当前时间
+    NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
+    NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",[[MySharetools shared]getPhoneNumber],timeString];
+    //...test
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:[[MySharetools shared] getNickName],@"username",@"test.jpg",@"pic",[Base64 stringByEncodingData:dataImage],@"data",token,@"token",nil];
+    NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata", nil];
+    
+    [SVProgressHUD showWithStatus:@"正在提交"];
+    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_usericon", @"") parms:dic2 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"...responseObject  :%@",responseObject);
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    [HttpRequestManager doPostOperationWithTask:_task constructingBodyWithBlock:(void(^)(id<AFMultipartFormData>))dataImage];
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:^(){
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
