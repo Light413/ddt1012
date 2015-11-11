@@ -27,4 +27,17 @@
 - (NSString *)getPhoneNumber;//获取手机号
 - (NSString *)getPassWord;//获取密码
 - (UIImage*) formatUploadImage:(UIImage*)photoimage;
+
+
+/**
+ *  传入请求基本参数
+ *  适用于登录和注册操作之外的任何网络请求
+ *  @param dic dic
+ *
+ *  @return dic
+ */
++(NSDictionary*)getParmsForPostWith:(NSDictionary*)dic;
+
+
+
 @end

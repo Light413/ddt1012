@@ -85,7 +85,19 @@ static MySharetools *instance = nil;
     return passWord;
 }
 
-
+//获取网络请求参数
++(NSDictionary*)getParmsForPostWith:(NSDictionary*)dic
+{
+    if (dic == nil) {
+        NSLog(@"post请求参数为空");
+        return nil;
+    }
+    
+    NSString * session = [[self alloc]getsessionid];
+    NSString *jsonstr = [NSString jsonStringFromDictionary:dic];
+    NSDictionary *new = [NSDictionary dictionaryWithObjectsAndKeys:jsonstr,@"jsondata",session,@"session", nil];
+    return new;
+}
 
 
 -(UIImage*) formatUploadImage:(UIImage*)photoimage

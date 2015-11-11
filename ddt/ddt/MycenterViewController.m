@@ -457,7 +457,8 @@
 //            [dataArray addObject:dataImage];
             
             //............test data
-            NSData *testData= UIImageJPEGRepresentation([UIImage imageNamed:@"item_01"], 1);
+//            NSData *testData= UIImageJPEGRepresentation([UIImage imageNamed:@"item_01"], 1);
+            NSData *testData= UIImagePNGRepresentation([UIImage imageNamed:@"item_01"]);
             [self postData:testData];
         }
     }];
@@ -467,11 +468,15 @@
     
     //获取json参数字符串
     NSString * token = [[MySharetools shared]getsessionid];
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:[[MySharetools shared] getPhoneNumber],@"username",@"test.jpg",@"pic",[Base64 stringByEncodingData:dataImage],@"data",nil];
+    NSString *dataStr = [Base64 stringByEncodingData:dataImage];
+    NSMutableString *_str = [[NSMutableString alloc]initWithString:dataStr];
+//    [_str replaceOccurrencesOfString:@"+" withString:@"%2b" options:NSLiteralSearch range:NSMakeRange(0, _str.length)];
+    
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:[[MySharetools shared] getPhoneNumber],@"username",@"test.png",@"pic",_str,@"data",nil];
     NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
     
     //post请求参数：jsondata + token
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata",token,@"token" ,nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata",token,@"session" ,nil];
     
     [SVProgressHUD showWithStatus:@"正在上传头像"];
     RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_usericon", @"") parms:dic2 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {

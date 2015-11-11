@@ -17,11 +17,6 @@
 
 static NSString * showTongHangVcID  = @"showTongHangVcID";
 static NSString * showCompanyVcID   = @"showCompanyVcID";
-static NSString * showJieDanVcID    = @"showJieDanVcID";
-static NSString * showQinZhiVcID    = @"showQinZhiVcID";
-static NSString * showZhaoPinVcID   = @"showZhaoPinVcID";
-
-static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
 static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 
 
@@ -73,65 +68,21 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 {
     //pop
     NSInteger _index = self.tabBarController.selectedIndex;
-    if (_index == 1) {
-        self.vcType = NGVCTypeId_1;
-    }
-    else if (_index == 2)
+    if (_index == 2)
     {
         self.vcType = NGVCTypeId_2;
     }
     
     //btn title
-    NSArray *_sexArr = @[@"全部",@"男",@"女"];//性别
     NSArray *_areaArr = [NGXMLReader getCurrentLocationAreas];//区域
     NSArray *_typeArr = [NGXMLReader getBaseTypeData];//基本业务类型
     switch (self.vcType) {
-        case NGVCTypeId_1:
-        {//同行
-            NSArray *_btnTitleArr1 = @[@"服务区域",@"业务类型",@"性别"];
-            _common_pop_btnTitleArr = _btnTitleArr1;
-            _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
-        } break;
         case NGVCTypeId_2:
         {//公司
             NSArray *_btnTitleArr2 = @[@"服务区域",@"业务类型"];
             _common_pop_btnTitleArr = _btnTitleArr2;
             _common_pop_btnListArr  = @[_areaArr,_typeArr];
-            //            UIBarButtonItem *rightitem = [[UIBarButtonItem alloc]initWithTitle:@"添加公司" style:UIBarButtonItemStyleBordered target:self action:@selector(rightItemClick)];
-            //
-            //            self.navigationItem.rightBarButtonItem = rightitem;
             
-        } break;
-        case NGVCTypeId_3:
-        {//附近同行
-            NSArray *tmp = @[@"服务区域",@"业务类型",@"性别"];
-            _common_pop_btnTitleArr = tmp;
-            _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
-        } break;
-        case NGVCTypeId_4:
-        {//接单
-            NSArray *tmp = @[@"服务区域",@"业务类型",@"时间"];
-            _common_pop_btnTitleArr = tmp;
-            _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
-        } break;
-            
-        case NGVCTypeId_5:
-        {//求职
-            NSArray *tmp = @[@"区域",@"类型",@"工资",@"职位",@"经验"];
-            NSArray *_a1 = [DTComDataManger getData_qwxz];
-            NSArray *_a2 = [DTComDataManger getData_gwlx];
-            NSArray *_a3 = [DTComDataManger getData_gzjy];
-            _common_pop_btnTitleArr = tmp;
-            _common_pop_btnListArr  = @[_areaArr,_typeArr,_a1,_a2,_a3];
-        } break;
-            
-        case NGVCTypeId_6:
-        {//招聘
-            NSArray *tmp = @[@"区域",@"类型",@"性别",@"职位",@"经验"];
-            NSArray *_a2 = [DTComDataManger getData_gwlx];
-            NSArray *_a3 = [DTComDataManger getData_gzjy];
-            _common_pop_btnTitleArr = tmp;
-            _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr,_a2,_a3];
         } break;
             
         default: break;
@@ -139,23 +90,33 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     
     
     //....此处获取tableview的数据源
+
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"全部",@"quye",@"全部",@"yewu",@"1",@"psize",@"10",@"pnum",@"",@"word",nil];
+    NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
+
+    RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_company_list", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
     
-    //............................网络请求
     
+    
+    [HttpRequestManager doPostOperationWithTask:task];
     //...
+    
+    
+    
     
     //...test   tableview
     _common_list_dataSource = [[NSMutableArray alloc]init];
-    _common_cellId_arr = @[NGSecondListCellReuseId,NGCompanyListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId];
+    _common_cellId_arr = @[NGCompanyListCellReuseId,NGCompanyListCellReuseId];
     _common_list_cellReuseId = [_common_cellId_arr objectAtIndex:self.vcType - 1];
     
     NSArray *_arr = @[
                       @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
                       @[@{@"1":@"车贷金融公司",@"2":@"民间信贷－房产地眼粉色经典福克斯附近的时刻复活节恢复建设的附近发生地方防护服",@"3":@"车辆抵押，信用贷款／信用卡付款"}],
-                      @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],//附近同行
-                      @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
-                      @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
-                      @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}]
                       ];
     
     [_common_list_dataSource addObjectsFromArray:[_arr objectAtIndex:self.vcType - 1]];
@@ -181,7 +142,6 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     [self.view  addSubview:_tableView];
     [_tableView setContentInset:UIEdgeInsetsMake(0, 0, 5, 0)];
     _tableView.tableFooterView = [[UIView alloc]init];
-    [_tableView registerNib:[UINib nibWithNibName:@"NGSecondListCell" bundle:nil] forCellReuseIdentifier:NGSecondListCellReuseId];
     [_tableView registerNib:[UINib nibWithNibName:@"DTCompanyListCell" bundle:nil] forCellReuseIdentifier:NGCompanyListCellReuseId];
     
     //添加下拉刷新
@@ -263,17 +223,6 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:0];
     
     switch (self.vcType) {
-        case NGVCTypeId_1:
-        case NGVCTypeId_3:
-        {
-            cell =  [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
-            [(NGSecondListCell *)cell setCellWith:_dic0 withOptionIndex:self.vcType];
-            ((NGSecondListCell *)cell).btnClickBlock = ^(NSInteger tag){
-                NSLog(@"...cell btn click : %ld",tag);
-            };
-            
-        }break;
-            
         case NGVCTypeId_2:
         {
             cell = [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
@@ -282,18 +231,6 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
             ((DTCompanyListCell *)cell).btnClickBlock = ^(NSInteger tag){
                 NSLog(@"...cell btn click : %ld",tag);
             };
-        }break;
-            
-        case NGVCTypeId_4:
-        case NGVCTypeId_5:
-        case NGVCTypeId_6:
-        {
-            cell =  [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
-            [(NGSecondListCell *)cell setCellWith:_dic0 withOptionIndex:self.vcType];
-            ((NGSecondListCell *)cell).btnClickBlock = ^(NSInteger tag){
-                NSLog(@"...cell btn click : %ld",tag);
-            };
-            
         }break;
             
         default:break;
@@ -317,7 +254,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
             UIFont *font = [UIFont systemFontOfSize:15];
             CGSize _new =  [ToolsClass calculateSizeForText:str :_size font:font];
             
-            return _new.height + 20;
+            return _new.height + 20 < 80 ?80:_new.height + 20;
         }break;
             
         default:
@@ -330,36 +267,11 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 {
     NSLog(@"....tableview cell select");
     switch (self.vcType) {
-        case NGVCTypeId_1:
-        {
-            [self performSegueWithIdentifier:showTongHangVcID sender:nil];
-        }break;
         case NGVCTypeId_2:
         {
             [self performSegueWithIdentifier:showCompanyVcID sender:nil];
         }break;
-        case NGVCTypeId_3:
-        {//附近同行
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"secondSB" bundle:nil];
-            UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"TongHDetailVC"];
-            [self.navigationController pushViewController:vc animated:YES];
-            
-            //            [self performSegueWithIdentifier:showTongHangVcID sender:nil];
-        }break;
-        case NGVCTypeId_4://接单
-        {
-            [self performSegueWithIdentifier:showJieDanVcID sender:nil];
-        }break;
-        case NGVCTypeId_5://求职
-        {
-            [self performSegueWithIdentifier:showQinZhiVcID sender:nil];
-        }break;
-        case NGVCTypeId_6://招聘
-        {
-            [self performSegueWithIdentifier:showZhaoPinVcID sender:nil];
-        }break;
-        default:
-            break;
+        default: break;
     }
 }
 
