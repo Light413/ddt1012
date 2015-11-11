@@ -29,7 +29,7 @@ static NSString *showShuaiDanID     = @"showShuaiDanID";//甩单
 static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 
 
-@interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITextFieldDelegate>
+@interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,UMSocialUIDelegate>
 
 @end
 
@@ -425,16 +425,23 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 #pragma mark -shareBtn Action
 -(void)shareBtnAction
 {
-    NSLog(@"...shareAction");
-
-    //注意：分享到微信好友、微信朋友圈、微信收藏、QQ空间、QQ好友、来往好友、来往朋友圈、易信好友、易信朋友圈、Facebook、Twitter、Instagram等平台需要参考各自的集成方法
-    //新浪微博，腾讯微博，人人网，
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:umengkey
                                       shareText:@"贷易通-你身边的贷款专家"
                                      shareImage:[UIImage imageNamed:@"icon.png"]
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToDouban,UMShareToQzone,UMShareToSms,UMShareToEmail,UMShareToQQ,UMShareToYXSession,UMShareToYXTimeline,UMShareToLWSession,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite,nil]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite,UMShareToSms,UMShareToEmail,nil]
                                        delegate:self];
+}
+
+//实现回调方法（可选）
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+    }
 }
 
 
