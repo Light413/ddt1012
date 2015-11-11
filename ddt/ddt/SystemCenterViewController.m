@@ -11,6 +11,9 @@
 #import "DeviceFeedBackViewController.h"
 #import "JoinUsViewController.h"
 #import "ResetNewPhoneViewController.h"
+
+#import<CoreText/CoreText.h>
+
 #define KimageName @"imageName"
 #define KlabelName @"labelName"
 @interface SystemCenterViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -27,10 +30,16 @@
     self.title = @"系统中心";
     [self createLeftBarItemWithBackTitle];
     [self creatTableView];
+    NSString * versionstr = [NSString stringWithFormat:@"版本更新 (当前版本:%@)",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleShortVersionString"]];
+//    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]init];
+//    [attr addAttribute:(NSString*)kCTForegroundColorAttributeName value:(id)[UIColor redColor].CGColor range:NSMakeRange(5, 10)];
+//    [attr addAttribute:(NSString *)kCTFontAttributeName
+//                        value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont boldSystemFontOfSize:14].fontName,14,NULL))range:NSMakeRange(5, 10)];
+    
     datalist = @[@{KimageName: @"uc_system.png",
                    KlabelName:@"关于我们"},
                  @{KimageName: @"uc_danzi.png",
-                   KlabelName:@"版本更新"},
+                   KlabelName:versionstr},
                  @{KimageName: @"uc_fabu.png",
                    KlabelName:@"意见反馈"},
                  @{KimageName: @"uc_fabu.png",

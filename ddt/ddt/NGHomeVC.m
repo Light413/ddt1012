@@ -74,9 +74,6 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     } andFailBlock:^(NSError *error) {
         [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];
     }];
-    
-    NSDictionary *_dd = [[NSBundle mainBundle]infoDictionary];
-    NSLog(@"%@",_dd);
 }
 
 -(void)viewWillAppear:(BOOL)animated
