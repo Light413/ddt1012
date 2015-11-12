@@ -217,7 +217,13 @@ static BOOL AFErrorOrUnderlyingErrorHasCode(NSError *error, NSInteger code) {
         if (responseString && ![responseString isEqualToString:@" "]) {
             // Workaround for a bug in NSJSONSerialization when Unicode character escape codes are used instead of the actual character
             // See http://stackoverflow.com/a/12843465/157142
-            data = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+            
+            NSMutableString *_str = [[NSMutableString alloc]initWithString:responseString];
+            [_str replaceOccurrencesOfString:@"\n" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, _str.length)];
+            data = [_str dataUsingEncoding:NSUTF8StringEncoding];
+            NSLog(@"......this is test code ......");
+            
+//            data = [responseString dataUsingEncoding:NSUTF8StringEncoding];
 
             if (data) {
                 if ([data length] > 0) {

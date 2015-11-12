@@ -470,7 +470,7 @@
     NSString * token = [[MySharetools shared]getsessionid];
     NSString *dataStr = [Base64 stringByEncodingData:dataImage];
     NSMutableString *_str = [[NSMutableString alloc]initWithString:dataStr];
-//    [_str replaceOccurrencesOfString:@"+" withString:@"%2b" options:NSLiteralSearch range:NSMakeRange(0, _str.length)];
+    [_str replaceOccurrencesOfString:@"+" withString:@"%2b" options:NSLiteralSearch range:NSMakeRange(0, _str.length)];
     
     NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:[[MySharetools shared] getPhoneNumber],@"username",@"test.png",@"pic",_str,@"data",nil];
     NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];

@@ -13,6 +13,7 @@
 #import "NGSearchCitiesVC.h"
 #import "NGSecondVC.h"
 #import "NGSearchBar.h"
+#import <PgyUpdate/PgyUpdateManager.h>
 
 #define ScrollViewHeight    100
 #define CollectionHeaderViewHight 140
@@ -74,6 +75,9 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     } andFailBlock:^(NSError *error) {
         [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];
     }];
+    
+    //...test检查版本更新
+    [[PgyUpdateManager sharedPgyManager]checkUpdate];
 }
 
 -(void)viewWillAppear:(BOOL)animated

@@ -90,36 +90,39 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     
     
     //....此处获取tableview的数据源
-
-    NSString *tel = [[MySharetools shared]getPhoneNumber];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"全部",@"quye",@"全部",@"yewu",@"1",@"psize",@"10",@"pnum",@"",@"word",nil];
-    NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
-
-    RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_company_list", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
-    
-    
-    
-    [HttpRequestManager doPostOperationWithTask:task];
-    //...
-    
-    
-    
-    
     //...test   tableview
     _common_list_dataSource = [[NSMutableArray alloc]init];
     _common_cellId_arr = @[NGCompanyListCellReuseId,NGCompanyListCellReuseId];
     _common_list_cellReuseId = [_common_cellId_arr objectAtIndex:self.vcType - 1];
+//    NSArray *_arr = @[
+//                      @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
+//                      @[@{@"1":@"车贷金融公司",@"2":@"民间信贷－房产地眼粉色经典福克斯附近的时刻复活节恢复建设的附近发生地方防护服",@"3":@"车辆抵押，信用贷款／信用卡付款"}],
+//                      ];
     
-    NSArray *_arr = @[
-                      @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
-                      @[@{@"1":@"车贷金融公司",@"2":@"民间信贷－房产地眼粉色经典福克斯附近的时刻复活节恢复建设的附近发生地方防护服",@"3":@"车辆抵押，信用贷款／信用卡付款"}],
-                      ];
-    
-    [_common_list_dataSource addObjectsFromArray:[_arr objectAtIndex:self.vcType - 1]];
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"",@"quye",@"",@"yewu",@"10",@"psize",@"1",@"pnum",@"",@"word",nil];
+    NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
+
+    RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_company_list", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
+                //...请求数据成功
+                NSArray *dataarr = [responseObject objectForKey:@"data"];
+                if (dataarr && dataarr.count < 10) {
+                    //...没有数据了，不能在刷新加载了
+                   [_common_list_dataSource addObjectsFromArray:dataarr];
+                }
+            }
+            else
+            {
+                [SVProgressHUD showInfoWithStatus:@"请求数据出现错误"];
+            }
+        }
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+    }];
+
+    [HttpRequestManager doPostOperationWithTask:task];
 }
 
 
