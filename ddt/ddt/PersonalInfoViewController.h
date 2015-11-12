@@ -9,7 +9,7 @@
 
 @interface PersonalInfoViewController : MyBaseTableViewController
 @property (weak, nonatomic) IBOutlet UITextField *nameField;//姓名
-@property (weak, nonatomic) IBOutlet UIButton *maleBtn;
+@property (weak, nonatomic) IBOutlet UIButton *maleBtn;//男
 @property (weak, nonatomic) IBOutlet UIButton *femaleBtn;
 @property (weak, nonatomic) IBOutlet UIButton *birthBtn;
 - (IBAction)birthBtnClick:(id)sender;

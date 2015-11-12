@@ -158,7 +158,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(disappear)];
     [_maskView addGestureRecognizer:tap];
     [self.window addSubview:_maskView];
-    _bgView = [[UIView alloc]initWithFrame:CGRectMake(20, (CurrentScreenHeight-80)/2, CurrentScreenWidth-40, 80)];
+    _bgView = [[UIView alloc]initWithFrame:CGRectMake(20, (CurrentScreenHeight-80)/2-40, CurrentScreenWidth-40, 80)];
     _bgView.backgroundColor = [UIColor whiteColor];
     _bgView.layer.borderColor = [RGBA(207, 207, 207, 1)CGColor];
     _bgView.layer.borderWidth = 0.5;
@@ -262,8 +262,85 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 //    LPickerView *_pickview = [[LPickerView alloc]initWithDelegate:self];
 //    [_pickview showIn:self.view];
 }
+#pragma mark---保存用户信息
 - (IBAction)saveInfoBtnClick:(id)sender {
     [self hideKeyboard];
+    if (nameField.text.length==0) {
+        [SVProgressHUD showInfoWithStatus:@"姓名不能为空"];
+        return;
+    }
+    if ([birthBtn.titleLabel.text isEqual:@"点击选择"]||birthBtn.titleLabel.text.length ==0) {
+        [SVProgressHUD showInfoWithStatus:@"请选择生日"];
+        return;
+    }
+    if (weixinField.text.length == 0) {
+        [SVProgressHUD showInfoWithStatus:@"请填写微信"];
+        return;
+    }
+    if (companyField.text.length == 0) {
+        [SVProgressHUD showInfoWithStatus:@"请填写公司"];
+        return;
+    }
+    if ([recommandPersonBtn.titleLabel.text isEqual:@"填写推荐人"]||recommandPersonBtn.titleLabel.text.length==0) {
+        [SVProgressHUD showInfoWithStatus:@"填写推荐人"];
+        return;
+    }
+    if ([serviceAreaBtn.titleLabel.text isEqual:@"选择服务区域"]||serviceAreaBtn.titleLabel.text.length==0) {
+        [SVProgressHUD showInfoWithStatus:@"请选择服务区域"];
+        return;
+    }
+    if ([bussinessSortBtn.titleLabel.text isEqual:@"点击选择业务分类"]||bussinessSortBtn.titleLabel.text.length==0) {
+        [SVProgressHUD showInfoWithStatus:@"请选择业务分类"];
+        return;
+    }
+    if (keyWordField.text.length == 0) {
+        [SVProgressHUD showInfoWithStatus:@"请填写关键词"];
+        return;
+    }
+    if (InfoTextView.text.length == 0) {
+        [SVProgressHUD showInfoWithStatus:@"请填写业务内容"];
+        return;
+    }
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSString *xb = @"";
+    if (self.maleBtn.selected == YES) {
+        xb = @"男";
+    }else{
+        xb = @"女";
+    }
+    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"username",nameField.text,@"xm",xb,@"xb",birthBtn.titleLabel.text,@"csrq",weixinField.text,@"weixin",companyField.text,@"company",bussinessSortBtn.titleLabel.text,@"yewu",serviceAreaBtn.titleLabel.text,@"quyu",InfoTextView.text,@"content",keyWordField.text,@"word", nil];
+    NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];
+    [SVProgressHUD showWithStatus:@"正在加载"];
+    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_adduserinfo", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
+                [SVProgressHUD showSuccessWithStatus:@"保存完成"];
+                [[NSUserDefaults standardUserDefaults]setObject:nameField.text forKey:@"nickName"];
+                NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[[MySharetools shared]getLoginSuccessInfo]];
+                [dict setObject:xb forKey:@"xb"];
+                [dict setObject:birthBtn.titleLabel.text forKey:@"csrq"];
+                [dict setObject:weixinField.text forKey:@"weixin"];
+                [dict setObject:companyField.text forKey:@"company"];
+                [dict setObject:recommandPersonBtn.titleLabel.text forKey:@"tjr"];
+                [dict setObject:serviceAreaBtn.titleLabel.text forKey:@"quyu"];
+                [dict setObject:bussinessSortBtn.titleLabel.text forKey:@"yewu"];
+                [dict setObject:keyWordField.text forKey:@"word"];
+                [dict setObject:InfoTextView.text forKey:@"content"];
+                [[NSUserDefaults standardUserDefaults]setObject:dict forKey:@"loginSuccessInfo"];
+                [[NSUserDefaults standardUserDefaults]synchronize];
+            }
+            else
+            {
+                [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+            }
+        }
+        
+        NSLog(@"...responseObject  :%@",responseObject);
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+    }];
+    
+    [HttpRequestManager doPostOperationWithTask:_task];
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)maleBtnClick:(id)sender {
@@ -345,5 +422,43 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSString *dateString = [dateFormatter stringFromDate:_date];
     [birthBtn setTitle:dateString forState:UIControlStateNormal];
+}
+-(void)alertPop{
+    if (nameField.text.length==0) {
+        [SVProgressHUD showInfoWithStatus:@"姓名不能为空"];
+        return;
+    }
+    if ([birthBtn.titleLabel.text isEqual:@"点击选择"]||birthBtn.titleLabel.text.length ==0) {
+        [SVProgressHUD showInfoWithStatus:@"请选择生日"];
+        return;
+    }
+    if (weixinField.text.length == 0) {
+        [SVProgressHUD showInfoWithStatus:@"请填写微信"];
+        return;
+    }
+    if (companyField.text.length == 0) {
+        [SVProgressHUD showInfoWithStatus:@"请填写公司"];
+        return;
+    }
+    if ([recommandPersonBtn.titleLabel.text isEqual:@"填写推荐人"]||recommandPersonBtn.titleLabel.text.length==0) {
+        [SVProgressHUD showInfoWithStatus:@"填写推荐人"];
+        return;
+    }
+    if ([serviceAreaBtn.titleLabel.text isEqual:@"选择服务区域"]||serviceAreaBtn.titleLabel.text.length==0) {
+        [SVProgressHUD showInfoWithStatus:@"请选择服务区域"];
+        return;
+    }
+    if ([bussinessSortBtn.titleLabel.text isEqual:@"点击选择业务分类"]||bussinessSortBtn.titleLabel.text.length==0) {
+        [SVProgressHUD showInfoWithStatus:@"请选择业务分类"];
+        return;
+    }
+    if (keyWordField.text.length == 0) {
+        [SVProgressHUD showInfoWithStatus:@"请填写关键词"];
+        return;
+    }
+    if (InfoTextView.text.length == 0) {
+        [SVProgressHUD showInfoWithStatus:@"请填写业务内容"];
+        return;
+    }
 }
 @end

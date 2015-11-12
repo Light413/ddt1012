@@ -22,3 +22,5 @@ CFBundleDisplayName="贷易通";
 
 //公司名片列表
 "url_company_list" = "/mydyt/web_service.php?doc=getcompany";
+//个人信息完善
+"url_adduserinfo" = "/mydyt/web_service.php?doc=adduserinfo";
