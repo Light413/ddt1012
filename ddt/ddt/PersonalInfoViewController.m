@@ -328,6 +328,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
                 [dict setObject:InfoTextView.text forKey:@"content"];
                 [[NSUserDefaults standardUserDefaults]setObject:dict forKey:@"loginSuccessInfo"];
                 [[NSUserDefaults standardUserDefaults]synchronize];
+                [self.navigationController popViewControllerAnimated:YES];
             }
             else
             {
@@ -341,7 +342,6 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     }];
     
     [HttpRequestManager doPostOperationWithTask:_task];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)maleBtnClick:(id)sender {
     maleBtn.selected = !maleBtn.selected;

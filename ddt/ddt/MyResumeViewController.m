@@ -141,7 +141,41 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 }
 
 - (IBAction)saveResumeBtnClick:(id)sender {
+    if (self.hopeWorkingField.text.length==0) {
+        [SVProgressHUD showInfoWithStatus:@"期望岗位不能为空"];
+        return;
+    }
+    if (self.chooseBusinessTypeBtn.titleLabel.text.length==0||[self.chooseBusinessTypeBtn.titleLabel.text isEqual:@"选择业务类型"]) {
+        [SVProgressHUD showInfoWithStatus:@"请选择业务类型"];
+        return;
+    }
+    if (self.judgeTextView.text.length==0) {
+        [SVProgressHUD showInfoWithStatus:@"自我评价不能为空"];
+        return;
+    }
     [self hideKeyBoard];
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"username",self.workingYearsBtn.titleLabel.text,@"work",self.businessTypeBtn.titleLabel.text,@"wtype",self.chooseBusinessTypeBtn.titleLabel.text,@"yw_type",self.areaBtn.titleLabel.text,@"yw_quye",self.judgeTextView.text,@"content",self.certificateBtn.titleLabel.text,@"xl",nil];
+    NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];
+    [SVProgressHUD showWithStatus:@"正在加载"];
+    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_adduserinfo", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
+                [SVProgressHUD showSuccessWithStatus:@"保存完成"];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else
+            {
+                [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+            }
+        }
+        
+        NSLog(@"...responseObject  :%@",responseObject);
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+    }];
+    
+    [HttpRequestManager doPostOperationWithTask:_task];
 }
 
 - (IBAction)areaBtnClick:(id)sender {
