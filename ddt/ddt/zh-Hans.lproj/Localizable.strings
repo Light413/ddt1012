@@ -32,3 +32,7 @@ CFBundleDisplayName="贷易通";
 "url_addmeeting" = "/mydyt/web_service.php?doc=addmeeting";
 //添加公司资料
 "url_addcompany" = "/mydyt/web_service.php?doc=addcompany";
+//意见反馈
+"url_addsay" = "/mydyt/web_service.php?doc=addsay";
+//找回密码
+"url_findpwd" = "/mydyt/web_service.php?doc=findpwd";

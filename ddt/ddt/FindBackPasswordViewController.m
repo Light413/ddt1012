@@ -53,7 +53,34 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)findOK:(UIButton *)btn{
+    UITextField *phoneNumberField = (UITextField *)[self.view viewWithTag:201];
+    if (![[MySharetools shared]isMobileNumber:phoneNumberField.text]) {
+        [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
+        return;
+    }
+    NSString *nickName = [[MySharetools shared]getNickName];
+    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:nickName,@"username",phoneNumberField.text,@"mobile", nil];
+    NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];
+    [SVProgressHUD showWithStatus:@"正在加载"];
+    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_findpwd", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
+                [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else
+            {
+                [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+            }
+        }
+        
+        NSLog(@"...responseObject  :%@",responseObject);
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+    }];
     
+    [HttpRequestManager doPostOperationWithTask:_task];
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     UITextField *textField = (UITextField *)[self.view viewWithTag:201];

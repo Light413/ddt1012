@@ -221,5 +221,16 @@ static MySharetools *instance = nil;
     UIGraphicsEndImageContext();
     return imageCopy;
 }
-
+- (BOOL)isMobileNumber:(NSString *)mobileNum{
+    NSString * MOBILE = @"^((13[0-9])|(15[^4,\\D])|(18[0-9])|(14[5|7])|(17[[^1-4],\\D]))\\d{8}$";
+    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
+    if ([regextestmobile evaluateWithObject:mobileNum] == YES)
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
 @end

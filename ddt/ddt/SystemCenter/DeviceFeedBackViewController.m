@@ -78,5 +78,35 @@
     wordNumLabel.text = @"0/100";
 }
 - (IBAction)submitingBtnClick:(id)sender {
+    if (self.deviceTextView.text.length==0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入意见反馈"];
+        return;
+    }
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    //NSString *nickName = [[MySharetools shared]getNickName];
+    NSDate *localDate = [NSDate date]; //获取当前时间
+    NSString *date = [NSString stringWithFormat:@"%@",localDate];
+    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:date,@"date",tel,@"username",self.deviceTextView.text,@"content", nil];
+    NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];
+    [SVProgressHUD showWithStatus:@"正在加载"];
+    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_addsay", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
+                [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else
+            {
+                [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+            }
+        }
+        
+        NSLog(@"...responseObject  :%@",responseObject);
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+    }];
+    
+    [HttpRequestManager doPostOperationWithTask:_task];
 }
 @end

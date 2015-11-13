@@ -27,7 +27,7 @@
 - (NSString *)getPhoneNumber;//获取手机号
 - (NSString *)getPassWord;//获取密码
 - (UIImage*) formatUploadImage:(UIImage*)photoimage;
-
+- (BOOL)isMobileNumber:(NSString *)mobileNum;//手机号正则表达式
 
 /**
  *  传入请求基本参数
