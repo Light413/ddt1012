@@ -24,5 +24,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *keywordField;
 
 @property (weak, nonatomic) IBOutlet UIView *backView;
+- (IBAction)summitBtnClick:(id)sender;
 
 @end

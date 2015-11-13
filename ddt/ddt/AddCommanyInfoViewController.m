@@ -109,4 +109,65 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
         self.backHolderLabel.hidden = NO;
     }
 }
+- (IBAction)summitBtnClick:(id)sender {
+    if (self.luruCommanynameField.text.length==0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入公司名称"];
+        return;
+    }
+    if (self.addresscommanyNameField.text.length==0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入公司地址"];
+        return;
+    }
+    if (self.jigouCodeFIeld.text.length==0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入组织机构代码"];
+        return;
+    }
+    if (self.contactorField.text.length==0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入联系人"];
+        return;
+    }
+    if (self.phoneField.text.length==0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入电话"];
+        return;
+    }
+    if (self.serviceAreaBtn.titleLabel.text.length==0) {
+        [SVProgressHUD showErrorWithStatus:@"请选择服务区域"];
+        return;
+    }
+    if ([self.chooseBusinessTypeBtn.titleLabel.text isEqual:@"点击选择业务类型"]) {
+        [SVProgressHUD showErrorWithStatus:@"请选择业务类型"];
+        return;
+    }
+    if (self.keywordField.text.length==0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入自设关键词"];
+        return;
+    }
+    if (self.judgeTextView.text.length==0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入业务内容"];
+        return;
+    }
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    //NSString *nickName = [[MySharetools shared]getNickName];
+    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"username",self.luruCommanynameField.text,@"commany",self.addresscommanyNameField.text,@"m_address",self.jigouCodeFIeld.text,@"orgenum",self.contactorField.text,@"lxr",self.phoneField.text,@"phone",self.keywordField.text,@"word",self.chooseBusinessTypeBtn.titleLabel.text,@"yewu",self.serviceAreaBtn.titleLabel.text,@"quyu",self.judgeTextView.text,@"content", nil];
+    NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];
+    [SVProgressHUD showWithStatus:@"正在加载"];
+    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_addcompany", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
+                [SVProgressHUD showSuccessWithStatus:@"已提交审核"];                
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else
+            {
+                [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+            }
+        }
+        
+        NSLog(@"...responseObject  :%@",responseObject);
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+    }];
+    
+    [HttpRequestManager doPostOperationWithTask:_task];
+}
 @end

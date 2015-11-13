@@ -26,3 +26,7 @@ CFBundleDisplayName="贷易通";
 "url_adduserinfo" = "/mydyt/web_service.php?doc=adduserinfo";
 //设置简历
  "url_addjianli" = "/mydyt/web_service.php?doc=addjianli";
+//发布交流会
+"url_addmeeting" = "/mydyt/web_service.php?doc=addmeeting";
+//添加公司资料
+"url_addcompany" = "/mydyt/web_service.php?doc=addcompany";

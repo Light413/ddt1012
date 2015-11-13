@@ -50,7 +50,30 @@
         [SVProgressHUD showErrorWithStatus:@"请录入会议说明"];
         return;
     }
-
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    //NSString *nickName = [[MySharetools shared]getNickName];
+    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"mobile",tel,@"username",self.titleField.text,@"m_title",self.addressField.text,@"m_address",self.meetingTimeBtn.titleLabel.text,@"m_time",self.introTextView.text,@"m_content", nil];
+    NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];
+    [SVProgressHUD showWithStatus:@"正在加载"];
+    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_addmeeting", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
+                [SVProgressHUD showSuccessWithStatus:@"保存完成"];
+               
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else
+            {
+                [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+            }
+        }
+        
+        NSLog(@"...responseObject  :%@",responseObject);
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+    }];
+    
+    [HttpRequestManager doPostOperationWithTask:_task];
 }
 -(void)textViewDidChange:(UITextView *)textView{
     if (textView.text.length>0) {
