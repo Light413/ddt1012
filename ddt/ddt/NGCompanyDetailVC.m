@@ -37,11 +37,11 @@
     // Do any additional setup after loading the view.
     self.tableView.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bg_credit"]];
     self.tableView.tableFooterView = [[UIView alloc]init];
-    _s1 = @"信和郑州公司";
-    _s2 = @"内存泄漏形象的比喻是操作系统可提供给所有";
-    _s3 = @"所以“内存泄漏”是从操作系统的角度来看的。这里的存储空间并不是指物理内存，而是指虚拟内存大小，这个虚拟内存大小取决于磁盘交换区设定的大小";
-    _s4 = @"vdsfdsfdfsdfdf";
-    _s5 = @"发生内存泄漏的代码只会被执行一次，或者由于算法上的缺陷，导致总会有一块且仅一块内存发生泄漏。比如，在类的构造函数中分配内存，在析构函数中却没有释放该内存，所以内存泄漏只会发生一次。";
+    _s1 = [_companyInfoDic objectForKey:@"company"];
+    _s2 = [_companyInfoDic objectForKey:@"yewu"];
+    _s3 =[_companyInfoDic objectForKey:@"address"];
+    _s4 =[_companyInfoDic objectForKey:@"quyu"];
+    _s5 = [_companyInfoDic objectForKey:@"content"];
     
     [self initSubviews];
 }

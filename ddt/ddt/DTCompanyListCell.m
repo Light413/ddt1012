@@ -19,9 +19,9 @@
 
 -(void)setCellWith:(NSDictionary*)dic
 {
-    self.name.text = [dic objectForKey:@"1"];
-    self.distructionLab.text = [dic objectForKey:@"2"];
-    self.detailLab.text = [dic objectForKey:@"3"];
+    self.name.text = [dic objectForKey:@"company"];
+    self.distructionLab.text = [dic objectForKey:@"4"];
+    self.detailLab.text = [dic objectForKey:@"word"];
 }
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key

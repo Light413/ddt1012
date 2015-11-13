@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="492" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="198-WW-87V" id="1rE-q9-rwt">
-                <rect key="frame" x="0.0" y="0.0" width="492" height="79.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="492" height="79"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZJ-gG-mQp">
@@ -24,13 +24,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="民间抵押个人-车辆" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivW-OA-oLX">
-                        <rect key="frame" x="8" y="59" width="102" height="14.5"/>
+                        <rect key="frame" x="8" y="58" width="102" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="139999090" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5we-tt-aXf">
-                        <rect key="frame" x="48" y="3" width="71.5" height="16"/>
+                        <rect key="frame" x="51" y="3" width="72" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="4r6-v4-Q3q"/>
                         </constraints>
@@ -58,7 +58,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="ivW-OA-oLX" firstAttribute="top" secondItem="5we-tt-aXf" secondAttribute="bottom" id="28q-2e-yY8"/>
-                    <constraint firstItem="5we-tt-aXf" firstAttribute="leading" secondItem="EZJ-gG-mQp" secondAttribute="trailing" constant="2" id="4BX-nw-73n"/>
+                    <constraint firstItem="5we-tt-aXf" firstAttribute="leading" secondItem="EZJ-gG-mQp" secondAttribute="trailing" constant="5" id="4BX-nw-73n"/>
                     <constraint firstAttribute="bottomMargin" secondItem="ivW-OA-oLX" secondAttribute="bottom" constant="-2" id="AIU-FY-GXG"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="5we-tt-aXf" secondAttribute="trailing" constant="22" id="Bpe-lc-QJ7"/>
                     <constraint firstItem="5we-tt-aXf" firstAttribute="top" secondItem="EZJ-gG-mQp" secondAttribute="top" id="Ejw-z3-hfQ"/>

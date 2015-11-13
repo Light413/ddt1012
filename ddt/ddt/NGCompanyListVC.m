@@ -10,7 +10,7 @@
 #import "NGSearchBar.h"
 #import "NGPopListView.h"
 #import "AddCommanyInfoViewController.h"
-
+#import "NGCompanyDetailVC.h"
 
 #import "NGSecondListCell.h"
 #import "DTCompanyListCell.h"
@@ -33,6 +33,13 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     NSArray         * _common_cellId_arr;//复用cell ID
     NSString        * _common_list_cellReuseId;//当前复用cellID
     NSString        * _common_list_cellClassStr;//当前cell class
+    
+    CGSize cellMaxFitSize;
+    UIFont *cellFitfont;
+    NSInteger _pageNum;//请求的页数
+    NSInteger _selectRowIndex;
+    
+    BOOL _isfirstAppear;
 }
 @end
 
@@ -42,7 +49,6 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     [super viewDidLoad];
     [self initData];
     [self initSubviews];
-    
 }
 
 -(void)awakeFromNib
@@ -87,44 +93,27 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
             
         default: break;
     }
-    
+    cellMaxFitSize = CGSizeMake(CurrentScreenWidth -100, 999);
+    cellFitfont = [UIFont systemFontOfSize:15];
+    _pageNum = 1;
+    _selectRowIndex = 0;
+    _isfirstAppear = YES;
     
     //....此处获取tableview的数据源
     //...test   tableview
     _common_list_dataSource = [[NSMutableArray alloc]init];
     _common_cellId_arr = @[NGCompanyListCellReuseId,NGCompanyListCellReuseId];
     _common_list_cellReuseId = [_common_cellId_arr objectAtIndex:self.vcType - 1];
-//    NSArray *_arr = @[
-//                      @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
-//                      @[@{@"1":@"车贷金融公司",@"2":@"民间信贷－房产地眼粉色经典福克斯附近的时刻复活节恢复建设的附近发生地方防护服",@"3":@"车辆抵押，信用贷款／信用卡付款"}],
-//                      ];
-    
-    NSString *tel = [[MySharetools shared]getPhoneNumber];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"",@"quye",@"",@"yewu",@"10",@"psize",@"1",@"pnum",@"",@"word",nil];
-    NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
-
-    RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_company_list", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
-                //...请求数据成功
-                NSArray *dataarr = [responseObject objectForKey:@"data"];
-                if (dataarr && dataarr.count < 10) {
-                    //...没有数据了，不能在刷新加载了
-                   [_common_list_dataSource addObjectsFromArray:dataarr];
-                }
-            }
-            else
-            {
-                [SVProgressHUD showInfoWithStatus:@"请求数据出现错误"];
-            }
-        }
-    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
-    }];
-
-    [HttpRequestManager doPostOperationWithTask:task];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (_isfirstAppear) {
+        _isfirstAppear = NO;
+        [_tableView.header beginRefreshing];
+    }
+}
 
 #pragma mark- init subviews
 -(void)initSubviews
@@ -160,13 +149,33 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 #pragma mark --加载数据
 -(void)loadMoreData
 {
-    [SVProgressHUD showWithStatus:@"正在加载数据"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [_common_list_dataSource addObjectsFromArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@""]];
-        [_tableView reloadData];
-        [SVProgressHUD showSuccessWithStatus:@"加载完成"];
-        [_tableView.header endRefreshing];
-    });
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"",@"quye",@"",@"yewu",@"10",@"psize",@"1",@"pnum",@"",@"word",nil];
+    NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
+    RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_company_list", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        _pageNum ==1?({[_tableView.header endRefreshing];[_common_list_dataSource removeAllObjects];}):([_tableView.footer endRefreshing]);
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
+                //...请求数据成功
+                NSArray *dataarr = [responseObject objectForKey:@"data"];
+                if (dataarr && dataarr.count < 10) {
+                    //...没有数据了，不能在刷新加载了
+                    [_common_list_dataSource addObjectsFromArray:dataarr];
+                    
+                    [_tableView reloadData];
+                }
+            }
+            else
+            {
+                [SVProgressHUD showInfoWithStatus:@"请求数据出现错误"];
+            }
+        }
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+        _pageNum ==1?({[_tableView.header endRefreshing];}):([_tableView.footer endRefreshing]);
+    }];
+    
+    [HttpRequestManager doPostOperationWithTask:task];
 }
 
 
@@ -212,6 +221,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 }
 
 
+float _h;
 
 #pragma mark --UItableView delegate
 
@@ -222,13 +232,21 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell;
-    NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:0];
+    DTCompanyListCell * cell;
+    NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:indexPath.row];
     
     switch (self.vcType) {
         case NGVCTypeId_2:
         {
             cell = [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
+            NSString * str = [_dic0 objectForKey:@"4"];
+            CGSize _new =  [ToolsClass calculateSizeForText:str :cellMaxFitSize font:cellFitfont];
+            
+            CGRect rec = cell.distructionLab.frame;
+            rec.size.height = _new.height;
+            cell.distructionLab.frame = rec;
+            _h = _new.height;
+            
             [(DTCompanyListCell *)cell setCellWith:_dic0];
             
             ((DTCompanyListCell *)cell).btnClickBlock = ^(NSInteger tag){
@@ -238,37 +256,35 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
             
         default:break;
     }
-    
-    
-    
-    
-    
+ 
     return cell;
 }
+
+const float cellDefaultHeight = 60.0;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (self.vcType) {
         case NGVCTypeId_2:
         {
-            NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:0];
-            NSString * str = [_dic0 objectForKey:@"2"];
-            CGSize _size = CGSizeMake(CurrentScreenWidth -100, 999);
-            UIFont *font = [UIFont systemFontOfSize:15];
-            CGSize _new =  [ToolsClass calculateSizeForText:str :_size font:font];
-            
-            return _new.height + 20 < 80 ?80:_new.height + 20;
+//            NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:indexPath.row];
+//            NSString * str = [_dic0 objectForKey:@"4"];
+//            CGSize _size = CGSizeMake(CurrentScreenWidth -100, 999);
+//            UIFont *font = [UIFont systemFontOfSize:15];
+//            CGSize _new =  [ToolsClass calculateSizeForText:str :_size font:font];
+//            
+            return 30 + _h > cellDefaultHeight?30 + _h:cellDefaultHeight;
         }break;
             
         default:
             break;
     }
-    return 80;
+    return 60;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"....tableview cell select");
+    _selectRowIndex = indexPath.row;
     switch (self.vcType) {
         case NGVCTypeId_2:
         {
@@ -281,18 +297,9 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == _common_list_dataSource.count - 1) {
-        [self loadMoreData];
+//        [self loadMoreData];
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -301,14 +308,19 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:showCompanyVcID])
+    {
+        NGCompanyDetailVC *vc =[segue destinationViewController];
+        vc.companyInfoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
+    }
 }
-*/
+
 
 @end

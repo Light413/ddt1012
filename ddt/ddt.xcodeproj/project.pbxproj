@@ -1405,7 +1405,7 @@
 				TargetAttributes = {
 					A17B7CED1B43F867003CF895 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 26D44NYMS3;
+						DevelopmentTeam = 8R29X3H9MY;
 					};
 					A17B7D061B43F867003CF895 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -1830,7 +1830,7 @@
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/YiXin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.light.dd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.light.ddt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1865,7 +1865,7 @@
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/YiXin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.light.dd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.light.ddt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";

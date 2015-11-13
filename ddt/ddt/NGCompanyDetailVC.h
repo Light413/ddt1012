@@ -10,4 +10,6 @@
 
 @interface NGCompanyDetailVC : NGBaseTableVC
 
+@property(nonatomic,retain)NSDictionary * companyInfoDic;//公司信息
+
 @end
