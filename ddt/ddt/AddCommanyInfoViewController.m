@@ -148,7 +148,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     }
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     //NSString *nickName = [[MySharetools shared]getNickName];
-    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"username",self.luruCommanynameField.text,@"commany",self.addresscommanyNameField.text,@"m_address",self.jigouCodeFIeld.text,@"orgenum",self.contactorField.text,@"lxr",self.phoneField.text,@"phone",self.keywordField.text,@"word",self.chooseBusinessTypeBtn.titleLabel.text,@"yewu",self.serviceAreaBtn.titleLabel.text,@"quyu",self.judgeTextView.text,@"content", nil];
+    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"username",self.luruCommanynameField.text,@"company",self.addresscommanyNameField.text,@"m_address",self.jigouCodeFIeld.text,@"orgenum",self.contactorField.text,@"lxr",self.phoneField.text,@"phone",self.keywordField.text,@"word",self.chooseBusinessTypeBtn.titleLabel.text,@"yewu",self.serviceAreaBtn.titleLabel.text,@"quyu",self.judgeTextView.text,@"content", nil];
     NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];
     [SVProgressHUD showWithStatus:@"正在加载"];
     RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_addcompany", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {

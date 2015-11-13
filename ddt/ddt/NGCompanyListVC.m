@@ -15,7 +15,6 @@
 #import "NGSecondListCell.h"
 #import "DTCompanyListCell.h"
 
-static NSString * showTongHangVcID  = @"showTongHangVcID";
 static NSString * showCompanyVcID   = @"showCompanyVcID";
 static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 
@@ -30,9 +29,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     //tableview相关
     UITableView     * _tableView;
     NSMutableArray  * _common_list_dataSource;//数据源
-    NSArray         * _common_cellId_arr;//复用cell ID
     NSString        * _common_list_cellReuseId;//当前复用cellID
-    NSString        * _common_list_cellClassStr;//当前cell class
     
     CGSize cellMaxFitSize;
     UIFont *cellFitfont;
@@ -58,7 +55,6 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     self.navigationItem.backBarButtonItem = _backitem;
     
     UIBarButtonItem *rightitem = [[UIBarButtonItem alloc]initWithTitle:@"添加公司" style:UIBarButtonItemStyleBordered target:self action:@selector(rightItemClick)];
-
     self.navigationItem.rightBarButtonItem = rightitem;
 }
 #pragma mark --添加公司
@@ -72,28 +68,17 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 
 -(void)initData
 {
-    //pop
-    NSInteger _index = self.tabBarController.selectedIndex;
-    if (_index == 2)
-    {
-        self.vcType = NGVCTypeId_2;
-    }
+    self.vcType = 1;
     
+    //pop
     //btn title
     NSArray *_areaArr = [NGXMLReader getCurrentLocationAreas];//区域
     NSArray *_typeArr = [NGXMLReader getBaseTypeData];//基本业务类型
-    switch (self.vcType) {
-        case NGVCTypeId_2:
-        {//公司
-            NSArray *_btnTitleArr2 = @[@"服务区域",@"业务类型"];
-            _common_pop_btnTitleArr = _btnTitleArr2;
-            _common_pop_btnListArr  = @[_areaArr,_typeArr];
-            
-        } break;
-            
-        default: break;
-    }
-    cellMaxFitSize = CGSizeMake(CurrentScreenWidth -100, 999);
+    NSArray *_btnTitleArr2 = @[@"服务区域",@"业务类型"];
+    _common_pop_btnTitleArr = _btnTitleArr2;
+    _common_pop_btnListArr  = @[_areaArr,_typeArr];
+
+    cellMaxFitSize = CGSizeMake(CurrentScreenWidth -30, 999);
     cellFitfont = [UIFont systemFontOfSize:15];
     _pageNum = 1;
     _selectRowIndex = 0;
@@ -102,8 +87,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     //....此处获取tableview的数据源
     //...test   tableview
     _common_list_dataSource = [[NSMutableArray alloc]init];
-    _common_cellId_arr = @[NGCompanyListCellReuseId,NGCompanyListCellReuseId];
-    _common_list_cellReuseId = [_common_cellId_arr objectAtIndex:self.vcType - 1];
+    _common_list_cellReuseId = NGCompanyListCellReuseId;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -127,13 +111,14 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     searchBar.placeholder = @"请输入搜索关键字";
     [self.view addSubview:searchBar];
     
-    NSInteger _heightValue = _vcType > 2 ? CurrentScreenHeight -64 -40-30 -2 : CurrentScreenHeight -64-44 -40-30 -2;
+    NSInteger _heightValue = _vcType ==2 ? CurrentScreenHeight -64 -40-30 -2 : CurrentScreenHeight -64-44 -40-30 -2;
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, searchBar.frame.origin.y + searchBar.frame.size.height, CurrentScreenWidth,_heightValue ) style:UITableViewStylePlain];
     _tableView.delegate =self;
     _tableView.dataSource  =self;
     [self.view  addSubview:_tableView];
     [_tableView setContentInset:UIEdgeInsetsMake(0, 0, 5, 0)];
     _tableView.tableFooterView = [[UIView alloc]init];
+    
     [_tableView registerNib:[UINib nibWithNibName:@"DTCompanyListCell" bundle:nil] forCellReuseIdentifier:NGCompanyListCellReuseId];
     
     //添加下拉刷新
@@ -235,28 +220,20 @@ float _h;
     DTCompanyListCell * cell;
     NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:indexPath.row];
     
-    switch (self.vcType) {
-        case NGVCTypeId_2:
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
-            NSString * str = [_dic0 objectForKey:@"4"];
-            CGSize _new =  [ToolsClass calculateSizeForText:str :cellMaxFitSize font:cellFitfont];
-            
-            CGRect rec = cell.distructionLab.frame;
-            rec.size.height = _new.height;
-            cell.distructionLab.frame = rec;
-            _h = _new.height;
-            
-            [(DTCompanyListCell *)cell setCellWith:_dic0];
-            
-            ((DTCompanyListCell *)cell).btnClickBlock = ^(NSInteger tag){
-                NSLog(@"...cell btn click : %ld",tag);
-            };
-        }break;
-            
-        default:break;
-    }
- 
+    cell = [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
+    NSString * str = [_dic0 objectForKey:@"4"];
+    CGSize _new =  [ToolsClass calculateSizeForText:str :cellMaxFitSize font:cellFitfont];
+    
+    CGRect rec = cell.name.frame;
+    rec.size.height = _new.height;
+    cell.name.frame = rec;
+    _h = _new.height + 10;
+    
+    [(DTCompanyListCell *)cell setCellWith:_dic0];
+    ((DTCompanyListCell *)cell).btnClickBlock = ^(NSInteger tag){
+        NSLog(@"...cell btn click : %ld",tag);
+    };
+
     return cell;
 }
 
@@ -264,34 +241,21 @@ const float cellDefaultHeight = 60.0;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (self.vcType) {
-        case NGVCTypeId_2:
-        {
+
 //            NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:indexPath.row];
 //            NSString * str = [_dic0 objectForKey:@"4"];
 //            CGSize _size = CGSizeMake(CurrentScreenWidth -100, 999);
 //            UIFont *font = [UIFont systemFontOfSize:15];
 //            CGSize _new =  [ToolsClass calculateSizeForText:str :_size font:font];
 //            
-            return 30 + _h > cellDefaultHeight?30 + _h:cellDefaultHeight;
-        }break;
-            
-        default:
-            break;
-    }
-    return 60;
+    return 20 + _h > cellDefaultHeight?20 + _h:cellDefaultHeight;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _selectRowIndex = indexPath.row;
-    switch (self.vcType) {
-        case NGVCTypeId_2:
-        {
-            [self performSegueWithIdentifier:showCompanyVcID sender:nil];
-        }break;
-        default: break;
-    }
+
+    [self performSegueWithIdentifier:showCompanyVcID sender:nil];
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

@@ -12,36 +12,27 @@
             <rect key="frame" x="0.0" y="0.0" width="492" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="198-WW-87V" id="1rE-q9-rwt">
-                <rect key="frame" x="0.0" y="0.0" width="492" height="79"/>
+                <rect key="frame" x="0.0" y="0.0" width="492" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZJ-gG-mQp">
                         <rect key="frame" x="8" y="3" width="38" height="18"/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="70" id="AHn-8c-Nbt"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="AHn-8c-Nbt"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="AHn-8c-Nbt"/>
+                            </mask>
+                        </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="民间抵押个人-车辆" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivW-OA-oLX">
-                        <rect key="frame" x="8" y="58" width="102" height="15"/>
+                        <rect key="frame" x="8" y="58.5" width="102" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="139999090" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5we-tt-aXf">
-                        <rect key="frame" x="51" y="3" width="72" height="16"/>
-                        <constraints>
-                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="4r6-v4-Q3q"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="4r6-v4-Q3q"/>
-                            </mask>
-                        </variation>
                     </label>
                     <button opaque="NO" tag="302" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Qa-h1-GOT">
                         <rect key="frame" x="454" y="25" width="30" height="30"/>
@@ -57,42 +48,19 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ivW-OA-oLX" firstAttribute="top" secondItem="5we-tt-aXf" secondAttribute="bottom" id="28q-2e-yY8"/>
-                    <constraint firstItem="5we-tt-aXf" firstAttribute="leading" secondItem="EZJ-gG-mQp" secondAttribute="trailing" constant="5" id="4BX-nw-73n"/>
                     <constraint firstAttribute="bottomMargin" secondItem="ivW-OA-oLX" secondAttribute="bottom" constant="-2" id="AIU-FY-GXG"/>
-                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="5we-tt-aXf" secondAttribute="trailing" constant="22" id="Bpe-lc-QJ7"/>
-                    <constraint firstItem="5we-tt-aXf" firstAttribute="top" secondItem="EZJ-gG-mQp" secondAttribute="top" id="Ejw-z3-hfQ"/>
-                    <constraint firstItem="5we-tt-aXf" firstAttribute="top" secondItem="1rE-q9-rwt" secondAttribute="topMargin" id="FBK-6r-XSn"/>
-                    <constraint firstItem="5we-tt-aXf" firstAttribute="leading" secondItem="EZJ-gG-mQp" secondAttribute="trailing" constant="7.5" id="JfG-Yu-aI3"/>
-                    <constraint firstItem="5we-tt-aXf" firstAttribute="centerY" secondItem="EZJ-gG-mQp" secondAttribute="centerY" id="NYz-Yo-wwh"/>
                     <constraint firstItem="EZJ-gG-mQp" firstAttribute="top" secondItem="1rE-q9-rwt" secondAttribute="topMargin" constant="-5" id="OrA-vI-fiy"/>
                     <constraint firstAttribute="trailingMargin" secondItem="2Qa-h1-GOT" secondAttribute="trailing" id="QFJ-TW-htA"/>
+                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="EZJ-gG-mQp" secondAttribute="trailing" constant="20" id="SoC-36-zb0"/>
                     <constraint firstItem="2Qa-h1-GOT" firstAttribute="centerY" secondItem="1rE-q9-rwt" secondAttribute="centerY" id="VUp-be-LVh"/>
-                    <constraint firstItem="2Qa-h1-GOT" firstAttribute="leading" secondItem="5we-tt-aXf" secondAttribute="trailing" constant="2.5" id="eRA-Bt-I6S"/>
                     <constraint firstItem="ivW-OA-oLX" firstAttribute="leading" secondItem="EZJ-gG-mQp" secondAttribute="leading" id="jFt-4M-ky4"/>
-                    <constraint firstItem="5we-tt-aXf" firstAttribute="centerY" secondItem="EZJ-gG-mQp" secondAttribute="centerY" id="mpb-8E-29h"/>
-                    <constraint firstItem="ivW-OA-oLX" firstAttribute="top" relation="greaterThanOrEqual" secondItem="5we-tt-aXf" secondAttribute="bottom" id="nFd-ra-MRv"/>
-                    <constraint firstItem="5we-tt-aXf" firstAttribute="top" secondItem="EZJ-gG-mQp" secondAttribute="top" id="tvu-bX-WTo"/>
                     <constraint firstItem="EZJ-gG-mQp" firstAttribute="leading" secondItem="1rE-q9-rwt" secondAttribute="leadingMargin" id="ytF-ef-r06"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="Ejw-z3-hfQ"/>
-                        <exclude reference="FBK-6r-XSn"/>
-                        <exclude reference="JfG-Yu-aI3"/>
-                        <exclude reference="NYz-Yo-wwh"/>
-                        <exclude reference="mpb-8E-29h"/>
-                        <exclude reference="28q-2e-yY8"/>
-                        <exclude reference="eRA-Bt-I6S"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="detailLab" destination="ivW-OA-oLX" id="VHq-Nl-MfH"/>
-                <outlet property="distructionLab" destination="5we-tt-aXf" id="IhO-Cy-uce"/>
                 <outlet property="lab_detail" destination="ivW-OA-oLX" id="Pa5-zW-TMS"/>
                 <outlet property="lab_name" destination="EZJ-gG-mQp" id="vBE-Qw-Syl"/>
-                <outlet property="lab_phone" destination="5we-tt-aXf" id="tqL-RO-XhN"/>
                 <outlet property="name" destination="EZJ-gG-mQp" id="uWQ-Yc-f6D"/>
             </connections>
             <point key="canvasLocation" x="459" y="258"/>

@@ -33,6 +33,7 @@
     
     [[PgyUpdateManager sharedPgyManager]startManagerWithAppId:pgyAppId];
     [[PgyManager sharedPgyManager]startManagerWithAppId:pgyAppId];
+    [[PgyManager sharedPgyManager]setEnableFeedback:NO];
     
     self.rootTabVC = (UITabBarController*)self.window.rootViewController;
     [self initTabBar];
