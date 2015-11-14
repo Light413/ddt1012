@@ -21,8 +21,19 @@
 //获取二级列表数据源 keyValue ： 一级列表所选元素项的Id值
 -(NSArray*)dataSourceOfBaseViewWithKey:(NSString *)keyValue;
 
-//选择方法 obj1:选择一级列表对象 obj2：选择二级列表对象（无耳机列表为nil）
--(void)baseView:(NGBaseListView *)baseListView didSelectObj:(id)obj1 secondObj:(id)obj2;
+/**
+ *  选中操作处理
+ *
+ *  @param baseListView listview
+ *  @param obj1         第一个列表选中的对象
+ *  @param index1       第一对象的索引
+ *  @param obj2         第二个列表选中的对象（如无，nil）
+ *  @param index2       第二对象的索引（如无，0）
+ */
+-(void)baseView:(NGBaseListView *)baseListView didSelectObj:(id)obj1 atIndex:(NSIndexPath*)index1 secondObj:(id)obj2 atIndex:(NSIndexPath*)index2;
+
+//获取列表选中的索引
+-(id)baseViewGetBtnID;
 
 @end
 

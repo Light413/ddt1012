@@ -37,6 +37,11 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     NSInteger _selectRowIndex;
     
     BOOL _isfirstAppear;
+    
+    //搜搜
+    NGSearchBar *_searchBar;
+    NSString * _selectedArea;//选择的区域，默认为空
+    NSString * _selectedType;//选择的业务类型，默认为空
 }
 @end
 
@@ -78,6 +83,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     _common_pop_btnTitleArr = _btnTitleArr2;
     _common_pop_btnListArr  = @[_areaArr,_typeArr];
 
+    //tableview
     cellMaxFitSize = CGSizeMake(CurrentScreenWidth -30, 999);
     cellFitfont = [UIFont systemFontOfSize:15];
     _pageNum = 1;
@@ -88,6 +94,9 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     //...test   tableview
     _common_list_dataSource = [[NSMutableArray alloc]init];
     _common_list_cellReuseId = NGCompanyListCellReuseId;
+    
+    _selectedArea = @"";
+    _selectedType = @"";
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -99,20 +108,26 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     }
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [popView disappear];
+}
+
 #pragma mark- init subviews
 -(void)initSubviews
 {
-    self.title = @"贷款公司名片";
+    self.title = @"公司名片";
     
     popView = [[NGPopListView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, 40) withDelegate:self withSuperView:self.view];
     [self.view addSubview:popView];
-    NGSearchBar *searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(2, popView.frame.origin.y + popView.frame.size.height + 1, CurrentScreenWidth -4 , 30)];
-    searchBar.delegate  =self;
-    searchBar.placeholder = @"请输入搜索关键字";
-    [self.view addSubview:searchBar];
+    _searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(2, popView.frame.origin.y + popView.frame.size.height + 1, CurrentScreenWidth -4 , 30)];
+    _searchBar.delegate  =self;
+    _searchBar.placeholder = @"请输入公司名称、地址或其他关键字";
+    [self.view addSubview:_searchBar];
     
     NSInteger _heightValue = _vcType ==2 ? CurrentScreenHeight -64 -40-30 -2 : CurrentScreenHeight -64-44 -40-30 -2;
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, searchBar.frame.origin.y + searchBar.frame.size.height, CurrentScreenWidth,_heightValue ) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, _searchBar.frame.origin.y + _searchBar.frame.size.height, CurrentScreenWidth,_heightValue ) style:UITableViewStylePlain];
     _tableView.delegate =self;
     _tableView.dataSource  =self;
     [self.view  addSubview:_tableView];
@@ -124,10 +139,13 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     //添加下拉刷新
     __weak __typeof(self) weakSelf = self;
     _tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _pageNum = 1;
         [weakSelf loadMoreData];
     }];
     
-    
+    _tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
 }
 
 
@@ -135,24 +153,30 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 -(void)loadMoreData
 {
     NSString *tel = [[MySharetools shared]getPhoneNumber];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"",@"quye",@"",@"yewu",@"10",@"psize",@"1",@"pnum",@"",@"word",nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea,@"quye",_selectedType,@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",nil];
+    
+    NSLog(@"...pagenum : %d",_pageNum);
+    
     NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
     RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_company_list", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        _pageNum ==1?({[_tableView.header endRefreshing];[_common_list_dataSource removeAllObjects];}):([_tableView.footer endRefreshing]);
+        _pageNum ==1?({[_tableView.header endRefreshing];[_common_list_dataSource removeAllObjects];
+        }):([_tableView.footer endRefreshing]);
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
-                //...请求数据成功
                 NSArray *dataarr = [responseObject objectForKey:@"data"];
                 if (dataarr && dataarr.count < 10) {
                     //...没有数据了，不能在刷新加载了
-                    [_common_list_dataSource addObjectsFromArray:dataarr];
+                    _pageNum = NSNotFound;
+                     [_tableView.footer endRefreshingWithNoMoreData];
                     
+                    [_common_list_dataSource addObjectsFromArray:dataarr];
                     [_tableView reloadData];
                 }
             }
             else
             {
-                [SVProgressHUD showInfoWithStatus:@"请求数据出现错误"];
+//                [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+                [_tableView.footer endRefreshingWithNoMoreData];
             }
         }
     } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -197,12 +221,19 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 #pragma mark -NGSearchBarDelegate
 -(void)searchBarWillBeginSearch:(NGSearchBar *)searchBar
 {
+    _pageNum  =1;
     NSLog(@"begin");
 }
 
 -(void)searchBarDidBeginSearch:(NGSearchBar *)searchBar withStr:(NSString *)str
 {
-    NSLog(@"did : %@",searchBar.text);
+    if (searchBar.text.length > 0) {
+          [self loadMoreData];
+    }
+    else
+    {
+        [SVProgressHUD showInfoWithStatus:@"输入搜索关键字"];
+    }
 }
 
 
@@ -260,8 +291,9 @@ const float cellDefaultHeight = 60.0;
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == _common_list_dataSource.count - 1) {
-//        [self loadMoreData];
+    if (_pageNum != NSNotFound && indexPath.row == _common_list_dataSource.count - 1) {
+        _pageNum++;
+        [_tableView.footer beginRefreshing];
     }
 }
 

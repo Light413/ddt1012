@@ -22,10 +22,7 @@
 -(void)setCellWith:(NSDictionary*)dic
 {
     NSString * name = [NSString stringWithFormat:@"%@ %@",[dic objectForKey:@"company"]?[NSString stringWithFormat:@"%@ -",[dic objectForKey:@"company"]]:@"",[dic objectForKey:@"4"]];
-    
     self.name.text = name;
-    
-//    self.distructionLab.text = [dic objectForKey:@"4"];
     self.detailLab.text = [dic objectForKey:@"word"];
     
     NSMutableAttributedString *mutableAttributedString_attrs = [[NSMutableAttributedString alloc] initWithString:self.name.text];

@@ -30,7 +30,7 @@
     return objc_getAssociatedObject(self, @selector(ID));
 }
 
--(void)setNormalTitle :(NSString*)title andID :(NSString*)valueID
+-(void)setNormalTitle :(NSString*)title andID :(id)valueID
 {
     [self setTitle:title];
     [self setID:valueID];

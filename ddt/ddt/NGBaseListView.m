@@ -19,7 +19,12 @@
     NSArray * _dataSource_2;
     
     id _tableview1_selectedObj;//tableview1 选中的对象
+    NSIndexPath* _tableview1_selectedIndex;//tableview1选中对象的索引
+    NSIndexPath* _tableview1_selectedIndex_last;
+    
     id _tableview2_selectedObj;//tableview2 选中的对象 ,若无tableview2 则为nil
+    NSIndexPath* _tableview2_selectedIndex;//tableview2选中对象的索引
+    UITableViewCell * _lastSelectedCell;
 }
 -(instancetype)initWithFrame:(CGRect)frame withDelegate  :(id)delegate
 {
@@ -31,6 +36,8 @@
         _dataSource_2 = nil;
         _tableview1_selectedObj = nil;
         _tableview2_selectedObj = nil;
+        _tableview1_selectedIndex = nil;
+        _tableview2_selectedIndex = nil;
         
         float width = frame.size.width * 1.0 / _numberTableview;
         for (int i=0; i < _numberTableview; i++) {
@@ -52,10 +59,22 @@
 -(void)setFrame:(CGRect)frame
 {
     [super setFrame:frame];
+    if ([self.delegate respondsToSelector:@selector(baseViewGetBtnID)]) {
+        if (_numberTableview ==1) {
+           _tableview1_selectedIndex = [self.delegate baseViewGetBtnID];
+        }
+        else if (_numberTableview == 2)
+        {
+            NSIndexPath *_t = [self.delegate baseViewGetBtnID];
+            _tableview1_selectedIndex_last = [NSIndexPath indexPathForRow:_t.section inSection:0];
+            _tableview2_selectedIndex = [NSIndexPath indexPathForRow:_t.row inSection:0];
+        }
+    }
+    
     float width = frame.size.width * 1.0 / (_numberTableview == 2 ?5:_numberTableview);
     for (int i=0; i < self.subviews.count; i++) {
         UITableView *_tableview = (UITableView *)[self viewWithTag:NGTABLEVIEWTAG +i];
-        _tableview.frame = CGRectMake(width * i *2, 0, width *(i+2), frame.size.height);
+        _tableview.frame = CGRectMake(width * i *2, 0, width *(_numberTableview==2? i+2:1), frame.size.height);
         [_tableview reloadData];
     }
 }
@@ -100,7 +119,6 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *_title;
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellReuseIdentifier"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellReuseIdentifier"];
@@ -111,7 +129,7 @@
             [((UILabel*)_obj) removeFromSuperview];
         }
     }
-    
+
     if (tableView.tag == 300) {
         NSArray *_arr = _dataSource;
         id _obj = [_arr objectAtIndex:indexPath.row];
@@ -123,18 +141,36 @@
             {
                 _title = [((NSDictionary*)_obj) objectForKey:@"NAME"];
             }
+            if (_tableview1_selectedIndex && _tableview1_selectedIndex.row == indexPath.row) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
+            else
+            {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
         }
         else if (_numberTableview == 2)
         {
             _title = [((NSDictionary*)_obj) objectForKey:@"NAME"];
+        
+            cell.selectedBackgroundView = _numberTableview > 1?[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"btn_cell_selectedBG.jpg"]] : nil;
+            cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+            if (_tableview1_selectedIndex_last && _tableview1_selectedIndex_last.row == indexPath.row) {
+                _lastSelectedCell = cell;
+                cell.backgroundView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"btn_cell_selectedBG.jpg"]];
+                //...刷新二级列表
+                _tableview1_selectedObj =[_dataSource objectAtIndex:_tableview1_selectedIndex_last.row];
+                _tableview1_selectedIndex = _tableview1_selectedIndex_last;
+                UITableView *_t = (UITableView *) [self viewWithTag:301];
+                [_t reloadData];
+            }
+            else
+              cell.backgroundView =nil;
         }
         
         UILabel *_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, cell.frame.size.height  -1, cell.frame.size.width, 1)];
         _lab.backgroundColor = SubListViewCellNormalColor;
         [cell addSubview:_lab];
-        cell.selectedBackgroundView = _numberTableview > 1?[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"btn_cell_selectedBG.jpg"]] : nil;
-        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     else
     {//...
@@ -149,8 +185,13 @@
         _dic = [_dataSource_2 objectAtIndex:indexPath.row];
         _title = [_dic objectForKey:@"NAME"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (_tableview2_selectedIndex && _tableview2_selectedIndex.row == indexPath.row && _tableview1_selectedIndex_last.row == _tableview1_selectedIndex.row) {
+           cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        else
+            cell.accessoryType = UITableViewCellAccessoryNone;;
     }
-    cell.accessoryType = UITableViewCellAccessoryNone;
+
     cell.textLabel.text = _title ? _title :@"";
     return cell;
 }
@@ -158,11 +199,17 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (_lastSelectedCell) {
+        _lastSelectedCell.backgroundView = nil;
+    }
+    
     if (tableView.tag == 300) {
         _tableview1_selectedObj =[_dataSource objectAtIndex:indexPath.row];
+        _tableview1_selectedIndex = indexPath;
+        
         if (_numberTableview == 1) {
-            if ([self.delegate respondsToSelector:@selector(baseView:didSelectObj:secondObj:)]) {
-                [self.delegate baseView:self didSelectObj:_tableview1_selectedObj secondObj:nil];
+            if ([self.delegate respondsToSelector:@selector(baseView:didSelectObj:atIndex:secondObj:atIndex:)]) {
+                [self.delegate baseView:self didSelectObj:_tableview1_selectedObj atIndex:_tableview1_selectedIndex secondObj:nil atIndex:nil];
             }
         }
         else
@@ -177,17 +224,18 @@
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         _tableview2_selectedObj = [_dataSource_2 objectAtIndex:indexPath.row];
-        if ([self.delegate respondsToSelector:@selector(baseView:didSelectObj:secondObj:)]) {
-            [self.delegate baseView:self didSelectObj:_tableview1_selectedObj secondObj:_tableview2_selectedObj];
+        _tableview2_selectedIndex = indexPath;
+        if ([self.delegate respondsToSelector:@selector(baseView:didSelectObj:atIndex:secondObj:atIndex:)]) {
+            [self.delegate baseView:self didSelectObj:_tableview1_selectedObj atIndex:_tableview1_selectedIndex secondObj:_tableview2_selectedObj atIndex:_tableview2_selectedIndex];
         }
     }
 }
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-}
+//-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+////    cell.accessoryType = UITableViewCellAccessoryNone;
+//}
 
 
 /*

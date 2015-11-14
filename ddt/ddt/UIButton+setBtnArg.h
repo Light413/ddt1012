@@ -11,9 +11,9 @@
 @interface UIButton (setBtnArg)
 
 @property(nonatomic,copy)NSString *title;//btn 标题
-@property(nonatomic,copy)NSString *ID;//btn ID
+@property(nonatomic,copy)id ID;//btn ID
 
 
--(void)setNormalTitle :(NSString*)title andID :(NSString*)valueID;//设置btn的title和Id
+-(void)setNormalTitle :(NSString*)title andID :(id)valueID;//设置btn的title和Id
 
 @end

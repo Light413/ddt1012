@@ -138,14 +138,21 @@
     return [NGXMLReader getBaseTypeDataWithKey:keyValue];
 }
 
--(void)baseView:(NGBaseListView *)baseListView didSelectObj:(id)obj1 secondObj:(id)obj2
+-(void)baseView:(NGBaseListView *)baseListView didSelectObj:(id)obj1 atIndex:(NSIndexPath*)index1 secondObj:(id)obj2 atIndex:(NSIndexPath*)index2
 {
     NSLog(@"obj1 : %@ ---- obj2 :%@",obj1,obj2);
 //    [0]	(null)	@"ID" : @"719"
 //    [1]	(null)	@"NAME" : @"黄浦区"
     NSString *_title =obj2?[obj2 objectForKey:@"NAME"]:([obj1 isKindOfClass:[NSDictionary class]] ? [obj1 objectForKey:@"NAME"]:obj1);
     
-    [_selectedBtn setTitle:_title forState:UIControlStateNormal];
+    if (index2 == nil) {
+       [_selectedBtn setNormalTitle:_title andID:index1];
+    }
+    else
+    {
+        NSIndexPath *tmp = [NSIndexPath indexPathForRow:index2.row inSection:index1.row];
+        [_selectedBtn setNormalTitle:_title andID:tmp];
+    }
     
     [self disappear];
     
@@ -153,6 +160,11 @@
     if ([self.delegate respondsToSelector:@selector(popListView:didSelectRowAtIndex:)]) {
         [self.delegate popListView:self didSelectRowAtIndex:0];
     }
+}
+
+-(id)baseViewGetBtnID
+{
+    return _selectedBtn.ID;
 }
 
 
