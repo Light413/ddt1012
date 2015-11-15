@@ -58,6 +58,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="btn_love" destination="2Qa-h1-GOT" id="cXT-aC-i4J"/>
                 <outlet property="detailLab" destination="ivW-OA-oLX" id="VHq-Nl-MfH"/>
                 <outlet property="lab_detail" destination="ivW-OA-oLX" id="Pa5-zW-TMS"/>
                 <outlet property="lab_name" destination="EZJ-gG-mQp" id="vBE-Qw-Syl"/>

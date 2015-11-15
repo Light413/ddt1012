@@ -41,9 +41,9 @@
                                           range:rang];
     
      [mutableAttributedString_attrs endEditing];
-
     self.name.attributedText  =[mutableAttributedString_attrs copy];
     
+    self.btn_love.selected = [[dic objectForKey:@"isbook"]boolValue];
 }
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key
@@ -56,7 +56,7 @@
         sender.selected = !sender.selected;
     }
     
-    _btnClickBlock(sender.tag);
+    _btnClickBlock(sender.selected);
 }
 
 

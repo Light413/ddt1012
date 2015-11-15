@@ -24,6 +24,10 @@ CFBundleDisplayName="贷易通";
 
 //公司名片列表
 "url_company_list" = "/mydyt/web_service.php?doc=getcompany";
+"url_my_love" = "/mydyt/web_service.php?doc=addbook";//添加收藏1、同行2、公司3、单子
+"url_my_nolove" = "/mydyt/web_service.php?doc=delbook";//取消收藏
+
+
 //个人信息完善
 "url_adduserinfo" = "/mydyt/web_service.php?doc=adduserinfo";
 //设置简历

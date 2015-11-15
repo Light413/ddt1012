@@ -143,6 +143,9 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"companySB" bundle:nil];
             vc=  [sb instantiateViewControllerWithIdentifier:@"companySBID"];
             ((NGCompanyListVC *)vc).vcType = 2;
+            ((NGCompanyListVC *)vc).selectedArea = self.btn_select_area.title?self.btn_select_area.title:@"全部";
+            ((NGCompanyListVC *)vc).selectedType = self.btn_select_type.title?self.btn_select_type.title:@"全部";
+            ((NGCompanyListVC *)vc).searchKey = self.tf_search_key.text;
         }
             break;
         default:
@@ -150,7 +153,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     }
     
     vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:vc animated:NO];
 }
 
 

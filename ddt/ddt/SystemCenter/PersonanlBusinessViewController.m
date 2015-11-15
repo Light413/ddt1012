@@ -26,8 +26,7 @@
     UIButton *rightbtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightbtn.frame = CGRectMake(0, 0, 60, 30);
     [rightbtn setTitle:@"确定" forState:UIControlStateNormal];
-    rightbtn.titleLabel.font = [UIFont systemFontOfSize:15];
-//    rightbtn.backgroundColor = [UIColor redColor];
+    rightbtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     rightbtn.titleLabel.textAlignment = NSTextAlignmentRight;
     [rightbtn addTarget:self action:@selector(btnok) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightbtn];

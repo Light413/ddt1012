@@ -1070,8 +1070,6 @@
 				A143F83F1BCCA5D60029E555 /* NGSecondVC.m */,
 				AD5B11D61BDBA43700285255 /* NGTongHDetailVC.h */,
 				AD5B11D71BDBA43700285255 /* NGTongHDetailVC.m */,
-				ADE8CF8A1BDBD420006CBC95 /* NGCompanyDetailVC.h */,
-				ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */,
 			);
 			name = tonghang;
 			sourceTree = "<group>";
@@ -1081,6 +1079,8 @@
 			children = (
 				AD7206961BF0FC9100573C4C /* NGCompanyListVC.h */,
 				AD7206971BF0FC9100573C4C /* NGCompanyListVC.m */,
+				ADE8CF8A1BDBD420006CBC95 /* NGCompanyDetailVC.h */,
+				ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */,
 			);
 			name = gongsi;
 			sourceTree = "<group>";

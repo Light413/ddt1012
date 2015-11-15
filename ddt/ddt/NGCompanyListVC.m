@@ -40,8 +40,6 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     
     //搜搜
     NGSearchBar *_searchBar;
-    NSString * _selectedArea;//选择的区域，默认为空
-    NSString * _selectedType;//选择的业务类型，默认为空
 }
 @end
 
@@ -59,8 +57,15 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     _backitem.title = @"";
     self.navigationItem.backBarButtonItem = _backitem;
     
-    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc]initWithTitle:@"添加公司" style:UIBarButtonItemStyleBordered target:self action:@selector(rightItemClick)];
-    self.navigationItem.rightBarButtonItem = rightitem;
+    UIButton *rightbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightbtn.frame = CGRectMake(0, 0, 100, 30);
+    [rightbtn setTitle:@"添加公司" forState:UIControlStateNormal];
+    rightbtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    rightbtn.titleLabel.textAlignment = NSTextAlignmentRight;
+    [rightbtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -50)];
+    
+    [rightbtn addTarget:self action:@selector(rightItemClick) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightbtn];
 }
 #pragma mark --添加公司
 -(void)rightItemClick
@@ -75,9 +80,19 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 {
     //pop
     //btn title
+    
     NSArray *_areaArr = [NGXMLReader getCurrentLocationAreas];//区域
     NSArray *_typeArr = [NGXMLReader getBaseTypeData];//基本业务类型
     NSArray *_btnTitleArr2 = @[@"服务区域",@"业务类型"];
+    if (self.vcType == 2) {
+        _btnTitleArr2 = @[_selectedArea,_selectedType];
+    }
+    else
+    {
+        _selectedArea = @"";
+        _selectedType = @"";
+    }
+    
     _common_pop_btnTitleArr = _btnTitleArr2;
     _common_pop_btnListArr  = @[_areaArr,_typeArr];
 
@@ -87,15 +102,10 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     _pageNum = 1;
     _selectRowIndex = 0;
     _isfirstAppear = YES;
-    _searchKey = @"";
     
-    //....此处获取tableview的数据源
-    //...test   tableview
+
     _common_list_dataSource = [[NSMutableArray alloc]init];
     _common_list_cellReuseId = NGCompanyListCellReuseId;
-    
-    _selectedArea = @"";
-    _selectedType = @"";
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -123,6 +133,9 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     _searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(2, popView.frame.origin.y + popView.frame.size.height + 1, CurrentScreenWidth -4 , 30)];
     _searchBar.delegate  =self;
     _searchBar.placeholder = @"请输入公司名称、地址或其他关键字";
+    if (self.searchKey) {
+        _searchBar.text = self.searchKey;
+    }
     [self.view addSubview:_searchBar];
     
     NSInteger _heightValue = _vcType ==2 ? CurrentScreenHeight -64 -40-30 -2 : CurrentScreenHeight -64-44 -40-30 -2;
@@ -132,7 +145,6 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     [self.view  addSubview:_tableView];
     [_tableView setContentInset:UIEdgeInsetsMake(0, 0, 5, 0)];
     _tableView.tableFooterView = [[UIView alloc]init];
-    
     [_tableView registerNib:[UINib nibWithNibName:@"DTCompanyListCell" bundle:nil] forCellReuseIdentifier:NGCompanyListCellReuseId];
     
     //添加下拉刷新
@@ -141,7 +153,6 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
         _pageNum = 1;
         [weakSelf loadMoreData];
     }];
-    
     _tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [_tableView.footer resetNoMoreData];
         [weakSelf loadMoreData];
@@ -268,24 +279,17 @@ float _h;
     _h = _new.height + 10;
     
     [(DTCompanyListCell *)cell setCellWith:_dic0];
-    ((DTCompanyListCell *)cell).btnClickBlock = ^(NSInteger tag){
-        NSLog(@"...cell btn click : %ld",tag);
+    ((DTCompanyListCell *)cell).btnClickBlock = ^(BOOL selected){
+        NSLog(@"...cell btn click : %ld",selected);
+        
     };
 
     return cell;
 }
 
 const float cellDefaultHeight = 60.0;
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-//            NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:indexPath.row];
-//            NSString * str = [_dic0 objectForKey:@"4"];
-//            CGSize _size = CGSizeMake(CurrentScreenWidth -100, 999);
-//            UIFont *font = [UIFont systemFontOfSize:15];
-//            CGSize _new =  [ToolsClass calculateSizeForText:str :_size font:font];
-//            
     return 20 + _h > cellDefaultHeight?20 + _h:cellDefaultHeight;
 }
 
@@ -304,6 +308,24 @@ const float cellDefaultHeight = 60.0;
     }
 }
 
+//收藏操作
+-(void)collectAction:(BOOL)isselected
+{
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea,@"quye",_selectedType,@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",nil];
+    
+    NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
+    
+    
+    
+    RequestTaskHandle *_h = [RequestTaskHandle taskWithUrl:@"" parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+    [HttpRequestManager doPostOperationWithTask:_h];
+}
 
 
 - (void)didReceiveMemoryWarning {

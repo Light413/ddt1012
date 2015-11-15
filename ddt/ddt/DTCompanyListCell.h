@@ -12,8 +12,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *detailLab;
 @property (weak, nonatomic) IBOutlet UILabel *distructionLab;
+@property (weak, nonatomic) IBOutlet UIButton *btn_love;//是否收藏
 
-@property(nonatomic,copy)void(^btnClickBlock)(NSInteger);
+@property(nonatomic,copy)void(^btnClickBlock)(BOOL);
 
 
 -(void)setCellWith:(NSDictionary*)dic;
