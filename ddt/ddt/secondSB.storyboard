@@ -9,7 +9,7 @@
         <!--贷款同行名片-->
         <scene sceneID="cM7-lX-2x5">
             <objects>
-                <viewController title="贷款同行名片" id="uvq-Z7-J13" customClass="NGSecondVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="secondSBID" title="贷款同行名片" id="uvq-Z7-J13" customClass="NGSecondVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F3z-RF-2jm"/>
                         <viewControllerLayoutGuide type="bottom" id="6eN-AY-5VT"/>

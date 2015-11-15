@@ -26,6 +26,9 @@
     UIButton *rightbtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightbtn.frame = CGRectMake(0, 0, 60, 30);
     [rightbtn setTitle:@"确定" forState:UIControlStateNormal];
+    rightbtn.titleLabel.font = [UIFont systemFontOfSize:15];
+//    rightbtn.backgroundColor = [UIColor redColor];
+    rightbtn.titleLabel.textAlignment = NSTextAlignmentRight;
     [rightbtn addTarget:self action:@selector(btnok) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightbtn];
     
@@ -42,6 +45,11 @@
 {
     if (_hasSelectedObj.count >4 ) {
         [SVProgressHUD showInfoWithStatus:@"选项最多四项"];
+        return;
+    }
+    else if (_hasSelectedObj.count ==0)
+    {
+        [SVProgressHUD showInfoWithStatus:@"请至少选择一项"];
         return;
     }
     

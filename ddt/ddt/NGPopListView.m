@@ -140,16 +140,19 @@
 
 -(void)baseView:(NGBaseListView *)baseListView didSelectObj:(id)obj1 atIndex:(NSIndexPath*)index1 secondObj:(id)obj2 atIndex:(NSIndexPath*)index2
 {
+    NSInteger _index;
     NSLog(@"obj1 : %@ ---- obj2 :%@",obj1,obj2);
 //    [0]	(null)	@"ID" : @"719"
 //    [1]	(null)	@"NAME" : @"黄浦区"
     NSString *_title =obj2?[obj2 objectForKey:@"NAME"]:([obj1 isKindOfClass:[NSDictionary class]] ? [obj1 objectForKey:@"NAME"]:obj1);
     
     if (index2 == nil) {
+        _index = 1;
        [_selectedBtn setNormalTitle:_title andID:index1];
     }
     else
     {
+        _index = 2;
         NSIndexPath *tmp = [NSIndexPath indexPathForRow:index2.row inSection:index1.row];
         [_selectedBtn setNormalTitle:_title andID:tmp];
     }
@@ -157,8 +160,9 @@
     [self disappear];
     
     //...获取btn 参数列表
-    if ([self.delegate respondsToSelector:@selector(popListView:didSelectRowAtIndex:)]) {
-        [self.delegate popListView:self didSelectRowAtIndex:0];
+
+    if ([self.delegate respondsToSelector:@selector(popListView:didSelected:withIndex:)]) {
+        [self.delegate popListView:self didSelected:_title withIndex:_index];
     }
 }
 

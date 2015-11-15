@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Light. All rights reserved.
 //
 //NGVCTypeId_1  同行Id
-//NGVCTypeId_2  公司Id
+//NGVCTypeId_2  搜索同行Id
 //NGVCTypeId_3  附近同行
 //NGVCTypeId_4  接单
 //NGVCTypeId_5  求职
@@ -146,13 +146,13 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     
     //...test   tableview
     _common_list_dataSource = [[NSMutableArray alloc]init];
-    _common_cellId_arr = @[NGSecondListCellReuseId,NGCompanyListCellReuseId,NGSecondListCellReuseId,JieDanCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId];
+    _common_cellId_arr = @[NGSecondListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId,JieDanCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId];
     _common_list_cellReuseId = [_common_cellId_arr objectAtIndex:self.vcType - 1];
     
     NSArray *_arr = @[
   @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
-  @[@{@"1":@"车贷金融公司",@"2":@"民间信贷－房产地眼粉色经典福克斯附近的时刻复活节恢复建设的附近发生地方防护服",@"3":@"车辆抵押，信用贷款／信用卡付款"}],
-    @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],//附近同行
+  @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
+  @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],//附近同行
     @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
     @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
     @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}]
@@ -166,7 +166,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 #pragma mark- init subviews
 -(void)initSubviews
 {
-    NSArray *_titleArr = @[@"贷款同行名片",@"贷款公司名片",@"附近同行",@"我要接单",@"我要求职",@"我要招聘"];
+    NSArray *_titleArr = @[@"同行名片",@"同行名片",@"附近同行",@"我要接单",@"我要求职",@"我要招聘"];
     self.title = [_titleArr objectAtIndex:self.vcType - 1];
     
     popView = [[NGPopListView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, 40) withDelegate:self withSuperView:self.view];
@@ -176,7 +176,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     searchBar.placeholder = @"请输入搜索关键字";
     [self.view addSubview:searchBar];
     
-    NSInteger _heightValue = _vcType > 2 ? CurrentScreenHeight -64 -40-30 -2 : CurrentScreenHeight -64-44 -40-30 -2;
+    NSInteger _heightValue = _vcType > 1 ? CurrentScreenHeight -64 -40-30 -2 : CurrentScreenHeight -64-44 -40-30 -2;
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, searchBar.frame.origin.y + searchBar.frame.size.height, CurrentScreenWidth,_heightValue ) style:UITableViewStylePlain];
     _tableView.delegate =self;
     _tableView.dataSource  =self;
@@ -184,7 +184,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     [_tableView setContentInset:UIEdgeInsetsMake(0, 0, 5, 0)];
     _tableView.tableFooterView = [[UIView alloc]init];
     [_tableView registerNib:[UINib nibWithNibName:@"NGSecondListCell" bundle:nil] forCellReuseIdentifier:NGSecondListCellReuseId];
-    [_tableView registerNib:[UINib nibWithNibName:@"DTCompanyListCell" bundle:nil] forCellReuseIdentifier:NGCompanyListCellReuseId];
+//    [_tableView registerNib:[UINib nibWithNibName:@"DTCompanyListCell" bundle:nil] forCellReuseIdentifier:NGCompanyListCellReuseId];
     [_tableView registerNib:[UINib nibWithNibName:@"NGJieDanListCell" bundle:nil] forCellReuseIdentifier:JieDanCellReuseId];
     
     
@@ -267,6 +267,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     
     switch (self.vcType) {
         case NGVCTypeId_1:
+        case NGVCTypeId_2:
         case NGVCTypeId_3:
         {
             cell =  [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
@@ -277,15 +278,15 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
             
         }break;
          
-        case NGVCTypeId_2:
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
-            [(DTCompanyListCell *)cell setCellWith:_dic0];
-            
-            ((DTCompanyListCell *)cell).btnClickBlock = ^(NSInteger tag){
-                NSLog(@"...cell btn click : %ld",tag);
-            };
-        }break;
+//        case NGVCTypeId_2:
+//        {
+//            cell = [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
+//            [(DTCompanyListCell *)cell setCellWith:_dic0];
+//            
+//            ((DTCompanyListCell *)cell).btnClickBlock = ^(NSInteger tag){
+//                NSLog(@"...cell btn click : %ld",tag);
+//            };
+//        }break;
         
         case NGVCTypeId_4:
         {
@@ -320,16 +321,16 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (self.vcType) {
-        case NGVCTypeId_2:
-        {
-            NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:0];
-            NSString * str = [_dic0 objectForKey:@"2"];
-            CGSize _size = CGSizeMake(CurrentScreenWidth -100, 999);
-            UIFont *font = [UIFont systemFontOfSize:15];
-            CGSize _new =  [ToolsClass calculateSizeForText:str :_size font:font];
-           
-            return _new.height + 20;
-        }break;
+//        case NGVCTypeId_2:
+//        {
+//            NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:0];
+//            NSString * str = [_dic0 objectForKey:@"2"];
+//            CGSize _size = CGSizeMake(CurrentScreenWidth -100, 999);
+//            UIFont *font = [UIFont systemFontOfSize:15];
+//            CGSize _new =  [ToolsClass calculateSizeForText:str :_size font:font];
+//           
+//            return _new.height + 20;
+//        }break;
             
         default:
             break;
@@ -347,7 +348,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         }break;
         case NGVCTypeId_2:
         {
-            [self performSegueWithIdentifier:showCompanyVcID sender:nil];
+            [self performSegueWithIdentifier:showTongHangVcID sender:nil];
         }break;
         case NGVCTypeId_3:
         {//附近同行

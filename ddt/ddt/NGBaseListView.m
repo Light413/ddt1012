@@ -166,7 +166,7 @@
             else
             {
               cell.backgroundView =nil;
-                if (indexPath.row==0) {
+                if (indexPath.row==0 && _tableview1_selectedIndex_last == nil) {
                   cell.backgroundView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"btn_cell_selectedBG.jpg"]];
                 _lastSelectedCell = cell;
                 }

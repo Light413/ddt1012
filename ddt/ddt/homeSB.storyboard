@@ -922,7 +922,7 @@
                                                         </mask>
                                                     </variation>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ExA-aA-3aS">
+                                                <button opaque="NO" tag="110" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ExA-aA-3aS">
                                                     <rect key="frame" x="8" y="202" width="192" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="WJ2-R7-AG4"/>
@@ -930,18 +930,27 @@
                                                     <state key="normal" title="搜单子" backgroundImage="btn_bg">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="nextStopbtnAction:" destination="o9Y-ji-4LY" eventType="touchUpInside" id="QFe-Fg-AOA"/>
+                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EW-p6-f7O">
+                                                <button opaque="NO" tag="111" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EW-p6-f7O">
                                                     <rect key="frame" x="205" y="202" width="191" height="35"/>
                                                     <state key="normal" title="搜同行" backgroundImage="btn_bg">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="nextStopbtnAction:" destination="o9Y-ji-4LY" eventType="touchUpInside" id="EF7-w5-dY9"/>
+                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIf-NL-2DI">
+                                                <button opaque="NO" tag="112" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIf-NL-2DI">
                                                     <rect key="frame" x="401" y="202" width="192" height="35"/>
                                                     <state key="normal" title="搜公司" backgroundImage="btn_bg">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="nextStopbtnAction:" destination="o9Y-ji-4LY" eventType="touchUpInside" id="LvA-S3-ZeM"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

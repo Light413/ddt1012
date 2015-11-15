@@ -61,6 +61,11 @@
     return _tf.text;
 }
 
+-(void)setText:(NSString *)text
+{
+    _tf.text = text;
+}
+
 
 #pragma mark - textfield delegate
 -(void)textFieldDidBeginEditing:(UITextField *)textField

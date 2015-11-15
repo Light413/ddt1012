@@ -9,7 +9,7 @@
         <!--贷款公司名片-->
         <scene sceneID="KeZ-be-di1">
             <objects>
-                <viewController title="贷款公司名片" id="Iwh-eD-qeu" customClass="NGCompanyListVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="companySBID" title="贷款公司名片" id="Iwh-eD-qeu" customClass="NGCompanyListVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aVA-YD-IB9"/>
                         <viewControllerLayoutGuide type="bottom" id="tlt-TK-g4J"/>

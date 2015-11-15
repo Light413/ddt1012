@@ -73,8 +73,6 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 
 -(void)initData
 {
-    self.vcType = 1;
-    
     //pop
     //btn title
     NSArray *_areaArr = [NGXMLReader getCurrentLocationAreas];//区域
@@ -89,6 +87,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     _pageNum = 1;
     _selectRowIndex = 0;
     _isfirstAppear = YES;
+    _searchKey = @"";
     
     //....此处获取tableview的数据源
     //...test   tableview
@@ -144,6 +143,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     }];
     
     _tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [_tableView.footer resetNoMoreData];
         [weakSelf loadMoreData];
     }];
 }
@@ -154,13 +154,11 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 {
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea,@"quye",_selectedType,@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",nil];
-    
-    NSLog(@"...pagenum : %d",_pageNum);
-    
+
     NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
     RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_company_list", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         _pageNum ==1?({[_tableView.header endRefreshing];[_common_list_dataSource removeAllObjects];
-        }):([_tableView.footer endRefreshing]);
+         [_tableView reloadData];}):([_tableView.footer endRefreshing]);
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
                 NSArray *dataarr = [responseObject objectForKey:@"data"];
@@ -175,7 +173,7 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
             }
             else
             {
-//                [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+                [SVProgressHUD showInfoWithStatus:@"暂无数据"];
                 [_tableView.footer endRefreshingWithNoMoreData];
             }
         }
@@ -211,10 +209,19 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 }
 
 
--(void)popListView:(NGPopListView *)popListView  didSelectRowAtIndex:(NSInteger )index
+-(void)popListView:(NGPopListView *)popListView  didSelected:(NSString *)str withIndex:(NSInteger)index
 {
     //...请求网络
+    _pageNum = 1;
+    if (index == 1) {
+        _selectedArea = str;
+    }
+    else if(index ==2)
+    {
+        _selectedType = str;
+    }
     
+    [_tableView.header beginRefreshing];
 }
 
 

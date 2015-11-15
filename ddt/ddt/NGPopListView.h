@@ -33,7 +33,7 @@
 -(NSInteger)popListView:(NGPopListView *)popListView numberOfRowsWithIndex:(NSInteger)index;
 
 //popListView 选中事件
--(void)popListView:(NGPopListView *)popListView  didSelectRowAtIndex:(NSInteger )index;
+-(void)popListView:(NGPopListView *)popListView  didSelected:(NSString*)str withIndex:(NSInteger)index;
 
 @optional
 //cell的高度

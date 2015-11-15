@@ -7,6 +7,10 @@
 //
 
 #import "NGItemsDetailVC.h"
+#import "NGCompanyListVC.h"
+#import "NGSecondVC.h"
+
+#define nextStepBtnTag 110
 
 @interface NGItemsDetailVC ()<pickViewDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *backView;
@@ -51,11 +55,6 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     NSLog(@"------------key : %@",_itemKey);
     
     _pickerViewType = NGSelectDataTypeNone;
-    
-     //....test
-//    _pickViewDataArr = [UIFont familyNames];
-    
-    
 }
 
 -(void)initSubviews
@@ -118,6 +117,42 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     LPickerView *_pickview = [[LPickerView alloc]initWithDelegate:self];
     [_pickview showIn:self.view];
 }
+
+
+//搜单子、搜同行、搜公司
+- (IBAction)nextStopbtnAction:(UIButton *)sender {
+    UIViewController* vc;
+    
+    switch (sender.tag - 110) {
+        case 0:
+        {
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"secondSB" bundle:nil];
+            vc=  [sb instantiateViewControllerWithIdentifier:@"secondSBID"];
+            ((NGCompanyListVC *)vc).vcType = 4;
+        }
+            break;
+        case 1:
+        {
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"secondSB" bundle:nil];
+            vc=  [sb instantiateViewControllerWithIdentifier:@"secondSBID"];
+           ((NGCompanyListVC *)vc).vcType = 2;
+        }
+            break;
+        case 2:
+        {
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"companySB" bundle:nil];
+            vc=  [sb instantiateViewControllerWithIdentifier:@"companySBID"];
+            ((NGCompanyListVC *)vc).vcType = 2;
+        }
+            break;
+        default:
+            break;
+    }
+    
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 #pragma mark --UITextField delegate
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
