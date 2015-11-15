@@ -25,6 +25,8 @@
     id _tableview2_selectedObj;//tableview2 选中的对象 ,若无tableview2 则为nil
     NSIndexPath* _tableview2_selectedIndex;//tableview2选中对象的索引
     UITableViewCell * _lastSelectedCell;
+    
+    NSMutableArray * _hasSelecetedIndexArr;
 }
 -(instancetype)initWithFrame:(CGRect)frame withDelegate  :(id)delegate
 {
@@ -46,6 +48,9 @@
             _tableview.dataSource = self;
             _tableview.tag = NGTABLEVIEWTAG  +i;
             _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+            if (_numberTableview == 2&& i==0) {
+                _tableview.showsVerticalScrollIndicator = NO;
+            }
             if (i == 1) {
                 _tableview.backgroundView = nil;
                 _tableview.backgroundColor = SubListViewCellNormalColor;
@@ -95,15 +100,11 @@
     }
     else if (tableView.tag == 301)
     {
-        if (_tableview1_selectedObj) {
-            if (_dataSource_2) {
+        if (_dataSource_2) {return _dataSource_2.count;}
+        else if ([self.delegate respondsToSelector:@selector(dataSourceOfBaseViewWithKey:)]) {
+            _dataSource_2 = [self.delegate dataSourceOfBaseViewWithKey:[_tableview1_selectedObj objectForKey:@"ID"]];
+            if ([_dataSource_2 isKindOfClass:[NSArray class]]) {
                 return _dataSource_2.count;
-            }
-            if ([self.delegate respondsToSelector:@selector(dataSourceOfBaseViewWithKey:)]) {
-                _dataSource_2 = [self.delegate dataSourceOfBaseViewWithKey:[_tableview1_selectedObj objectForKey:@"ID"]];
-                if ([_dataSource_2 isKindOfClass:[NSArray class]]) {
-                    return _dataSource_2.count;
-                }
             }
         }
     }
@@ -158,14 +159,21 @@
             if (_tableview1_selectedIndex_last && _tableview1_selectedIndex_last.row == indexPath.row) {
                 _lastSelectedCell = cell;
                 cell.backgroundView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"btn_cell_selectedBG.jpg"]];
-                //...刷新二级列表
+                //二级列表参数
                 _tableview1_selectedObj =[_dataSource objectAtIndex:_tableview1_selectedIndex_last.row];
                 _tableview1_selectedIndex = _tableview1_selectedIndex_last;
-                UITableView *_t = (UITableView *) [self viewWithTag:301];
-                [_t reloadData];
             }
             else
+            {
               cell.backgroundView =nil;
+                if (indexPath.row==0) {
+                  cell.backgroundView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"btn_cell_selectedBG.jpg"]];
+                _lastSelectedCell = cell;
+                }
+            }
+            //刷新二级列表
+            UITableView *_t = (UITableView *) [self viewWithTag:301];
+            [_t reloadData];
         }
         
         UILabel *_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, cell.frame.size.height  -1, cell.frame.size.width, 1)];
@@ -185,7 +193,8 @@
         _dic = [_dataSource_2 objectAtIndex:indexPath.row];
         _title = [_dic objectForKey:@"NAME"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        if (_tableview2_selectedIndex && _tableview2_selectedIndex.row == indexPath.row && _tableview1_selectedIndex_last.row == _tableview1_selectedIndex.row) {
+        
+        if ((_tableview2_selectedIndex && _tableview2_selectedIndex.row == indexPath.row && _tableview1_selectedIndex_last.row == _tableview1_selectedIndex.row)|| [self hasContaintSelectedObject:[NSNumber numberWithInteger:10 * _tableview1_selectedIndex.row + indexPath.row]]) {//...多选的问题
            cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
         else
@@ -199,10 +208,6 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (_lastSelectedCell) {
-        _lastSelectedCell.backgroundView = nil;
-    }
-    
     if (tableView.tag == 300) {
         _tableview1_selectedObj =[_dataSource objectAtIndex:indexPath.row];
         _tableview1_selectedIndex = indexPath;
@@ -215,6 +220,7 @@
         else
         {
             _dataSource_2 = nil;
+            _lastSelectedCell.backgroundView = nil;
             //刷新二级列表
             UITableView *_t = (UITableView *) [self viewWithTag:301];
             [_t reloadData];
@@ -228,8 +234,47 @@
         if ([self.delegate respondsToSelector:@selector(baseView:didSelectObj:atIndex:secondObj:atIndex:)]) {
             [self.delegate baseView:self didSelectObj:_tableview1_selectedObj atIndex:_tableview1_selectedIndex secondObj:_tableview2_selectedObj atIndex:_tableview2_selectedIndex];
         }
+        
+        
+        //...
+        if (_hasSelecetedIndexArr == nil) {
+            _hasSelecetedIndexArr = [[NSMutableArray alloc]init];
+        }
+        
+        NSInteger num = _tableview1_selectedIndex.row * 10 + _tableview2_selectedIndex.row;
+//        _tableview1_selectedIndex = nil;
+        _tableview2_selectedIndex = nil;
+        NSNumber *numobj = [NSNumber numberWithInteger:num];
+        if ([self hasContaintSelectedObject:numobj]) {
+            [_hasSelecetedIndexArr removeObject:numobj];
+        }
+        else
+        [_hasSelecetedIndexArr addObject:numobj];
+        
+        UITableView *_t = (UITableView *) [self viewWithTag:301];
+        [_t reloadData];
+        NSLog(@"...%@",_hasSelecetedIndexArr);
     }
 }
+
+
+//只记录索引，不涉及具体对象(2个列表的情况，二级列表的选择判断)
+-(BOOL)hasContaintSelectedObject :(NSNumber*)num
+{
+    if (_hasSelecetedIndexArr == nil) {
+        return NO;
+    }
+    for (int i =0; i<_hasSelecetedIndexArr.count; i++) {
+        id obj = [_hasSelecetedIndexArr objectAtIndex:i];
+        if ([num integerValue] == [obj integerValue]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+
 
 //-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 //{

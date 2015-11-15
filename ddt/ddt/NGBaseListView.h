@@ -32,8 +32,10 @@
  */
 -(void)baseView:(NGBaseListView *)baseListView didSelectObj:(id)obj1 atIndex:(NSIndexPath*)index1 secondObj:(id)obj2 atIndex:(NSIndexPath*)index2;
 
+@optional
 //获取列表选中的索引
 -(id)baseViewGetBtnID;
+
 
 @end
 

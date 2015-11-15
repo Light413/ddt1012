@@ -441,10 +441,10 @@
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="q8d-G0-bXM"/>
-                                                    <exclude reference="WCi-Wc-ZKb"/>
-                                                    <exclude reference="Jhw-zh-NUb"/>
-                                                    <exclude reference="8GO-8B-xOF"/>
                                                     <exclude reference="7Hx-iV-0bu"/>
+                                                    <exclude reference="8GO-8B-xOF"/>
+                                                    <exclude reference="Jhw-zh-NUb"/>
+                                                    <exclude reference="WCi-Wc-ZKb"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -641,8 +641,8 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="yam-82-Oiq"/>
                                                     <exclude reference="J8U-rY-Pwr"/>
+                                                    <exclude reference="yam-82-Oiq"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -1460,7 +1460,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" tag="336" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sX0-5U-kQE">
+                                                <button opaque="NO" tag="336" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="sX0-5U-kQE">
                                                     <rect key="frame" x="78" y="15" width="509" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="aPQ-33-bkg"/>

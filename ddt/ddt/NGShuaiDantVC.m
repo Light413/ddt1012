@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 };
 
 
-@interface NGShuaiDantVC ()<UITextFieldDelegate,UITextViewDelegate,pickViewDelegate>
+@interface NGShuaiDantVC ()<UITextFieldDelegate,UITextViewDelegate,pickViewDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     BOOL _textviewHasStart;
     LPickerView * _pickview;
@@ -33,6 +33,8 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     
     NSArray * _pickViewDataArr;//pickview dataSource
     UIButton *_selectedBtn;//选择的btn
+    
+    NSString * _sss;
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *tf_name;
@@ -63,6 +65,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     self.textviewbg.layer.borderColor = [UIColor lightTextColor].CGColor;
     self.textviewbg.layer.cornerRadius = 5;
     self.textviewbg.layer.masksToBounds = YES;
+    self.btn_area.titleLabel.numberOfLines = 0;
     
     UIButton *inputBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     inputBtn.frame = CGRectMake(0, 0, 100, 30);
@@ -108,7 +111,6 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 -(void)awakeFromNib
 {
     self.hidesBottomBarWhenPushed = YES;
-
 }
 
 #pragma mark -- btn action
@@ -165,6 +167,9 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
             PersonanlBusinessViewController *person = [[PersonanlBusinessViewController alloc]init];
             person.btnClickBlock = ^(NSString *name){
                 [sender setNormalTitle:name andID:@"ok"];
+                _sss = name;
+                NSLog(@"1...btn title  :%@",name);
+                [self.tableView reloadData];
             };
             [self.navigationController pushViewController:person animated:YES];
         }break;
@@ -331,6 +336,33 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     }
 }
 
+
+#pragma mark- UITableViewDataSource
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    float _h = 50.0;
+    switch (indexPath.row) {
+        case 0:break;
+        case 1:break;
+        case 2:break;
+        case 3:break;
+        case 4:break;
+        case 6:break;
+        case 7:break;
+        case 9: break;
+        case 5://业务类型
+        {
+           CGSize size = [ToolsClass calculateSizeForText:_sss :CGSizeMake(CurrentScreenWidth - 100, 300) font:[UIFont systemFontOfSize:14]];
+            return size.height > 50?size.height + 20:60;
+            return _h = 100;
+        }break;
+        case 8:return 120;break;
+        case 10:return 80;break;
+        default: break;
+    }
+    
+    return _h;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
