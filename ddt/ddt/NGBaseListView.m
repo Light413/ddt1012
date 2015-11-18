@@ -134,14 +134,9 @@
     if (tableView.tag == 300) {
         NSArray *_arr = _dataSource;
         id _obj = [_arr objectAtIndex:indexPath.row];
+        _title = [((NSDictionary*)_obj) objectForKey:@"NAME"];
+        
         if (_numberTableview == 1) {
-            if ([_obj isKindOfClass:[NSString class]]) {
-               _title = _obj;
-            }
-            else if ([_obj isKindOfClass:[NSDictionary class]])
-            {
-                _title = [((NSDictionary*)_obj) objectForKey:@"NAME"];
-            }
             if (_tableview1_selectedIndex && _tableview1_selectedIndex.row == indexPath.row) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
@@ -152,28 +147,29 @@
         }
         else if (_numberTableview == 2)
         {
-            _title = [((NSDictionary*)_obj) objectForKey:@"NAME"];
-        
-            cell.selectedBackgroundView = _numberTableview > 1?[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"btn_cell_selectedBG.jpg"]] : nil;
+            //获取二级列表
+            UITableView *_t = (UITableView *) [self viewWithTag:301];
+            UIImage *_img = [UIImage imageNamed:@"btn_cell_selectedBG.jpg"];
+            cell.selectedBackgroundView =[[UIImageView alloc]initWithImage:_img];
             cell.selectionStyle = UITableViewCellSelectionStyleDefault;
             if (_tableview1_selectedIndex_last && _tableview1_selectedIndex_last.row == indexPath.row) {
                 _lastSelectedCell = cell;
-                cell.backgroundView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"btn_cell_selectedBG.jpg"]];
+                cell.backgroundView =[[UIImageView alloc]initWithImage:_img];
                 //二级列表参数
                 _tableview1_selectedObj =[_dataSource objectAtIndex:_tableview1_selectedIndex_last.row];
                 _tableview1_selectedIndex = _tableview1_selectedIndex_last;
+                _dataSource_2 = nil;
+                [_t reloadData];
             }
             else
             {
               cell.backgroundView =nil;
                 if (indexPath.row==0 && _tableview1_selectedIndex_last == nil) {
-                  cell.backgroundView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"btn_cell_selectedBG.jpg"]];
+                  cell.backgroundView =[[UIImageView alloc]initWithImage:_img];
                 _lastSelectedCell = cell;
+                [_t reloadData];
                 }
             }
-            //刷新二级列表
-            UITableView *_t = (UITableView *) [self viewWithTag:301];
-            [_t reloadData];
         }
         
         UILabel *_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, cell.frame.size.height  -1, cell.frame.size.width, 1)];
@@ -235,8 +231,6 @@
             [self.delegate baseView:self didSelectObj:_tableview1_selectedObj atIndex:_tableview1_selectedIndex secondObj:_tableview2_selectedObj atIndex:_tableview2_selectedIndex];
         }
         
-        
-        //...
         if (_hasSelecetedIndexArr == nil) {
             _hasSelecetedIndexArr = [[NSMutableArray alloc]init];
         }
@@ -253,7 +247,6 @@
         
         UITableView *_t = (UITableView *) [self viewWithTag:301];
         [_t reloadData];
-        NSLog(@"...%@",_hasSelecetedIndexArr);
     }
 }
 

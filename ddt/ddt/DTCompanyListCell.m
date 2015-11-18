@@ -33,10 +33,10 @@
     NSString * _s  =[dic objectForKey:@"company"];
     NSRange rang = NSMakeRange(0, _s.length);
     
-    [mutableAttributedString_attrs addAttribute:NSForegroundColorAttributeName
+    [mutableAttributedString_attrs addAttribute:(NSString *)kCTForegroundColorAttributeName //NSForegroundColorAttributeName
                         value:(id)[UIColor blackColor].CGColor
                         range:rang];
-    [mutableAttributedString_attrs addAttribute:NSFontAttributeName
+    [mutableAttributedString_attrs addAttribute:(NSString *)kCTFontAttributeName//NSFontAttributeName
                                           value:[UIFont boldSystemFontOfSize:14]
                                           range:rang];
     
