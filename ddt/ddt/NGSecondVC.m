@@ -47,6 +47,14 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     NSString        * _common_list_cellClassStr;//当前cell class
     
     UIBarButtonItem *rightitem ;
+    
+    CGSize cellMaxFitSize;
+    UIFont *cellFitfont;
+    NSInteger _pageNum;//请求的页数
+    NSInteger _selectRowIndex;
+    
+    //搜搜
+    NGSearchBar *_searchBar;
 }
 @end
 
@@ -85,7 +93,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     }
     
     //btn title
-    NSArray *_sexArr = @[@"全部",@"男",@"女"];//性别
+    NSArray *_sexArr = [DTComDataManger getData_sex];//性别
     NSArray *_areaArr = [NGXMLReader getCurrentLocationAreas];//区域
     NSArray *_typeArr = [NGXMLReader getBaseTypeData];//基本业务类型
     switch (self.vcType) {
@@ -191,22 +199,50 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     //添加下拉刷新
     __weak __typeof(self) weakSelf = self;
     _tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _pageNum = 1;
         [weakSelf loadMoreData];
     }];
-    
+    _tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [_tableView.footer resetNoMoreData];
+        [weakSelf loadMoreData];
+    }];
     
 }
 
 #pragma mark --加载数据
 -(void)loadMoreData
 {
-    [SVProgressHUD showWithStatus:@"正在加载数据"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [_common_list_dataSource addObjectsFromArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@""]];
-        [_tableView reloadData];
-        [SVProgressHUD showSuccessWithStatus:@"加载完成"];
-        [_tableView.header endRefreshing];
-    });
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea,@"quye",_selectedType,@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",nil];
+    
+    NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
+    RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_company_list", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        _pageNum ==1?({[_tableView.header endRefreshing];[_common_list_dataSource removeAllObjects];
+            [_tableView reloadData];}):([_tableView.footer endRefreshing]);
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
+                NSArray *dataarr = [responseObject objectForKey:@"data"];
+                if (dataarr && dataarr.count < 10) {
+                    //...没有数据了，不能在刷新加载了
+                    _pageNum = NSNotFound;
+                    [_tableView.footer endRefreshingWithNoMoreData];
+                    
+                    [_common_list_dataSource addObjectsFromArray:dataarr];
+                    [_tableView reloadData];
+                }
+            }
+            else
+            {
+                [SVProgressHUD showInfoWithStatus:@"暂无数据"];
+                [_tableView.footer endRefreshingWithNoMoreData];
+            }
+        }
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+        _pageNum ==1?({[_tableView.header endRefreshing];}):([_tableView.footer endRefreshing]);
+    }];
+    
+    [HttpRequestManager doPostOperationWithTask:task];
 }
 
 
@@ -215,40 +251,52 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 {
     return _common_pop_btnTitleArr?_common_pop_btnTitleArr.count:0;
 }
-
 -(NSString *)titleOfSectionInPopView:(NGPopListView *)poplistview atIndex:(NSInteger)index
 {
     return [_common_pop_btnTitleArr objectAtIndex:index];
 }
-
 //第一个列表显示的数据源,NSArray类型
 -(NSArray*)dataSourceOfPoplistviewWithIndex:(NSInteger)index
 {
     return [_common_pop_btnListArr objectAtIndex:index];
 }
-
 -(NSInteger)popListView:(NGPopListView *)popListView numberOfRowsWithIndex:(NSInteger)index
 {
     return ((NSArray*)[_common_pop_btnListArr objectAtIndex:index]).count;
 }
-
-
--(void)popListView:(NGPopListView *)popListView  didSelectRowAtIndex:(NSInteger )index
+-(void)popListView:(NGPopListView *)popListView  didSelected:(NSString *)str withIndex:(NSInteger)index
 {
  //...请求网络
+    _pageNum = 1;
+    if (index == 1) {
+        _selectedArea = str;
+    }
+    else if(index ==2)
+    {
+        _selectedType = str;
+    }
     
+    [_tableView.header beginRefreshing];
 }
 
 
 #pragma mark -NGSearchBarDelegate 
 -(void)searchBarWillBeginSearch:(NGSearchBar *)searchBar
 {
+    _pageNum  =1;
     NSLog(@"begin");
 }
 
 -(void)searchBarDidBeginSearch:(NGSearchBar *)searchBar withStr:(NSString *)str
 {
     NSLog(@"did : %@",searchBar.text);
+    if (searchBar.text.length > 0) {
+        [self loadMoreData];
+    }
+    else
+    {
+        [SVProgressHUD showInfoWithStatus:@"输入搜索关键字"];
+    }
 }
 
 
@@ -277,17 +325,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
             };
             
         }break;
-         
-//        case NGVCTypeId_2:
-//        {
-//            cell = [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
-//            [(DTCompanyListCell *)cell setCellWith:_dic0];
-//            
-//            ((DTCompanyListCell *)cell).btnClickBlock = ^(NSInteger tag){
-//                NSLog(@"...cell btn click : %ld",tag);
-//            };
-//        }break;
-        
+
         case NGVCTypeId_4:
         {
             cell =  [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
