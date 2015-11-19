@@ -431,10 +431,23 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 {
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:umengkey
-                                      shareText:@"贷易通-你身边的贷款专家"
-                                     shareImage:[UIImage imageNamed:@"icon.png"]
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite,UMShareToSms,UMShareToEmail,nil]
+                                      shareText:@"贷易通-你身边的贷款专家,http://www.123dyt.com"
+                                     shareImage:[UIImage imageNamed:@"wx108x108"]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite,UMShareToSms,nil]
                                        delegate:self];
+}
+
+-(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
+{
+    NSLog(@"...%@",platformName);
+    if ([platformName isEqualToString:@"wxsession"]) {
+      [UMSocialData defaultData].extConfig.wechatSessionData.title = @"";
+    }
+    else if ([platformName isEqualToString:@"qq"])
+    {
+        [UMSocialData defaultData].extConfig.qqData.title = @"贷易通";
+    }//sina
+    
 }
 
 //实现回调方法（可选）
