@@ -34,7 +34,9 @@
 {
     [SVProgressHUD dismiss];
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    [SVProgressHUD dismiss];
+}
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error
 {

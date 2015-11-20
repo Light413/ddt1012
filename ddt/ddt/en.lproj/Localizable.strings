@@ -34,3 +34,9 @@ CFBundleDisplayName="贷易通";
 "url_addsay" = "/mydyt/web_service.php?doc=addsay";
 //找回密码
 "url_findpwd" = "/mydyt/web_service.php?doc=findpwd";
+//我的收藏(单子)
+"url_getbookfill" = "/mydyt/web_service.php?doc=getbookfill"
+//我的收藏(同行)
+"url_getbookth" = "/mydyt/web_service.php?doc=getbookth"
+//我的收藏(公司)
+"url_getbookcom" = "/mydyt/web_service.php?doc=getbookcom"

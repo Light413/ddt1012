@@ -118,7 +118,7 @@
 #pragma mark --注册操作
 - (IBAction)registerBtnClick:(id)sender {
     //    jsondata={"mobile":"15136216190","pwd":"111","token":"15136216190(!)*^*1446701200"
-    if (phoneNumField.text.length != 11) {
+    if (![[MySharetools shared]isMobileNumber:phoneNumField.text]) {
         [SVProgressHUD showInfoWithStatus:@"请填入正确的手机号"];
         return;
     }
@@ -158,7 +158,7 @@
         [SVProgressHUD showInfoWithStatus:@"请求服务器失败,请重试"]; 
     }];
     
-//    [HttpRequestManager doPostOperationWithTask:_task];
+    [HttpRequestManager doPostOperationWithTask:_task];
   [self.navigationController dismissViewControllerAnimated:YES completion:^{
       
   }];

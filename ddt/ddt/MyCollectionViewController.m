@@ -19,6 +19,8 @@
     UITableView *myTableView;
     UISegmentedControl *mysegment;
     NSMutableArray *_dataArr;
+    NSString *psize;//每页大小
+    NSString *pnum;//第几页
 }
 @end
 
@@ -49,18 +51,20 @@
     myTableView.dataSource = self;
     [self.view addSubview:myTableView];
     myTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
-    [self loadData];
+    pnum = @"1";
+    
+    [self loadData:pnum];
     //添加下拉刷新
     __weak __typeof(self) weakSelf = self;
     myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [weakSelf loadData];
+        [weakSelf loadData:pnum];
     }];
 
 //    [self addheader:myTableView];
 //    [self addfooter:myTableView];
     // Do any additional setup after loading the view.
 }
--(void)loadData{
+-(void)loadData:(NSString *)pnum{
     [SVProgressHUD showWithStatus:@"正在加载数据"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         // [_common_list_dataSource addObjectsFromArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@""]];
