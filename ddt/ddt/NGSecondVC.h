@@ -24,4 +24,10 @@ typedef NS_ENUM(NSInteger , NGVCTypeId)
 
 @property(nonatomic,assign)NGVCTypeId vcType;//判断当前VC属于那一个页面
 
+@property(nonatomic,copy) NSString * searchKey;//搜索关键字
+
+@property(nonatomic,copy)NSString * selectedArea;//选择的区域，默认为空
+
+@property(nonatomic,copy)NSString * selectedType;//选择的业务类型，默认为空
+
 @end

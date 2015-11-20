@@ -114,6 +114,7 @@
 		A1DAAE6C1B492FC2004F634B /* NGBaseTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DAAE6B1B492FC2004F634B /* NGBaseTableVC.m */; };
 		A1F0FB691BECA97C00FFC02F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1F0FB671BECA97C00FFC02F /* Info.plist */; };
 		A1F0FB6C1BECA9BC00FFC02F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1F0FB6E1BECA9BC00FFC02F /* InfoPlist.strings */; };
+		A1F680BD1BFD95EA0088D456 /* wx108x108.png in Resources */ = {isa = PBXBuildFile; fileRef = A1F680BC1BFD95EA0088D456 /* wx108x108.png */; settings = {ASSET_TAGS = (); }; };
 		AD5B11CC1BDB236F00285255 /* common_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD5B11CB1BDB236F00285255 /* common_data.plist */; };
 		AD5B11D01BDB360C00285255 /* DTComDataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11CF1BDB360C00285255 /* DTComDataManger.m */; };
 		AD5B11D41BDB694C00285255 /* DTCompanyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11D21BDB694C00285255 /* DTCompanyListCell.m */; };
@@ -386,6 +387,7 @@
 		A1F0FB681BECA97C00FFC02F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hans"; path = "zh-Hans.lproj/Info.plist"; sourceTree = "<group>"; };
 		A1F0FB6D1BECA9BC00FFC02F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A1F0FB6F1BECA9C400FFC02F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A1F680BC1BFD95EA0088D456 /* wx108x108.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wx108x108.png; sourceTree = "<group>"; };
 		AD5B11CB1BDB236F00285255 /* common_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = common_data.plist; sourceTree = "<group>"; };
 		AD5B11CE1BDB360C00285255 /* DTComDataManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTComDataManger.h; sourceTree = "<group>"; };
 		AD5B11CF1BDB360C00285255 /* DTComDataManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTComDataManger.m; sourceTree = "<group>"; };
@@ -597,6 +599,7 @@
 				A1042B841B64D55400A74215 /* image1.png */,
 				A1042B851B64D55400A74215 /* image2.png */,
 				A1042B861B64D55400A74215 /* image3.png */,
+				A1F680BC1BFD95EA0088D456 /* wx108x108.png */,
 			);
 			name = scrollImg;
 			sourceTree = "<group>";
@@ -1476,6 +1479,7 @@
 				A12442081BD0F6A100D2588C /* districts.xml in Resources */,
 				A12CD4DD1BCBA6960020CB27 /* SVProgressHUD.bundle in Resources */,
 				A1F0FB6C1BECA9BC00FFC02F /* InfoPlist.strings in Resources */,
+				A1F680BD1BFD95EA0088D456 /* wx108x108.png in Resources */,
 				ADD431511BE509EE000C03D8 /* UMSocialLocalizable.strings in Resources */,
 				A143F8391BCC96BA0029E555 /* secondSB.storyboard in Resources */,
 				ADD4315B1BE509EE000C03D8 /* UMSocialSDKResourcesNew.bundle in Resources */,

@@ -27,9 +27,9 @@
     [UMSocialData setAppKey:umengkey];
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     
-    [UMSocialQQHandler setQQWithAppId:@"1104880067" appKey:@"pqNu2AWR1n83gdML" url:@"http://www.umeng.com/social"];
+    [UMSocialQQHandler setQQWithAppId:@"1104880067" appKey:@"pqNu2AWR1n83gdML" url:@"http://www.123dyt.com"];
     //设置微信AppId、appSecret，分享url
-    [UMSocialWechatHandler setWXAppId:@"wxb2eb04bf9f024905" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" url:@"http://www.umeng.com/social"];
+    [UMSocialWechatHandler setWXAppId:@"wxb2eb04bf9f024905" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" url:@"http://www.123dyt.com"];
     
     [[PgyUpdateManager sharedPgyManager]startManagerWithAppId:pgyAppId];
     [[PgyManager sharedPgyManager]startManagerWithAppId:pgyAppId];
