@@ -7,7 +7,7 @@
 //
 
 #import "MyBaseTableViewController.h"
-
+#import "MenuOfMyCenterModel.h"
 @interface menuDetailViewController : MyBaseTableViewController
 @property (weak, nonatomic) IBOutlet UILabel *customerInfoLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *customerInfoLabel2;
@@ -20,5 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UIButton *phoneImage;
 - (IBAction)phoneBtnClick:(id)sender;
+@property (nonatomic,strong)MenuOfMyCenterModel *menuModel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
 
 @end
