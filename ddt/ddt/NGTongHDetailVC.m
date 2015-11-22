@@ -15,7 +15,7 @@
 #define Color_3 [UIColor colorWithRed:0.835 green:0.722 blue:0.439 alpha:1]
 
 
-@interface NGTongHDetailVC ()
+@interface NGTongHDetailVC ()<UIAlertViewDelegate>
 {
     NSString *_s1;//姓名
     NSString *_s2;//性别
@@ -190,6 +190,7 @@
         case 312:// 短息
         {
             NSLog(@"msg action");
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@",_s7]]];
         }break;
         case 313:// 收藏
         {
@@ -202,6 +203,12 @@
     
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",_s7]]];
+    }
+}
 
 #define heightValue 60
 

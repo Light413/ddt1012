@@ -2124,7 +2124,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3l-hu-HbX">
                                                     <rect key="frame" x="187" y="7" width="30" height="30"/>
-                                                    <state key="normal" image="cell_phone"/>
+                                                    <state key="normal" image="icon_msg"/>
                                                     <connections>
                                                         <action selector="btnAction:" destination="HJd-ow-0hL" eventType="touchUpInside" id="nI0-ME-GaC"/>
                                                     </connections>
@@ -2401,5 +2401,6 @@
         <image name="checkbox1_checked.png" width="21" height="21"/>
         <image name="checkbox1_unchecked.png" width="14" height="14"/>
         <image name="delete_icon" width="21" height="21"/>
+        <image name="icon_msg" width="29" height="29"/>
     </resources>
 </document>

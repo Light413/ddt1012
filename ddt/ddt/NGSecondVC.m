@@ -347,8 +347,16 @@ float _h =0;
             rec.size.height = _new.height;
             cell1.lab_type.frame = rec;
             _h = _new.height + 10;
+            
+           NSString *tel =  [_dic0 objectForKey:@"mobile"];
             ((NGSecondListCell *)cell).btnClickBlock = ^(NSInteger tag){
                 NSLog(@"...cell btn click : %ld",tag);
+                if (tag == 300) {
+                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",tel]]];
+                }
+                else if (tag == 301) {
+//                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@",tel]]];
+                }
             };
             
         }break;

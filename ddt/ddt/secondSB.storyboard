@@ -72,7 +72,7 @@
                                                 </button>
                                                 <button opaque="NO" tag="312" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZxK-s2-aTq">
                                                     <rect key="frame" x="172" y="5" width="40" height="40"/>
-                                                    <state key="normal" image="cell_phone"/>
+                                                    <state key="normal" image="icon_msg"/>
                                                     <connections>
                                                         <action selector="btnAction:" destination="keL-xr-Wxr" eventType="touchUpInside" id="0HY-pd-Hy7"/>
                                                     </connections>
@@ -240,5 +240,6 @@
         <image name="cell_love_no" width="25" height="25"/>
         <image name="cell_love_yes" width="25" height="25"/>
         <image name="cell_phone" width="25" height="25"/>
+        <image name="icon_msg" width="25" height="25"/>
     </resources>
 </document>
