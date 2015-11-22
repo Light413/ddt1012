@@ -15,7 +15,7 @@
 #import "NGSecondVC.h"
 #import "NGSearchBar.h"
 #import "NGPopListView.h"
-#import "AddCommanyInfoViewController.h"
+#import "NGTongHDetailVC.h"
 
 
 #import "NGSecondListCell.h"
@@ -45,6 +45,8 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     NSArray         * _common_cellId_arr;//复用cell ID
     NSString        * _common_list_cellReuseId;//当前复用cellID
     NSString        * _common_list_cellClassStr;//当前cell class
+    NSDictionary    * _common_list_request_parm;
+    NSString        * _common_list_url;
     
     UIBarButtonItem *rightitem ;
     
@@ -55,6 +57,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     
     //搜搜
     NGSearchBar *_searchBar;
+    BOOL _isfirstAppear;
 }
 @end
 
@@ -73,6 +76,21 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     self.navigationItem.backBarButtonItem = _backitem;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (_isfirstAppear) {
+        _isfirstAppear = NO;
+        [_tableView.header beginRefreshing];
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [popView disappear];
+}
+
 -(void)goback:(UIButton *)btn
 {
     [popView disappear];
@@ -82,40 +100,39 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 
 -(void)initData
 {
+    _isfirstAppear = YES;
+    _pageNum = 1;
+    
     //pop
     NSInteger _index = self.tabBarController.selectedIndex;
     if (_index == 1) {
         self.vcType = NGVCTypeId_1;
     }
-    else if (_index == 2)
-    {
-        self.vcType = NGVCTypeId_2;
-    }
-    
+
     //btn title
     NSArray *_sexArr = [DTComDataManger getData_sex];//性别
     NSArray *_areaArr = [NGXMLReader getCurrentLocationAreas];//区域
     NSArray *_typeArr = [NGXMLReader getBaseTypeData];//基本业务类型
+
     switch (self.vcType) {
         case NGVCTypeId_1:
+        case NGVCTypeId_2:
         {//同行
             NSArray *_btnTitleArr1 = @[@"服务区域",@"业务类型",@"性别"];
             _common_pop_btnTitleArr = _btnTitleArr1;
             _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
+            _common_list_url = NSLocalizedString(@"url_tongh_list", @"");
+            _selectedArea = @"";
+            _selectedType = @"";
         } break;
-        case NGVCTypeId_2:
-        {//公司
-            NSArray *_btnTitleArr2 = @[@"服务区域",@"业务类型"];
-            _common_pop_btnTitleArr = _btnTitleArr2;
-            _common_pop_btnListArr  = @[_areaArr,_typeArr];
 
-        } break;
         case NGVCTypeId_3:
         {//附近同行
             NSArray *tmp = @[@"服务区域",@"业务类型",@"性别"];
             _common_pop_btnTitleArr = tmp;
             _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
         } break;
+            
         case NGVCTypeId_4:
         {//接单
             NSArray *tmp = @[@"服务区域",@"业务类型",@"时间"];
@@ -147,29 +164,29 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     
     
     //....此处获取tableview的数据源
-    
-    //............................网络请求
-    
-    //...
-    
     //...test   tableview
     _common_list_dataSource = [[NSMutableArray alloc]init];
     _common_cellId_arr = @[NGSecondListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId,JieDanCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId];
     _common_list_cellReuseId = [_common_cellId_arr objectAtIndex:self.vcType - 1];
     
-    NSArray *_arr = @[
-  @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
-  @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
-  @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],//附近同行
-    @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
-    @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}],
-    @[@{@"1":@"cell_avatar_default",@"2":@"张三 男",@"3":@"18016381234",@"4":@"车贷融资-金融",@"5":@"民间抵押个人-车辆-信用卡"}]
-  ];
+    cellMaxFitSize = CGSizeMake(CurrentScreenWidth -30, 999);
+    cellFitfont = [UIFont systemFontOfSize:14];
     
-    [_common_list_dataSource addObjectsFromArray:[_arr objectAtIndex:self.vcType - 1]];
 }
 
-
+//请求参数初始化
+-(void)initParams
+{
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    switch (self.vcType) {
+        case NGVCTypeId_1:
+            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quye",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",@"",@"xb",nil];
+            break;
+            
+        default:
+            break;
+    }
+}
 
 #pragma mark- init subviews
 -(void)initSubviews
@@ -191,8 +208,8 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     [self.view  addSubview:_tableView];
     [_tableView setContentInset:UIEdgeInsetsMake(0, 0, 5, 0)];
     _tableView.tableFooterView = [[UIView alloc]init];
+    
     [_tableView registerNib:[UINib nibWithNibName:@"NGSecondListCell" bundle:nil] forCellReuseIdentifier:NGSecondListCellReuseId];
-//    [_tableView registerNib:[UINib nibWithNibName:@"DTCompanyListCell" bundle:nil] forCellReuseIdentifier:NGCompanyListCellReuseId];
     [_tableView registerNib:[UINib nibWithNibName:@"NGJieDanListCell" bundle:nil] forCellReuseIdentifier:JieDanCellReuseId];
     
     
@@ -212,21 +229,22 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 #pragma mark --加载数据
 -(void)loadMoreData
 {
-    NSString *tel = [[MySharetools shared]getPhoneNumber];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea,@"quye",_selectedType,@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",nil];
+    [self initParams];
+    NSDictionary *_d = [MySharetools getParmsForPostWith:_common_list_request_parm];
     
-    NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
-    RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_company_list", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:_common_list_url parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         _pageNum ==1?({[_tableView.header endRefreshing];[_common_list_dataSource removeAllObjects];
             [_tableView reloadData];}):([_tableView.footer endRefreshing]);
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
                 NSArray *dataarr = [responseObject objectForKey:@"data"];
-                if (dataarr && dataarr.count < 10) {
+                if (dataarr) {
                     //...没有数据了，不能在刷新加载了
-                    _pageNum = NSNotFound;
-                    [_tableView.footer endRefreshingWithNoMoreData];
-                    
+                    if (dataarr.count < 10)
+                    {
+                        _pageNum = NSNotFound;
+                        [_tableView.footer endRefreshingWithNoMoreData];
+                    }
                     [_common_list_dataSource addObjectsFromArray:dataarr];
                     [_tableView reloadData];
                 }
@@ -303,6 +321,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 
 #pragma mark --UItableView delegate
 
+float _h =0;
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _common_list_dataSource.count;
@@ -311,7 +330,10 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell * cell;
-    NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:0];
+    NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:indexPath.row];
+    NSString * str = [_dic0 objectForKey:@"yewu"];
+    CGSize _new =  [ToolsClass calculateSizeForText:str :cellMaxFitSize font:cellFitfont];
+    
     
     switch (self.vcType) {
         case NGVCTypeId_1:
@@ -319,7 +341,12 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         case NGVCTypeId_3:
         {
             cell =  [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
+            NGSecondListCell *cell1 = (NGSecondListCell *)cell;
             [(NGSecondListCell *)cell setCellWith:_dic0 withOptionIndex:self.vcType];
+            CGRect rec = cell1.lab_type.frame;
+            rec.size.height = _new.height;
+            cell1.lab_type.frame = rec;
+            _h = _new.height + 10;
             ((NGSecondListCell *)cell).btnClickBlock = ^(NSInteger tag){
                 NSLog(@"...cell btn click : %ld",tag);
             };
@@ -356,29 +383,24 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     return cell;
 }
 
+const float cellDefaultHeight = 80.0;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (self.vcType) {
-//        case NGVCTypeId_2:
-//        {
-//            NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:0];
-//            NSString * str = [_dic0 objectForKey:@"2"];
-//            CGSize _size = CGSizeMake(CurrentScreenWidth -100, 999);
-//            UIFont *font = [UIFont systemFontOfSize:15];
-//            CGSize _new =  [ToolsClass calculateSizeForText:str :_size font:font];
-//           
-//            return _new.height + 20;
-//        }break;
+        case NGVCTypeId_1:
+        {
+            return 50 + _h > cellDefaultHeight?50 + _h:cellDefaultHeight;
+        }break;
             
         default:
             break;
     }
-    return 80;
+    return cellDefaultHeight;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"....tableview cell select");
+    _selectRowIndex = indexPath.row;
     switch (self.vcType) {
         case NGVCTypeId_1:
         {
@@ -415,8 +437,9 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == _common_list_dataSource.count - 1) {
-        [self loadMoreData];
+    if (_pageNum != NSNotFound && indexPath.row == _common_list_dataSource.count - 1) {
+        _pageNum++;
+        [_tableView.footer beginRefreshing];
     }
 }
 
@@ -432,6 +455,10 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:showTongHangVcID]) {
+        NGTongHDetailVC *vc = [segue destinationViewController];
+        vc.personInfoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
+    }
 }
 
 

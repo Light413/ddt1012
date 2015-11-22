@@ -64,17 +64,32 @@
     self.lable_2.font = [UIFont boldSystemFontOfSize:14];
     
     //...初始值
-    _s1 = @"zhangsan";
-    _s2 = @"男";
-    _s3 = @"30";
-    _s4 = @"130";
-    _s5 = @"130";
-    _s6 = @"130";
-    _s7 = @"13012345678";
-    _s8 = @"民间抵押个人－房产／民间抵押个人－车辆，信用卡借款方式对付健康附近开，高丽嗲的回复就是地方";
-    _s9 = @"信和郑州公司 - 内存泄漏形象的比喻是操作系统可提供给所有";
-    _s10 = @"所以“内存泄漏”是从操作系统的角度来看的。这里的存储空间并不是指物理内存，而是指虚拟内存大小，这个虚拟内存大小取决于磁盘交换区设定的大小";
-    
+    if (self.personInfoDic) {
+        _s1 = [self.personInfoDic objectForKey:@"xm"];
+        _s2 = [self.personInfoDic objectForKey:@"xb"];
+        _s3 = [self.personInfoDic objectForKey:@"age"];
+        _s4 = [self.personInfoDic objectForKey:@"fee"];
+        _s5 = [self.personInfoDic objectForKey:@"see"];
+        _s6 = [self.personInfoDic objectForKey:@"say"];
+        _s7 = [self.personInfoDic objectForKey:@"mobile"];
+        _s8 = [self.personInfoDic objectForKey:@"yewu"];
+        _s9 = [self.personInfoDic objectForKey:@"company"];
+        _s10 = [self.personInfoDic objectForKey:@"content"];
+    }
+    else
+    {
+        _s1 = @"测试数据";
+        _s2 = @"男";
+        _s3 = @"30";
+        _s4 = @"130";
+        _s5 = @"130";
+        _s6 = @"130";
+        _s7 = @"13012345678";
+        _s8 = @"民间抵押个人－房产／民间抵押个人－车辆，信用卡借款方式对付健康附近开，高丽嗲的回复就是地方";
+        _s9 = @"信和郑州公司 - 内存泄漏形象的比喻是操作系统可提供给所有";
+        _s10 = @"所以“内存泄漏”是从操作系统的角度来看的。这里的存储空间并不是指物理内存，而是指虚拟内存大小，这个虚拟内存大小取决于磁盘交换区设定的大小";
+    }
+
     
     _telLab.text = _s7;
     _lable_1.text = _s8;

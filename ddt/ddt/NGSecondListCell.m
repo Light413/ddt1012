@@ -18,11 +18,12 @@
 
 -(void)setCellWith:(NSDictionary*)dic withOptionIndex:(NSInteger)index
 {
-    self.img_avatar.image = [UIImage imageNamed:[dic objectForKey:@"1"]];
-    self.lab_name.text = [dic objectForKey:@"2"];
-    self.lab_phone.text = [dic objectForKey:@"3"];
-    self.lab_type.text = [dic objectForKey:@"4"];
-    self.lab_detail.text = [dic objectForKey:@"5"];
+    self.img_avatar.image = [UIImage imageNamed:@"cell_avatar_default"];
+    
+    self.lab_name.text = [dic objectForKey:@"xm"];
+    self.lab_phone.text = [dic objectForKey:@"mobile"];
+    self.lab_type.text = [dic objectForKey:@"yewu"];
+    self.lab_detail.text = [dic objectForKey:@"word"];
     
     if (index ==1) {
         self.btn_fujin.hidden = YES;
@@ -31,6 +32,9 @@
     {
         self.btn_fujin.hidden = NO;
     }
+    
+    UIButton * love = (UIButton *)[self viewWithTag:301];
+    love.selected = [[dic objectForKey:@"isbook"]boolValue];
 }
 
 
