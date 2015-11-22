@@ -7,13 +7,20 @@
 //
 
 #import "MyScTableViewCell.h"
-
+#import "CommanySCModel.h"
 @implementation MyScTableViewCell
-
+@synthesize commanyNameLabel;
+@synthesize yewuLabel;
+@synthesize quyuLabel;
 - (void)awakeFromNib {
     // Initialization code
 }
-
+-(void)showDataFromModel:(CommanySCModel *)model{
+    yewuLabel.text = model.yewu;
+    quyuLabel.text = model.quyu;
+    commanyNameLabel.text = model.commany;
+    [commanyNameLabel sizeToFit];
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CommanySCModel.h"
 @interface MyScTableViewCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UILabel *commanyNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yewuLabel;
+@property (weak, nonatomic) IBOutlet UILabel *quyuLabel;
+-(void)showDataFromModel:(CommanySCModel *)model;
 @end

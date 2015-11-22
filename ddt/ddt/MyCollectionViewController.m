@@ -14,13 +14,18 @@
 #import "menuDetailViewController.h"
 #import "NGTongHDetailVC.h"
 #import "NGCompanyDetailVC.h"
+#import "MemuSCModel.h"
+#import "CommanySCModel.h"
+#define Font    [UIFont systemFontOfSize:14]
+#define Size    CGSizeMake(CurrentScreenWidth - 50, 1000)
 @interface MyCollectionViewController ()<NGSearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *myTableView;
     UISegmentedControl *mysegment;
     NSMutableArray *_dataArr;
-    NSString *psize;//每页大小
-    NSString *pnum;//第几页
+    NGSearchBar *searchBar;
+    int psize;//每页大小
+    int pnum;//第几页
 }
 @end
 
@@ -40,9 +45,9 @@
     mysegment.enabled = YES;
     mysegment.selectedSegmentIndex = 0;
     [self.view addSubview:mysegment];
+    _dataArr = [[NSMutableArray alloc]init];
     
-    
-    NGSearchBar *searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(10, mysegment.bottom+10, CurrentScreenWidth -20 , 30)];
+    searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(10, mysegment.bottom+10, CurrentScreenWidth -20 , 30)];
     searchBar.delegate  =self;
     searchBar.placeholder = @"搜索";
     [self.view addSubview:searchBar];
@@ -51,27 +56,104 @@
     myTableView.dataSource = self;
     [self.view addSubview:myTableView];
     myTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
-    pnum = @"1";
+    pnum = 1;
     
     [self loadData:pnum];
     //添加下拉刷新
     __weak __typeof(self) weakSelf = self;
     myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        NSString *tel = [[MySharetools shared]getPhoneNumber];
+        pnum = 1;
+        //        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",pnum],@"pnum",@"10",@"psize",tel,@"username",@"one",@"word",nil];
         [weakSelf loadData:pnum];
     }];
+    myTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [myTableView.footer resetNoMoreData];
+        pnum++;
+        // NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",pnum],@"pnum",@"10",@"psize",tel,@"username",@"one",@"word",nil];
+        [weakSelf loadData:pnum];
+    }];
+    //    [self addheader:myTableView];
+    //    [self addfooter:myTableView];
+    // Do any additional setup after loading the view.
 
 //    [self addheader:myTableView];
 //    [self addfooter:myTableView];
     // Do any additional setup after loading the view.
 }
--(void)loadData:(NSString *)pnum{
+-(void)loadData:(int)start{
     [SVProgressHUD showWithStatus:@"正在加载数据"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        // [_common_list_dataSource addObjectsFromArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@""]];
-        [myTableView reloadData];
-        [SVProgressHUD showSuccessWithStatus:@"加载完成"];
-        [myTableView.header endRefreshing];
-    });
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",start],@"pnum",@"10",@"psize",tel,@"username",searchBar.text.length > 0?searchBar.text:@"",@"word",nil];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",start],@"pnum",@"10",@"psize",tel,@"username",@"",@"word",nil];
+    NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];;
+    NSInteger index = mysegment.selectedSegmentIndex;
+    if (index == 0) {
+        RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_getbookfill", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                if (start == 1) {
+                    [_dataArr removeAllObjects];
+                }
+                [myTableView reloadData];
+            }
+        } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+            
+        }];
+        //[myTableView reloadData];
+        [HttpRequestManager doPostOperationWithTask:task];
+    }else if (index == 1){
+        RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_getbookth", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                if (start == 1) {
+                    [_dataArr removeAllObjects];
+                }
+                [myTableView reloadData];
+            }
+        } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+            
+        }];
+       // [myTableView reloadData];
+        [HttpRequestManager doPostOperationWithTask:task];
+    }else if (index == 2){
+        RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_getbookcom", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                if (start == 1) {
+                    [_dataArr removeAllObjects];
+                }
+                NSArray *arr = [responseObject objectForKey:@"data"];
+                if ([arr isKindOfClass:[NSArray class]]&&[arr count]>0) {
+                    for (NSDictionary *dict in arr) {
+                        CommanySCModel *model = [[CommanySCModel alloc]initWithDictionary:dict];
+                        [_dataArr addObject:model];
+                    }
+                    
+                }
+               [myTableView reloadData];
+            }
+            if ([myTableView.header isRefreshing]) {
+                [myTableView.header endRefreshing];
+            }
+            if ([myTableView.footer isRefreshing]) {
+                [myTableView.footer endRefreshing];
+            }
+        } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+            if ([myTableView.header isRefreshing]) {
+                [myTableView.header endRefreshing];
+            }
+            if ([myTableView.footer isRefreshing]) {
+                [myTableView.footer endRefreshing];
+            }
+            
+        }];
+        
+        [HttpRequestManager doPostOperationWithTask:task];
+    }
+    [myTableView reloadData];
+    [SVProgressHUD showSuccessWithStatus:@"加载完成"];
 }
 #pragma mark --tableview 代理
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -84,8 +166,12 @@
         case 1:
             height = 102;
             break;
-        case 2:
-            height = 60;
+        case 2:{
+                CommanySCModel *model = _dataArr[indexPath.row];
+                CGFloat width = [ToolsClass calculateSizeForText:model.commany :CGSizeMake(1000, 21) font:[UIFont systemFontOfSize:16]].width;
+                height = [ToolsClass calculateSizeForText:model.yewu :CGSizeMake(CurrentScreenWidth-30-width, 100) font:Font].height+40;
+        }
+            
             break;
             
         default:
@@ -95,7 +181,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return _dataArr.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger index = mysegment.selectedSegmentIndex;
@@ -119,6 +205,11 @@
         if (!cell) {
             cell = [[[NSBundle mainBundle]loadNibNamed:@"MyScTableViewCell" owner:self options:nil]lastObject];
         }
+        //if (_dataArr.count>0) {
+            CommanySCModel *model = _dataArr[indexPath.row];
+            [cell showDataFromModel:model];
+        //}
+        
         return cell;
     }
     else{
@@ -175,24 +266,34 @@
         {
             __weak __typeof(self) weakSelf = self;
             //myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-                [weakSelf loadData];
+                //[weakSelf loadData];
            // }];
+            pnum = 1;
+            [_dataArr removeAllObjects];
+            [weakSelf loadData:pnum];
         }
             break;
         case 1:
         {
             __weak __typeof(self) weakSelf = self;
            // myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-                [weakSelf loadData];
+                //[weakSelf loadData];
            // }];
+            pnum = 1;
+            [_dataArr removeAllObjects];
+            [weakSelf loadData:pnum];
         }
             break;
         case 2:
         {
             __weak __typeof(self) weakSelf = self;
            // myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-                [weakSelf loadData];
+                //[weakSelf loadData];
             //}];
+            pnum = 1;
+            [_dataArr removeAllObjects];
+
+            [weakSelf loadData:pnum];
         }
             break;
         default:

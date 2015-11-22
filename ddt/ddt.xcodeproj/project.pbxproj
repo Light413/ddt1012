@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		05B69C2E05AB6F177D83E56F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA432C30201FEF046829C54 /* libPods.a */; };
+		088F23CF1C0070E60051BA3E /* MemuSCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 088F23CE1C0070E60051BA3E /* MemuSCModel.m */; };
+		088F23D21C00A2830051BA3E /* CommanySCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 088F23D11C00A2830051BA3E /* CommanySCModel.m */; };
 		9F04220B1BD8F45E00D82286 /* MyScTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0422091BD8F45E00D82286 /* MyScTableViewCell.m */; };
 		9F04220C1BD8F45E00D82286 /* MyScTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F04220A1BD8F45E00D82286 /* MyScTableViewCell.xib */; };
 		9F1DF5151BD77A6E00956512 /* TonghangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1DF5131BD77A6E00956512 /* TonghangTableViewCell.m */; };
@@ -114,7 +116,7 @@
 		A1DAAE6C1B492FC2004F634B /* NGBaseTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DAAE6B1B492FC2004F634B /* NGBaseTableVC.m */; };
 		A1F0FB691BECA97C00FFC02F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1F0FB671BECA97C00FFC02F /* Info.plist */; };
 		A1F0FB6C1BECA9BC00FFC02F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1F0FB6E1BECA9BC00FFC02F /* InfoPlist.strings */; };
-		A1F680BD1BFD95EA0088D456 /* wx108x108.png in Resources */ = {isa = PBXBuildFile; fileRef = A1F680BC1BFD95EA0088D456 /* wx108x108.png */; settings = {ASSET_TAGS = (); }; };
+		A1F680BD1BFD95EA0088D456 /* wx108x108.png in Resources */ = {isa = PBXBuildFile; fileRef = A1F680BC1BFD95EA0088D456 /* wx108x108.png */; };
 		AD5B11CC1BDB236F00285255 /* common_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD5B11CB1BDB236F00285255 /* common_data.plist */; };
 		AD5B11D01BDB360C00285255 /* DTComDataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11CF1BDB360C00285255 /* DTComDataManger.m */; };
 		AD5B11D41BDB694C00285255 /* DTCompanyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11D21BDB694C00285255 /* DTCompanyListCell.m */; };
@@ -198,6 +200,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		088F23CD1C0070E60051BA3E /* MemuSCModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemuSCModel.h; sourceTree = "<group>"; };
+		088F23CE1C0070E60051BA3E /* MemuSCModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemuSCModel.m; sourceTree = "<group>"; };
+		088F23D01C00A2830051BA3E /* CommanySCModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommanySCModel.h; sourceTree = "<group>"; };
+		088F23D11C00A2830051BA3E /* CommanySCModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommanySCModel.m; sourceTree = "<group>"; };
 		50008DDEF01D3EC79847C509 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9BA432C30201FEF046829C54 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F0422081BD8F45E00D82286 /* MyScTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScTableViewCell.h; sourceTree = "<group>"; };
@@ -558,6 +564,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		088F23CC1C0070B10051BA3E /* models */ = {
+			isa = PBXGroup;
+			children = (
+				088F23CD1C0070E60051BA3E /* MemuSCModel.h */,
+				088F23CE1C0070E60051BA3E /* MemuSCModel.m */,
+				088F23D01C00A2830051BA3E /* CommanySCModel.h */,
+				088F23D11C00A2830051BA3E /* CommanySCModel.m */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		9F1DF5111BD77A4A00956512 /* MycenterViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -892,6 +909,7 @@
 		A17B7CF01B43F867003CF895 /* ddt */ = {
 			isa = PBXGroup;
 			children = (
+				088F23CC1C0070B10051BA3E /* models */,
 				A15A95231BC7C37B00643170 /* cell */,
 				A1DAAE6F1B493944004F634B /* controller */,
 				A17B7CF51B43F867003CF895 /* AppDelegate.h */,
@@ -1595,6 +1613,7 @@
 				9FEFFCD61BCFBADE0036C23D /* MycenterViewController.m in Sources */,
 				A1042B7E1B64D0F000A74215 /* NGBaseVC.m in Sources */,
 				A12441CB1BD0EDD200D2588C /* MJRefreshComponent.m in Sources */,
+				088F23CF1C0070E60051BA3E /* MemuSCModel.m in Sources */,
 				ADD4F8661BECF6BA005F57F0 /* NGTHContactCell.m in Sources */,
 				A12441CD1BD0EDD200D2588C /* MJRefreshHeader.m in Sources */,
 				9F1DF5151BD77A6E00956512 /* TonghangTableViewCell.m in Sources */,
@@ -1608,6 +1627,7 @@
 				A17B7CF41B43F867003CF895 /* main.m in Sources */,
 				A12441D31BD0EDD200D2588C /* MJRefreshBackStateFooter.m in Sources */,
 				ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */,
+				088F23D21C00A2830051BA3E /* CommanySCModel.m in Sources */,
 				9F690B001BD73AA600DDCED6 /* MyBaseTableViewController.m in Sources */,
 				A12441CF1BD0EDD200D2588C /* MJRefreshAutoNormalFooter.m in Sources */,
 				B27BB3AB1BDFAAAF007DB68B /* ModifyPasswordViewController.m in Sources */,
