@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MenuOfMyCenterModel.h"
 @interface MenuTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *personalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *jifenLabel;
-
-
-
+-(void)showDataFromModel:(MenuOfMyCenterModel *)model;
 @end

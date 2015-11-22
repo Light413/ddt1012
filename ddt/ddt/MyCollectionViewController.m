@@ -62,21 +62,14 @@
     //添加下拉刷新
     __weak __typeof(self) weakSelf = self;
     myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        NSString *tel = [[MySharetools shared]getPhoneNumber];
         pnum = 1;
-        //        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",pnum],@"pnum",@"10",@"psize",tel,@"username",@"one",@"word",nil];
         [weakSelf loadData:pnum];
     }];
     myTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [myTableView.footer resetNoMoreData];
         pnum++;
-        // NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",pnum],@"pnum",@"10",@"psize",tel,@"username",@"one",@"word",nil];
         [weakSelf loadData:pnum];
     }];
-    //    [self addheader:myTableView];
-    //    [self addfooter:myTableView];
-    // Do any additional setup after loading the view.
-
 //    [self addheader:myTableView];
 //    [self addfooter:myTableView];
     // Do any additional setup after loading the view.
@@ -84,8 +77,7 @@
 -(void)loadData:(int)start{
     [SVProgressHUD showWithStatus:@"正在加载数据"];
     NSString *tel = [[MySharetools shared]getPhoneNumber];
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",start],@"pnum",@"10",@"psize",tel,@"username",searchBar.text.length > 0?searchBar.text:@"",@"word",nil];
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",start],@"pnum",@"10",@"psize",tel,@"username",@"",@"word",nil];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",start],@"pnum",@"10",@"psize",tel,@"username",searchBar.text.length > 0?searchBar.text:@"",@"word",nil];
     NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];;
     NSInteger index = mysegment.selectedSegmentIndex;
     if (index == 0) {
@@ -169,7 +161,7 @@
         case 2:{
                 CommanySCModel *model = _dataArr[indexPath.row];
                 CGFloat width = [ToolsClass calculateSizeForText:model.commany :CGSizeMake(1000, 21) font:[UIFont systemFontOfSize:16]].width;
-                height = [ToolsClass calculateSizeForText:model.yewu :CGSizeMake(CurrentScreenWidth-30-width, 100) font:Font].height+40;
+                height = [ToolsClass calculateSizeForText:model.yewu :CGSizeMake(CurrentScreenWidth-30-width, 1000) font:Font].height+40;
         }
             
             break;
@@ -181,7 +173,15 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _dataArr.count;
+    NSInteger index = mysegment.selectedSegmentIndex;
+    if (index == 0) {
+        return 5;
+    }else if (index == 1){
+        return 5;
+    }else{
+        return _dataArr.count;
+    }
+    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger index = mysegment.selectedSegmentIndex;

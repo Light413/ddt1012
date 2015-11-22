@@ -9,10 +9,13 @@
 #import "MyListViewController.h"
 #import "MenuTableViewCell.h"
 #import "menuDetailViewController.h"
+#import "MenuOfMyCenterModel.h"
 @interface MyListViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UISegmentedControl *mysegment;
     UITableView *myTableView;
+    int pnum;//which page;
+    NSMutableArray *_dataArr;
 }
 @end
 
@@ -21,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的单子";
+    _dataArr = [[NSMutableArray alloc]init];
     NSArray *segmentArr = @[@"接过的单子",@"用过的单子"];
     mysegment = [[UISegmentedControl alloc]initWithItems:segmentArr];
     mysegment.frame = CGRectMake(30, 10, CurrentScreenWidth-60, 30);
@@ -33,11 +37,18 @@
     myTableView.delegate = self;
     myTableView.dataSource = self;
     [self.view addSubview:myTableView];
-    [self loadData];
+    pnum = 1;
+    [self loadData:pnum];
     //添加下拉刷新
     __weak __typeof(self) weakSelf = self;
     myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [weakSelf loadData];
+        pnum = 1;
+        [weakSelf loadData:pnum];
+    }];
+    myTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [myTableView.footer resetNoMoreData];
+        pnum++;
+        [weakSelf loadData:pnum];
     }];
 
     // Do any additional setup after loading the view.
@@ -46,31 +57,72 @@
     NSInteger index = segment.selectedSegmentIndex;
     switch (index) {
         case 0:
-            [self loadData];
+            pnum = 1;
+            [self loadData:pnum];
             break;
         case 1:
-            [self loadData];
+            pnum = 1;
+            [_dataArr removeLastObject];
+            [self loadData:pnum];
             break;
         default:
             break;
     }
 }
--(void)loadData{
+-(void)loadData:(int)start{
     [SVProgressHUD showWithStatus:@"正在加载数据"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        // [_common_list_dataSource addObjectsFromArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@""]];
-        [myTableView reloadData];
-        [SVProgressHUD showSuccessWithStatus:@"加载完成"];
-        [myTableView.header endRefreshing];
-    });
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSInteger index = mysegment.selectedSegmentIndex;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",start],@"pnum",@"10",@"psize",tel,@"username",[NSString stringWithFormat:@"%ld",(long)(index+1)],@"type",nil];
+    NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];;
+        RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_getmyfill", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                if (start == 1) {
+                    [_dataArr removeAllObjects];
+                }
+                NSArray *arr = [responseObject objectForKey:@"data"];
+                if ([arr isKindOfClass:[NSArray class]]&&[arr count]>0) {
+                    for (NSDictionary *dict in arr) {
+                        MenuOfMyCenterModel *model = [[MenuOfMyCenterModel alloc]initWithDictionary:dict];
+                        [_dataArr addObject:model];
+                    }
+                    
+                }
+                [myTableView reloadData];
+            }
+            if ([myTableView.header isRefreshing]) {
+                [myTableView.header endRefreshing];
+            }
+            if ([myTableView.footer isRefreshing]) {
+                [myTableView.footer endRefreshing];
+            }
+        } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+            if ([myTableView.header isRefreshing]) {
+                [myTableView.header endRefreshing];
+            }
+            if ([myTableView.footer isRefreshing]) {
+                [myTableView.footer endRefreshing];
+            }
+            
+        }];
+        
+        [HttpRequestManager doPostOperationWithTask:task];
+    [myTableView reloadData];
+    [SVProgressHUD showSuccessWithStatus:@"加载完成"];
 }
 #pragma mark --tableview 代理
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 95;
+    CGFloat height = 0.0f;
+    MenuOfMyCenterModel *model = _dataArr[indexPath.row];
+   // CGFloat width = [ToolsClass calculateSizeForText:model.cs_ch :CGSizeMake(1000, 21) font:[UIFont systemFontOfSize:16]].width;
+    height = [ToolsClass calculateSizeForText:model.bz :CGSizeMake(CurrentScreenWidth-50, 100) font:[UIFont systemFontOfSize:12]].height+72;
+    return height;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return _dataArr.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger index = mysegment.selectedSegmentIndex;
@@ -79,10 +131,14 @@
     if (!cell) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"MenuTableViewCell" owner:self options:nil]lastObject];
     }
+    MenuOfMyCenterModel *model = _dataArr[indexPath.row];
+    [cell showDataFromModel:model];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     menuDetailViewController *menu =[[MySharetools shared]getViewControllerWithIdentifier:@"menuDetail" andstoryboardName:@"me"];
+    MenuOfMyCenterModel *model = _dataArr[indexPath.row];
+    menu.menuModel = model;
     menu.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:menu animated:YES];
 }
