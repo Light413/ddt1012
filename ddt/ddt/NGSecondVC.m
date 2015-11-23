@@ -121,7 +121,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
             NSArray *_btnTitleArr1 = @[@"服务区域",@"业务类型",@"性别"];
             _common_pop_btnTitleArr = _btnTitleArr1;
             _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
-            _common_list_url = NSLocalizedString(@"url_tongh_list", @"");
+            _common_list_url =self.vcType ==NGVCTypeId_1? NSLocalizedString(@"url_tongh_list", @""):NSLocalizedString(@"url_tongh_fj_list", @"");
             _selectedArea = @"";
             _selectedType = @"";
         } break;
@@ -182,7 +182,9 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         case NGVCTypeId_1:
             _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quye",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",@"",@"xb",nil];
             break;
-            
+        case NGVCTypeId_2:
+            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quye",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",@"",@"xb",nil];
+            break;
         default:
             break;
     }

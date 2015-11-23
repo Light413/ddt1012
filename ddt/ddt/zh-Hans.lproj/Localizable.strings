@@ -20,8 +20,10 @@ CFBundleDisplayName="贷易通";
 
 //上传头像
 "url_usericon" = "/mydyt/web_service.php?doc=adduserpic";
-//同行
-"url_tongh_list" = "/mydyt/web_service.php?doc=gettonghang";
+
+//同行相关
+"url_tongh_list" = "/mydyt/web_service.php?doc=gettonghang";//同行列表
+"url_tongh_fj_list" = "/mydyt/web_service.php?doc=getaroundth";//附近同行
 
 //公司名片列表
 "url_company_list" = "/mydyt/web_service.php?doc=getcompany";
