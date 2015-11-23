@@ -135,7 +135,10 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
         {
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"secondSB" bundle:nil];
             vc=  [sb instantiateViewControllerWithIdentifier:@"secondSBID"];
-           ((NGCompanyListVC *)vc).vcType = 2;
+           ((NGSecondVC *)vc).vcType = 2;
+            ((NGSecondVC *)vc).selectedArea = self.btn_select_area.title?self.btn_select_area.title:@"全部";
+            ((NGSecondVC *)vc).selectedType = self.btn_select_type.title?self.btn_select_type.title:@"全部";
+            ((NGSecondVC *)vc).searchKey = self.tf_search_key.text;
         }
             break;
         case 2:

@@ -160,7 +160,7 @@
     [self disappear];
     
     //...获取btn 参数列表
-
+    _index = _selectedBtnTag - 1000 + 1;
     if ([self.delegate respondsToSelector:@selector(popListView:didSelected:withIndex:)]) {
         [self.delegate popListView:self didSelected:_title withIndex:_index];
     }

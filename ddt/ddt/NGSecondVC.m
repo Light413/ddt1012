@@ -59,6 +59,9 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     NGSearchBar *_searchBar;
     BOOL _isfirstAppear;
 }
+
+@property(nonatomic,copy)NSString * selectedSex;//选择性别，默认为空
+
 @end
 
 @implementation NGSecondVC
@@ -68,6 +71,24 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     [self initData];
     [self initSubviews];
     [self createLeftBarItemWithBackTitle];
+    
+    
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",@"1",@"type",@"63",@"id", nil];
+    NSDictionary *_d1 = [MySharetools getParmsForPostWith:dic];
+    
+    NSString *_url = NSLocalizedString(@"url_my_nolove", @"");
+    
+    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:_url parms:_d1 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD showSuccessWithStatus:@""];
+        [_tableView.header beginRefreshing];
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:[error localizedDescription]];
+    }];
+    [HttpRequestManager doPostOperationWithTask:_task];
+    
+    
+    
 }
 -(void)awakeFromNib
 {
@@ -117,21 +138,23 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     switch (self.vcType) {
         case NGVCTypeId_1:
         case NGVCTypeId_2:
+        case NGVCTypeId_3:
         {//同行
             NSArray *_btnTitleArr1 = @[@"服务区域",@"业务类型",@"性别"];
             _common_pop_btnTitleArr = _btnTitleArr1;
             _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
-            _common_list_url =self.vcType ==NGVCTypeId_1? NSLocalizedString(@"url_tongh_list", @""):NSLocalizedString(@"url_tongh_fj_list", @"");
+            _common_list_url =self.vcType < NGVCTypeId_3? NSLocalizedString(@"url_tongh_list", @""):NSLocalizedString(@"url_tongh_fj_list", @"");
             _selectedArea = @"";
             _selectedType = @"";
+            _selectedSex = @"";
         } break;
 
-        case NGVCTypeId_3:
-        {//附近同行
-            NSArray *tmp = @[@"服务区域",@"业务类型",@"性别"];
-            _common_pop_btnTitleArr = tmp;
-            _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
-        } break;
+//        case NGVCTypeId_3:
+//        {//附近同行
+//            NSArray *tmp = @[@"服务区域",@"业务类型",@"性别"];
+//            _common_pop_btnTitleArr = tmp;
+//            _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
+//        } break;
             
         case NGVCTypeId_4:
         {//接单
@@ -180,10 +203,12 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     switch (self.vcType) {
         case NGVCTypeId_1:
-            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quye",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",@"",@"xb",nil];
-            break;
         case NGVCTypeId_2:
-            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quye",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",@"",@"xb",nil];
+            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quye",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex: @"",@"xb",nil];
+            break;
+        case NGVCTypeId_3:
+//            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quye",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex:@"",@"xb",nil];
+            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"",@"quye",@"",@"yewu",@"",@"word",@"",@"xb",nil];
             break;
         default:
             break;
@@ -198,13 +223,16 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     
     popView = [[NGPopListView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, 40) withDelegate:self withSuperView:self.view];
     [self.view addSubview:popView];
-    NGSearchBar *searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(2, popView.frame.origin.y + popView.frame.size.height + 1, CurrentScreenWidth -4 , 30)];
-    searchBar.delegate  =self;
-    searchBar.placeholder = @"请输入搜索关键字";
-    [self.view addSubview:searchBar];
+    _searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(2, popView.frame.origin.y + popView.frame.size.height + 1, CurrentScreenWidth -4 , 30)];
+    _searchBar.delegate  =self;
+    _searchBar.placeholder = @"请输入搜索关键字";
+    if (self.searchKey) {
+        _searchBar.text = self.searchKey;
+    }
+    [self.view addSubview:_searchBar];
     
     NSInteger _heightValue = _vcType > 1 ? CurrentScreenHeight -64 -40-30 -2 : CurrentScreenHeight -64-44 -40-30 -2;
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, searchBar.frame.origin.y + searchBar.frame.size.height, CurrentScreenWidth,_heightValue ) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, _searchBar.frame.origin.y + _searchBar.frame.size.height, CurrentScreenWidth,_heightValue ) style:UITableViewStylePlain];
     _tableView.delegate =self;
     _tableView.dataSource  =self;
     [self.view  addSubview:_tableView];
@@ -288,13 +316,26 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 {
  //...请求网络
     _pageNum = 1;
-    if (index == 1) {
-        _selectedArea = str;
+    switch (self.vcType) {
+        case NGVCTypeId_1:
+        case NGVCTypeId_2:
+        case NGVCTypeId_3:
+        {
+            if (index == 1) {
+                _selectedArea = str;
+            }
+            else if(index ==2)
+            {
+                _selectedType = str;
+            }
+            else if (index ==3)
+            {
+                _selectedSex = str;
+            }
+        }break;
+        default:break;
     }
-    else if(index ==2)
-    {
-        _selectedType = str;
-    }
+
     
     [_tableView.header beginRefreshing];
 }
@@ -351,13 +392,28 @@ float _h =0;
             _h = _new.height + 10;
             
            NSString *tel =  [_dic0 objectForKey:@"mobile"];
+            NSString *islove = [_dic0 objectForKey:@"isbook"];
+             NSString *uid = [_dic0 objectForKey:@"uid"];
             ((NGSecondListCell *)cell).btnClickBlock = ^(NSInteger tag){
                 NSLog(@"...cell btn click : %ld",tag);
                 if (tag == 300) {
                      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",tel]]];
                 }
                 else if (tag == 301) {
-//                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@",tel]]];
+                        NSString *tel = [[MySharetools shared]getPhoneNumber];
+                    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",@"1",@"type",uid,@"id", nil];
+                   NSDictionary *_d1 = [MySharetools getParmsForPostWith:dic];
+                    
+                    [SVProgressHUD showWithStatus:![islove boolValue] ?@"添加收藏":@"取消收藏"];
+                    NSString *_url =![islove boolValue]?NSLocalizedString(@"url_my_love", @""): NSLocalizedString(@"url_my_nolove", @"");
+                    
+                    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:_url parms:_d1 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        [SVProgressHUD showSuccessWithStatus:@""];
+                        [_tableView.header beginRefreshing];
+                    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        [SVProgressHUD showInfoWithStatus:[error localizedDescription]];
+                    }];
+                    [HttpRequestManager doPostOperationWithTask:_task];
                 }
             };
             
@@ -398,6 +454,8 @@ const float cellDefaultHeight = 80.0;
 {
     switch (self.vcType) {
         case NGVCTypeId_1:
+        case NGVCTypeId_2:
+        case NGVCTypeId_3:
         {
             return 50 + _h > cellDefaultHeight?50 + _h:cellDefaultHeight;
         }break;
