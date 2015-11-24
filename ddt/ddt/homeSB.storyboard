@@ -2401,6 +2401,6 @@
         <image name="checkbox1_checked.png" width="21" height="21"/>
         <image name="checkbox1_unchecked.png" width="14" height="14"/>
         <image name="delete_icon" width="21" height="21"/>
-        <image name="icon_msg" width="29" height="29"/>
+        <image name="icon_msg" width="25" height="25"/>
     </resources>
 </document>

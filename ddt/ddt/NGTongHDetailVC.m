@@ -75,6 +75,7 @@
         _s8 = [self.personInfoDic objectForKey:@"yewu"];
         _s9 = [self.personInfoDic objectForKey:@"company"];
         _s10 = [self.personInfoDic objectForKey:@"content"];
+        self.is_love_btn.selected = [[self.personInfoDic objectForKey:@"isbook"]boolValue];
     }
     else
     {
@@ -194,9 +195,22 @@
         }break;
         case 313:// 收藏
         {
-            sender.selected = !sender.selected;
-            [SVProgressHUD showInfoWithStatus:@"收藏成功"];
-            NSLog(@"love action");
+            NSString *uid = [self.personInfoDic objectForKey:@"uid"];
+            NSString *tel = [[MySharetools shared]getPhoneNumber];
+            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",@"1",@"type",uid,@"id", nil];
+            NSDictionary *_d1 = [MySharetools getParmsForPostWith:dic];
+            
+            [SVProgressHUD showWithStatus:!self.is_love_btn.selected ?@"添加收藏":@"取消收藏"];
+            NSString *_url =!self.is_love_btn.selected?NSLocalizedString(@"url_my_love", @""): NSLocalizedString(@"url_my_nolove", @"");
+            
+            RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:_url parms:_d1 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                [SVProgressHUD dismiss];
+                sender.selected = !sender.selected;
+            } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [SVProgressHUD showInfoWithStatus:[error localizedDescription]];
+            }];
+            [HttpRequestManager doPostOperationWithTask:_task];
+
         }break;
         default: break;
     }

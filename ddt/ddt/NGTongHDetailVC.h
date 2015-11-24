@@ -11,5 +11,6 @@
 @interface NGTongHDetailVC : NGBaseTableVC
 
 @property(nonatomic,retain)NSDictionary * personInfoDic;//个人信息
+@property(nonatomic,assign)BOOL isLoved;
 
 @end

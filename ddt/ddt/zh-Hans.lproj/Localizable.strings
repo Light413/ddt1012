@@ -13,6 +13,7 @@ CFBundleDisplayName="贷易通";
 
 //首页相关
 "url_qiandao" = "/mydyt/web_service.php?doc=addfee";//签到
+"url_jiedan" = "/mydyt/web_service.php?doc=getbilllist";//接单
 "url_shuaidan" = "/mydyt/web_service.php?doc=addbill";//甩单
 "url_http_cheprice" = "http://www.che300.com/dyt";//车价评估
 "url_http_joinus" = "http://www.123dyt.com/mydyt/joinus.html";//加入我们

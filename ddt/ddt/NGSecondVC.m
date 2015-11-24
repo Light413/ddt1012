@@ -58,6 +58,9 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     //搜搜
     NGSearchBar *_searchBar;
     BOOL _isfirstAppear;
+    
+    //同行详情
+    BOOL _isLoved;//是否收藏
 }
 
 @property(nonatomic,copy)NSString * selectedSex;//选择性别，默认为空
@@ -71,24 +74,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     [self initData];
     [self initSubviews];
     [self createLeftBarItemWithBackTitle];
-    
-    
-    NSString *tel = [[MySharetools shared]getPhoneNumber];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",@"1",@"type",@"63",@"id", nil];
-    NSDictionary *_d1 = [MySharetools getParmsForPostWith:dic];
-    
-    NSString *_url = NSLocalizedString(@"url_my_nolove", @"");
-    
-    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:_url parms:_d1 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [SVProgressHUD showSuccessWithStatus:@""];
-        [_tableView.header beginRefreshing];
-    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD showInfoWithStatus:[error localizedDescription]];
-    }];
-    [HttpRequestManager doPostOperationWithTask:_task];
-    
-    
-    
+
 }
 -(void)awakeFromNib
 {
@@ -147,20 +133,18 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
             _selectedArea = @"";
             _selectedType = @"";
             _selectedSex = @"";
+            _isLoved = NO;
         } break;
-
-//        case NGVCTypeId_3:
-//        {//附近同行
-//            NSArray *tmp = @[@"服务区域",@"业务类型",@"性别"];
-//            _common_pop_btnTitleArr = tmp;
-//            _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
-//        } break;
-            
+    
         case NGVCTypeId_4:
         {//接单
             NSArray *tmp = @[@"服务区域",@"业务类型",@"时间"];
             _common_pop_btnTitleArr = tmp;
             _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
+            _common_list_url  =NSLocalizedString(@"url_jiedan", @"");
+            _selectedArea = @"";
+            _selectedType = @"";
+            
         } break;
             
         case NGVCTypeId_5:
@@ -210,6 +194,11 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 //            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quye",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex:@"",@"xb",nil];
             _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"",@"quye",@"",@"yewu",@"",@"word",@"",@"xb",nil];
             break;
+            
+        case NGVCTypeId_4:
+             _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", _selectedArea?_selectedArea:@"",@"quye",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",@"",@"time",@"10",@"psize",@(_pageNum),@"pnum",nil];
+            break;
+            
         default:
             break;
     }
@@ -376,14 +365,13 @@ float _h =0;
     NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:indexPath.row];
     NSString * str = [_dic0 objectForKey:@"yewu"];
     CGSize _new =  [ToolsClass calculateSizeForText:str :cellMaxFitSize font:cellFitfont];
-    
+    cell =  [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
     
     switch (self.vcType) {
         case NGVCTypeId_1:
         case NGVCTypeId_2:
         case NGVCTypeId_3:
         {
-            cell =  [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
             NGSecondListCell *cell1 = (NGSecondListCell *)cell;
             [(NGSecondListCell *)cell setCellWith:_dic0 withOptionIndex:self.vcType];
             CGRect rec = cell1.lab_type.frame;
@@ -393,9 +381,9 @@ float _h =0;
             
            NSString *tel =  [_dic0 objectForKey:@"mobile"];
             NSString *islove = [_dic0 objectForKey:@"isbook"];
+            _isLoved = [islove boolValue];
              NSString *uid = [_dic0 objectForKey:@"uid"];
             ((NGSecondListCell *)cell).btnClickBlock = ^(NSInteger tag){
-                NSLog(@"...cell btn click : %ld",tag);
                 if (tag == 300) {
                      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",tel]]];
                 }
@@ -408,7 +396,7 @@ float _h =0;
                     NSString *_url =![islove boolValue]?NSLocalizedString(@"url_my_love", @""): NSLocalizedString(@"url_my_nolove", @"");
                     
                     RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:_url parms:_d1 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                        [SVProgressHUD showSuccessWithStatus:@""];
+                        [SVProgressHUD dismiss];
                         [_tableView.header beginRefreshing];
                     } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
                         [SVProgressHUD showInfoWithStatus:[error localizedDescription]];
@@ -421,11 +409,8 @@ float _h =0;
 
         case NGVCTypeId_4:
         {
-            cell =  [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
-//            [(NGSecondListCell *)cell setCellWith:_dic0 withOptionIndex:self.vcType];
-//            ((NGSecondListCell *)cell).btnClickBlock = ^(NSInteger tag){
-//                NSLog(@"...cell btn click : %ld",tag);
-//            };
+            [(NGJieDanListCell *)cell setCellWith:_dic0];
+
         }break;
             
         case NGVCTypeId_5:
@@ -469,23 +454,18 @@ const float cellDefaultHeight = 80.0;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _selectRowIndex = indexPath.row;
+    
     switch (self.vcType) {
         case NGVCTypeId_1:
-        {
-            [self performSegueWithIdentifier:showTongHangVcID sender:nil];
-        }break;
         case NGVCTypeId_2:
-        {
-            [self performSegueWithIdentifier:showTongHangVcID sender:nil];
-        }break;
         case NGVCTypeId_3:
         {//附近同行
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"secondSB" bundle:nil];
-            UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"TongHDetailVC"];
-            [self.navigationController pushViewController:vc animated:YES];
-            
-//            [self performSegueWithIdentifier:showTongHangVcID sender:nil];
+//            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"secondSB" bundle:nil];
+//            UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"TongHDetailVC"];
+//            [self.navigationController pushViewController:vc animated:YES];
+            [self performSegueWithIdentifier:showTongHangVcID sender:nil];
         }break;
+            
         case NGVCTypeId_4://接单
         {
             [self performSegueWithIdentifier:showJieDanVcID sender:nil];
@@ -526,6 +506,7 @@ const float cellDefaultHeight = 80.0;
     if ([segue.identifier isEqualToString:showTongHangVcID]) {
         NGTongHDetailVC *vc = [segue destinationViewController];
         vc.personInfoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
+        vc.isLoved = _isLoved;
     }
 }
 

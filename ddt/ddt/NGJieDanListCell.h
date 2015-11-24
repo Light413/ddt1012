@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface NGJieDanListCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *nameLab;
+@property (weak, nonatomic) IBOutlet UILabel *detailLab;
+@property (weak, nonatomic) IBOutlet UILabel *jifenLab;
+
+-(void)setCellWith:(NSDictionary*)dic ;
 
 @end

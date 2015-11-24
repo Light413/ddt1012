@@ -35,7 +35,7 @@
     
     //kCTForegroundColorAttributeName - NSForegroundColorAttributeName
     [mutableAttributedString_attrs addAttribute:(NSString *)kCTForegroundColorAttributeName
-                        value:(id)[UIColor blackColor].CGColor
+                        value:(id)[UIColor redColor].CGColor
                         range:rang];
     //kCTFontAttributeName - NSFontAttributeName
     [mutableAttributedString_attrs addAttribute:(NSString *)kCTFontAttributeName
