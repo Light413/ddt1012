@@ -18,7 +18,7 @@
     [super viewDidLoad];
     self.title = @"加入我们";
     UIWebView *web = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, CurrentScreenHeight-64)];
-    NSURL * url = [NSURL URLWithString:@"http:www.baidu.com"];
+    NSURL * url = [NSURL URLWithString:NSLocalizedString(@"url_http_joinus", @"")];
     //@"http://news.cnr.cn/native/gd/20151106/t20151106_520419363.shtml?bdnews"];
     web.delegate = self;
     web.scalesPageToFit = YES;

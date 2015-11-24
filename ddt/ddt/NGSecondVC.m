@@ -401,7 +401,7 @@ float _h =0;
                 }
                 else if (tag == 301) {
                         NSString *tel = [[MySharetools shared]getPhoneNumber];
-                    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",@"1",@"type",uid,@"id", nil];
+                    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",@"1",@"type",uid,@"id", nil];
                    NSDictionary *_d1 = [MySharetools getParmsForPostWith:dic];
                     
                     [SVProgressHUD showWithStatus:![islove boolValue] ?@"添加收藏":@"取消收藏"];
