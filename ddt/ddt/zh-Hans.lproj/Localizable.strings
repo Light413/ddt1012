@@ -11,6 +11,11 @@ CFBundleDisplayName="贷易通";
 
 "base_url" = "http://www.123dyt.com";
 
+//首页相关
+"url_qiandao" = "/mydyt/web_service.php?doc=addfee";//签到
+"url_shuaidan" = "/mydyt/web_service.php?doc=addbill";//甩单
+
+
 //jsondata={"mobile":"15136216190","pwd":"111","token":"15136216190(!)*^*1446701200"
 //用户注册 参数：jsondata
 "url_register" = "/mydyt/web_service.php?doc=regsin";

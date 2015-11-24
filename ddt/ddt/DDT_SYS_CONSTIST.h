@@ -34,4 +34,11 @@
 #define CURRENT_LOCATION_CITY   @"CURRENT_LOCATION_CITY"
 
 #define umengkey  @"563c50f8e0f55a9272003d67"
+
+//通知
+#define QIAN_DAO_SUCCESS_NOTI   @"QIAN_DAO_SUCCESS_NOTI"//签到成功通知
+
+//签到积分
+#define QIAN_DAO_JIFEN_KEY  @"QIAN_DAO_JIFEN_KEY"
+
 #endif

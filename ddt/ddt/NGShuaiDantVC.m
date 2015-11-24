@@ -199,11 +199,30 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 
 //立即甩单操作
 - (IBAction)submintAction:(id)sender {
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-    
     if ([self checkAllDataIsValid]) {
        //所有参数都合法
+        NSString *tel = [[MySharetools shared]getPhoneNumber];
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", self.tf_name.text,@"cs_ch",_kehusf,@"cs_type",@"",@"cs_xb",self.btn_age.title,@"cs_age",self.btn_jine.title,@"cs_dkje",self.btn_timelimit.title,@"cs_dkqx",self.btn_yewutype.title,@"yw_type",self.btn_area.title,@"yw_quyu",_zxstatus,@"zxqk",self.textview.text,@"bz",self.tf_jifen.text,@"jifen",nil];
         
+        NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
+        [SVProgressHUD showWithStatus:@"正在提交"];
+
+        RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_shuaidan", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if (![[responseObject objectForKey:@"result"]boolValue]) {
+                [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else if ([[responseObject objectForKey:@"result"]integerValue]==1)
+            {
+                [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+            }
+            else
+                [SVProgressHUD showInfoWithStatus:@"提交失败,请稍后重试"];
+        } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD showInfoWithStatus:@"提交失败,请稍后重试"];
+        }];
+        
+        [HttpRequestManager doPostOperationWithTask:_task];
     }
     
 }

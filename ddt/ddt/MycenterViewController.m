@@ -141,7 +141,14 @@
     
 //    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:login];
 //    [self presentViewController:nav animated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(qiandaoAction) name:QIAN_DAO_SUCCESS_NOTI object:nil];
 }
+
+-(void)qiandaoAction
+{
+    NSLog(@"...qiandaole");
+}
+
 -(void)creatTableView{
     myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, CurrentScreenHeight-49-64) style:UITableViewStylePlain];
     myTableView.delegate = self;
