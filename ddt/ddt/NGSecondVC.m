@@ -16,7 +16,7 @@
 #import "NGSearchBar.h"
 #import "NGPopListView.h"
 #import "NGTongHDetailVC.h"
-
+#import "NGJieDanDetailVC.h"
 
 #import "NGSecondListCell.h"
 #import "DTCompanyListCell.h"
@@ -242,7 +242,10 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         [_tableView.footer resetNoMoreData];
         [weakSelf loadMoreData];
     }];
-    
+   
+    if (self.vcType == NGVCTypeId_4) {
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
 }
 
 #pragma mark --加载数据
@@ -409,6 +412,14 @@ float _h =0;
 
         case NGVCTypeId_4:
         {
+            NSString * str = [_dic0 objectForKey:@"bz"];
+            CGSize _new =  [ToolsClass calculateSizeForText:str :cellMaxFitSize font:cellFitfont];
+            NGJieDanListCell *cell1 = (NGJieDanListCell *)cell;
+            CGRect rec = cell1.nameLab.frame;
+            rec.size.height = _new.height+20;
+            cell1.nameLab.frame = rec;
+            _h = _new.height + 30;
+            
             [(NGJieDanListCell *)cell setCellWith:_dic0];
 
         }break;
@@ -445,6 +456,7 @@ const float cellDefaultHeight = 80.0;
             return 50 + _h > cellDefaultHeight?50 + _h:cellDefaultHeight;
         }break;
             
+        case NGVCTypeId_4:return _h + 40 > 100?_h + 40:100; break;
         default:
             break;
     }
@@ -507,6 +519,11 @@ const float cellDefaultHeight = 80.0;
         NGTongHDetailVC *vc = [segue destinationViewController];
         vc.personInfoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
         vc.isLoved = _isLoved;
+    }
+    else if ([segue.identifier isEqualToString:showJieDanVcID])//单子信息
+    {
+        NGJieDanDetailVC *vc = [segue destinationViewController];
+        vc.danZiInfoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
     }
 }
 

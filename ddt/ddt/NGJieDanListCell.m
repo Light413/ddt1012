@@ -25,10 +25,10 @@
 -(void)setCellWith:(NSDictionary*)dic
 {
     NSString *name = [dic objectForKey:@"cs_ch"]?[dic objectForKey:@"cs_ch"]:@"";
-    NSString *task = [NSString stringWithFormat:@"%@ %@ %@%@",[dic objectForKey:@"cs_age"]?[dic objectForKey:@"cs_age"]:@"",[dic objectForKey:@"cs_type"]?[dic objectForKey:@"cs_type"]:@"",[dic objectForKey:@"cs_dkqx"]?[dic objectForKey:@"cs_dkqx"]:@"",[dic objectForKey:@"cs_dkje"]?[dic objectForKey:@"cs_dkje"]:@""];
+    NSString *task = [NSString stringWithFormat:@"%@ %@ 贷款%@ %@",[dic objectForKey:@"cs_age"]?[dic objectForKey:@"cs_age"]:@"",[dic objectForKey:@"cs_type"]?[dic objectForKey:@"cs_type"]:@"",[dic objectForKey:@"cs_dkqx"]?[dic objectForKey:@"cs_dkqx"]:@"",[dic objectForKey:@"cs_dkje"]?[dic objectForKey:@"cs_dkje"]:@""];
     NSString *detail = [dic objectForKey:@"bz"]?[dic objectForKey:@"bz"]:@"";
     
-    NSString *des = [NSString stringWithFormat:@"%@ %@ %@",name,task,detail];
+    NSString *des = [NSString stringWithFormat:@"%@ %@ \n\n%@",name,task,detail];
     
     self.nameLab.text = des;
     self.jifenLab.text = [NSString stringWithFormat:@"需要%@个积分",[dic objectForKey:@"jifen"]?[dic objectForKey:@"jifen"]:@"0"];
@@ -38,29 +38,25 @@
 
     NSRange rang = NSMakeRange(0, name.length);
     //kCTForegroundColorAttributeName - NSForegroundColorAttributeName
-    [mutableAttributedString_attrs addAttribute:(NSString *)kCTForegroundColorAttributeName
-                                          value:(id)[UIColor blackColor].CGColor
+    [mutableAttributedString_attrs addAttribute:(NSString *)NSForegroundColorAttributeName
+                                          value:(id)[UIColor blackColor]
                                           range:rang];
     //kCTFontAttributeName - NSFontAttributeName
     [mutableAttributedString_attrs addAttribute:(NSString *)kCTFontAttributeName
                                           value:[UIFont boldSystemFontOfSize:14]
                                           range:rang];
-//    [mutableAttributedString_attrs endEditing];
-//    
-//    [mutableAttributedString_attrs beginEditing];
-    NSRange rang1 = NSMakeRange(rang.location + rang.length, task.length);
-    [mutableAttributedString_attrs addAttribute:(NSString *)kCTForegroundColorAttributeName
-                                          value:(id)[UIColor redColor].CGColor
+    
+    NSRange rang1 = NSMakeRange(rang.location + rang.length+1, task.length);
+    [mutableAttributedString_attrs addAttribute:(NSString *)NSForegroundColorAttributeName
+                                          value:(id)[UIColor colorWithRed:0.475 green:0.659 blue:0.773 alpha:1]
                                           range:rang1];
     [mutableAttributedString_attrs addAttribute:(NSString *)kCTFontAttributeName
-                                          value:[UIFont systemFontOfSize:13]
+                                          value:[UIFont systemFontOfSize:14]
                                           range:rang1];
-//    [mutableAttributedString_attrs endEditing];
-//    
-//    [mutableAttributedString_attrs beginEditing];
-    NSRange rang2 = NSMakeRange(rang1.location + rang1.length, detail.length);
-    [mutableAttributedString_attrs addAttribute:(NSString *)kCTForegroundColorAttributeName
-                                          value:(id)[UIColor blackColor].CGColor
+
+    NSRange rang2 = NSMakeRange(rang1.location + rang1.length+3, detail.length);
+    [mutableAttributedString_attrs addAttribute:(NSString *)NSForegroundColorAttributeName
+                                          value:(id)[UIColor darkGrayColor]
                                           range:rang2];
     [mutableAttributedString_attrs addAttribute:(NSString *)kCTFontAttributeName
                                           value:[UIFont systemFontOfSize:13]

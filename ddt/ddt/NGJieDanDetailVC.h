@@ -10,4 +10,6 @@
 
 @interface NGJieDanDetailVC : NGBaseTableVC
 
+@property(nonatomic,retain)NSDictionary * danZiInfoDic;//信息
+
 @end
