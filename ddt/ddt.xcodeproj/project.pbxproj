@@ -138,6 +138,9 @@
 		AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB921BD21E3000C23992 /* NGXMLReader.m */; };
 		AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */; };
 		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; };
+		ADCA44871C07507A0066A371 /* NGZhaoPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCA44851C07507A0066A371 /* NGZhaoPinCell.m */; settings = {ASSET_TAGS = (); }; };
+		ADCA44881C07507A0066A371 /* NGZhaoPinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADCA44861C07507A0066A371 /* NGZhaoPinCell.xib */; settings = {ASSET_TAGS = (); }; };
+		ADCA448B1C0750DA0066A371 /* NGZhaoPinDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCA448A1C0750DA0066A371 /* NGZhaoPinDetailVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADCE01C61BEEEC59007E874E /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCE01C51BEEEC59007E874E /* NSString+MD5Addition.m */; };
 		ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */; };
 		ADCF91E01BEDA5F000DC6CF7 /* NGWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCF91DF1BEDA5F000DC6CF7 /* NGWebView.m */; };
@@ -435,6 +438,11 @@
 		AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGXMLDataModel.m; sourceTree = "<group>"; };
 		AD92EB971BD24A0300C23992 /* NGXMLBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGXMLBaseModel.h; sourceTree = "<group>"; };
 		AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGXMLBaseModel.m; sourceTree = "<group>"; };
+		ADCA44841C07507A0066A371 /* NGZhaoPinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGZhaoPinCell.h; sourceTree = "<group>"; };
+		ADCA44851C07507A0066A371 /* NGZhaoPinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGZhaoPinCell.m; sourceTree = "<group>"; };
+		ADCA44861C07507A0066A371 /* NGZhaoPinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGZhaoPinCell.xib; sourceTree = "<group>"; };
+		ADCA44891C0750DA0066A371 /* NGZhaoPinDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGZhaoPinDetailVC.h; sourceTree = "<group>"; };
+		ADCA448A1C0750DA0066A371 /* NGZhaoPinDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGZhaoPinDetailVC.m; sourceTree = "<group>"; };
 		ADCE01C41BEEEC59007E874E /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
 		ADCE01C51BEEEC59007E874E /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		ADCEAF901BD39B35006F1E56 /* NGItemsDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGItemsDetailVC.h; sourceTree = "<group>"; };
@@ -916,6 +924,9 @@
 				ADD15E011BF23F8100CD868C /* NGJieDanListCell.h */,
 				ADD15E021BF23F8100CD868C /* NGJieDanListCell.m */,
 				ADD15E031BF23F8100CD868C /* NGJieDanListCell.xib */,
+				ADCA44841C07507A0066A371 /* NGZhaoPinCell.h */,
+				ADCA44851C07507A0066A371 /* NGZhaoPinCell.m */,
+				ADCA44861C07507A0066A371 /* NGZhaoPinCell.xib */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1117,6 +1128,8 @@
 				ADD3053D1BDD011C002F5BAE /* NGShuaiDantVC.m */,
 				ADD3053F1BDD0156002F5BAE /* NGJieDanDetailVC.h */,
 				ADD305401BDD0156002F5BAE /* NGJieDanDetailVC.m */,
+				ADCA44891C0750DA0066A371 /* NGZhaoPinDetailVC.h */,
+				ADCA448A1C0750DA0066A371 /* NGZhaoPinDetailVC.m */,
 			);
 			name = home;
 			sourceTree = "<group>";
@@ -1502,6 +1515,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADCA44881C07507A0066A371 /* NGZhaoPinCell.xib in Resources */,
 				9F1DF5161BD77A6E00956512 /* TonghangTableViewCell.xib in Resources */,
 				A17B7CFD1B43F867003CF895 /* MainSB.storyboard in Resources */,
 				A1042B871B64D55400A74215 /* image0.png in Resources */,
@@ -1625,6 +1639,7 @@
 				9FB7458A1BF19E82006977AE /* Base64.m in Sources */,
 				A12441D21BD0EDD200D2588C /* MJRefreshBackNormalFooter.m in Sources */,
 				B2879BE01BDCC92900B39021 /* DeviceFeedBackViewController.m in Sources */,
+				ADCA44871C07507A0066A371 /* NGZhaoPinCell.m in Sources */,
 				A12CD4F31BCBAC990020CB27 /* RBStoryboardPushSegue.m in Sources */,
 				ADD5E69D1BE61E300035FC0F /* NGSearchWithKeyVC.m in Sources */,
 				A12441DA1BD0EDD200D2588C /* UIScrollView+MJRefresh.m in Sources */,
@@ -1678,6 +1693,7 @@
 				A149A4411BCF37320098E7C3 /* NGBaseListView.m in Sources */,
 				B2EEC4FF1BEF4ED400EFBBEB /* ServiceProtocolViewController.m in Sources */,
 				A12441F61BD0EFD900D2588C /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
+				ADCA448B1C0750DA0066A371 /* NGZhaoPinDetailVC.m in Sources */,
 				9F690B061BD7426400DDCED6 /* MyCollectionViewController.m in Sources */,
 				ADE8CF8C1BDBD420006CBC95 /* NGCompanyDetailVC.m in Sources */,
 				A12441FE1BD0EFD900D2588C /* LKDBUtils.m in Sources */,

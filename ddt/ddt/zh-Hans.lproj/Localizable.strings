@@ -18,6 +18,7 @@ CFBundleDisplayName="贷易通";
 "url_http_cheprice" = "http://www.che300.com/dyt";//车价评估
 "url_qiuzhi"        = "/mydyt/web_service.php?doc=getworklist";//求职
 "url_zhaopin"       = "/mydyt/web_service.php?doc=getqzlist";//招聘
+"url_upLocation"       = "/mydyt/web_service.php?doc=addmapxy";//上传坐标
 
 "url_http_joinus"   = "http://www.123dyt.com/mydyt/joinus.html";//加入我们
 "url_http_aboutus"  = "http://www.123dyt.com/mydyt/aboutus.html";//关于我们

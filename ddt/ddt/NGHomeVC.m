@@ -29,7 +29,7 @@ static NSString *showTHContactID    = @"showTHContactID";//同行交流
 static NSString *showShuaiDanID     = @"showShuaiDanID";//甩单
 static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 
-#import "BaiDuLocationManger.h"
+//#import "BaiDuLocationManger.h"
 
 @interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,UMSocialUIDelegate>
 
@@ -59,27 +59,41 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
     //获取位置信息
 //    [SVProgressHUD showWithStatus:@"正在获取位置"];
-//    [[LocationManger shareManger]getLocationWithSuccessBlock:^(NSString *str) {
-//        [SVProgressHUD dismiss];
-//        NSLog(@"current location : %@",str);
-//        [[NSUserDefaults standardUserDefaults]setObject:@"上海市" forKey:CURRENT_LOCATION_CITY];
-//        [[NSUserDefaults standardUserDefaults]synchronize];
-//        
-//        if (str) {
-//             [leftBtn setTitle:str forState:UIControlStateNormal];
-//        }
-//        else
-//        {
-//            [leftBtn setTitle:@"定位失败" forState:UIControlStateNormal];
-//        }
-//
-//    } andFailBlock:^(NSError *error) {
-//        [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];
-//    }];
+    [[LocationManger shareManger]getLocationWithSuccessBlock:^(NSString *str) {
+        [SVProgressHUD dismiss];
+        NSLog(@"current location : %@",str);
+        [[NSUserDefaults standardUserDefaults]setObject:@"上海市" forKey:CURRENT_LOCATION_CITY];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        if (str) {
+             [leftBtn setTitle:str forState:UIControlStateNormal];
+        }
+        else
+        {
+            [leftBtn setTitle:@"定位失败" forState:UIControlStateNormal];
+        }
+
+        //...上传位置信息<+31.19302052,+121.68571511>
+        NSString *tel = [[MySharetools shared]getPhoneNumber];
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", tel,@"mobile",@"121.68571511,31.19302052",@"distance",nil];
+        
+        NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
+        
+        RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_upLocation", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+        } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+        }];
+        
+        [HttpRequestManager doPostOperationWithTask:_task];
+        
+    } andFailBlock:^(NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];
+    }];
     
     //...test检查版本更新
     [[PgyUpdateManager sharedPgyManager]checkUpdate];
-    
+  /*
     [[BaiDuLocationManger share]getLocationWithSuccessBlock:^(CLLocation *loaction) {
 //        CLGeocoder *geo = [[CLGeocoder alloc]init];
 //        [geo reverseGeocodeLocation:loaction completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
@@ -100,7 +114,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
             }}];
     } andFailBlock:^(NSError *error) {
         
-    }];
+    }];*/
 }
 
 

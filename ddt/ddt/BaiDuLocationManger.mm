@@ -8,9 +8,11 @@
 
 #import "BaiDuLocationManger.h"
 
+
 @implementation BaiDuLocationManger
 {
     BMKLocationService * _locationService;
+    BMKGeoCodeSearch *_searcher;
 }
 
 -(instancetype)init
@@ -20,6 +22,9 @@
         _locationService.delegate = self;
         _locationService.distanceFilter = 10.0;
         _locationService.desiredAccuracy = kCLLocationAccuracyBest;
+        
+        _searcher =[[BMKGeoCodeSearch alloc]init];
+        _searcher.delegate = self;
     }
     return self;
 }
@@ -35,7 +40,7 @@
 }
 
 
--(void)getLocationWithSuccessBlock:(SUCCESSBLOCK)successBlock andFailBlock:(FAILLBLOCK)failBlock
+-(void)getLocationWithSuccessBlock:(SUCCESSBLOCKB)successBlock andFailBlock:(FAILLBLOCKB)failBlock
 {
     _succeessBlock = successBlock;
     _faillBlock = failBlock;

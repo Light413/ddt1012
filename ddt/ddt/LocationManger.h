@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+#import <BaiduMapAPI_Search/BMKGeocodeSearch.h>
+
 typedef void(^SUCCESSBLOCK)(NSString*str);
 typedef void(^FAILLBLOCK)(NSError *error);
 
-@interface LocationManger : NSObject<CLLocationManagerDelegate>
+@interface LocationManger : NSObject<CLLocationManagerDelegate,BMKGeoCodeSearchDelegate>
 
 @property(nonatomic,copy)SUCCESSBLOCK succeessBlock;
 

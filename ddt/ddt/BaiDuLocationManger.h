@@ -7,20 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <BaiduMapAPI_Search/BMKGeocodeSearch.h>
+
 @class CLLocation;
 
-typedef void(^SUCCESSBLOCK)(CLLocation * location);
-typedef void(^FAILLBLOCK)(NSError *error);
+typedef void(^SUCCESSBLOCKB)(CLLocation * location);
+typedef void(^FAILLBLOCKB)(NSError *error);
 
-@interface BaiDuLocationManger : NSObject<BMKLocationServiceDelegate>
+@interface BaiDuLocationManger : NSObject<BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 
-@property(nonatomic,copy)SUCCESSBLOCK succeessBlock;
+@property(nonatomic,copy)SUCCESSBLOCKB succeessBlock;
 
-@property(nonatomic,copy)FAILLBLOCK faillBlock;
+@property(nonatomic,copy)FAILLBLOCKB faillBlock;
 
 +(instancetype)share;
 
 //获取位置
--(void)getLocationWithSuccessBlock:(SUCCESSBLOCK)successBlock andFailBlock:(FAILLBLOCK)failBlock;
+-(void)getLocationWithSuccessBlock:(SUCCESSBLOCKB)successBlock andFailBlock:(FAILLBLOCKB)failBlock;
 
 @end
