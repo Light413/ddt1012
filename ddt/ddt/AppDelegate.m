@@ -15,15 +15,23 @@
 #import "UMSocialSinaHandler.h"
 
 
-@interface AppDelegate ()
+@interface AppDelegate ()<BMKGeneralDelegate>
+
 
 @end
 
 @implementation AppDelegate
 
+BMKMapManager* _mapManager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    _mapManager = [[BMKMapManager alloc]init];
+    BOOL ret = [_mapManager start:@"kTXoqGQj9VoCyasyuwtxQv80" generalDelegate:self];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+    
     [UMSocialData setAppKey:umengkey];
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     
@@ -108,7 +116,28 @@
     return  [UMSocialSnsService handleOpenURL:url];
 }
 
+#pragma mark -- baiduMapDelegate
 
+- (void)onGetNetworkState:(int)iError
+{
+    if (0 == iError) {
+        NSLog(@"联网成功");
+    }
+    else{
+        NSLog(@"onGetNetworkState %d",iError);
+    }
+    
+}
+
+- (void)onGetPermissionState:(int)iError
+{
+    if (0 == iError) {
+        NSLog(@"授权成功");
+    }
+    else {
+        NSLog(@"onGetPermissionState %d",iError);
+    }
+}
 
 
 

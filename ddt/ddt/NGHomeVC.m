@@ -29,6 +29,7 @@ static NSString *showTHContactID    = @"showTHContactID";//同行交流
 static NSString *showShuaiDanID     = @"showShuaiDanID";//甩单
 static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 
+#import "BaiDuLocationManger.h"
 
 @interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,UMSocialUIDelegate>
 
@@ -58,27 +59,50 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
     //获取位置信息
 //    [SVProgressHUD showWithStatus:@"正在获取位置"];
-    [[LocationManger shareManger]getLocationWithSuccessBlock:^(NSString *str) {
-        [SVProgressHUD dismiss];
-        NSLog(@"current location : %@",str);
-        [[NSUserDefaults standardUserDefaults]setObject:@"上海市" forKey:CURRENT_LOCATION_CITY];
-        [[NSUserDefaults standardUserDefaults]synchronize];
-        
-        if (str) {
-             [leftBtn setTitle:str forState:UIControlStateNormal];
-        }
-        else
-        {
-            [leftBtn setTitle:@"定位失败" forState:UIControlStateNormal];
-        }
-
-    } andFailBlock:^(NSError *error) {
-        [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];
-    }];
+//    [[LocationManger shareManger]getLocationWithSuccessBlock:^(NSString *str) {
+//        [SVProgressHUD dismiss];
+//        NSLog(@"current location : %@",str);
+//        [[NSUserDefaults standardUserDefaults]setObject:@"上海市" forKey:CURRENT_LOCATION_CITY];
+//        [[NSUserDefaults standardUserDefaults]synchronize];
+//        
+//        if (str) {
+//             [leftBtn setTitle:str forState:UIControlStateNormal];
+//        }
+//        else
+//        {
+//            [leftBtn setTitle:@"定位失败" forState:UIControlStateNormal];
+//        }
+//
+//    } andFailBlock:^(NSError *error) {
+//        [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];
+//    }];
     
     //...test检查版本更新
     [[PgyUpdateManager sharedPgyManager]checkUpdate];
+    
+    [[BaiDuLocationManger share]getLocationWithSuccessBlock:^(CLLocation *loaction) {
+//        CLGeocoder *geo = [[CLGeocoder alloc]init];
+//        [geo reverseGeocodeLocation:loaction completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+//            for (CLPlacemark *_p in placemarks) {
+//                NSLog(@"...%@",_p);
+//            }
+//        }];
+        CLGeocoder *geo = [[CLGeocoder alloc]init];
+        [geo reverseGeocodeLocation:loaction completionHandler:^(NSArray *placemarks, NSError *error) {
+            for (CLPlacemark *place in placemarks) {
+                //            NSLog(@"name,%@",place.name);                       // 位置名
+                //            NSLog(@"thoroughfare,%@",place.thoroughfare);       // 街道
+                //            NSLog(@"subThoroughfare,%@",place.subThoroughfare); // 子街道
+                //            NSLog(@"locality,%@",place.locality);               // 市
+                //            NSLog(@"subLocality,%@",place.subLocality);         // 区
+                //            NSLog(@"country,%@",place.country);                 // 国家
+//                cityname = place.locality;
+            }}];
+    } andFailBlock:^(NSError *error) {
+        
+    }];
 }
+
 
 -(void)viewWillAppear:(BOOL)animated
 {

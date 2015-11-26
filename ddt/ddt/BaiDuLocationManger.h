@@ -7,7 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+@class CLLocation;
 
-@interface BaiDuLocationManger : NSObject
+typedef void(^SUCCESSBLOCK)(CLLocation * location);
+typedef void(^FAILLBLOCK)(NSError *error);
+
+@interface BaiDuLocationManger : NSObject<BMKLocationServiceDelegate>
+
+@property(nonatomic,copy)SUCCESSBLOCK succeessBlock;
+
+@property(nonatomic,copy)FAILLBLOCK faillBlock;
+
++(instancetype)share;
+
+//获取位置
+-(void)getLocationWithSuccessBlock:(SUCCESSBLOCK)successBlock andFailBlock:(FAILLBLOCK)failBlock;
 
 @end

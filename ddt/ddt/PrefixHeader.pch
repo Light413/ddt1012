@@ -13,7 +13,7 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 #import "DDT_SYS_CONSTIST.h"
-#import "LocationManger.h"
+//#import "LocationManger.h"
 #import "SVProgressHUD/SVProgressHUD.h"
 #import "UIViewExt.h"
 #import "MySharetools.h"
@@ -25,6 +25,7 @@
 #import "NGBaseNavigationVC.h"
 #import "DTComDataManger.h"
 #import "UMSocial.h"
+#import <BaiduMapAPI_Location/BMKLocationService.h>
 
 //Http op
 #import "HttpRequestManager.h"
