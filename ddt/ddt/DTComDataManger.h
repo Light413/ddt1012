@@ -41,6 +41,9 @@
 //贷款期限
 +(NSArray*)getData_daikuanTime;
 
+//接单时间
++(NSArray*)getData_jiedanTime;
+
 @end
 
 

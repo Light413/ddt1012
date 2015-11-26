@@ -63,7 +63,10 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     BOOL _isLoved;//是否收藏
 }
 
+//同行参数
 @property(nonatomic,copy)NSString * selectedSex;//选择性别，默认为空
+//接单时间参数
+@property(nonatomic,copy)NSString * selectedTime;
 
 @end
 
@@ -139,12 +142,13 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         case NGVCTypeId_4:
         {//接单
             NSArray *tmp = @[@"服务区域",@"业务类型",@"时间"];
+            NSArray *time = [DTComDataManger getData_jiedanTime];
             _common_pop_btnTitleArr = tmp;
-            _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
+            _common_pop_btnListArr  = @[_areaArr,_typeArr,time];
             _common_list_url  =NSLocalizedString(@"url_jiedan", @"");
             _selectedArea = @"";
             _selectedType = @"";
-            
+            _selectedTime = @"";
         } break;
             
         case NGVCTypeId_5:
@@ -155,6 +159,10 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
             NSArray *_a3 = [DTComDataManger getData_gzjy];
             _common_pop_btnTitleArr = tmp;
             _common_pop_btnListArr  = @[_areaArr,_typeArr,_a1,_a2,_a3];
+            _common_list_url  =NSLocalizedString(@"url_qiuzhi", @"");
+            _selectedArea = @"";
+            _selectedType = @"";
+            
         } break;
             
         case NGVCTypeId_6:
@@ -164,6 +172,10 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
             NSArray *_a3 = [DTComDataManger getData_gzjy];
             _common_pop_btnTitleArr = tmp;
             _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr,_a2,_a3];
+            _common_list_url  =NSLocalizedString(@"url_zhaopin", @"");
+            _selectedArea = @"";
+            _selectedType = @"";
+            
         } break;
             
         default: break;
@@ -188,19 +200,18 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     switch (self.vcType) {
         case NGVCTypeId_1:
         case NGVCTypeId_2:
-            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quye",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex: @"",@"xb",nil];
-            break;
+            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex: @"",@"xb",nil];break;
         case NGVCTypeId_3:
-//            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quye",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex:@"",@"xb",nil];
-            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"",@"quye",@"",@"yewu",@"",@"word",@"",@"xb",nil];
-            break;
+            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex:@"",@"xb",nil];break;
             
-        case NGVCTypeId_4:
-             _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", _selectedArea?_selectedArea:@"",@"quye",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",@"",@"time",@"10",@"psize",@(_pageNum),@"pnum",nil];
+        case NGVCTypeId_4://接单
+            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedTime,@"time",@"10",@"psize",@(_pageNum),@"pnum",nil];
             break;
-            
-        default:
-            break;
+        case NGVCTypeId_5:
+            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",@"",@"money",@"",@"old",@"",@"work",@"10",@"psize",@(_pageNum),@"pnum",nil]; break;
+        case NGVCTypeId_6:
+            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"",@"quyu",@"",@"yewu",@"",@"word",@"",@"xb",@"",@"old",@"",@"work",@"10",@"psize",@"1",@"pnum",nil];break;
+        default:break;
     }
 }
 
@@ -325,6 +336,45 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
                 _selectedSex = str;
             }
         }break;
+        case NGVCTypeId_4:
+        {
+            if (index == 1) {
+                _selectedArea = str;
+            }
+            else if(index ==2)
+            {
+                _selectedType = str;
+            }
+            else if (index ==3)
+            {
+//                _selectedTime = str;
+                NSArray *_arr = @[@"全部",@"今天",@"最近3天",@"最近7天",@"最近30天"];
+                [_arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([(NSString *)obj isEqualToString:str]) {
+                        if (idx==0) {
+                            _selectedTime = @"";
+                        }
+                        else if (idx ==1)
+                        {
+                            _selectedTime = @"1";
+                        }
+                        else if (idx ==2)
+                        {
+                            _selectedTime = @"3";
+                        }
+                        else if (idx ==31)
+                        {
+                            _selectedTime = @"7";
+                        }
+                        else if (idx ==4)
+                        {
+                            _selectedTime = @"30";
+                        }
+                    }
+                }];
+            }
+        }break;
+            
         default:break;
     }
 
@@ -480,7 +530,12 @@ const float cellDefaultHeight = 80.0;
             
         case NGVCTypeId_4://接单
         {
-            [self performSegueWithIdentifier:showJieDanVcID sender:nil];
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"homeSB" bundle:nil];
+            NGJieDanDetailVC* vc=  [sb instantiateViewControllerWithIdentifier:@"NGJieDanDetailVCID"];
+            vc.danZiInfoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
+            [self.navigationController pushViewController:vc animated:YES];
+            
+//            [self performSegueWithIdentifier:showJieDanVcID sender:nil];
         }break;
         case NGVCTypeId_5://求职
         {
@@ -520,11 +575,11 @@ const float cellDefaultHeight = 80.0;
         vc.personInfoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
         vc.isLoved = _isLoved;
     }
-    else if ([segue.identifier isEqualToString:showJieDanVcID])//单子信息
-    {
-        NGJieDanDetailVC *vc = [segue destinationViewController];
-        vc.danZiInfoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
-    }
+//    else if ([segue.identifier isEqualToString:showJieDanVcID])//单子信息
+//    {
+//        NGJieDanDetailVC *vc = [segue destinationViewController];
+//        vc.danZiInfoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
+//    }
 }
 
 

@@ -12,12 +12,15 @@ CFBundleDisplayName="贷易通";
 "base_url" = "http://www.123dyt.com";
 
 //首页相关
-"url_qiandao" = "/mydyt/web_service.php?doc=addfee";//签到
-"url_jiedan" = "/mydyt/web_service.php?doc=getbilllist";//接单
-"url_shuaidan" = "/mydyt/web_service.php?doc=addbill";//甩单
+"url_qiandao"       = "/mydyt/web_service.php?doc=addfee";//签到
+"url_jiedan"        = "/mydyt/web_service.php?doc=getbilllist";//接单
+"url_shuaidan"      = "/mydyt/web_service.php?doc=addbill";//甩单
 "url_http_cheprice" = "http://www.che300.com/dyt";//车价评估
-"url_http_joinus" = "http://www.123dyt.com/mydyt/joinus.html";//加入我们
-"url_http_aboutus" = "http://www.123dyt.com/mydyt/aboutus.html";//关于我们
+"url_qiuzhi"        = "/mydyt/web_service.php?doc=getworklist";//求职
+"url_zhaopin"       = "/mydyt/web_service.php?doc=getqzlist";//招聘
+
+"url_http_joinus"   = "http://www.123dyt.com/mydyt/joinus.html";//加入我们
+"url_http_aboutus"  = "http://www.123dyt.com/mydyt/aboutus.html";//关于我们
 
 //jsondata={"mobile":"15136216190","pwd":"111","token":"15136216190(!)*^*1446701200"
 //用户注册 参数：jsondata

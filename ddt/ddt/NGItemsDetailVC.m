@@ -125,14 +125,17 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     
     switch (sender.tag - 110) {
         case 0:
-        {
+        {//搜单子
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"secondSB" bundle:nil];
             vc=  [sb instantiateViewControllerWithIdentifier:@"secondSBID"];
-            ((NGCompanyListVC *)vc).vcType = 4;
+            ((NGSecondVC *)vc).vcType = 4;
+            ((NGSecondVC *)vc).selectedArea = self.btn_select_area.title?self.btn_select_area.title:@"全部";
+            ((NGSecondVC *)vc).selectedType = self.btn_select_type.title?self.btn_select_type.title:@"全部";
+            ((NGSecondVC *)vc).searchKey = self.tf_search_key.text;
         }
             break;
         case 1:
-        {
+        {//搜同行
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"secondSB" bundle:nil];
             vc=  [sb instantiateViewControllerWithIdentifier:@"secondSBID"];
            ((NGSecondVC *)vc).vcType = 2;

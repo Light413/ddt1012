@@ -16,6 +16,7 @@ static NSString *sex = @"sex";//性别
 static NSString *age = @"age";//年龄
 static NSString *daikuanjine = @"daikuaiJine";//贷款金额
 static NSString *daikuanTime = @"daikuaiTime";//贷款期限
+static NSString *jiedanTime = @"jiedanTime";//接单时间
 
 @implementation DTComDataManger
 {
@@ -91,6 +92,11 @@ static NSString *daikuanTime = @"daikuaiTime";//贷款期限
 +(NSArray*)getData_daikuanTime
 {
     return [[self share]getDataWith:daikuanTime];
+}
+
++(NSArray*)getData_jiedanTime
+{
+    return [[self share]getDataWith:jiedanTime];
 }
 
 @end
