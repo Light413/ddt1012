@@ -9,5 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface NGZhaoPinCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *nameLab;
+@property (weak, nonatomic) IBOutlet UILabel *zhiweiLab;
+@property (weak, nonatomic) IBOutlet UILabel *gongziLab;
+@property (weak, nonatomic) IBOutlet UILabel *contentLab;
+
+@property(nonatomic,copy)void(^btnClickBlock)(NSInteger tag);
+
+-(void)setCellWith:(NSDictionary*)dic;
 
 @end

@@ -21,6 +21,7 @@
 #import "NGSecondListCell.h"
 #import "DTCompanyListCell.h"
 #import "NGJieDanListCell.h"
+#import "NGZhaoPinCell.h"
 
 static NSString * showTongHangVcID  = @"showTongHangVcID";
 static NSString * showCompanyVcID   = @"showCompanyVcID";
@@ -185,7 +186,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     //....此处获取tableview的数据源
     //...test   tableview
     _common_list_dataSource = [[NSMutableArray alloc]init];
-    _common_cellId_arr = @[NGSecondListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId,JieDanCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId];
+    _common_cellId_arr = @[NGSecondListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId,JieDanCellReuseId,NGSecondListCellReuseId,@"NGZhaoPinCellId"];
     _common_list_cellReuseId = [_common_cellId_arr objectAtIndex:self.vcType - 1];
     
     cellMaxFitSize = CGSizeMake(CurrentScreenWidth -30, 999);
@@ -239,8 +240,23 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     [_tableView setContentInset:UIEdgeInsetsMake(0, 0, 5, 0)];
     _tableView.tableFooterView = [[UIView alloc]init];
     
-    [_tableView registerNib:[UINib nibWithNibName:@"NGSecondListCell" bundle:nil] forCellReuseIdentifier:NGSecondListCellReuseId];
-    [_tableView registerNib:[UINib nibWithNibName:@"NGJieDanListCell" bundle:nil] forCellReuseIdentifier:JieDanCellReuseId];
+    switch (self.vcType) {
+        case NGVCTypeId_1:
+        case NGVCTypeId_2:
+        case NGVCTypeId_3:
+            [_tableView registerNib:[UINib nibWithNibName:@"NGSecondListCell" bundle:nil] forCellReuseIdentifier:NGSecondListCellReuseId];break;
+        case NGVCTypeId_4:
+            [_tableView registerNib:[UINib nibWithNibName:@"NGJieDanListCell" bundle:nil] forCellReuseIdentifier:JieDanCellReuseId];break;
+        case NGVCTypeId_5:
+        case NGVCTypeId_6:
+            [_tableView registerNib:[UINib nibWithNibName:@"NGZhaoPinCell" bundle:nil] forCellReuseIdentifier:@"NGZhaoPinCellId"];break;
+            break;
+            
+        default:
+            break;
+    }
+
+
     
     
     //添加下拉刷新
@@ -477,9 +493,8 @@ float _h =0;
         case NGVCTypeId_5:
         case NGVCTypeId_6:
         {
-            cell =  [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
-            [(NGSecondListCell *)cell setCellWith:_dic0 withOptionIndex:self.vcType];
-            ((NGSecondListCell *)cell).btnClickBlock = ^(NSInteger tag){
+            [(NGZhaoPinCell *)cell setCellWith:_dic0];
+            ((NGZhaoPinCell *)cell).btnClickBlock = ^(NSInteger tag){
                 NSLog(@"...cell btn click : %ld",tag);
             };
             
@@ -507,9 +522,12 @@ const float cellDefaultHeight = 80.0;
         }break;
             
         case NGVCTypeId_4:return _h + 40 > 100?_h + 40:100; break;
+            case NGVCTypeId_5:
+        case NGVCTypeId_6:return 100;break;
         default:
             break;
     }
+    
     return cellDefaultHeight;
 }
 
