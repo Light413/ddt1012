@@ -92,26 +92,31 @@
 
 }
 
+bool _b = NO;
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    
-    //发起反向地理编码检索
-  /*  CLLocationCoordinate2D pt = (CLLocationCoordinate2D){39.915, 116.404};
-    BMKReverseGeoCodeOption *reverseGeoCodeSearchOption = [[
-    BMKReverseGeoCodeOption alloc]init];
-    reverseGeoCodeSearchOption.reverseGeoPoint = pt;
-    BOOL flag = [_searcher reverseGeoCode:reverseGeoCodeSearchOption];
-    if(flag)
-    {
-      NSLog(@"反geo检索发送成功");
+    if (_b == NO) {
+        _b =YES;
+        
+        //发起反向地理编码检索
+        CLLocationCoordinate2D pt = (CLLocationCoordinate2D){39.915, 116.404};
+        BMKReverseGeoCodeOption *reverseGeoCodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
+        reverseGeoCodeSearchOption.reverseGeoPoint = pt;
+        BOOL flag = [_searcher reverseGeoCode:reverseGeoCodeSearchOption];
+        if(flag)
+        {
+            NSLog(@"反geo检索发送成功");
+        }
+        else
+        {
+            NSLog(@"反geo检索发送失败");
+        }
     }
-    else
-    {
-      NSLog(@"反geo检索发送失败");
-    }
-    */
 
-   __block NSString *cityname;
+    
+
+  /* __block NSString *cityname;
     CLGeocoder *geo = [[CLGeocoder alloc]init];
     [geo reverseGeocodeLocation:[locations lastObject] completionHandler:^(NSArray *placemarks, NSError *error) {
         for (CLPlacemark *place in placemarks) {
@@ -127,12 +132,13 @@
        _succeessBlock(cityname);
         [self stopLocation];
     }];
-    
+   */ 
 }
 
-/*
+
 //接收反向地理编码结果
 -(void) onGetReverseGeocodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error{
+    
   if (error == BMK_SEARCH_NO_ERROR) {
      
   }
@@ -140,7 +146,7 @@
       NSLog(@"抱歉，未找到结果");
   }
 }
-*/
+
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     _faillBlock(error);
