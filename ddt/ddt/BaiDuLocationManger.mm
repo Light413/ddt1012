@@ -12,7 +12,7 @@
 @implementation BaiDuLocationManger
 {
     BMKLocationService * _locationService;
-    BMKGeoCodeSearch *_searcher;
+//    BMKGeoCodeSearch *_searcher;
 }
 
 -(instancetype)init
@@ -23,8 +23,8 @@
         _locationService.distanceFilter = 10.0;
         _locationService.desiredAccuracy = kCLLocationAccuracyBest;
         
-        _searcher =[[BMKGeoCodeSearch alloc]init];
-        _searcher.delegate = self;
+//        _searcher =[[BMKGeoCodeSearch alloc]init];
+//        _searcher.delegate = self;
     }
     return self;
 }
@@ -76,12 +76,34 @@
     NSLog(@"willStartLocatingUser");
 }
 
+bool _b = NO;
 -(void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
     NSLog(@"didUpdateBMKUserLocation");
     
-    _succeessBlock(userLocation.location);
-    [_locationService stopUserLocationService];
+//    _succeessBlock(userLocation.location);
+//    [_locationService stopUserLocationService];
+    
+    if (_b == NO) {
+        _b =YES;
+        
+        //发起反向地理编码检索
+        BMKGeoCodeSearch* _searcher =[[BMKGeoCodeSearch alloc]init];
+        _searcher.delegate = self;
+        
+        CLLocationCoordinate2D pt = (CLLocationCoordinate2D){39.915, 116.404};
+        BMKReverseGeoCodeOption *reverseGeoCodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
+        reverseGeoCodeSearchOption.reverseGeoPoint = pt;
+        BOOL flag = [_searcher reverseGeoCode:reverseGeoCodeSearchOption];
+        if(flag)
+        {
+            NSLog(@"反geo检索发送成功");
+        }
+        else
+        {
+            NSLog(@"反geo检索发送失败");
+        }
+    }
 }
 
 -(void)didFailToLocateUserWithError:(NSError *)error
@@ -91,9 +113,17 @@
      [_locationService stopUserLocationService];
 }
 
-//- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error{
-//    
-//}
+
+//接收反向地理编码结果
+-(void) onGetReverseGeocodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error{
+    
+    if (error == BMK_SEARCH_NO_ERROR) {
+        NSLog(@"反向地理编码结果");
+    }
+    else {
+        NSLog(@"抱歉，未找到结果");
+    }
+}
 
 
 @end

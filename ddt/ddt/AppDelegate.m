@@ -14,6 +14,7 @@
 #import "UMSocialWechatHandler.h"
 #import "UMSocialSinaHandler.h"
 
+#import "BaiDuLocationManger.h"
 
 @interface AppDelegate ()<BMKGeneralDelegate>
 
@@ -133,6 +134,11 @@ BMKMapManager* _mapManager;
 {
     if (0 == iError) {
         NSLog(@"授权成功");
+        [[BaiDuLocationManger share]getLocationWithSuccessBlock:^(CLLocation *location) {
+            
+        } andFailBlock:^(NSError *error) {
+            
+        }];
     }
     else {
         NSLog(@"onGetPermissionState %d",iError);

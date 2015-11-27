@@ -11,7 +11,6 @@
 @implementation LocationManger
 {
     CLLocationManager *_manger;
-        BMKGeoCodeSearch *_searcher;
 }
 
 +(instancetype)shareManger
@@ -30,9 +29,6 @@
     if(self == [super init])
     {
         _manger = [[CLLocationManager alloc]init];
-        
-        _searcher =[[BMKGeoCodeSearch alloc]init];
-        _searcher.delegate = self;
     }
     return self;
 }
@@ -92,31 +88,16 @@
 
 }
 
-bool _b = NO;
+//bool _b = NO;
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    if (_b == NO) {
-        _b =YES;
-        
-        //发起反向地理编码检索
-        CLLocationCoordinate2D pt = (CLLocationCoordinate2D){39.915, 116.404};
-        BMKReverseGeoCodeOption *reverseGeoCodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
-        reverseGeoCodeSearchOption.reverseGeoPoint = pt;
-        BOOL flag = [_searcher reverseGeoCode:reverseGeoCodeSearchOption];
-        if(flag)
-        {
-            NSLog(@"反geo检索发送成功");
-        }
-        else
-        {
-            NSLog(@"反geo检索发送失败");
-        }
-    }
+//    if (_b == NO) {
+//        _b =YES;
+//
+//    }
 
-    
-
-  /* __block NSString *cityname;
+   __block NSString *cityname;
     CLGeocoder *geo = [[CLGeocoder alloc]init];
     [geo reverseGeocodeLocation:[locations lastObject] completionHandler:^(NSArray *placemarks, NSError *error) {
         for (CLPlacemark *place in placemarks) {
@@ -132,20 +113,9 @@ bool _b = NO;
        _succeessBlock(cityname);
         [self stopLocation];
     }];
-   */ 
+   
 }
 
-
-//接收反向地理编码结果
--(void) onGetReverseGeocodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error{
-    
-  if (error == BMK_SEARCH_NO_ERROR) {
-     
-  }
-  else {
-      NSLog(@"抱歉，未找到结果");
-  }
-}
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
