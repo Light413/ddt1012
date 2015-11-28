@@ -17,6 +17,7 @@
 #import "NGPopListView.h"
 #import "NGTongHDetailVC.h"
 #import "NGJieDanDetailVC.h"
+#import "NGZPPersonInfoVC.h"
 
 #import "NGSecondListCell.h"
 #import "DTCompanyListCell.h"
@@ -493,9 +494,30 @@ float _h =0;
         case NGVCTypeId_5:
         case NGVCTypeId_6:
         {
+            NSString * str = [_dic0 objectForKey:@"content"];
+            CGSize _new =  [ToolsClass calculateSizeForText:str :cellMaxFitSize font:cellFitfont];
+            NGZhaoPinCell *cell1 = (NGZhaoPinCell *)cell;
+            CGRect rec = cell1.nameLab.frame;
+            rec.size.height = _new.height+10;
+            cell1.contentLab.frame = rec;
+            _h = _new.height;
+            
+           NSString* _s4 = [_dic0 objectForKey:@"fmobile"];
             [(NGZhaoPinCell *)cell setCellWith:_dic0];
             ((NGZhaoPinCell *)cell).btnClickBlock = ^(NSInteger tag){
                 NSLog(@"...cell btn click : %ld",tag);
+                NSString *str;
+                if (tag == 300) {
+                    //tel
+                    str = [NSString stringWithFormat:@"tel://%@",_s4];
+                }
+                else if (tag ==301)
+                {
+                    //msg
+                    str = [NSString stringWithFormat:@"sms://%@",_s4];
+                }
+                
+                [[UIApplication sharedApplication ]openURL:[NSURL URLWithString:str]];
             };
             
         }break;
@@ -522,10 +544,10 @@ const float cellDefaultHeight = 80.0;
         }break;
             
         case NGVCTypeId_4:return _h + 40 > 100?_h + 40:100; break;
-            case NGVCTypeId_5:
-        case NGVCTypeId_6:return 100;break;
-        default:
-            break;
+            
+        case NGVCTypeId_5:
+        case NGVCTypeId_6:return _h + 70 > 90?_h + 70:90;break;
+        default:break;
     }
     
     return cellDefaultHeight;
@@ -552,8 +574,6 @@ const float cellDefaultHeight = 80.0;
             NGJieDanDetailVC* vc=  [sb instantiateViewControllerWithIdentifier:@"NGJieDanDetailVCID"];
             vc.danZiInfoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
             [self.navigationController pushViewController:vc animated:YES];
-            
-//            [self performSegueWithIdentifier:showJieDanVcID sender:nil];
         }break;
         case NGVCTypeId_5://求职
         {
@@ -593,11 +613,11 @@ const float cellDefaultHeight = 80.0;
         vc.personInfoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
         vc.isLoved = _isLoved;
     }
-//    else if ([segue.identifier isEqualToString:showJieDanVcID])//单子信息
-//    {
-//        NGJieDanDetailVC *vc = [segue destinationViewController];
-//        vc.danZiInfoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
-//    }
+    else if ([segue.identifier isEqualToString:showZhaoPinVcID])//单子信息
+    {
+        NGZPPersonInfoVC *vc = [segue destinationViewController];
+        vc.infoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
+    }
 }
 
 

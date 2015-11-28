@@ -183,14 +183,12 @@
     switch (sender.tag) {
         case 311:// 打电话
         {
-            NSLog(@"tel action");
             UIAlertView *_alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"开始呼叫:%@",_s7] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
             _alert.tag = 501;
             [_alert show];
         }break;
         case 312:// 短息
         {
-            NSLog(@"msg action");
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@",_s7]]];
         }break;
         case 313:// 收藏

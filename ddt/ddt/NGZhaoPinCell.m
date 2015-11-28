@@ -26,15 +26,17 @@
     NSString*sex = [dic objectForKey:@"xb"]?[dic objectForKey:@"xb"]:@"";
     NSString*age = [NSString stringWithFormat:@"%@岁",[dic objectForKey:@"age"]?[dic objectForKey:@"age"]:@""];
     NSString*workold =[NSString stringWithFormat:@"工作时间:%@",[dic objectForKey:@"old"]?[dic objectForKey:@"old"]:@""] ;
-    NSString*xueli = [NSString stringWithFormat:@"学历:%@",[dic objectForKey:@"xl"]?[dic objectForKey:@"xl"]:@""];
+//    NSString*xueli = [NSString stringWithFormat:@"最高学历:%@",[dic objectForKey:@"xl"]?[dic objectForKey:@"xl"]:@""];
+   
     NSString*zhiwei = [NSString stringWithFormat:@"职位:%@",[dic objectForKey:@"work"]?[dic objectForKey:@"work"]:@"任意"];
+    NSString*addr = [NSString stringWithFormat:@"地点:%@",[dic objectForKey:@"yw_quye"] && ![((NSString*)[dic objectForKey:@"yw_quye"]) isEqualToString:@""] ?[dic objectForKey:@"yw_quye"]:@"上海市"];
     NSString*gongzi = [NSString stringWithFormat:@"期望工资:%@",[dic objectForKey:@"money"]?[dic objectForKey:@"money"]:@""];
     NSString*content = [NSString stringWithFormat:@"自评:%@",[dic objectForKey:@"content"]?[dic objectForKey:@"content"]:@"暂无评论"];
 
-    NSString *total = [NSString stringWithFormat:@"%@ %@ %@ %@ %@",name,sex,age,workold,xueli];
+    NSString *total = [NSString stringWithFormat:@"%@   %@\t%@  %@",name,sex,age,workold];
    
     self.nameLab.text = total;
-    self.zhiweiLab.text = zhiwei;
+    self.zhiweiLab.text = [NSString stringWithFormat:@"%@   %@",zhiwei,addr];
     self.gongziLab.text =gongzi;
     self.contentLab.text = content;
 }

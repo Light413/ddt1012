@@ -184,6 +184,7 @@
 		ADD4316E1BE50BFB000C03D8 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4316D1BE50BFB000C03D8 /* libstdc++.tbd */; };
 		ADD431701BE50C25000C03D8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4316F1BE50C25000C03D8 /* libz.tbd */; };
 		ADD431721BE50C8A000C03D8 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431711BE50C8A000C03D8 /* CoreTelephony.framework */; };
+		ADD447021C09BAFF002247AC /* NGZPPersonInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD447011C09BAFF002247AC /* NGZPPersonInfoVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADD4F8661BECF6BA005F57F0 /* NGTHContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4F8651BECF6BA005F57F0 /* NGTHContactCell.m */; };
 		ADD5E69D1BE61E300035FC0F /* NGSearchWithKeyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5E69C1BE61E300035FC0F /* NGSearchWithKeyVC.m */; };
 		ADD5E6A01BE61E590035FC0F /* NGSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5E69F1BE61E590035FC0F /* NGSearchResultVC.m */; };
@@ -522,6 +523,8 @@
 		ADD4316D1BE50BFB000C03D8 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		ADD4316F1BE50C25000C03D8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		ADD431711BE50C8A000C03D8 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		ADD447001C09BAFF002247AC /* NGZPPersonInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGZPPersonInfoVC.h; sourceTree = "<group>"; };
+		ADD447011C09BAFF002247AC /* NGZPPersonInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGZPPersonInfoVC.m; sourceTree = "<group>"; };
 		ADD4F8641BECF6BA005F57F0 /* NGTHContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTHContactCell.h; sourceTree = "<group>"; };
 		ADD4F8651BECF6BA005F57F0 /* NGTHContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGTHContactCell.m; sourceTree = "<group>"; };
 		ADD5E69B1BE61E300035FC0F /* NGSearchWithKeyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSearchWithKeyVC.h; sourceTree = "<group>"; };
@@ -1130,6 +1133,8 @@
 				ADD305401BDD0156002F5BAE /* NGJieDanDetailVC.m */,
 				ADCA44891C0750DA0066A371 /* NGZhaoPinDetailVC.h */,
 				ADCA448A1C0750DA0066A371 /* NGZhaoPinDetailVC.m */,
+				ADD447001C09BAFF002247AC /* NGZPPersonInfoVC.h */,
+				ADD447011C09BAFF002247AC /* NGZPPersonInfoVC.m */,
 			);
 			name = home;
 			sourceTree = "<group>";
@@ -1712,6 +1717,7 @@
 				A12441CC1BD0EDD200D2588C /* MJRefreshFooter.m in Sources */,
 				AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */,
 				ADD5E6A01BE61E590035FC0F /* NGSearchResultVC.m in Sources */,
+				ADD447021C09BAFF002247AC /* NGZPPersonInfoVC.m in Sources */,
 				A157110E1BD4EAB500D586F6 /* LPickerView.m in Sources */,
 				9F690B031BD73AE200DDCED6 /* PersonalInfoViewController.m in Sources */,
 				B2977DE11BDCDEFD007B3021 /* PersonanlBusinessViewController.m in Sources */,
