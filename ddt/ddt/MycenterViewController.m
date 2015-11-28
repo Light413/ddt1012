@@ -17,7 +17,7 @@
 #import "ReleaseMeetingViewController.h"
 #import "SystemCenterViewController.h"
 #import "ModifyPasswordViewController.h"
-#define HeaderViewHeight 100.0
+#define HeaderViewHeight 120.0
 #define iconHeight 15.0
 #define KimageName @"imageName"
 #define KlabelName @"labelName"
@@ -33,6 +33,8 @@
 @implementation MycenterViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
     if (![[MySharetools shared]isSessionid]) {
         if ([MySharetools shared].isFirstSignupViewController == YES) {
             [MySharetools shared].isFirstSignupViewController = NO;
@@ -71,12 +73,21 @@
 //        [self showMydata];
     }
 }
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+
 -(void)showMydata{
     UILabel *nickNameLabel = (UILabel *)[self.view viewWithTag:101];
-    nickNameLabel.text = [[MySharetools shared]getNickName];
+    NSString *ss =[[MySharetools shared]getNickName];
+    nickNameLabel.text = ss;
+    
     [nickNameLabel sizeToFit];
     UIButton *modifyBtn = (UIButton *)[self.view viewWithTag:105];
-    modifyBtn.frame = CGRectMake(nickNameLabel.right+10, 10, 50, 15);
+    modifyBtn.frame = CGRectMake(nickNameLabel.right+10, 10+20, 50, 15);
     UIImageView *line = (UIImageView *)[self.view viewWithTag:106];
     line.frame = CGRectMake(modifyBtn.left, modifyBtn.bottom, modifyBtn.frame.size.width, 1);
     
@@ -150,12 +161,14 @@
 }
 
 -(void)creatTableView{
-    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, CurrentScreenHeight-49-64) style:UITableViewStylePlain];
+    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, CurrentScreenWidth, CurrentScreenHeight-49) style:UITableViewStylePlain];
     myTableView.delegate = self;
     myTableView.dataSource = self;
     myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:myTableView];
     myTableView.hidden = YES;
+    [myTableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+    
     [myTableView setTableHeaderView:backVIew];
     [myTableView setTableFooterView:footView];
 }
@@ -290,15 +303,15 @@
     [backVIew addSubview:backImage];
     UIButton *userIcon = [UIButton buttonWithType:UIButtonTypeCustom];
     userIcon.tag = 107;
-    userIcon.frame = CGRectMake(10, 10, HeaderViewHeight-20, HeaderViewHeight-20);
+    userIcon.frame = CGRectMake(10, 10+20, HeaderViewHeight-40, HeaderViewHeight-40);
     [userIcon setBackgroundImage:[UIImage imageNamed:@"head_noregist"] forState:UIControlStateNormal];
     [userIcon addTarget:self action:@selector(usericonBtn:) forControlEvents:UIControlEventTouchUpInside];
     [backVIew addSubview:userIcon];
-    UILabel *nickNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(userIcon.right+10, 10, 0, 20)];
-    //nickNameLabel.text = [[MySharetools shared]getNickName];
+    UILabel *nickNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(userIcon.right+10, 10+20, 20, 20)];
+    nickNameLabel.text = [[MySharetools shared]getNickName];
     nickNameLabel.font = [UIFont systemFontOfSize:14];
     nickNameLabel.textColor = [UIColor orangeColor];
-    //nickNameLabel.backgroundColor = [UIColor blackColor];
+//    nickNameLabel.backgroundColor = [UIColor blackColor];//...
     nickNameLabel.tag = 101;
     [nickNameLabel sizeToFit];
     [backVIew addSubview:nickNameLabel];
@@ -318,9 +331,9 @@
     
     
     
-    UIImageView *jifenicon = [[UIImageView alloc]initWithFrame:CGRectMake(userIcon.right+10, line.bottom+22, iconHeight, iconHeight)];
+    UIImageView *jifenicon = [[UIImageView alloc]initWithFrame:CGRectMake(userIcon.right+10, line.bottom+22+20, iconHeight, iconHeight)];
     jifenicon.image = [UIImage imageNamed:@"uc_shouc"];
-    UILabel *jifenName = [[UILabel alloc]initWithFrame:CGRectMake(jifenicon.right, line.bottom+20, 30, 20)];
+    UILabel *jifenName = [[UILabel alloc]initWithFrame:CGRectMake(jifenicon.right, line.bottom+20+20, 30, 20)];
     jifenName.text = @"积分";
     jifenName.textAlignment = NSTextAlignmentRight;
     jifenName.font = [UIFont systemFontOfSize:12];
@@ -338,9 +351,9 @@
 //    }
     
     
-    UIImageView *browseicon = [[UIImageView alloc]initWithFrame:CGRectMake(jifenName.right+5, line.bottom+22, iconHeight, iconHeight)];
+    UIImageView *browseicon = [[UIImageView alloc]initWithFrame:CGRectMake(jifenName.right+5, line.bottom+22+20, iconHeight, iconHeight)];
     browseicon.image = [UIImage imageNamed:@"uc_add"];
-    UILabel *browseName = [[UILabel alloc]initWithFrame:CGRectMake(browseicon.right, line.bottom+20, 30, 20)];
+    UILabel *browseName = [[UILabel alloc]initWithFrame:CGRectMake(browseicon.right, line.bottom+20+20, 30, 20)];
     browseName.text = @"浏览";
     browseName.textAlignment = NSTextAlignmentRight;
     browseName.font = [UIFont systemFontOfSize:12];
@@ -357,9 +370,9 @@
 //        }
 //    }
     
-    UIImageView *judgeicon = [[UIImageView alloc]initWithFrame:CGRectMake(browseName.right+5, line.bottom+22, iconHeight, iconHeight)];
+    UIImageView *judgeicon = [[UIImageView alloc]initWithFrame:CGRectMake(browseName.right+5, line.bottom+22+20, iconHeight, iconHeight)];
     judgeicon.image = [UIImage imageNamed:@"uc_say"];
-    UILabel *judegeName = [[UILabel alloc]initWithFrame:CGRectMake(judgeicon.right, line.bottom+20, 30, 20)];
+    UILabel *judegeName = [[UILabel alloc]initWithFrame:CGRectMake(judgeicon.right, line.bottom+20+20, 30, 20)];
     judegeName.text = @"评论";
     judegeName.textAlignment = NSTextAlignmentRight;
     judegeName.font = [UIFont systemFontOfSize:12];
