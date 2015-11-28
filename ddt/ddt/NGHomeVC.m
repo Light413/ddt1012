@@ -167,8 +167,9 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(leftBtn.right+5, 0, CurrentScreenWidth -leftBtn.width-rightBtn.width-30, 25)];
     UITextField *searchField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, searchView.width, searchView.height)];
     searchField.backgroundColor = [UIColor whiteColor];
+    searchField.alpha = .95;
     searchField.font = [UIFont systemFontOfSize:12];
-    searchField.placeholder = @" 输入搜索关键字";
+    searchField.placeholder = @"\t\t\t输入搜索关键字";
     searchField.layer.masksToBounds = YES;
     searchField.layer.cornerRadius = 3;
     [searchView addSubview:searchField];

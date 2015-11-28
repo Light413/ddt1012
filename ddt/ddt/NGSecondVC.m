@@ -18,6 +18,8 @@
 #import "NGTongHDetailVC.h"
 #import "NGJieDanDetailVC.h"
 #import "NGZPPersonInfoVC.h"
+#import "AddCommanyInfoViewController.h"
+#import "MyResumeViewController.h"
 
 #import "NGSecondListCell.h"
 #import "DTCompanyListCell.h"
@@ -34,7 +36,7 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
 static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 
-@interface NGSecondVC ()<NGSearchBarDelegate,NGPopListDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface NGSecondVC ()<NGSearchBarDelegate,NGPopListDelegate,UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     //pop view相关
     NGPopListView *popView;
@@ -65,10 +67,16 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     BOOL _isLoved;//是否收藏
 }
 
+//各列表表头参数
 //同行参数
 @property(nonatomic,copy)NSString * selectedSex;//选择性别，默认为空
-//接单时间参数
-@property(nonatomic,copy)NSString * selectedTime;
+
+//接单
+@property(nonatomic,copy)NSString * selectedTime;//选择时间
+
+//我要招聘
+@property(nonatomic,copy)NSString * selectedZhiWei;//选择职位
+@property(nonatomic,copy)NSString * selectedJingYan;//选择经验
 
 @end
 
@@ -165,6 +173,16 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
             _selectedArea = @"";
             _selectedType = @"";
             
+            UIButton *rightbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            rightbtn.frame = CGRectMake(0, 0, 100, 30);
+            [rightbtn setTitle:@"发布简历" forState:UIControlStateNormal];
+            rightbtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+            rightbtn.titleLabel.textAlignment = NSTextAlignmentRight;
+            [rightbtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -50)];
+            rightbtn.tag = 150;
+            [rightbtn addTarget:self action:@selector(rightItemClick:) forControlEvents:UIControlEventTouchUpInside];
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightbtn];
+            
         } break;
             
         case NGVCTypeId_6:
@@ -178,6 +196,15 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
             _selectedArea = @"";
             _selectedType = @"";
             
+            UIButton *rightbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            rightbtn.frame = CGRectMake(0, 0, 100, 30);
+            [rightbtn setTitle:@"发布招聘" forState:UIControlStateNormal];
+            rightbtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+            rightbtn.titleLabel.textAlignment = NSTextAlignmentRight;
+            [rightbtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -50)];
+            rightbtn.tag = 151;
+            [rightbtn addTarget:self action:@selector(rightItemClick:) forControlEvents:UIControlEventTouchUpInside];
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightbtn];
         } break;
             
         default: break;
@@ -195,6 +222,31 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     
 }
 
+#pragma mark --发布求职、简历
+-(void)rightItemClick:(UIButton*)btn
+{
+    if (btn.tag ==150)
+    {//发布简历
+        MyResumeViewController *resume = [[MySharetools shared]getViewControllerWithIdentifier:@"MyResume" andstoryboardName:@"me"];
+        resume.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:resume animated:YES];
+    }
+    else if (btn.tag == 151)
+    {//发布招聘
+        UIAlertView *_a = [[UIAlertView alloc]initWithTitle:@"贷易通友情提示" message:@"只有公司会员才能发布招聘信息,您要免费开通吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [_a show];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        AddCommanyInfoViewController *commany = [[MySharetools shared]getViewControllerWithIdentifier:@"AddCommany" andstoryboardName:@"me"];
+        commany.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:commany animated:YES];
+    }
+}
+
 //请求参数初始化
 -(void)initParams
 {
@@ -209,10 +261,10 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         case NGVCTypeId_4://接单
             _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedTime,@"time",@"10",@"psize",@(_pageNum),@"pnum",nil];
             break;
-        case NGVCTypeId_5:
+        case NGVCTypeId_5://求职
             _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",@"",@"money",@"",@"old",@"",@"work",@"10",@"psize",@(_pageNum),@"pnum",nil]; break;
-        case NGVCTypeId_6:
-            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"",@"quyu",@"",@"yewu",@"",@"word",@"",@"xb",@"",@"old",@"",@"work",@"10",@"psize",@"1",@"pnum",nil];break;
+        case NGVCTypeId_6://招聘
+            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex:@"",@"xb",_selectedJingYan?_selectedJingYan: @"",@"old",_selectedZhiWei?_selectedZhiWei: @"",@"work",@"10",@"psize",@(_pageNum),@"pnum",nil];break;
         default:break;
     }
 }
@@ -336,33 +388,27 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 {
  //...请求网络
     _pageNum = 1;
+    if (index == 1) {
+        _selectedArea = str;
+    }
+    else if(index ==2)
+    {
+        _selectedType = str;
+    }
+    
     switch (self.vcType) {
         case NGVCTypeId_1:
         case NGVCTypeId_2:
         case NGVCTypeId_3:
         {
-            if (index == 1) {
-                _selectedArea = str;
-            }
-            else if(index ==2)
-            {
-                _selectedType = str;
-            }
-            else if (index ==3)
+            if (index ==3)
             {
                 _selectedSex = str;
             }
         }break;
         case NGVCTypeId_4:
         {
-            if (index == 1) {
-                _selectedArea = str;
-            }
-            else if(index ==2)
-            {
-                _selectedType = str;
-            }
-            else if (index ==3)
+            if (index ==3)
             {
 //                _selectedTime = str;
                 NSArray *_arr = @[@"全部",@"今天",@"最近3天",@"最近7天",@"最近30天"];
@@ -391,6 +437,29 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
                 }];
             }
         }break;
+        
+        case 5:
+        case 6:
+            if (index ==3) {
+               _selectedSex = str;
+            }
+            else if (index ==4)
+            {
+                if ([str isEqualToString:@"全部"]) {
+                    _selectedZhiWei = @"";
+                }
+                else
+                _selectedZhiWei = str;
+            }
+            else if (index ==5)
+            {
+                if ([str isEqualToString:@"全部"]) {
+                    _selectedJingYan = @"";
+                }
+                else
+                _selectedJingYan = str;
+            }
+             break;
             
         default:break;
     }
