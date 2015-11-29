@@ -13,7 +13,8 @@ CFBundleDisplayName="贷易通";
 
 //首页相关
 "url_qiandao"       = "/mydyt/web_service.php?doc=addfee";//签到
-"url_jiedan"        = "/mydyt/web_service.php?doc=getbilllist";//接单
+"url_jiedan"        = "/mydyt/web_service.php?doc=getbilllist";//接单列表
+"url_lock_danzi"    = "/mydyt/web_service.php?doc=addbillme";//锁定
 "url_shuaidan"      = "/mydyt/web_service.php?doc=addbill";//甩单
 "url_qiuzhi"        = "/mydyt/web_service.php?doc=getworklist";//求职
 "url_zhaopin"       = "/mydyt/web_service.php?doc=getqzlist";//招聘
@@ -37,6 +38,7 @@ CFBundleDisplayName="贷易通";
 
 //同行相关
 "url_tongh_list" = "/mydyt/web_service.php?doc=gettonghang";//同行列表
+"url_tongh_detial" = "/mydyt/web_service.php?doc=getthdetial";//同行详情
 "url_tongh_fj_list" = "/mydyt/web_service.php?doc=getaroundth";//附近同行
 
 //公司名片列表

@@ -119,7 +119,32 @@
 #pragma mark --btn action
 
 - (IBAction)qinagDanAction:(id)sender {
+    NSString *uid = [self.danZiInfoDic objectForKey:@"uid"];
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",_s11,@"fee",uid,@"id", nil];
+    NSDictionary *_d1 = [MySharetools getParmsForPostWith:dic];
     
+    [SVProgressHUD showWithStatus:@"正在请求锁定"];
+    NSString *_url =NSLocalizedString(@"url_lock_danzi", @"");
+    
+    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:_url parms:_d1 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"] integerValue ] == 0) {
+                  [SVProgressHUD showInfoWithStatus:@"处理成功"];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 0.5), dispatch_get_main_queue(), ^{
+                   [self.navigationController popViewControllerAnimated:YES];
+                });
+            }
+            else
+            {
+                [SVProgressHUD showInfoWithStatus:@"锁定失败,请稍后重试"];
+            }
+        }
+
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:[error localizedDescription]];
+    }];
+    [HttpRequestManager doPostOperationWithTask:_task];
 }
 
 //收藏

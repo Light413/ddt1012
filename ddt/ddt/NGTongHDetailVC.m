@@ -47,9 +47,39 @@
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc]init];
     
+    [self loadData];
     [self initSubviews];
     [self initHeaderView];
 }
+
+//
+-(void)loadData
+{
+    NSString *uid = [self.personInfoDic objectForKey:@"uid"];
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",uid,@"sid", nil];
+    NSDictionary *_d1 = [MySharetools getParmsForPostWith:dic];
+    
+    [SVProgressHUD showWithStatus:@"正在请求数据"];
+    NSString *_url =NSLocalizedString(@"url_tongh_detial", @"");
+    
+    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:_url parms:_d1 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"] integerValue ] == 0) {
+                [SVProgressHUD dismiss];
+            }
+            else
+            {
+                [SVProgressHUD dismiss];
+            }
+        }
+        
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:[error localizedDescription]];
+    }];
+    [HttpRequestManager doPostOperationWithTask:_task];
+}
+
 
 -(void)initSubviews
 {

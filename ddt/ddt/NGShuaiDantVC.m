@@ -98,6 +98,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
         self.textview.text = @"详细说明: 户口所在地、社保、公积金、保单、资产情况、负债情况、工资形式、工资金额、工作年限、流水金额、借款用途、还款来源等详细说明。不要出现电话号码、QQ等其他联系方式";
         self.textview.textColor = [UIColor lightGrayColor];
             _textviewHasStart = NO;
+        self.textviewNumLab.text = @"0/100";
     }
     else
     {
