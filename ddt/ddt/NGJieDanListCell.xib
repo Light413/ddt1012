@@ -30,11 +30,11 @@
                         </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="需要99个积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eX-aD-Eox">
-                        <rect key="frame" x="236" y="67" width="88" height="17"/>
+                        <rect key="frame" x="225" y="67" width="94" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="mi6-Cn-LRQ"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.792156862745098" green="0.61568627450980395" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -52,7 +52,7 @@
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="b5D-Yd-tva" secondAttribute="trailing" constant="-50" id="8sY-iF-HPD"/>
                     <constraint firstItem="yAb-sH-aZh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="GjR-wg-fCu"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="1eX-aD-Eox" secondAttribute="trailing" id="X4T-aK-E05"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="1eX-aD-Eox" secondAttribute="trailing" constant="5" id="X4T-aK-E05"/>
                     <constraint firstAttribute="bottomMargin" secondItem="b5D-Yd-tva" secondAttribute="bottom" constant="-9" id="a71-uX-lKE"/>
                     <constraint firstAttribute="trailingMargin" secondItem="yAb-sH-aZh" secondAttribute="trailing" constant="-10" id="aU8-SV-arF"/>
                     <constraint firstItem="yAb-sH-aZh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="bM6-ND-Yk6"/>

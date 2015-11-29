@@ -552,9 +552,9 @@ float _h =0;
             CGSize _new =  [ToolsClass calculateSizeForText:str :cellMaxFitSize font:cellFitfont];
             NGJieDanListCell *cell1 = (NGJieDanListCell *)cell;
             CGRect rec = cell1.nameLab.frame;
-            rec.size.height = _new.height+20;
+            rec.size.height = _new.height+10;
             cell1.nameLab.frame = rec;
-            _h = _new.height + 30;
+            _h = _new.height + 10;
             
             [(NGJieDanListCell *)cell setCellWith:_dic0];
 
@@ -612,7 +612,7 @@ const float cellDefaultHeight = 80.0;
             return 50 + _h > cellDefaultHeight?50 + _h:cellDefaultHeight;
         }break;
             
-        case NGVCTypeId_4:return _h + 40 > 100?_h + 40:100; break;
+        case NGVCTypeId_4:return _h + 40 > 80?_h + 40:80; break;
             
         case NGVCTypeId_5:
         case NGVCTypeId_6:return _h + 70 > 90?_h + 70:90;break;
@@ -642,6 +642,7 @@ const float cellDefaultHeight = 80.0;
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"homeSB" bundle:nil];
             NGJieDanDetailVC* vc=  [sb instantiateViewControllerWithIdentifier:@"NGJieDanDetailVCID"];
             vc.danZiInfoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
+            vc.isLove = NO;
             [self.navigationController pushViewController:vc animated:YES];
         }break;
         case NGVCTypeId_5://求职

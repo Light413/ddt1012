@@ -12,4 +12,6 @@
 
 @property(nonatomic,retain)NSDictionary * danZiInfoDic;//信息
 
+@property(nonatomic,assign)BOOL isLove;//来自收藏操作的?YES : NO
+
 @end
