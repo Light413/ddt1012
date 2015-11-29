@@ -10,4 +10,6 @@
 
 @interface NGContactDetaillVC : NGBaseTableVC
 
+@property(nonatomic)NSDictionary *dic;
+
 @end

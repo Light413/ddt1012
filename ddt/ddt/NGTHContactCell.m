@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.titlaLab.font = [UIFont boldSystemFontOfSize:14];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -23,9 +24,14 @@
 
 -(void)setCellWith:(NSDictionary*)dic
 {
-    self.titlaLab.text = [dic objectForKey:@"1"];
-    self.addressLab.text = [dic objectForKey:@"2"];
-    self.dateLab.text = [dic objectForKey:@"3"];
+    NSString *title = [dic objectForKey:@"m_title"]?[dic objectForKey:@"m_title"]:@"未指定";
+    self.titlaLab.text = [NSString stringWithFormat:@"会议主题:%@",title];
+    
+    NSString *addr = [dic objectForKey:@"m_address"]?[dic objectForKey:@"m_address"]:@"未指定";
+    self.addressLab.text = [NSString stringWithFormat:@"地点:%@",addr];
+    
+    NSString *date = [dic objectForKey:@"m_time"]?[dic objectForKey:@"m_time"]:@"待定";
+    self.dateLab.text = [NSString stringWithFormat:@"日期:%@",date];
 }
 
 @end

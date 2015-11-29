@@ -26,11 +26,19 @@
 
 -(void)initSubviews
 {
-    self.titleLab.text = @"会议标题减肥的风格货到付款过";
-    self.dataLab.text = @"2015-09-09 09:34";
-    self.addressLab.text = @"人民路一号口方式将开放的发动机可放大缸发动机情的缘由是，京东公司认为“天猫”投放广告宣称“当日达当日用”、“轻松购物当日达”等系片面宣传，属误导消费者以获得不正当竞争优势，故将天猫商城的运营商、天猫超市华北站的商品经开工恢复到开会地址";
-    self.smLab.text = @"会议主题内容--腾讯科技讯（乐天）11月6日消息，海淀法院网站今日公布消息，海淀法院受理北京京东叁佰陆拾度电子商务有限公司、北京京东世纪信息技术有限公司起诉浙江天猫网络有限公司、天津猫超电子商务有限公司不正当竞争案。\
-    　　事情的缘由是，京东公司认为“天猫”投放广告宣称“当日达当日用”、“轻松购物当日达”等系片面宣传，属误导消费者以获得不正当竞争优势，故将天猫商城的运营商、天猫超市华北站的商品经营者诉至法院。";
+    if (self.dic) {
+        self.titleLab.text = [self.dic objectForKey:@"m_title"]?[self.dic objectForKey:@"m_title"]:@"无标题";
+        self.dataLab.text = [self.dic objectForKey:@"m_time"]?[self.dic objectForKey:@"m_time"]:@"待定";
+        self.addressLab.text = [self.dic objectForKey:@"m_address"]?[self.dic objectForKey:@"m_address"]:@"待定";
+        self.smLab.text = [self.dic objectForKey:@"content"]?[self.dic objectForKey:@"content"]:@"暂无内容";
+    }
+    else
+    {
+        self.titleLab.text = @"测试数据";
+        self.dataLab.text = @"2015-09-09 09:34";
+        self.addressLab.text = @"北京海淀区上地十街10号百度大厦";
+        self.smLab.text = @"hao123---百度（baidu.com）旗下网站，创建于1999年5月，是中国最早的上网导航站点，经过10余年的发展，已成为亿万用户上网的第一站、中文上网导航的第一品牌";
+    }
 }
 
 

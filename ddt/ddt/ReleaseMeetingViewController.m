@@ -52,7 +52,7 @@
     }
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     //NSString *nickName = [[MySharetools shared]getNickName];
-    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"mobile",tel,@"username",self.titleField.text,@"m_title",self.addressField.text,@"m_address",self.meetingTimeBtn.titleLabel.text,@"m_time",self.introTextView.text,@"m_content", nil];
+    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"mobile",tel,@"username",self.titleField.text,@"m_title",self.addressField.text,@"m_address",self.meetingTimeBtn.titleLabel.text,@"m_time",self.introTextView.text,@"content", nil];
     NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];
     [SVProgressHUD showWithStatus:@"正在加载"];
     RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_addmeeting", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
