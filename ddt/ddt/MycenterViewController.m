@@ -207,6 +207,11 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger index = indexPath.row;
+    
+    UIBarButtonItem *_item = [[UIBarButtonItem alloc]init];
+    _item.title = @"";
+    self.navigationItem.backBarButtonItem = _item;
+    
     switch (index) {
         case 0:
         {

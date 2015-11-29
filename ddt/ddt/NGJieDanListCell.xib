@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张三" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAb-sH-aZh">
-                        <rect key="frame" x="8" y="0.0" width="326" height="67"/>
+                        <rect key="frame" x="8" y="0.0" width="326" height="66.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="vtm-nt-LHa"/>
                         </constraints>
@@ -30,7 +30,7 @@
                         </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="需要99个积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eX-aD-Eox">
-                        <rect key="frame" x="225" y="67" width="94" height="17"/>
+                        <rect key="frame" x="225" y="66.5" width="94" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="mi6-Cn-LRQ"/>
                         </constraints>
@@ -39,7 +39,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5D-Yd-tva">
-                        <rect key="frame" x="-8" y="87" width="382" height="1"/>
+                        <rect key="frame" x="-8" y="84.5" width="382" height="1"/>
                         <color key="backgroundColor" red="0.74509803919999995" green="0.74509803919999995" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="qes-AV-Lh7"/>
@@ -53,11 +53,11 @@
                     <constraint firstAttribute="trailingMargin" secondItem="b5D-Yd-tva" secondAttribute="trailing" constant="-50" id="8sY-iF-HPD"/>
                     <constraint firstItem="yAb-sH-aZh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="GjR-wg-fCu"/>
                     <constraint firstAttribute="trailingMargin" secondItem="1eX-aD-Eox" secondAttribute="trailing" constant="5" id="X4T-aK-E05"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="b5D-Yd-tva" secondAttribute="bottom" constant="-9" id="a71-uX-lKE"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="b5D-Yd-tva" secondAttribute="bottom" constant="-6" id="a71-uX-lKE"/>
                     <constraint firstAttribute="trailingMargin" secondItem="yAb-sH-aZh" secondAttribute="trailing" constant="-10" id="aU8-SV-arF"/>
                     <constraint firstItem="yAb-sH-aZh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="bM6-ND-Yk6"/>
                     <constraint firstItem="b5D-Yd-tva" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-16" id="gsB-0g-yKn"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="1eX-aD-Eox" secondAttribute="bottom" constant="-5" id="mPa-4H-MxK"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="1eX-aD-Eox" secondAttribute="bottom" constant="-4" id="mPa-4H-MxK"/>
                     <constraint firstItem="1eX-aD-Eox" firstAttribute="top" secondItem="yAb-sH-aZh" secondAttribute="bottom" id="uVL-Ge-J3Y"/>
                 </constraints>
             </tableViewCellContentView>
@@ -65,7 +65,7 @@
                 <outlet property="jifenLab" destination="1eX-aD-Eox" id="vpS-ti-giK"/>
                 <outlet property="nameLab" destination="yAb-sH-aZh" id="0Tu-ee-gfy"/>
             </connections>
-            <point key="canvasLocation" x="479.5" y="288"/>
+            <point key="canvasLocation" x="471.5" y="380"/>
         </tableViewCell>
     </objects>
 </document>

@@ -554,7 +554,7 @@ float _h =0;
             CGRect rec = cell1.nameLab.frame;
             rec.size.height = _new.height+10;
             cell1.nameLab.frame = rec;
-            _h = _new.height + 10;
+            _h = _new.height + 20;
             
             [(NGJieDanListCell *)cell setCellWith:_dic0];
 

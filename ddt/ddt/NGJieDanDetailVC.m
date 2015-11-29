@@ -169,7 +169,7 @@
 //打电话
 - (IBAction)telAction:(UIButton *)sender {
 
-    NSString* str = [NSString stringWithFormat:@"sms://%@",_s13];
+    NSString* str = [NSString stringWithFormat:@"tel://%@",_s13];
     [[UIApplication sharedApplication ]openURL:[NSURL URLWithString:str]];
 }
 
