@@ -174,7 +174,7 @@
 }
 #pragma mark --tableview 代理
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44;
+    return 50;
 }
 //-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 //    return HeaderViewHeight;
@@ -199,7 +199,7 @@
     cell.textLabel.text = datalist[indexPath.row][KlabelName];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     UIImageView *dimageview = [[UIImageView alloc] init];
-    dimageview.frame=CGRectMake(0, 43, CurrentScreenWidth, 1);
+    dimageview.frame=CGRectMake(0, 49, CurrentScreenWidth, 1);
     dimageview.backgroundColor=RGBA(215, 215, 215, 1);
     [cell.contentView addSubview:dimageview];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
