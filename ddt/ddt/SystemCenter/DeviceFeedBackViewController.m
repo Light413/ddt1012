@@ -24,9 +24,35 @@
     self.title = @"意见反馈";
     backView.layer.borderColor = [RGBA(207, 207, 207, 1)CGColor];
     backView.layer.borderWidth = 1;
+    backView.layer.cornerRadius = 5;
+    backView.layer.masksToBounds = YES;
+    
     deviceTextView.delegate = self;
     // Do any additional setup after loading the view.
+    
+    UIButton *inputBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    inputBtn.frame = CGRectMake(0, 0, 100, 30);
+    inputBtn.backgroundColor = [UIColor lightGrayColor];
+    [inputBtn setTitle:@"完成" forState:UIControlStateNormal];
+    [inputBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    inputBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [inputBtn addTarget:self action:@selector(inputbtnAction) forControlEvents:UIControlEventTouchUpInside];
+    self.deviceTextView.inputAccessoryView = inputBtn;
+    
+    self.submitBtnClick.layer.cornerRadius = 5;
+    self.submitBtnClick.layer.masksToBounds = YES;
 }
+
+//textview相关方法
+-(void)inputbtnAction
+{
+    if (self.deviceTextView.text.length < 1) {
+        self.holderLabel.hidden = NO;
+    }
+    [self.deviceTextView resignFirstResponder];
+}
+
+
 -(void)awakeFromNib
 {
     self.hidesBottomBarWhenPushed = YES;
@@ -43,7 +69,7 @@
     }
     
     if (textView.text.length<=100) {
-        wordNumLabel.text = [NSString stringWithFormat:@"%d/100",textView.text.length];
+        wordNumLabel.text = [NSString stringWithFormat:@"%ld/100",textView.text.length];
     }else{
         wordNumLabel.text = @"100/100";
         deviceTextView.editable = NO;
@@ -75,11 +101,12 @@
 
 - (IBAction)cancelBtnClick:(id)sender {
     deviceTextView.text = @"";
+    self.holderLabel.hidden = NO;
     wordNumLabel.text = @"0/100";
 }
 - (IBAction)submitingBtnClick:(id)sender {
     if (self.deviceTextView.text.length==0) {
-        [SVProgressHUD showErrorWithStatus:@"请输入意见反馈"];
+        [SVProgressHUD showInfoWithStatus:@"输入内容不能为空"];
         return;
     }
     NSString *tel = [[MySharetools shared]getPhoneNumber];
