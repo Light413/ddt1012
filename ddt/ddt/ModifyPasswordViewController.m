@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"密码修改";
+    [self createLeftBarItemWithBackTitle];
     [self creatViews];
     // Do any additional setup after loading the view.
 }

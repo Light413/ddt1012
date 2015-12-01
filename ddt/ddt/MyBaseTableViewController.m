@@ -22,6 +22,7 @@
     {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+    [self createLeftBarItemWithBackTitle];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -78,10 +79,13 @@
     UIBarButtonItem* item=[[UIBarButtonItem alloc]initWithCustomView:button];
     [self.navigationItem setRightBarButtonItem:item];
 }
+-(void)goback:(UIButton *)btn{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 //右侧按钮事件
 -(void)moreAction:(UIBarButtonItem *)barButtonItem
 {
-    
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

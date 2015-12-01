@@ -48,7 +48,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     [super viewDidLoad];
     [self initData];
     self.title = @"我的单子";
-    
+    [self createLeftBarItemWithBackTitle];
     NSArray *segmentArr = @[@"接过的单子",@"甩过的单子"];
     mysegment = [[UISegmentedControl alloc]initWithItems:segmentArr];
     mysegment.frame = CGRectMake(30, 10, CurrentScreenWidth-60, 30);
