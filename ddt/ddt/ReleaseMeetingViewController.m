@@ -7,7 +7,7 @@
 //
 #import "ReleaseMeetingViewController.h"
 
-@interface ReleaseMeetingViewController ()<UITextViewDelegate>
+@interface ReleaseMeetingViewController ()<UITextViewDelegate,UITextFieldDelegate>
 {
     UIView *_bgView;
     UIView *_maskView;
@@ -21,14 +21,14 @@
     [super viewDidLoad];
     self.backView.layer.borderColor = [RGBA(207, 207, 207, 1)CGColor];
     self.backView.layer.borderWidth = 1;
+    self.backView.layer.cornerRadius = 5;
+    self.backView.layer.masksToBounds = YES;
+    
     [self createRightBarItemWithBackTitle:@"发布" andImageName:nil];
     self.introTextView.delegate = self;
     // Do any additional setup after loading the view.
 }
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 1;
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -82,20 +82,19 @@
         self.placeHolderLabel.hidden = NO;
     }
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
-*/
 
 - (IBAction)meetingBtnClick:(id)sender {
     [self initViews];
     [self hideKeyboard];
 }
+
 -(void)initViews{
     _maskView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, CurrentScreenHeight)];
     _maskView.backgroundColor = [UIColor blackColor];
@@ -128,7 +127,28 @@
     //[datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     [_bgView addSubview:datePicker];
     [self.window addSubview:_bgView];
+    
+    
+    UIButton *inputBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    inputBtn.frame = CGRectMake(0, 0, 100, 30);
+    inputBtn.backgroundColor = [UIColor lightGrayColor];
+    [inputBtn setTitle:@"完成" forState:UIControlStateNormal];
+    [inputBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    inputBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [inputBtn addTarget:self action:@selector(inputbtnAction) forControlEvents:UIControlEventTouchUpInside];
+    self.introTextView.inputAccessoryView = inputBtn;
 }
+
+//textview相关方法
+-(void)inputbtnAction
+{
+    if (self.introTextView.text.length<1) {
+        self.placeHolderLabel.hidden = NO;
+    }
+    [self.introTextView resignFirstResponder];
+}
+
+
 -(void)disappear{
     [_bgView removeFromSuperview];
     [_maskView removeFromSuperview];
@@ -157,5 +177,13 @@
     NSString *dateString = [dateFormatter stringFromDate:_date];
     NSLog(@"%@",dateString);
     [self.meetingTimeBtn setTitle:dateString forState:UIControlStateNormal];
+    [self.meetingTimeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 }
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
 @end

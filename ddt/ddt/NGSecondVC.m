@@ -80,6 +80,8 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 
 @end
 
+#import "LoginViewController.h"
+
 @implementation NGSecondVC
 
 - (void)viewDidLoad {
@@ -99,9 +101,23 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (_isfirstAppear) {
-        _isfirstAppear = NO;
-        [_tableView.header beginRefreshing];
+    if ([[MySharetools shared]isSessionid]) {
+        if (_isfirstAppear) {
+            _isfirstAppear = NO;
+            [_tableView.header beginRefreshing];
+        }
+    }
+    else
+    {
+        if ([MySharetools shared].isFirstSignupViewController == YES) {
+            [MySharetools shared].isFirstSignupViewController = NO;
+            [MySharetools shared].isFromMycenter = YES;
+            LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
+            NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
+            [self.tabBarController presentViewController:nav animated:YES completion:nil];
+        }else{
+            self.tabBarController.selectedIndex = 0;
+        }
     }
 }
 

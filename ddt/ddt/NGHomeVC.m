@@ -13,6 +13,8 @@
 #import "NGSearchCitiesVC.h"
 #import "NGSecondVC.h"
 #import "NGSearchBar.h"
+#import "LoginViewController.h"
+
 #import <PgyUpdate/PgyUpdateManager.h>
 
 #define ScrollViewHeight    100
@@ -257,33 +259,48 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 //签到
 -(void)siginBtnAction :(UIButton*)btn
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
-    
-    NSString *tel = [[MySharetools shared]getPhoneNumber];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", tel,@"mobile",@"5",@"fee",dateString,@"bz",@"1",@"type",nil];//type 1:签到积分 ; 2 : 分享
-    NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
-    [SVProgressHUD showWithStatus:@"签到中"];
-    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_qiandao", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            if (![[responseObject objectForKey:@"result"]boolValue]) {
-                [SVProgressHUD showSuccessWithStatus:@"签到成功,积分+5"];
-                //...发送通知签到成功
-                [[NSNotificationCenter defaultCenter]postNotificationName:QIAN_DAO_SUCCESS_NOTI object:@"5"];
+    if ([[MySharetools shared]isSessionid]) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+        
+        NSString *tel = [[MySharetools shared]getPhoneNumber];
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", tel,@"mobile",@"5",@"fee",dateString,@"bz",@"1",@"type",nil];//type 1:签到积分 ; 2 : 分享
+        NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
+        [SVProgressHUD showWithStatus:@"签到中"];
+        RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_qiandao", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                if (![[responseObject objectForKey:@"result"]boolValue]) {
+                    [SVProgressHUD showSuccessWithStatus:@"签到成功,积分+5"];
+                    //...发送通知签到成功
+                    [[NSNotificationCenter defaultCenter]postNotificationName:QIAN_DAO_SUCCESS_NOTI object:@"5"];
+                }
+                else if ([[responseObject objectForKey:@"result"]integerValue]==1)
+                {
+                    [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+                }
+                else
+                    [SVProgressHUD showInfoWithStatus:@"签到失败,请稍后重试"];
             }
-            else if ([[responseObject objectForKey:@"result"]integerValue]==1)
-            {
-                [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
-            }
-            else
-                [SVProgressHUD showInfoWithStatus:@"签到失败,请稍后重试"];
+        } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD showInfoWithStatus:@"签到失败,请稍后重试"];
+        }];
+        
+        [HttpRequestManager doPostOperationWithTask:_task];
+    }
+    else
+    {
+        if ([MySharetools shared].isFirstSignupViewController == YES) {
+            [MySharetools shared].isFirstSignupViewController = NO;
+            [MySharetools shared].isFromMycenter = YES;
+            LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
+            NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
+            [self.tabBarController presentViewController:nav animated:YES completion:nil];
+        }else{
+            self.tabBarController.selectedIndex = 0;
         }
-    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD showInfoWithStatus:@"签到失败,请稍后重试"];
-    }];
-    
-    [HttpRequestManager doPostOperationWithTask:_task];
+    }
+  
 }
 
 #pragma mark -UITextFieldDelegate
@@ -414,6 +431,20 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (![[MySharetools shared]isSessionid])
+    {
+        if ([MySharetools shared].isFirstSignupViewController == YES) {
+            [MySharetools shared].isFirstSignupViewController = NO;
+            [MySharetools shared].isFromMycenter = YES;
+            LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
+            NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
+            [self.tabBarController presentViewController:nav animated:YES completion:nil];
+        }else{
+            self.tabBarController.selectedIndex = 0;
+        }
+        return;
+    }
+    
     //key,title
     _option_info =nil;
     _selectItemDic =[[_itemArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row];
@@ -561,7 +592,21 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 
 #pragma mark -- 点击搜索在此跳转
 -(void)jumpTosearch{
-    [self performSegueWithIdentifier:@"showUserSearchId" sender:nil];
+    if ([[MySharetools shared]isSessionid]) {
+         [self performSegueWithIdentifier:@"showUserSearchId" sender:nil];
+    }
+    else
+    {
+        if ([MySharetools shared].isFirstSignupViewController == YES) {
+            [MySharetools shared].isFirstSignupViewController = NO;
+            [MySharetools shared].isFromMycenter = YES;
+            LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
+            NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
+            [self.tabBarController presentViewController:nav animated:YES completion:nil];
+        }else{
+            self.tabBarController.selectedIndex = 0;
+        }
+    }
 }
 
 
