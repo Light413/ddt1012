@@ -207,11 +207,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger index = indexPath.row;
-    
-    UIBarButtonItem *_item = [[UIBarButtonItem alloc]init];
-    _item.title = @"";
-    self.navigationItem.backBarButtonItem = _item;
-    
+
     switch (index) {
         case 0:
         {
@@ -308,6 +304,9 @@
     [backVIew addSubview:backImage];
     UIButton *userIcon = [UIButton buttonWithType:UIButtonTypeCustom];
     userIcon.tag = 107;
+    userIcon.layer.cornerRadius = 40;
+    userIcon.layer.masksToBounds = YES;
+    
     userIcon.frame = CGRectMake(10, 10+20, HeaderViewHeight-40, HeaderViewHeight-40);
     [userIcon setBackgroundImage:[UIImage imageNamed:@"head_noregist"] forState:UIControlStateNormal];
     [userIcon addTarget:self action:@selector(usericonBtn:) forControlEvents:UIControlEventTouchUpInside];

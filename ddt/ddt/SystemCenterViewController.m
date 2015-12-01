@@ -59,7 +59,7 @@
 }
 #pragma mark --tableview 代理
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44;
+    return 50;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return datalist.count;
@@ -78,7 +78,7 @@
     cell.textLabel.text = datalist[indexPath.row][KlabelName];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     UIImageView *dimageview = [[UIImageView alloc] init];
-    dimageview.frame=CGRectMake(0, 43, CurrentScreenWidth, 1);
+    dimageview.frame=CGRectMake(0, 49, CurrentScreenWidth, 1);
     dimageview.backgroundColor=RGBA(215, 215, 215, 1);
     [cell.contentView addSubview:dimageview];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -86,6 +86,11 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
+    UIBarButtonItem *_item = [[UIBarButtonItem alloc]init];
+    _item.title = @"";
+    self.navigationItem.backBarButtonItem = _item;
     
     if (indexPath.row == 0) {
         AboutUsViewController *us = [[AboutUsViewController alloc]init];

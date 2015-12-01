@@ -22,9 +22,9 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     
-    UIBarButtonItem *_item = [[UIBarButtonItem alloc]init];
-    _item.title = @"";
-    self.navigationItem.backBarButtonItem = _item;
+//    UIBarButtonItem *_item = [[UIBarButtonItem alloc]init];
+//    _item.title = @"";
+//    self.navigationItem.backBarButtonItem = _item;
 }
 
 

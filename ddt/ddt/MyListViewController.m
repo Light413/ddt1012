@@ -77,6 +77,9 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     }];
 }
 
+-(void)goback:(UIButton *)btn{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

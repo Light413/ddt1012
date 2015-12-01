@@ -376,6 +376,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     UILabel *_line = [[UILabel alloc]init];
     [reuseView addSubview:_line];
     _line.backgroundColor = [UIColor lightGrayColor];
+    _line.alpha = 0.5;
     
     if (indexPath.section ==0) {
         [reuseView addSubview:_topScrollView];
