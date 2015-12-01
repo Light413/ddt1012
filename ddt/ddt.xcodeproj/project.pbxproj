@@ -76,7 +76,7 @@
 		A124420B1BD0F6DE00D2588C /* base_data.xml in Resources */ = {isa = PBXBuildFile; fileRef = A124420A1BD0F6DE00D2588C /* base_data.xml */; };
 		A12C56B81BCDE98200C6BF79 /* NGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A12C56B71BCDE98200C6BF79 /* NGSearchBar.m */; };
 		A12C56BC1BCDEDF600C6BF79 /* NGPopListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A12C56BB1BCDEDF600C6BF79 /* NGPopListView.m */; };
-		A12C7D321C07169F009A527A /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A12C7D311C07169E009A527A /* BaiduMapAPI_Search.framework */; settings = {ASSET_TAGS = (); }; };
+		A12C7D321C07169F009A527A /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A12C7D311C07169E009A527A /* BaiduMapAPI_Search.framework */; };
 		A12CD4DC1BCBA6960020CB27 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A12CD4D71BCBA6960020CB27 /* SVIndefiniteAnimatedView.m */; };
 		A12CD4DD1BCBA6960020CB27 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A12CD4D91BCBA6960020CB27 /* SVProgressHUD.bundle */; };
 		A12CD4DE1BCBA6960020CB27 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A12CD4DB1BCBA6960020CB27 /* SVProgressHUD.m */; };
@@ -89,14 +89,14 @@
 		A12CD4F61BCBAC990020CB27 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A12CD4EE1BCBAC990020CB27 /* LICENSE */; };
 		A12CD4F71BCBAC990020CB27 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A12CD4EF1BCBAC990020CB27 /* README.md */; };
 		A12CD4F91BCBAD630020CB27 /* homeSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A12CD4F81BCBAD630020CB27 /* homeSB.storyboard */; };
-		A13A480A1C044D84002C450B /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A13A48081C044D84002C450B /* BaiduMapAPI_Base.framework */; settings = {ASSET_TAGS = (); }; };
-		A13A480B1C044D84002C450B /* BaiduMapAPI_Location.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A13A48091C044D84002C450B /* BaiduMapAPI_Location.framework */; settings = {ASSET_TAGS = (); }; };
+		A13A480A1C044D84002C450B /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A13A48081C044D84002C450B /* BaiduMapAPI_Base.framework */; };
+		A13A480B1C044D84002C450B /* BaiduMapAPI_Location.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A13A48091C044D84002C450B /* BaiduMapAPI_Location.framework */; };
 		A13A480D1C044E56002C450B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A13A480C1C044E56002C450B /* CoreLocation.framework */; };
 		A13A480F1C044E67002C450B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A13A480E1C044E67002C450B /* QuartzCore.framework */; };
 		A13A48111C044E87002C450B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A13A48101C044E87002C450B /* OpenGLES.framework */; };
 		A13A48131C044EE1002C450B /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A13A48121C044EE1002C450B /* libstdc++.6.0.9.tbd */; };
 		A13A48151C044F07002C450B /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A13A48141C044F07002C450B /* libsqlite3.0.tbd */; };
-		A13A48181C044F90002C450B /* BaiDuLocationManger.mm in Sources */ = {isa = PBXBuildFile; fileRef = A13A48171C044F90002C450B /* BaiDuLocationManger.mm */; settings = {ASSET_TAGS = (); }; };
+		A13A48181C044F90002C450B /* BaiDuLocationManger.mm in Sources */ = {isa = PBXBuildFile; fileRef = A13A48171C044F90002C450B /* BaiDuLocationManger.mm */; };
 		A143F8391BCC96BA0029E555 /* secondSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A143F8381BCC96BA0029E555 /* secondSB.storyboard */; };
 		A143F83B1BCC96D50029E555 /* companySB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A143F83A1BCC96D50029E555 /* companySB.storyboard */; };
 		A143F83D1BCC96E50029E555 /* me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A143F83C1BCC96E50029E555 /* me.storyboard */; };
@@ -138,9 +138,9 @@
 		AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB921BD21E3000C23992 /* NGXMLReader.m */; };
 		AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */; };
 		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; };
-		ADCA44871C07507A0066A371 /* NGZhaoPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCA44851C07507A0066A371 /* NGZhaoPinCell.m */; settings = {ASSET_TAGS = (); }; };
-		ADCA44881C07507A0066A371 /* NGZhaoPinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADCA44861C07507A0066A371 /* NGZhaoPinCell.xib */; settings = {ASSET_TAGS = (); }; };
-		ADCA448B1C0750DA0066A371 /* NGZhaoPinDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCA448A1C0750DA0066A371 /* NGZhaoPinDetailVC.m */; settings = {ASSET_TAGS = (); }; };
+		ADCA44871C07507A0066A371 /* NGZhaoPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCA44851C07507A0066A371 /* NGZhaoPinCell.m */; };
+		ADCA44881C07507A0066A371 /* NGZhaoPinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADCA44861C07507A0066A371 /* NGZhaoPinCell.xib */; };
+		ADCA448B1C0750DA0066A371 /* NGZhaoPinDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCA448A1C0750DA0066A371 /* NGZhaoPinDetailVC.m */; };
 		ADCE01C61BEEEC59007E874E /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCE01C51BEEEC59007E874E /* NSString+MD5Addition.m */; };
 		ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */; };
 		ADCF91E01BEDA5F000DC6CF7 /* NGWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCF91DF1BEDA5F000DC6CF7 /* NGWebView.m */; };
@@ -184,7 +184,7 @@
 		ADD4316E1BE50BFB000C03D8 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4316D1BE50BFB000C03D8 /* libstdc++.tbd */; };
 		ADD431701BE50C25000C03D8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4316F1BE50C25000C03D8 /* libz.tbd */; };
 		ADD431721BE50C8A000C03D8 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD431711BE50C8A000C03D8 /* CoreTelephony.framework */; };
-		ADD447021C09BAFF002247AC /* NGZPPersonInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD447011C09BAFF002247AC /* NGZPPersonInfoVC.m */; settings = {ASSET_TAGS = (); }; };
+		ADD447021C09BAFF002247AC /* NGZPPersonInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD447011C09BAFF002247AC /* NGZPPersonInfoVC.m */; };
 		ADD4F8661BECF6BA005F57F0 /* NGTHContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4F8651BECF6BA005F57F0 /* NGTHContactCell.m */; };
 		ADD5E69D1BE61E300035FC0F /* NGSearchWithKeyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5E69C1BE61E300035FC0F /* NGSearchWithKeyVC.m */; };
 		ADD5E6A01BE61E590035FC0F /* NGSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5E69F1BE61E590035FC0F /* NGSearchResultVC.m */; };
@@ -1486,7 +1486,7 @@
 				TargetAttributes = {
 					A17B7CED1B43F867003CF895 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 8R29X3H9MY;
+						DevelopmentTeam = 26D44NYMS3;
 					};
 					A17B7D061B43F867003CF895 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -1921,7 +1921,7 @@
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/YiXin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.light.ddt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.light.dd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1957,7 +1957,7 @@
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/YiXin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.light.ddt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.light.dd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
