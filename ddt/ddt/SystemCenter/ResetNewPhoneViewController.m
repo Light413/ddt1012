@@ -12,6 +12,8 @@
 {
     NSTimer *_timer;
     int count ;
+    UITextField *phoneNumberField;
+    UITextField *phoneNumberField1;
 }
 @end
 
@@ -34,7 +36,7 @@
     nameLabel.text = @"手机号:";
     nameLabel.textColor = [UIColor blackColor];
     [phoneView addSubview:nameLabel];
-    UITextField *phoneNumberField = [[UITextField alloc]initWithFrame:CGRectMake(nameLabel.right, 6, phoneView.width-nameLabel.width-3, 30)];
+    phoneNumberField = [[UITextField alloc]initWithFrame:CGRectMake(nameLabel.right, 6, phoneView.width-nameLabel.width-3, 30)];
     phoneNumberField.keyboardType = UIKeyboardTypeNumberPad;
     phoneNumberField.placeholder = @"请输入新的手机号";
     phoneNumberField.tag = 201;
@@ -50,7 +52,7 @@
     nameLabel1.text = @"验证码:";
     nameLabel1.textColor = [UIColor blackColor];
     [phoneView addSubview:nameLabel1];
-    UITextField *phoneNumberField1 = [[UITextField alloc]initWithFrame:CGRectMake(nameLabel.right, 47, phoneView.width-nameLabel.width-3, 30)];
+    phoneNumberField1 = [[UITextField alloc]initWithFrame:CGRectMake(nameLabel.right, 47, phoneView.width-nameLabel.width-3, 30)];
     phoneNumberField1.keyboardType = UIKeyboardTypeNumberPad;
     phoneNumberField1.tag = 201;
     phoneNumberField1.placeholder = @"请输入6位验证码";
@@ -84,7 +86,27 @@
     }
 }
 -(void)verifyBtnChange:(NSTimer *)timer{
+    [SVProgressHUD showWithStatus:@"正在加载数据"];
     UIButton *btn = (UIButton *)[self.view viewWithTag:101];
+    NSString *username = [[MySharetools shared]getPhoneNumber];
+    NSString *tel = phoneNumberField.text;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:tel,@"mobile",username,@"username",nil];
+    NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];
+    RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_findpwd", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"] integerValue] ==0) {
+                
+            }else{
+                
+            }
+        }
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+        
+    }];
+    //[myTableView reloadData];
+    [HttpRequestManager doPostOperationWithTask:task];
+    
     --count;
     [btn setTitle:[NSString stringWithFormat:@"%d秒后重新获取",count] forState:UIControlStateNormal];
     btn.userInteractionEnabled = NO;
@@ -106,7 +128,27 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)findOK:(UIButton *)btn{
-    
+//    [SVProgressHUD showWithStatus:@"正在加载数据"];
+//    NSString *username = [[MySharetools shared]getPhoneNumber];
+//    NSString *tel = phoneNumberField.text;
+//    NSString *yzm = phoneNumberField1.text;
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:tel,@"mobile",username,@"username",yzm,@"yzm",nil];
+//    NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];;
+//    
+//    RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_findpwd", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+//            if ([[responseObject objectForKey:@"result"] integerValue] ==0) {
+//                
+//            }
+//            
+//            
+//        }
+//    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+//        
+//    }];
+//    //[myTableView reloadData];
+//    [HttpRequestManager doPostOperationWithTask:task];
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     UITextField *textField = (UITextField *)[self.view viewWithTag:201];

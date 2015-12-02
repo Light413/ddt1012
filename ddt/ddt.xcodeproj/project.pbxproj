@@ -23,6 +23,7 @@
 		9F690B031BD73AE200DDCED6 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690B021BD73AE200DDCED6 /* PersonalInfoViewController.m */; };
 		9F690B061BD7426400DDCED6 /* MyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F690B051BD7426400DDCED6 /* MyCollectionViewController.m */; };
 		9FB7458A1BF19E82006977AE /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB745881BF19E82006977AE /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9FC099FD1C0EA47100978F6A /* TonghangSCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC099FC1C0EA47100978F6A /* TonghangSCModel.m */; };
 		9FEE0A501BCDEC1700EA5261 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE0A4F1BCDEC1700EA5261 /* LoginViewController.m */; };
 		9FEE0A531BCDFA4F00EA5261 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE0A521BCDFA4F00EA5261 /* UIViewExt.m */; };
 		9FEFFCCF1BCFAFE80036C23D /* checkbox1_checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FEFFCC91BCFAFE80036C23D /* checkbox1_checked@2x.png */; };
@@ -245,6 +246,8 @@
 		9FB745871BF19E82006977AE /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		9FB745881BF19E82006977AE /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		9FB745891BF19E82006977AE /* Base64Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Defines.h; sourceTree = "<group>"; };
+		9FC099FB1C0EA47100978F6A /* TonghangSCModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TonghangSCModel.h; sourceTree = "<group>"; };
+		9FC099FC1C0EA47100978F6A /* TonghangSCModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TonghangSCModel.m; sourceTree = "<group>"; };
 		9FEE0A4E1BCDEC1700EA5261 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9FEE0A4F1BCDEC1700EA5261 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9FEE0A511BCDFA4F00EA5261 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
@@ -614,6 +617,8 @@
 				088F23D11C00A2830051BA3E /* CommanySCModel.m */,
 				088F23D31C0182950051BA3E /* MenuOfMyCenterModel.h */,
 				088F23D41C0182950051BA3E /* MenuOfMyCenterModel.m */,
+				9FC099FB1C0EA47100978F6A /* TonghangSCModel.h */,
+				9FC099FC1C0EA47100978F6A /* TonghangSCModel.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -1486,7 +1491,7 @@
 				TargetAttributes = {
 					A17B7CED1B43F867003CF895 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 8R29X3H9MY;
+						DevelopmentTeam = 26D44NYMS3;
 					};
 					A17B7D061B43F867003CF895 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -1685,6 +1690,7 @@
 				A12441CE1BD0EDD200D2588C /* MJRefreshAutoGifFooter.m in Sources */,
 				A12CD4DC1BCBA6960020CB27 /* SVIndefiniteAnimatedView.m in Sources */,
 				AD7206981BF0FC9100573C4C /* NGCompanyListVC.m in Sources */,
+				9FC099FD1C0EA47100978F6A /* TonghangSCModel.m in Sources */,
 				A17B7CF71B43F867003CF895 /* AppDelegate.m in Sources */,
 				A17D0CD11BD4C0DE00E465A7 /* ChineseToPinyin.m in Sources */,
 				A1042B811B64D1E600A74215 /* NGHomeVC.m in Sources */,
@@ -1921,7 +1927,7 @@
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/YiXin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.light.ddt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.light.dd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1957,7 +1963,7 @@
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/YiXin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.light.ddt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.light.dd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";

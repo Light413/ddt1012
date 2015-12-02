@@ -16,8 +16,12 @@
 #import "NGCompanyDetailVC.h"
 #import "MemuSCModel.h"
 #import "CommanySCModel.h"
+#import "NGJieDanListCell.h"
+#import "NGJieDanDetailVC.h"
+#import "NGSecondListCell.h"
 #define Font    [UIFont systemFontOfSize:14]
 #define Size    CGSizeMake(CurrentScreenWidth - 50, 1000)
+#define cellDefaultHeight  80.0
 @interface MyCollectionViewController ()<NGSearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *myTableView;
@@ -26,6 +30,7 @@
     NGSearchBar *searchBar;
     int psize;//每页大小
     int pnum;//第几页
+     BOOL _isLoved;//是否收藏
 }
 @end
 
@@ -55,7 +60,7 @@
     myTableView.delegate = self;
     myTableView.dataSource = self;
     [self.view addSubview:myTableView];
-    myTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+    myTableView.tableFooterView = [[UIView alloc]init];
     pnum = 1;
     
     [self loadData:pnum];
@@ -81,25 +86,54 @@
     NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];;
     NSInteger index = mysegment.selectedSegmentIndex;
     if (index == 0) {
-        RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_getbookfill", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_getbookbill", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
-                if (start == 1) {
-                    [_dataArr removeAllObjects];
+                if ([[responseObject objectForKey:@"result"] integerValue] ==0) {
+                    if (start == 1) {
+                        [_dataArr removeAllObjects];
+                    }
+                    NSArray *arr = [responseObject objectForKey:@"data"];
+                    if ([arr isKindOfClass:[NSArray class]]&&[arr count]>0) {
+                        [_dataArr addObjectsFromArray:arr];
+                        //...没有数据了，不能在刷新加载了
+                    }
+
                 }
+                
                 [myTableView reloadData];
+            }
+            if ([myTableView.header isRefreshing]) {
+                [myTableView.header endRefreshing];
+            }
+            if ([myTableView.footer isRefreshing]) {
+                [myTableView.footer endRefreshing];
             }
         } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
             [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
-            
+            if ([myTableView.header isRefreshing]) {
+                [myTableView.header endRefreshing];
+            }
+            if ([myTableView.footer isRefreshing]) {
+                [myTableView.footer endRefreshing];
+            }
         }];
         //[myTableView reloadData];
         [HttpRequestManager doPostOperationWithTask:task];
     }else if (index == 1){
         RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_getbookth", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
-                if (start == 1) {
-                    [_dataArr removeAllObjects];
+                if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
+                    if (start == 1) {
+                        [_dataArr removeAllObjects];
+                    }
+                    NSArray *arr = [responseObject objectForKey:@"data"];
+                    if ([arr isKindOfClass:[NSArray class]]&&[arr count]>0) {
+                        [_dataArr addObjectsFromArray:arr];
+                        //...没有数据了，不能在刷新加载了
+                    }
                 }
+                
+                
                 [myTableView reloadData];
             }
         } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -148,15 +182,16 @@
     [SVProgressHUD showSuccessWithStatus:@"加载完成"];
 }
 #pragma mark --tableview 代理
+float _h;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height = 0.0f;
     NSInteger index = mysegment.selectedSegmentIndex;
     switch (index) {
         case 0:
-            height = 90;
+            height = _h + 40 > 80?_h + 40:80;
             break;
         case 1:
-            height = 102;
+            height = 50 + _h > cellDefaultHeight?50 + _h:cellDefaultHeight;
             break;
         case 2:{
                 CommanySCModel *model = _dataArr[indexPath.row];
@@ -174,31 +209,90 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSInteger index = mysegment.selectedSegmentIndex;
-    if (index == 0) {
-        return 5;
-    }else if (index == 1){
-        return 5;
-    }else{
+//    if (index == 0) {
+//        return 5;
+//    }else if (index == 1){
+//        return 5;
+//    }else{
         return _dataArr.count;
-    }
+   // }
     
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger index = mysegment.selectedSegmentIndex;
     if (index == 0) {
-        static NSString *menuCellID = @"menuCell";
-        MenuTableViewCell *cell = [myTableView dequeueReusableCellWithIdentifier:menuCellID];
+        static NSString *menuCellID = @"JieDanCellReuseId";
+        NGJieDanListCell *cell = [myTableView dequeueReusableCellWithIdentifier:menuCellID];
         if (!cell) {
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"MenuTableViewCell" owner:self options:nil]lastObject];
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"NGJieDanListCell" owner:self options:nil]lastObject];
         }
+        NSDictionary * _dic0 = [_dataArr objectAtIndex:indexPath.row];
+        NSString * str = [_dic0 objectForKey:@"bz"];
+        CGSize _new =  [ToolsClass calculateSizeForText:str :CGSizeMake(CurrentScreenWidth -30, 999) font:[UIFont systemFontOfSize:14]];
+        NGJieDanListCell *cell1 = (NGJieDanListCell *)cell;
+        CGRect rec = cell1.nameLab.frame;
+        rec.size.height = _new.height+10;
+        cell1.nameLab.frame = rec;
+        _h = _new.height + 10;
+        
+        [(NGJieDanListCell *)cell setCellWith:_dic0];
+
         return cell;
     }else if (index == 1) {
-        static NSString *CellId = @"tonghangcell";
-        TonghangTableViewCell *cell = [myTableView dequeueReusableCellWithIdentifier:CellId];
+        static NSString *tonghangCellID = @"NGSecondListCellReuseId";
+        NGSecondListCell *cell = [myTableView dequeueReusableCellWithIdentifier:tonghangCellID];
         if (!cell) {
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"TonghangTableViewCell" owner:self options:nil]lastObject];
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"NGSecondListCell" owner:self options:nil]lastObject];
         }
+        NSDictionary *_dic0 = [_dataArr objectAtIndex:indexPath.row];
+        NSString * str = [_dic0 objectForKey:@"yewu"];
+        CGSize _new =  [ToolsClass calculateSizeForText:str :CGSizeMake(CurrentScreenWidth -30, 999) font:[UIFont systemFontOfSize:14]];
+        
+        [cell setCellWith:_dic0 withOptionIndex:self.vcType];
+        CGRect rec = cell.lab_type.frame;
+        rec.size.height = _new.height;
+        cell.lab_type.frame = rec;
+        _h = _new.height + 10;
+        
+        NSString *tel =  [_dic0 objectForKey:@"mobile"];
+        NSString *islove = [_dic0 objectForKey:@"isbook"];
+        _isLoved = [islove boolValue];
+        NSString *uid = [_dic0 objectForKey:@"uid"];
+        cell.btnClickBlock = ^(NSInteger tag){
+            if (tag == 300) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",tel]]];
+            }
+            else if (tag == 301) {
+                NSString *tel = [[MySharetools shared]getPhoneNumber];
+                NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",@"1",@"type",uid,@"id", nil];
+                NSDictionary *_d1 = [MySharetools getParmsForPostWith:dic];
+                
+                [SVProgressHUD showWithStatus:![islove boolValue] ?@"添加收藏":@"取消收藏"];
+                NSString *_url =![islove boolValue]?NSLocalizedString(@"url_my_love", @""): NSLocalizedString(@"url_my_nolove", @"");
+                
+                RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:_url parms:_d1 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    [SVProgressHUD dismiss];
+                    [myTableView.header beginRefreshing];
+                } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [SVProgressHUD showInfoWithStatus:[error localizedDescription]];
+                    if ([myTableView.header isRefreshing]) {
+                        [myTableView.header endRefreshing];
+                    }
+                    if ([myTableView.footer isRefreshing]) {
+                        [myTableView.footer endRefreshing];
+                    }
+
+                }];
+                [HttpRequestManager doPostOperationWithTask:_task];
+            }
+        };
         return cell;
+//        static NSString *CellId = @"tonghangcell";
+//        TonghangTableViewCell *cell = [myTableView dequeueReusableCellWithIdentifier:CellId];
+//        if (!cell) {
+//            cell = [[[NSBundle mainBundle]loadNibNamed:@"TonghangTableViewCell" owner:self options:nil]lastObject];
+//        }
+//        return cell;
     }else if(index == 2){
         static NSString *cellId = @"commanyCell";
         MyScTableViewCell *cell = [myTableView dequeueReusableCellWithIdentifier:cellId];
@@ -222,13 +316,18 @@
     NSInteger index = mysegment.selectedSegmentIndex;
     switch (index) {
         case 0:{
-            menuDetailViewController *menu =[[MySharetools shared]getViewControllerWithIdentifier:@"menuDetail" andstoryboardName:@"me"];
-            menu.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:menu animated:YES];
+            NGJieDanDetailVC* vc= [[MySharetools shared]getViewControllerWithIdentifier:@"NGJieDanDetailVCID" andstoryboardName:@"homeSB"];
+            vc.danZiInfoDic = [_dataArr objectAtIndex:indexPath.row];
+            vc.isLove = YES;
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 1:{
             NGTongHDetailVC *vc = [[MySharetools shared]getViewControllerWithIdentifier:@"TongHDetailVC" andstoryboardName:@"secondSB"];
+            NSDictionary *_dic0 = [_dataArr objectAtIndex:indexPath.row];
+            vc.personInfoDic = _dic0;
+            NSString *islove = [_dic0 objectForKey:@"isbook"];
+            vc.isLoved = [islove boolValue];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
             
