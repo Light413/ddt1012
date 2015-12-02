@@ -37,7 +37,7 @@
 {
     if (!_hasStart) {
         _hasStart = YES;
-        [SVProgressHUD showWithStatus:@"正在加载页面"];
+//        [SVProgressHUD showWithStatus:@"正在加载页面"];
     }
 }
 

@@ -9,15 +9,9 @@
 #import "NGCompanyListVC.h"
 #import "NGSearchBar.h"
 #import "NGPopListView.h"
-#import "AddCommanyInfoViewController.h"
-#import "NGCompanyDetailVC.h"
 
-#import "NGSecondListCell.h"
-#import "DTCompanyListCell.h"
-
-static NSString * showCompanyVcID   = @"showCompanyVcID";
-static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
-
+#import "NGJieDanDetailVC.h"
+#import "NGJieDanListCell.h"
 
 @interface NGCompanyListVC ()<NGSearchBarDelegate,NGPopListDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -41,7 +35,10 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     //搜搜
     NGSearchBar *_searchBar;
 }
+//接单
+@property(nonatomic,copy)NSString * selectedTime;//选择时间
 @end
+
 #import "LoginViewController.h"
 
 @implementation NGCompanyListVC
@@ -57,23 +54,6 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     UIBarButtonItem *_backitem =[ [UIBarButtonItem alloc]init];
     _backitem.title = @"";
     self.navigationItem.backBarButtonItem = _backitem;
-    
-    UIButton *rightbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightbtn.frame = CGRectMake(0, 0, 100, 30);
-    [rightbtn setTitle:@"添加公司" forState:UIControlStateNormal];
-    rightbtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
-    rightbtn.titleLabel.textAlignment = NSTextAlignmentRight;
-    [rightbtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -50)];
-    
-    [rightbtn addTarget:self action:@selector(rightItemClick) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightbtn];
-}
-#pragma mark --添加公司
--(void)rightItemClick
-{
-    AddCommanyInfoViewController *commany = [[MySharetools shared]getViewControllerWithIdentifier:@"AddCommany" andstoryboardName:@"me"];
-    commany.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:commany animated:YES];
 }
 
 
@@ -81,21 +61,19 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 {
     //pop
     //btn title
-    
     NSArray *_areaArr = [NGXMLReader getCurrentLocationAreas];//区域
     NSArray *_typeArr = [NGXMLReader getBaseTypeData];//基本业务类型
-    NSArray *_btnTitleArr2 = @[@"服务区域",@"业务类型"];
-    if (self.vcType == 2) {
-        _btnTitleArr2 = @[_selectedArea,_selectedType];
-    }
-    else
-    {
+    NSArray *_btnTitleArr2 = @[@"服务区域",@"业务类型",@"时间"];
+    NSArray *time = [DTComDataManger getData_jiedanTime];
+    
+    if (self.vcType != 2) {
         _selectedArea = @"";
         _selectedType = @"";
     }
+    _selectedTime = @"";
     
     _common_pop_btnTitleArr = _btnTitleArr2;
-    _common_pop_btnListArr  = @[_areaArr,_typeArr];
+    _common_pop_btnListArr  = @[_areaArr,_typeArr,time];
 
     //tableview
     cellMaxFitSize = CGSizeMake(CurrentScreenWidth -30, 999);
@@ -103,10 +81,9 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     _pageNum = 1;
     _selectRowIndex = 0;
     _isfirstAppear = YES;
-    
 
     _common_list_dataSource = [[NSMutableArray alloc]init];
-    _common_list_cellReuseId = NGCompanyListCellReuseId;
+    _common_list_cellReuseId = @"JieDanCellReuseId";
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -142,13 +119,12 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 #pragma mark- init subviews
 -(void)initSubviews
 {
-    self.title = @"公司名片";
     
     popView = [[NGPopListView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, 40) withDelegate:self withSuperView:self.view];
     [self.view addSubview:popView];
     _searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(2, popView.frame.origin.y + popView.frame.size.height + 1, CurrentScreenWidth -4 , 30)];
     _searchBar.delegate  =self;
-    _searchBar.placeholder = @"请输入公司名称、地址或其他关键字";
+    _searchBar.placeholder = @"请输搜索关键字";
     if (self.searchKey) {
         _searchBar.text = self.searchKey;
     }
@@ -161,7 +137,8 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     [self.view  addSubview:_tableView];
     [_tableView setContentInset:UIEdgeInsetsMake(0, 0, 5, 0)];
     _tableView.tableFooterView = [[UIView alloc]init];
-    [_tableView registerNib:[UINib nibWithNibName:@"DTCompanyListCell" bundle:nil] forCellReuseIdentifier:NGCompanyListCellReuseId];
+    [_tableView registerNib:[UINib nibWithNibName:@"NGJieDanListCell" bundle:nil] forCellReuseIdentifier:@"JieDanCellReuseId"];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     //添加下拉刷新
     __weak __typeof(self) weakSelf = self;
@@ -180,10 +157,10 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 -(void)loadMoreData
 {
     NSString *tel = [[MySharetools shared]getPhoneNumber];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea,@"quyu",_selectedType,@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedTime,@"time",@"10",@"psize",@(_pageNum),@"pnum",nil];;
 
     NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
-    RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_company_list", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_jiedan", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         _pageNum ==1?({[_tableView.header endRefreshing];[_common_list_dataSource removeAllObjects];
          [_tableView reloadData];}):([_tableView.footer endRefreshing]);
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
@@ -247,6 +224,33 @@ static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
     {
         _selectedType = str;
     }
+   else if (index ==3)
+    {
+        NSArray *_arr = @[@"全部",@"今天",@"最近3天",@"最近7天",@"最近30天"];
+        [_arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([(NSString *)obj isEqualToString:str]) {
+                if (idx==0) {
+                    _selectedTime = @"";
+                }
+                else if (idx ==1)
+                {
+                    _selectedTime = @"1";
+                }
+                else if (idx ==2)
+                {
+                    _selectedTime = @"3";
+                }
+                else if (idx ==31)
+                {
+                    _selectedTime = @"7";
+                }
+                else if (idx ==4)
+                {
+                    _selectedTime = @"30";
+                }
+            }
+        }];
+    }
     
     [_tableView.header beginRefreshing];
 }
@@ -282,23 +286,19 @@ float _h;
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DTCompanyListCell * cell;
+    NGJieDanListCell * cell;
     NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:indexPath.row];
-    
     cell = [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
-    NSString * str = [_dic0 objectForKey:@"4"];
+    
+    NSString * str = [_dic0 objectForKey:@"bz"];
     CGSize _new =  [ToolsClass calculateSizeForText:str :cellMaxFitSize font:cellFitfont];
+    NGJieDanListCell *cell1 = (NGJieDanListCell *)cell;
+    CGRect rec = cell1.nameLab.frame;
+    rec.size.height = _new.height+10;
+    cell1.nameLab.frame = rec;
+    _h = _new.height + 20;
     
-    CGRect rec = cell.name.frame;
-    rec.size.height = _new.height;
-    cell.name.frame = rec;
-    _h = _new.height + 10;
-    
-    [(DTCompanyListCell *)cell setCellWith:_dic0];
-    ((DTCompanyListCell *)cell).btnClickBlock = ^(BOOL selected){
-        NSLog(@"...cell btn click : %ld",selected);
-        
-    };
+    [(NGJieDanListCell *)cell setCellWith:_dic0];
 
     return cell;
 }
@@ -306,14 +306,18 @@ float _h;
 const float cellDefaultHeight = 60.0;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 20 + _h > cellDefaultHeight?20 + _h:cellDefaultHeight;
+
+    return _h + 40 > 80?_h + 40:80;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _selectRowIndex = indexPath.row;
-
-    [self performSegueWithIdentifier:showCompanyVcID sender:nil];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"homeSB" bundle:nil];
+    NGJieDanDetailVC* vc=  [sb instantiateViewControllerWithIdentifier:@"NGJieDanDetailVCID"];
+    vc.danZiInfoDic = [_common_list_dataSource objectAtIndex:indexPath.row];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.isLove = NO;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -324,24 +328,6 @@ const float cellDefaultHeight = 60.0;
     }
 }
 
-//收藏操作
--(void)collectAction:(BOOL)isselected
-{
-    NSString *tel = [[MySharetools shared]getPhoneNumber];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea,@"quyu",_selectedType,@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",nil];
-    
-    NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
-    
-    
-    
-    RequestTaskHandle *_h = [RequestTaskHandle taskWithUrl:@"" parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
-    
-    [HttpRequestManager doPostOperationWithTask:_h];
-}
 
 
 - (void)didReceiveMemoryWarning {
@@ -349,19 +335,6 @@ const float cellDefaultHeight = 60.0;
     // Dispose of any resources that can be recreated.
 }
 
-
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    if([segue.identifier isEqualToString:showCompanyVcID])
-    {
-        NGCompanyDetailVC *vc =[segue destinationViewController];
-        vc.companyInfoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
-    }
-}
 
 
 @end

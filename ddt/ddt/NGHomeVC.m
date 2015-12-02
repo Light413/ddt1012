@@ -457,52 +457,32 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     else if (indexPath.section == 1)
     {
         switch (indexPath.row) {
-            case 0://附近同行
+            case 0://甩单
             {
-                _selectIndex = 3;
-//                [self performSegueWithIdentifier:showSecondVCID sender:nil];
-                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"secondSB" bundle:nil];
-                NGSecondVC *_vc = [sb instantiateViewControllerWithIdentifier:@"secondSBID"];
-                _vc.hidesBottomBarWhenPushed = YES;
-                _vc.vcType = _selectIndex;
-                [self.navigationController pushViewController:_vc animated:YES];
+                [self performSegueWithIdentifier:showShuaiDanID sender:nil];
+//                _selectIndex = 3;
+////                [self performSegueWithIdentifier:showSecondVCID sender:nil];
+//                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"secondSB" bundle:nil];
+//                NGSecondVC *_vc = [sb instantiateViewControllerWithIdentifier:@"secondSBID"];
+//                _vc.hidesBottomBarWhenPushed = YES;
+//                _vc.vcType = _selectIndex;
+//                [self.navigationController pushViewController:_vc animated:YES];
             }break;
                 
-            case 1:
+            case 1://交流会
             {
                 [self performSegueWithIdentifier:showTHContactID sender:nil];
             }break;
                 
-            case 2:
-            {
-                [self performSegueWithIdentifier:showCarPriceVCID sender:nil];
-            }break;
-                
-            case 3:
-            {
-                [self performSegueWithIdentifier:showFeedBackVCID sender:nil];
-            }break;
-                
-            case 4:
-            {
-                _selectIndex = 4;
-                [self performSegueWithIdentifier:showSecondVCID sender:nil];
-            }break;
-                
-            case 5:
-            {
-                [self performSegueWithIdentifier:showShuaiDanID sender:nil];
-            }break;
-                
-            case 6:
+            case 2://求职
             {
                 _selectIndex = 5;
                 [self performSegueWithIdentifier:showSecondVCID sender:nil];
             }break;
-            case 7:
+                
+            case 3://车价评估
             {
-                _selectIndex = 6;
-                [self performSegueWithIdentifier:showSecondVCID sender:nil];
+                [self performSegueWithIdentifier:showCarPriceVCID sender:nil];
             }break;
             default:
                 break;
@@ -519,7 +499,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return section?CGSizeMake(0, 2): CGSizeMake(0, CollectionHeaderViewHight);
+    return section?CGSizeMake(0, 0): CGSizeMake(0, CollectionHeaderViewHight);
 }
 
 

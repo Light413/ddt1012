@@ -96,6 +96,21 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     UIBarButtonItem *_backitem =[ [UIBarButtonItem alloc]init];
     _backitem.title = @"";
     self.navigationItem.backBarButtonItem = _backitem;
+    
+    UIButton *rightbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightbtn.frame = CGRectMake(0, 0, 100, 30);
+    [rightbtn setTitle:@"关闭自己位置" forState:UIControlStateNormal];
+    rightbtn.titleLabel.font = [UIFont boldSystemFontOfSize:13];
+    rightbtn.titleLabel.textAlignment = NSTextAlignmentRight;
+    [rightbtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -20)];
+    rightbtn.selected = NO;
+    [rightbtn addTarget:self action:@selector(closedLocation:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightbtn];
+}
+-(void)closedLocation :(UIButton*)btn
+{
+    btn.selected = !btn.selected;
+    [btn setTitle:btn.selected ? @"关闭自己位置":@"公开自己位置" forState:UIControlStateNormal];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -144,7 +159,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     if (_index == 1) {
         self.vcType = NGVCTypeId_1;
     }
-
+    
     //btn title
     NSArray *_sexArr = [DTComDataManger getData_sex];//性别
     NSArray *_areaArr = [NGXMLReader getCurrentLocationAreas];//区域
@@ -155,6 +170,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         case NGVCTypeId_2:
         case NGVCTypeId_3:
         {//同行
+            self.navigationItem.rightBarButtonItem = nil;
             NSArray *_btnTitleArr1 = @[@"服务区域",@"业务类型",@"性别"];
             _common_pop_btnTitleArr = _btnTitleArr1;
             _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
@@ -268,10 +284,10 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 {
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     switch (self.vcType) {
-        case NGVCTypeId_1:
+        case NGVCTypeId_3:
         case NGVCTypeId_2:
             _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex: @"",@"xb",nil];break;
-        case NGVCTypeId_3://,@"121.68571511,31.19302052"
+        case NGVCTypeId_1://,@"121.68571511,31.19302052"
             _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex:@"",@"xb",@"121.68571511",@"mapx",@"31.19302052",@"mapy",nil];break;
             
         case NGVCTypeId_4://接单
@@ -315,6 +331,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         case NGVCTypeId_3:
             [_tableView registerNib:[UINib nibWithNibName:@"NGSecondListCell" bundle:nil] forCellReuseIdentifier:NGSecondListCellReuseId];break;
         case NGVCTypeId_4:
+            self.navigationItem.rightBarButtonItem  = nil;
             [_tableView registerNib:[UINib nibWithNibName:@"NGJieDanListCell" bundle:nil] forCellReuseIdentifier:JieDanCellReuseId];break;
         case NGVCTypeId_5:
         case NGVCTypeId_6:
@@ -658,6 +675,7 @@ const float cellDefaultHeight = 80.0;
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"homeSB" bundle:nil];
             NGJieDanDetailVC* vc=  [sb instantiateViewControllerWithIdentifier:@"NGJieDanDetailVCID"];
             vc.danZiInfoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
+            vc.hidesBottomBarWhenPushed = YES;
             vc.isLove = NO;
             [self.navigationController pushViewController:vc animated:YES];
         }break;

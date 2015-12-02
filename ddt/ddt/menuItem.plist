@@ -103,39 +103,15 @@
 	<array>
 		<dict>
 			<key>imagename</key>
-			<string>item_21</string>
+			<string>item_26</string>
 			<key>title</key>
-			<string>附近同行</string>
+			<string>甩单</string>
 		</dict>
 		<dict>
 			<key>imagename</key>
 			<string>item_22</string>
 			<key>title</key>
-			<string>同行交流会</string>
-		</dict>
-		<dict>
-			<key>imagename</key>
-			<string>item_23</string>
-			<key>title</key>
-			<string>车价评估</string>
-		</dict>
-		<dict>
-			<key>imagename</key>
-			<string>item_24</string>
-			<key>title</key>
-			<string>意见反馈</string>
-		</dict>
-		<dict>
-			<key>imagename</key>
-			<string>item_25</string>
-			<key>title</key>
-			<string>接单</string>
-		</dict>
-		<dict>
-			<key>imagename</key>
-			<string>item_26</string>
-			<key>title</key>
-			<string>甩单</string>
+			<string>交流会</string>
 		</dict>
 		<dict>
 			<key>imagename</key>
@@ -145,9 +121,9 @@
 		</dict>
 		<dict>
 			<key>imagename</key>
-			<string>item_28</string>
+			<string>item_23</string>
 			<key>title</key>
-			<string>招聘</string>
+			<string>车价评估</string>
 		</dict>
 	</array>
 </array>

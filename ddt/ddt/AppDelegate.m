@@ -92,7 +92,7 @@ BMKMapManager* _mapManager;
 
 -(void)initTabBar
 {
-    NSArray *titleArr  = @[@"首页",@"同行",@"公司",@"我的",];
+    NSArray *titleArr  = @[@"首页",@"同行",@"单子",@"我的",];
     self.rootTabVC.tabBar.tintColor = BarDefaultColor;
     NSArray *_itemArr = self.rootTabVC.tabBar.items;
     [_itemArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

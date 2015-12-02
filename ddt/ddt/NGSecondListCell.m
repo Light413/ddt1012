@@ -25,10 +25,10 @@
     self.lab_type.text = [dic objectForKey:@"yewu"];
     self.lab_detail.text = [dic objectForKey:@"word"];
     
-    if (index ==1) {
+    if (index ==3) {
         self.btn_fujin.hidden = YES;
     }
-    else if (index == 3)
+    else if (index == 1)
     {
         self.btn_fujin.hidden = NO;
     }
