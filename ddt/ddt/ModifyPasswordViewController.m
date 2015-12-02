@@ -27,9 +27,9 @@
     phoneView.layer.borderWidth = 1;
     phoneView.backgroundColor = [UIColor whiteColor];
     UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(phoneView.left+3, 5, 65, 30)];
-    nameLabel.font = [UIFont systemFontOfSize:14];
+    nameLabel.font = [UIFont systemFontOfSize:13];
     nameLabel.text = @"新的密码:";
-    nameLabel.textColor = [UIColor blackColor];
+    nameLabel.textColor = [UIColor darkGrayColor];
     [phoneView addSubview:nameLabel];
     UITextField *phoneNumberField = [[UITextField alloc]initWithFrame:CGRectMake(nameLabel.right, 6, phoneView.width-nameLabel.width-3, 30)];
     phoneNumberField.keyboardType = UIKeyboardTypeNumberPad;
@@ -43,9 +43,9 @@
     midLine.backgroundColor = [UIColor lightGrayColor];
     [phoneView addSubview:midLine];
     UILabel *nameLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(phoneView.left+3, 46, 65, 30)];
-    nameLabel1.font = [UIFont systemFontOfSize:14];
+    nameLabel1.font = [UIFont systemFontOfSize:13];
     nameLabel1.text = @"确认密码:";
-    nameLabel1.textColor = [UIColor blackColor];
+    nameLabel1.textColor = [UIColor darkGrayColor];
     [phoneView addSubview:nameLabel1];
     UITextField *phoneNumberField1 = [[UITextField alloc]initWithFrame:CGRectMake(nameLabel.right, 47, phoneView.width-nameLabel.width-3, 30)];
     phoneNumberField1.keyboardType = UIKeyboardTypeNumberPad;
@@ -57,18 +57,24 @@
     
     UIButton *findpassBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     findpassBtn.backgroundColor = RGBA(229, 165, 45, 1);
-    findpassBtn.frame = CGRectMake(10, phoneView.bottom+10, CurrentScreenWidth-20, 30);
-    [findpassBtn setTitle:@"找回密码" forState:UIControlStateNormal];
+    findpassBtn.frame = CGRectMake(10, phoneView.bottom+10, CurrentScreenWidth-20, 40);
+    [findpassBtn setTitle:@"确认修改" forState:UIControlStateNormal];
     [findpassBtn addTarget:self action:@selector(findOK:) forControlEvents:UIControlEventTouchUpInside];
+    [findpassBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    findpassBtn.layer.cornerRadius = 5;
+    findpassBtn.layer.masksToBounds = YES;
+    
     [self.view addSubview:phoneView];
     [self.view addSubview:findpassBtn];
 }
 -(void)goback:(UIButton *)btn{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 -(void)findOK:(UIButton *)btn{
-    
+    [SVProgressHUD showInfoWithStatus:@"暂无接口"];
 }
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     UITextField *textField = (UITextField *)[self.view viewWithTag:201];
     if ([textField isFirstResponder]) {
