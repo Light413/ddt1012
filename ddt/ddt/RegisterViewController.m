@@ -137,12 +137,12 @@
     NSDate *localDate = [NSDate date]; //获取当前时间
     NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
     NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",phoneNumField.text,timeString];
-    //...test
+
     NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:phoneNumField.text,@"mobile",[passwordField.text  stringFromMD5],@"pwd",token,@"token",nil];
     NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
-    
     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata", nil];
-//    [SVProgressHUD showWithStatus:@"正在提交"];
+    
+    [SVProgressHUD showWithStatus:@"正在提交"];
     RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_register", @"") parms:dic2 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"...responseObject  :%@",responseObject);
         
@@ -159,9 +159,6 @@
     }];
     
     [HttpRequestManager doPostOperationWithTask:_task];
-  [self.navigationController dismissViewControllerAnimated:YES completion:^{
-      
-  }];
 }
 
 - (IBAction)registerProtocol:(id)sender {
