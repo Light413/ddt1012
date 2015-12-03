@@ -19,6 +19,7 @@
 #import "NGJieDanListCell.h"
 #import "NGJieDanDetailVC.h"
 #import "NGSecondListCell.h"
+#import "TonghangSCModel.h"
 #define Font    [UIFont systemFontOfSize:14]
 #define Size    CGSizeMake(CurrentScreenWidth - 50, 1000)
 #define cellDefaultHeight  80.0
@@ -31,6 +32,7 @@
     int psize;//每页大小
     int pnum;//第几页
      BOOL _isLoved;//是否收藏
+    NSMutableArray *_tonghangArr;
 }
 @end
 
@@ -40,7 +42,7 @@
     [super viewDidLoad];
     [self createLeftBarItemWithBackTitle];
     self.title =self.vcType==VcTypeValue_2?@"搜索结果" :@"我的收藏";
-    NSArray *segmentArr =self.vcType==VcTypeValue_2?@[@"搜单子",@"搜同行",@"搜公司"]: @[@"单子收藏",@"同行好友",@"公司收藏"];
+    NSArray *segmentArr =self.vcType==VcTypeValue_2?@[@"搜单子",@"搜同行"]: @[@"单子收藏",@"同行好友"];
     
     
     mysegment = [[UISegmentedControl alloc]initWithItems:segmentArr];
@@ -51,7 +53,7 @@
     mysegment.selectedSegmentIndex = 0;
     [self.view addSubview:mysegment];
     _dataArr = [[NSMutableArray alloc]init];
-    
+    _tonghangArr = [[NSMutableArray alloc]init];
     searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(10, mysegment.bottom+10, CurrentScreenWidth -20 , 30)];
     searchBar.delegate  =self;
     searchBar.placeholder = @"搜索";
@@ -59,6 +61,7 @@
     myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, searchBar.bottom+10, CurrentScreenWidth, CurrentScreenHeight-searchBar.bottom-10-64) style:UITableViewStylePlain];
     myTableView.delegate = self;
     myTableView.dataSource = self;
+    myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:myTableView];
     myTableView.tableFooterView = [[UIView alloc]init];
     pnum = 1;
@@ -128,56 +131,71 @@
                     }
                     NSArray *arr = [responseObject objectForKey:@"data"];
                     if ([arr isKindOfClass:[NSArray class]]&&[arr count]>0) {
-                        [_dataArr addObjectsFromArray:arr];
-                        //...没有数据了，不能在刷新加载了
+                        for (NSDictionary *dict in arr) {
+                            TonghangSCModel *model = [[TonghangSCModel alloc]initWithDictionary:dict];
+                            [_dataArr addObject:model];
+                        }
+                        [_tonghangArr addObjectsFromArray:arr];
                     }
                 }
                 
                 
                 [myTableView reloadData];
             }
+            if ([myTableView.header isRefreshing]) {
+                [myTableView.header endRefreshing];
+            }
+            if ([myTableView.footer isRefreshing]) {
+                [myTableView.footer endRefreshing];
+            }
         } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
             [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
-            
+            if ([myTableView.header isRefreshing]) {
+                [myTableView.header endRefreshing];
+            }
+            if ([myTableView.footer isRefreshing]) {
+                [myTableView.footer endRefreshing];
+            }
         }];
        // [myTableView reloadData];
         [HttpRequestManager doPostOperationWithTask:task];
-    }else if (index == 2){
-        RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_getbookcom", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-            if ([responseObject isKindOfClass:[NSDictionary class]]) {
-                if (start == 1) {
-                    [_dataArr removeAllObjects];
-                }
-                NSArray *arr = [responseObject objectForKey:@"data"];
-                if ([arr isKindOfClass:[NSArray class]]&&[arr count]>0) {
-                    for (NSDictionary *dict in arr) {
-                        CommanySCModel *model = [[CommanySCModel alloc]initWithDictionary:dict];
-                        [_dataArr addObject:model];
-                    }
-                    
-                }
-               [myTableView reloadData];
-            }
-            if ([myTableView.header isRefreshing]) {
-                [myTableView.header endRefreshing];
-            }
-            if ([myTableView.footer isRefreshing]) {
-                [myTableView.footer endRefreshing];
-            }
-        } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
-            if ([myTableView.header isRefreshing]) {
-                [myTableView.header endRefreshing];
-            }
-            if ([myTableView.footer isRefreshing]) {
-                [myTableView.footer endRefreshing];
-            }
-            
-        }];
-        
-        [HttpRequestManager doPostOperationWithTask:task];
     }
+//    else if (index == 2){
+//        RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_getbookcom", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            
+//            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+//                if (start == 1) {
+//                    [_dataArr removeAllObjects];
+//                }
+//                NSArray *arr = [responseObject objectForKey:@"data"];
+//                if ([arr isKindOfClass:[NSArray class]]&&[arr count]>0) {
+//                    for (NSDictionary *dict in arr) {
+//                        CommanySCModel *model = [[CommanySCModel alloc]initWithDictionary:dict];
+//                        [_dataArr addObject:model];
+//                    }
+//                    
+//                }
+//               [myTableView reloadData];
+//            }
+//            if ([myTableView.header isRefreshing]) {
+//                [myTableView.header endRefreshing];
+//            }
+//            if ([myTableView.footer isRefreshing]) {
+//                [myTableView.footer endRefreshing];
+//            }
+//        } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+//            if ([myTableView.header isRefreshing]) {
+//                [myTableView.header endRefreshing];
+//            }
+//            if ([myTableView.footer isRefreshing]) {
+//                [myTableView.footer endRefreshing];
+//            }
+//            
+//        }];
+//        
+//        [HttpRequestManager doPostOperationWithTask:task];
+//    }
     [myTableView reloadData];
     [SVProgressHUD showSuccessWithStatus:@"加载完成"];
 }
@@ -191,15 +209,20 @@ float _h;
             height = _h + 40 > 80?_h + 40:80;
             break;
         case 1:
-            height = 50 + _h > cellDefaultHeight?50 + _h:cellDefaultHeight;
-            break;
-        case 2:{
-                CommanySCModel *model = _dataArr[indexPath.row];
-                CGFloat width = [ToolsClass calculateSizeForText:model.commany :CGSizeMake(1000, 21) font:[UIFont systemFontOfSize:16]].width;
-                height = [ToolsClass calculateSizeForText:model.yewu :CGSizeMake(CurrentScreenWidth-30-width, 1000) font:Font].height+40;
+        {
+            TonghangSCModel *model = _dataArr[indexPath.row];
+            height = [ToolsClass calculateSizeForText:model.yewu :CGSizeMake(CurrentScreenWidth-80, 1000) font:Font].height+90;
+           // height = 50 + _h > cellDefaultHeight?50 + _h:cellDefaultHeight;
         }
             
             break;
+//        case 2:{
+//                CommanySCModel *model = _dataArr[indexPath.row];
+//                CGFloat width = [ToolsClass calculateSizeForText:model.commany :CGSizeMake(1000, 21) font:[UIFont systemFontOfSize:16]].width;
+//                height = [ToolsClass calculateSizeForText:model.yewu :CGSizeMake(CurrentScreenWidth-30-width, 1000) font:Font].height+40;
+//        }
+//            
+//            break;
             
         default:
             break;
@@ -208,7 +231,7 @@ float _h;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSInteger index = mysegment.selectedSegmentIndex;
+    //NSInteger index = mysegment.selectedSegmentIndex;
 //    if (index == 0) {
 //        return 5;
 //    }else if (index == 1){
@@ -236,74 +259,21 @@ float _h;
         _h = _new.height + 10;
         
         [(NGJieDanListCell *)cell setCellWith:_dic0];
-
         return cell;
     }else if (index == 1) {
-        static NSString *tonghangCellID = @"NGSecondListCellReuseId";
-        NGSecondListCell *cell = [myTableView dequeueReusableCellWithIdentifier:tonghangCellID];
+        static NSString *cellID = @"tonghangSCcellID";
+        TonghangTableViewCell *cell = [myTableView dequeueReusableCellWithIdentifier:cellID];
         if (!cell) {
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"NGSecondListCell" owner:self options:nil]lastObject];
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"TonghangTableViewCell" owner:self options:nil]lastObject];
         }
-        NSDictionary *_dic0 = [_dataArr objectAtIndex:indexPath.row];
-        NSString * str = [_dic0 objectForKey:@"yewu"];
-        CGSize _new =  [ToolsClass calculateSizeForText:str :CGSizeMake(CurrentScreenWidth -30, 999) font:[UIFont systemFontOfSize:14]];
-        
-        [cell setCellWith:_dic0 withOptionIndex:self.vcType];
-        CGRect rec = cell.lab_type.frame;
-        rec.size.height = _new.height;
-        cell.lab_type.frame = rec;
-        _h = _new.height + 10;
-        
-        NSString *tel =  [_dic0 objectForKey:@"mobile"];
-        NSString *islove = [_dic0 objectForKey:@"isbook"];
-        _isLoved = [islove boolValue];
-        NSString *uid = [_dic0 objectForKey:@"uid"];
-        cell.btnClickBlock = ^(NSInteger tag){
-            if (tag == 300) {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",tel]]];
-            }
-            else if (tag == 301) {
-                NSString *tel = [[MySharetools shared]getPhoneNumber];
-                NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",@"1",@"type",uid,@"id", nil];
-                NSDictionary *_d1 = [MySharetools getParmsForPostWith:dic];
-                
-                [SVProgressHUD showWithStatus:![islove boolValue] ?@"添加收藏":@"取消收藏"];
-                NSString *_url =![islove boolValue]?NSLocalizedString(@"url_my_love", @""): NSLocalizedString(@"url_my_nolove", @"");
-                
-                RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:_url parms:_d1 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    [SVProgressHUD dismiss];
-                    [myTableView.header beginRefreshing];
-                } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    [SVProgressHUD showInfoWithStatus:[error localizedDescription]];
-                    if ([myTableView.header isRefreshing]) {
-                        [myTableView.header endRefreshing];
-                    }
-                    if ([myTableView.footer isRefreshing]) {
-                        [myTableView.footer endRefreshing];
-                    }
-
-                }];
-                [HttpRequestManager doPostOperationWithTask:_task];
-            }
+        TonghangSCModel *model = [_dataArr objectAtIndex:indexPath.row];
+        [cell showDataFromModel:model];
+        cell.btnClickBlock = ^{
+             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",model.mobile]]];
         };
-        return cell;
-//        static NSString *CellId = @"tonghangcell";
-//        TonghangTableViewCell *cell = [myTableView dequeueReusableCellWithIdentifier:CellId];
-//        if (!cell) {
-//            cell = [[[NSBundle mainBundle]loadNibNamed:@"TonghangTableViewCell" owner:self options:nil]lastObject];
-//        }
-//        return cell;
-    }else if(index == 2){
-        static NSString *cellId = @"commanyCell";
-        MyScTableViewCell *cell = [myTableView dequeueReusableCellWithIdentifier:cellId];
-        if (!cell) {
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"MyScTableViewCell" owner:self options:nil]lastObject];
-        }
-        //if (_dataArr.count>0) {
-            CommanySCModel *model = _dataArr[indexPath.row];
-            [cell showDataFromModel:model];
-        //}
-        
+        cell.btnmessageClickBlock = ^{
+            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@",model.mobile]]];
+        };
         return cell;
     }
     else{
@@ -324,21 +294,20 @@ float _h;
             break;
         case 1:{
             NGTongHDetailVC *vc = [[MySharetools shared]getViewControllerWithIdentifier:@"TongHDetailVC" andstoryboardName:@"secondSB"];
-            NSDictionary *_dic0 = [_dataArr objectAtIndex:indexPath.row];
+            NSDictionary *_dic0 = [_tonghangArr objectAtIndex:indexPath.row];
             vc.personInfoDic = _dic0;
             NSString *islove = [_dic0 objectForKey:@"isbook"];
             vc.isLoved = [islove boolValue];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
-            
         }
             break;
-        case 2:{
-            NGCompanyDetailVC *vc = [[MySharetools shared]getViewControllerWithIdentifier:@"CompanyDetailVC" andstoryboardName:@"companySB"];;
-            vc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-            break;
+//        case 2:{
+//            NGCompanyDetailVC *vc = [[MySharetools shared]getViewControllerWithIdentifier:@"CompanyDetailVC" andstoryboardName:@"companySB"];;
+//            vc.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
+//            break;
             
         default:
             break;
@@ -359,45 +328,9 @@ float _h;
     
 }
 -(void)segmentClick:(UISegmentedControl *)segment{
-    NSInteger index = segment.selectedSegmentIndex;
-    switch (index) {
-        case 0:
-        {
-            __weak __typeof(self) weakSelf = self;
-            //myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-                //[weakSelf loadData];
-           // }];
-            pnum = 1;
-            [_dataArr removeAllObjects];
-            [weakSelf loadData:pnum];
-        }
-            break;
-        case 1:
-        {
-            __weak __typeof(self) weakSelf = self;
-           // myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-                //[weakSelf loadData];
-           // }];
-            pnum = 1;
-            [_dataArr removeAllObjects];
-            [weakSelf loadData:pnum];
-        }
-            break;
-        case 2:
-        {
-            __weak __typeof(self) weakSelf = self;
-           // myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-                //[weakSelf loadData];
-            //}];
-            pnum = 1;
-            [_dataArr removeAllObjects];
-
-            [weakSelf loadData:pnum];
-        }
-            break;
-        default:
-            break;
-    }
+    pnum = 1;
+    [_dataArr removeAllObjects];
+    [self loadData:pnum];
 }
 #pragma mark -NGSearchBarDelegate
 -(void)searchBarWillBeginSearch:(NGSearchBar *)searchBar
@@ -408,6 +341,9 @@ float _h;
 -(void)searchBarDidBeginSearch:(NGSearchBar *)searchBar withStr:(NSString *)str
 {
     NSLog(@"did : %@",searchBar.text);
+    pnum = 1;
+    [_dataArr removeAllObjects];
+    [self loadData:pnum];
 }
 -(void)goback:(UIButton *)btn{
     [self.navigationController popViewControllerAnimated:YES];

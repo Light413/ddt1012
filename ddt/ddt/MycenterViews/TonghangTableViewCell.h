@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TonghangSCModel.h"
 @interface TonghangTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIButton *userIconBtn;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -16,7 +16,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
 - (IBAction)messageBtnClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *phoneCallBtn;
-@property (weak, nonatomic) IBOutlet UIButton *phoneCallClick;
-@property (weak, nonatomic) IBOutlet UILabel *phoneNumberLabel;
 
+- (IBAction)phoneCallClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *phoneNumberLabel;
+@property(nonatomic,copy)void(^btnClickBlock)();
+@property(nonatomic,copy)void(^btnmessageClickBlock)();
+-(void)showDataFromModel:(TonghangSCModel *)model;
 @end

@@ -10,25 +10,37 @@
 
 @implementation TonghangSCModel
 @synthesize commany;
-@synthesize quyu;
 @synthesize content;
-
-@synthesize address;
-@synthesize yewu;
+@synthesize fee;
+@synthesize isbook;
+@synthesize pic;
+@synthesize quyu;
+@synthesize say;
+@synthesize see;
+@synthesize uid;
 @synthesize word;
-@synthesize fromu;
-@synthesize lxr;
+@synthesize xb;
+@synthesize xm;
+@synthesize yewu;
+@synthesize mobile;
 - (TonghangSCModel *)initWithDictionary:(NSDictionary *)dic{
     if (self = [super init]) {
         commany = [dic objectForKey:@"company"];
-        quyu = [dic objectForKey:@"quyu"];
         content = [dic objectForKey:@"content"];
-        address = [dic objectForKey:@"lxdh"];
-        yewu = [dic objectForKey:@"yewu"];
+        fee = [NSString stringWithFormat:@"%@",[dic objectForKey:@"fee"]];
+        isbook = [NSString stringWithFormat:@"%@",[dic objectForKey:@"isbook"]];
+        pic = [dic objectForKey:@"pic"];
+        quyu = [dic objectForKey:@"quyu"];
+        say = [NSString stringWithFormat:@"%@",[dic objectForKey:@"say"]];
+        see = [NSString stringWithFormat:@"%@",[dic objectForKey:@"see"]];
+        uid = [NSString stringWithFormat:@"%@",[dic objectForKey:@"uid"]];
         word = [dic objectForKey:@"word"];
-        fromu = [dic objectForKey:@"fromu"];
-        lxr = [dic objectForKey:@"lxr"];
+        xb = [dic objectForKey:@"xb"];
+        xm = [dic objectForKey:@"xm"];
+        yewu = [dic objectForKey:@"yewu"];
+        mobile = [dic objectForKey:@"mobile"];
     }
+    
     return self;
 }
 @end

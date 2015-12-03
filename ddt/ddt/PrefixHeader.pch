@@ -26,14 +26,13 @@
 #import "DTComDataManger.h"
 #import "UMSocial.h"
 #import <BaiduMapAPI_Location/BMKLocationService.h>
-
 //Http op
 #import "HttpRequestManager.h"
 
 //category
 #import "UIButton+setBtnArg.h"
 #import "NSString+ToJson.h"
-
+#import <UIButton+AFNetworking.h>
 
 //toolsclass
 #import "ToolsClass.h"

@@ -21,7 +21,19 @@
 
     // Configure the view for the selected state
 }
-
+-(void)showDataFromModel:(TonghangSCModel *)model{
+    [self.userIconBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.123dyt.com/mydyt/upload/pic%@",model.pic]] placeholderImage:[UIImage imageNamed:@"head_noregist"]];
+    self.userNameLabel.text = model.xm;
+    self.titleLabel.text = model.yewu;
+    self.commanyNameLabel.text = model.commany;
+    self.phoneNumberLabel.text = model.mobile;
+}
 - (IBAction)messageBtnClick:(id)sender {
+    //UIButton *btn = (UIButton *)sender;
+    self.btnmessageClickBlock();
+}
+- (IBAction)phoneCallClick:(id)sender {
+   // UIButton *btn = (UIButton *)sender;
+    self.btnClickBlock();
 }
 @end
