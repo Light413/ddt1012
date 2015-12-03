@@ -388,6 +388,8 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
             {
                 [SVProgressHUD showInfoWithStatus:@"暂无数据"];
                 [_tableView.footer endRefreshingWithNoMoreData];
+                _pageNum = NSNotFound;
+                [_tableView.footer endRefreshingWithNoMoreData];
             }
         }
     } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -593,36 +595,36 @@ float _h =0;
 
         }break;
             
-        case NGVCTypeId_5:
-        case NGVCTypeId_6:
-        {
-            NSString * str = [_dic0 objectForKey:@"content"];
-            CGSize _new =  [ToolsClass calculateSizeForText:str :cellMaxFitSize font:cellFitfont];
-            NGZhaoPinCell *cell1 = (NGZhaoPinCell *)cell;
-            CGRect rec = cell1.nameLab.frame;
-            rec.size.height = _new.height+10;
-            cell1.contentLab.frame = rec;
-            _h = _new.height;
-            
-           NSString* _s4 = [_dic0 objectForKey:@"fmobile"];
-            [(NGZhaoPinCell *)cell setCellWith:_dic0];
-            ((NGZhaoPinCell *)cell).btnClickBlock = ^(NSInteger tag){
-                NSLog(@"...cell btn click : %ld",tag);
-                NSString *str;
-                if (tag == 300) {
-                    //tel
-                    str = [NSString stringWithFormat:@"tel://%@",_s4];
-                }
-                else if (tag ==301)
-                {
-                    //msg
-                    str = [NSString stringWithFormat:@"sms://%@",_s4];
-                }
-                
-                [[UIApplication sharedApplication ]openURL:[NSURL URLWithString:str]];
-            };
-            
-        }break;
+//        case NGVCTypeId_5:
+//        case NGVCTypeId_6:
+//        {
+//            NSString * str = [_dic0 objectForKey:@"content"];
+//            CGSize _new =  [ToolsClass calculateSizeForText:str :cellMaxFitSize font:cellFitfont];
+//            NGZhaoPinCell *cell1 = (NGZhaoPinCell *)cell;
+//            CGRect rec = cell1.nameLab.frame;
+//            rec.size.height = _new.height+10;
+//            cell1.contentLab.frame = rec;
+//            _h = _new.height;
+//            
+//           NSString* _s4 = [_dic0 objectForKey:@"fmobile"];
+//            [(NGZhaoPinCell *)cell setCellWith:_dic0];
+//            ((NGZhaoPinCell *)cell).btnClickBlock = ^(NSInteger tag){
+//                NSLog(@"...cell btn click : %ld",tag);
+//                NSString *str;
+//                if (tag == 300) {
+//                    //tel
+//                    str = [NSString stringWithFormat:@"tel://%@",_s4];
+//                }
+//                else if (tag ==301)
+//                {
+//                    //msg
+//                    str = [NSString stringWithFormat:@"sms://%@",_s4];
+//                }
+//                
+//                [[UIApplication sharedApplication ]openURL:[NSURL URLWithString:str]];
+//            };
+//            
+//        }break;
         
         default:break;
     }

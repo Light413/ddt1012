@@ -133,7 +133,18 @@
 {
     float _h = _imgView.frame.size.height;
     UIImageView *_avarimg = [[UIImageView alloc]initWithFrame:CGRectMake(5, 10, 80, 80)];
-    _avarimg.image = [UIImage imageNamed:@"cell_avatar_default"];//...
+    _avarimg.layer.cornerRadius = 40;
+    _avarimg.layer.masksToBounds = YES;
+    NSString * pic =[self.personInfoDic objectForKey:@"pic"];
+    if (pic && pic.length > 11 ) {
+        NSString * url = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"url_get_avatar", @""),pic];
+        [_avarimg setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"cell_avatar_default"]];
+    }
+    else
+    {
+        _avarimg.image =[UIImage imageNamed:@"cell_avatar_default"];
+    }
+
     [_imgView addSubview:_avarimg];
     
     UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -184,19 +195,19 @@
     _lab3.textAlignment = NSTextAlignmentCenter;
     [_imgView addSubview:_lab3];
     
-    UILabel *_nameLab = [[UILabel alloc]initWithFrame:CGRectMake(btn1.frame.origin.x+3, _avarimg.frame.origin.y, 100, 20)];
+    UILabel *_nameLab = [[UILabel alloc]initWithFrame:CGRectMake(btn1.frame.origin.x+3, _avarimg.frame.origin.y, 60, 20)];
     _nameLab.font = [UIFont boldSystemFontOfSize:16];
     _nameLab.textColor = Color_1;
     _nameLab.text = _s1;
     [_imgView addSubview:_nameLab];
     
-    UILabel *_sexLab = [[UILabel alloc]initWithFrame:CGRectMake(_nameLab.frame.origin.x + _nameLab.frame.size.width + 30, _avarimg.frame.origin.y, 20, 20)];
+    UILabel *_sexLab = [[UILabel alloc]initWithFrame:CGRectMake(_nameLab.frame.origin.x + _nameLab.frame.size.width + 10, _avarimg.frame.origin.y, 20, 20)];
     _sexLab.font = [UIFont systemFontOfSize:14];
     _sexLab.textColor = Color_1;
     _sexLab.text = _s2;
     [_imgView addSubview:_sexLab];
     
-    UILabel *_ageLab = [[UILabel alloc]initWithFrame:CGRectMake(_sexLab.frame.origin.x+_sexLab.frame.size.width + 30, _avarimg.frame.origin.y, 20, 20)];
+    UILabel *_ageLab = [[UILabel alloc]initWithFrame:CGRectMake(_sexLab.frame.origin.x+_sexLab.frame.size.width +30, _avarimg.frame.origin.y, 20, 20)];
     _ageLab.font = [UIFont systemFontOfSize:14];
     _ageLab.textColor = Color_1;
     _ageLab.text = _s3;
