@@ -460,13 +460,6 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
             case 0://甩单
             {
                 [self performSegueWithIdentifier:showShuaiDanID sender:nil];
-//                _selectIndex = 3;
-////                [self performSegueWithIdentifier:showSecondVCID sender:nil];
-//                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"secondSB" bundle:nil];
-//                NGSecondVC *_vc = [sb instantiateViewControllerWithIdentifier:@"secondSBID"];
-//                _vc.hidesBottomBarWhenPushed = YES;
-//                _vc.vcType = _selectIndex;
-//                [self.navigationController pushViewController:_vc animated:YES];
             }break;
                 
             case 1://交流会

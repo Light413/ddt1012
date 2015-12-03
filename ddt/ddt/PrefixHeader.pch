@@ -29,6 +29,7 @@
 
 //Http op
 #import "HttpRequestManager.h"
+#import <UIImageView+AFNetworking.h>
 
 //category
 #import "UIButton+setBtnArg.h"

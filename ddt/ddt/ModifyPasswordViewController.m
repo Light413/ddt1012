@@ -7,9 +7,13 @@
 //
 
 #import "ModifyPasswordViewController.h"
+#import "NSString+MD5Addition.h"
 
 @interface ModifyPasswordViewController ()<UITextFieldDelegate>
-
+{
+    UITextField *phoneNumberField;
+    UITextField *phoneNumberField1;
+}
 @end
 
 @implementation ModifyPasswordViewController
@@ -31,7 +35,7 @@
     nameLabel.text = @"新的密码:";
     nameLabel.textColor = [UIColor darkGrayColor];
     [phoneView addSubview:nameLabel];
-    UITextField *phoneNumberField = [[UITextField alloc]initWithFrame:CGRectMake(nameLabel.right, 6, phoneView.width-nameLabel.width-3, 30)];
+    phoneNumberField = [[UITextField alloc]initWithFrame:CGRectMake(nameLabel.right, 6, phoneView.width-nameLabel.width-3, 30)];
     phoneNumberField.keyboardType = UIKeyboardTypeNumberPad;
     phoneNumberField.placeholder = @"输入6-12位数字和字母组合";
     phoneNumberField.tag = 201;
@@ -47,7 +51,7 @@
     nameLabel1.text = @"确认密码:";
     nameLabel1.textColor = [UIColor darkGrayColor];
     [phoneView addSubview:nameLabel1];
-    UITextField *phoneNumberField1 = [[UITextField alloc]initWithFrame:CGRectMake(nameLabel.right, 47, phoneView.width-nameLabel.width-3, 30)];
+    phoneNumberField1 = [[UITextField alloc]initWithFrame:CGRectMake(nameLabel.right, 47, phoneView.width-nameLabel.width-3, 30)];
     phoneNumberField1.keyboardType = UIKeyboardTypeNumberPad;
     phoneNumberField1.tag = 201;
     phoneNumberField1.placeholder = @"再次输入新密码";
@@ -72,6 +76,29 @@
 }
 
 -(void)findOK:(UIButton *)btn{
+    //
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", [phoneNumberField.text stringFromMD5],@"pwd",nil];
+    NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
+    RequestTaskHandle *_h = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_reset_pwd", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([[responseObject objectForKey:@"result"]integerValue] == 0) {
+            [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 0.5), dispatch_get_main_queue(), ^{
+                //...去重新登录
+                [[MySharetools shared]removeSessionid];
+                [MySharetools shared].isFromMycenter = YES;
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        }
+        else
+        {
+            [SVProgressHUD showInfoWithStatus:@"修改失败"];
+        }
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"请求服务器失败,请稍后重试"];
+    }];
+    [HttpRequestManager doPostOperationWithTask:_h];
+    
     [SVProgressHUD showInfoWithStatus:@"暂无接口"];
 }
 

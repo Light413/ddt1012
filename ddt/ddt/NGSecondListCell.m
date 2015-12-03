@@ -7,18 +7,27 @@
 //
 
 #import "NGSecondListCell.h"
-
 @implementation NGSecondListCell
 
 - (void)awakeFromNib {
     // Initialization code
     self.lab_phone.textColor = [UIColor colorWithRed:0.906 green:0.824 blue:0.404 alpha:1];
+    self.img_avatar .layer.cornerRadius = 27.5;
+    self.img_avatar.layer.masksToBounds = YES;
 }
 
 
 -(void)setCellWith:(NSDictionary*)dic withOptionIndex:(NSInteger)index
 {
-    self.img_avatar.image = [UIImage imageNamed:@"cell_avatar_default"];
+    NSString * pic =[dic objectForKey:@"pic"];
+    if (pic && pic.length > 11 ) {
+        NSString * url = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"url_get_avatar", @""),pic];
+         [self.img_avatar setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"cell_avatar_default"]];
+    }
+    else
+    {
+        self.img_avatar.image =[UIImage imageNamed:@"cell_avatar_default"];
+    }
     
     self.lab_name.text = [dic objectForKey:@"xm"];
     self.lab_phone.text = [dic objectForKey:@"mobile"];
