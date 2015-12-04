@@ -308,7 +308,16 @@
     userIcon.layer.masksToBounds = YES;
     
     userIcon.frame = CGRectMake(10, 10+20, HeaderViewHeight-40, HeaderViewHeight-40);
+    
+    //...
+    NSString*avatar = [[MySharetools shared]getUserAvatarName];
+    if (avatar && avatar.length > 11) {
+        NSString * url = [NSString stringWithFormat:@"%@/%@",NSLocalizedString(@"url_get_avatar", @""),avatar];
+        [userIcon setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"head_noregist"]];
+    }
+    else
     [userIcon setBackgroundImage:[UIImage imageNamed:@"head_noregist"] forState:UIControlStateNormal];
+    
     [userIcon addTarget:self action:@selector(usericonBtn:) forControlEvents:UIControlEventTouchUpInside];
     [backVIew addSubview:userIcon];
     UILabel *nickNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(userIcon.right+10, 10+20, 20, 20)];
@@ -464,7 +473,6 @@
 }
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-   
     [picker dismissViewControllerAnimated:YES completion:^() {
         NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
         NSString *documentsDirectory =NSTemporaryDirectory();
@@ -474,29 +482,26 @@
             
             NSString *imageFile = [documentsDirectory stringByAppendingPathComponent:@"temp0.jpg"];
             [UIImageJPEGRepresentation(image, 1.0f) writeToFile:imageFile atomically:YES];
-            UIButton *usericon = (UIButton *)[self.view viewWithTag:107];
-            [usericon setBackgroundImage:image forState:UIControlStateNormal];
-            NSData *dataImage = UIImageJPEGRepresentation([[MySharetools shared]formatUploadImage:image], 0.7);
+
+            UIImage *_img = [[MySharetools shared]formatUploadImage:image];
+            NSData *dataImage = UIImageJPEGRepresentation(_img, 0.6);
 //            NSMutableArray *dataArray = [[NSMutableArray alloc]init];
 //            [dataArray addObject:dataImage];
-            
-            //............test data
-//            NSData *testData= UIImageJPEGRepresentation([UIImage imageNamed:@"item_01"], 1);
-            NSData *testData= UIImagePNGRepresentation([UIImage imageNamed:@"item_01"]);
-            [self postData:testData];
+            [self postData:dataImage];
         }
     }];
 }
 
 -(void)postData:(NSData *)dataImage{
-    
     //获取json参数字符串
     NSString * token = [[MySharetools shared]getsessionid];
     NSString *dataStr = [Base64 stringByEncodingData:dataImage];
-    NSMutableString *_str = [[NSMutableString alloc]initWithString:dataStr];
-    [_str replaceOccurrencesOfString:@"+" withString:@"%2b" options:NSLiteralSearch range:NSMakeRange(0, _str.length)];
+//    NSMutableString *_str = [[NSMutableString alloc]initWithString:dataStr];
+//    [_str replaceOccurrencesOfString:@"+" withString:@"%2b" options:NSLiteralSearch range:NSMakeRange(0, _str.length)];
     
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:[[MySharetools shared] getPhoneNumber],@"username",@"test.png",@"pic",_str,@"data",nil];
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSString *imgname = [NSString stringWithFormat:@"%@.jpg",tel];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",imgname,@"pic",dataStr,@"data",nil];
     NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
     
     //post请求参数：jsondata + token
@@ -508,9 +513,9 @@
             if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
               [SVProgressHUD showSuccessWithStatus:@"上传完成"];
               //...设置当前头像的图片
-                
-                
-                
+                UIImage *_ig = [[UIImage alloc]initWithData:dataImage];
+                UIButton *usericon = (UIButton *)[self.view viewWithTag:107];
+                [usericon setBackgroundImage:_ig forState:UIControlStateNormal];
             }
             else
             {
@@ -520,7 +525,7 @@
 
         NSLog(@"...responseObject  :%@",responseObject);
     } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+        [SVProgressHUD showInfoWithStatus:@"设置头像失败,请稍后重试"];
     }];
 
     [HttpRequestManager doPostOperationWithTask:_task];

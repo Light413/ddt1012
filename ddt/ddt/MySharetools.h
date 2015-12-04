@@ -29,6 +29,7 @@
 - (UIImage*) formatUploadImage:(UIImage*)photoimage;
 - (BOOL)isMobileNumber:(NSString *)mobileNum;//手机号正则表达式
 
+-(NSString*)getUserAvatarName;//获取用户头像名字
 /**
  *  传入请求基本参数
  *  适用于登录和注册操作之外的任何网络请求

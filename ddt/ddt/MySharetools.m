@@ -55,6 +55,12 @@ static MySharetools *instance = nil;
     return dict;
 }
 #pragma mark -- 获取昵称与username不同，即昵称
+-(NSString *)getUserAvatarName
+{
+    NSString *tmp = [[NSUserDefaults standardUserDefaults]objectForKey:@"userAvatar"];
+    return tmp;
+}
+
 -(NSString *)getNickName{
     NSString *nickName = [[NSUserDefaults standardUserDefaults]objectForKey:@"nickName"];
     return nickName;
@@ -221,6 +227,8 @@ static MySharetools *instance = nil;
     UIGraphicsEndImageContext();
     return imageCopy;
 }
+
+
 - (BOOL)isMobileNumber:(NSString *)mobileNum{
     NSString * MOBILE = @"^((13[0-9])|(15[^4,\\D])|(18[0-9])|(14[5|7])|(17[[^1-4],\\D]))\\d{8}$";
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];

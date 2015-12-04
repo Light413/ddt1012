@@ -147,6 +147,11 @@
                 if (nickName) {
                     [[NSUserDefaults standardUserDefaults]setObject:nickName forKey:@"nickName"];
                 }
+                NSString *usericon = [dict objectForKey:@"pic"];
+                if (usericon && usericon.length > 10) {
+                    [[NSUserDefaults standardUserDefaults]setObject:usericon forKey:@"userAvatar"];
+                }
+                
                 [[NSUserDefaults standardUserDefaults]synchronize];
             }
             if (remeberPasswordandPhone.checked) {

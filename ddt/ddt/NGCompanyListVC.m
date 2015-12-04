@@ -164,18 +164,28 @@
 {
     if (_pageNum == NSNotFound) {
         NSLog(@"...page error ");
+         _pageNum ==1?({[_tableView.header endRefreshing];}):([_tableView.footer endRefreshing]);
         return;
     }
     
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedTime,@"time",@"10",@"psize",@(_pageNum),@"pnum",nil];;
-
+    NSLog(@".............%ld",_pageNum);
+    
     NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
     RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_jiedan", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        _pageNum ==1?({[_tableView.header endRefreshing];[_common_list_dataSource removeAllObjects];
-         [_tableView reloadData];}):([_tableView.footer endRefreshing]);
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
+                if (_pageNum == 1) {
+                   [_tableView.header endRefreshing];
+                    [_common_list_dataSource removeAllObjects];
+                     [_tableView reloadData];
+                }
+                else
+                {
+                    [_tableView.footer endRefreshing];
+                }
+                
                 NSArray *dataarr = [responseObject objectForKey:@"data"];
                 if (dataarr && dataarr.count < 10) {
                     //...没有数据了，不能在刷新加载了
@@ -184,6 +194,10 @@
                     
                     [_common_list_dataSource addObjectsFromArray:dataarr];
                     [_tableView reloadData];
+                }
+                else
+                {
+                    _pageNum++;
                 }
             }
             else
@@ -334,8 +348,9 @@ const float cellDefaultHeight = 60.0;
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_pageNum != NSNotFound && indexPath.row == _common_list_dataSource.count - 1) {
-        _pageNum++;
-        [_tableView.footer beginRefreshing];
+//        _pageNum++;
+//        [_tableView.footer beginRefreshing];
+//        [self loadMoreData];
     }
 }
 
