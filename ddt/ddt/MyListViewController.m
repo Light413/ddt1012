@@ -51,7 +51,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     [self createLeftBarItemWithBackTitle];
     NSArray *segmentArr = @[@"接过的单子",@"甩过的单子"];
     mysegment = [[UISegmentedControl alloc]initWithItems:segmentArr];
-    mysegment.frame = CGRectMake(30, 10, CurrentScreenWidth-60, 30);
+    mysegment.frame = CGRectMake(30, 15, CurrentScreenWidth-60, 30);
     [mysegment addTarget:self action:@selector(segmentClick:) forControlEvents:UIControlEventValueChanged];
     mysegment.tintColor= RGBA(76.0, 132.0, 120.0, 1.0);
     mysegment.enabled = YES;

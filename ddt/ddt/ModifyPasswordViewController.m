@@ -36,11 +36,12 @@
     nameLabel.textColor = [UIColor darkGrayColor];
     [phoneView addSubview:nameLabel];
     phoneNumberField = [[UITextField alloc]initWithFrame:CGRectMake(nameLabel.right, 6, phoneView.width-nameLabel.width-3, 30)];
-    phoneNumberField.keyboardType = UIKeyboardTypeNumberPad;
+//    phoneNumberField.keyboardType = UIKeyboardTypePhonePad;
     phoneNumberField.placeholder = @"输入6-12位数字和字母组合";
     phoneNumberField.tag = 201;
     phoneNumberField.font = [UIFont systemFontOfSize:14];
     phoneNumberField.delegate = self;
+    phoneNumberField.returnKeyType = UIReturnKeyDone;
     [phoneView addSubview:phoneNumberField];
     
     UIImageView *midLine = [[UIImageView alloc]initWithFrame:CGRectMake(0, 40, phoneView.width, 0.5)];
@@ -52,11 +53,13 @@
     nameLabel1.textColor = [UIColor darkGrayColor];
     [phoneView addSubview:nameLabel1];
     phoneNumberField1 = [[UITextField alloc]initWithFrame:CGRectMake(nameLabel.right, 47, phoneView.width-nameLabel.width-3, 30)];
-    phoneNumberField1.keyboardType = UIKeyboardTypeNumberPad;
+//    phoneNumberField1.keyboardType = UIKeyboardTypeNumberPad;
     phoneNumberField1.tag = 201;
     phoneNumberField1.placeholder = @"再次输入新密码";
     phoneNumberField1.font = [UIFont systemFontOfSize:14];
     phoneNumberField1.delegate = self;
+    phoneNumberField1.secureTextEntry = YES;
+    phoneNumberField1.returnKeyType = UIReturnKeyDone;
     [phoneView addSubview:phoneNumberField1];
     
     UIButton *findpassBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -75,7 +78,21 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(BOOL)isRight:(NSString*)pwd
+{
+    NSString * regex = @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [pred evaluateWithObject:pwd];
+}
+
 -(void)findOK:(UIButton *)btn{
+    
+    if (![self isRight:phoneNumberField.text]) {
+        [SVProgressHUD showInfoWithStatus:@"请输入含有字母和数字的(6-12)位密码"];return;
+    }
+    if (![phoneNumberField.text isEqualToString:phoneNumberField1.text]) {
+        [SVProgressHUD showInfoWithStatus:@"两次输入的密码不一致"];return;
+    }
     //
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", [phoneNumberField.text stringFromMD5],@"pwd",nil];
@@ -98,8 +115,6 @@
         [SVProgressHUD showInfoWithStatus:@"请求服务器失败,请稍后重试"];
     }];
     [HttpRequestManager doPostOperationWithTask:_h];
-    
-    [SVProgressHUD showInfoWithStatus:@"暂无接口"];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -107,6 +122,12 @@
     if ([textField isFirstResponder]) {
         [textField resignFirstResponder];
     }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {
