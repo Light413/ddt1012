@@ -2,7 +2,7 @@
 //  MenuOfMyCenterModel.m
 //  ddt
 //
-//  Created by Jia on 15/11/22.
+//  Created by allen on 15/11/22.
 //  Copyright © 2015年 Light. All rights reserved.
 //
 
