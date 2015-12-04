@@ -119,7 +119,7 @@
 #pragma mark --btn action
 
 - (IBAction)qinagDanAction:(id)sender {
-    NSString *uid = [self.danZiInfoDic objectForKey:@"uid"];
+    NSString *uid = [self.danZiInfoDic objectForKey:@"id"];
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",_s11,@"fee",uid,@"id", nil];
     NSDictionary *_d1 = [MySharetools getParmsForPostWith:dic];
@@ -149,7 +149,7 @@
 
 //收藏
 - (IBAction)love_btn_action:(UIButton *)sender {
-    NSString *uid = [self.danZiInfoDic objectForKey:@"uid"];
+    NSString *uid = [self.danZiInfoDic objectForKey:@"id"];
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",@"3",@"type",uid,@"id", nil];
     NSDictionary *_d1 = [MySharetools getParmsForPostWith:dic];
@@ -160,6 +160,11 @@
     RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:_url parms:_d1 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         sender.selected = !sender.selected;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 0.5), dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"hasDanziCollectionNoti" object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+        
     } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showInfoWithStatus:[error localizedDescription]];
     }];

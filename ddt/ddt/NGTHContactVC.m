@@ -75,6 +75,11 @@ static NSString * thcontactCellReuseId = @"thcontactCellReuseId";
 #pragma mark --加载数据
 -(void)loadMoreData
 {
+    if (_pageNum == NSNotFound) {
+        NSLog(@"...page error ");
+        return;
+    }
+    
     NSString *tel = [[MySharetools shared]getPhoneNumber];
   NSDictionary*  _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"",@"quyu",@"",@"yewu",@"10",@"psize",@(1),@"pnum",@"",@"word",nil];
     NSDictionary *_d = [MySharetools getParmsForPostWith:_common_list_request_parm];

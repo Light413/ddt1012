@@ -364,6 +364,11 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 #pragma mark --加载数据
 -(void)loadMoreData
 {
+    if (_pageNum == NSNotFound) {
+        NSLog(@"...page error ");
+        return;
+    }
+    
     [self initParams];
     NSDictionary *_d = [MySharetools getParmsForPostWith:_common_list_request_parm];
     

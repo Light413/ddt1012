@@ -47,6 +47,12 @@
     [super viewDidLoad];
     [self initData];
     [self initSubviews];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(hasRecNoti) name:@"hasDanziCollectionNoti" object:nil];
+}
+
+-(void)hasRecNoti
+{
+    _isfirstAppear = YES;
 }
 
 -(void)awakeFromNib
@@ -156,6 +162,11 @@
 #pragma mark --加载数据
 -(void)loadMoreData
 {
+    if (_pageNum == NSNotFound) {
+        NSLog(@"...page error ");
+        return;
+    }
+    
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedTime,@"time",@"10",@"psize",@(_pageNum),@"pnum",nil];;
 
@@ -182,8 +193,8 @@
             }
         }
     } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
         _pageNum ==1?({[_tableView.header endRefreshing];}):([_tableView.footer endRefreshing]);
+        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
     }];
     
     [HttpRequestManager doPostOperationWithTask:task];
