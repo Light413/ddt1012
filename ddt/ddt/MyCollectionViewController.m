@@ -37,6 +37,8 @@
     NSInteger   _tableview1_current_pageNum;
     NSInteger   _tableview2_current_pageNum;
     
+    NSString * _common_url;
+    
     MJRefreshState _tableview1_footerStatus;
     MJRefreshState _tableview2_footerStatus;
     
@@ -111,17 +113,30 @@
     _tableview2_current_pageNum = 1;
 }
 
--(void)loadData:(NSInteger)start{
-    if (_common_current_pageNum > 100) {
-        return;
+-(NSDictionary*)getParmsForRequest:(NSInteger)start
+{
+    NSDictionary *dic ;
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    if (self.vcType ==2) {
+        dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", @"",@"quyu",@"",@"yewu",searchBar.text.length > 0?searchBar.text:@"",@"word",@"",@"time",@"10",@"psize",@(start),@"pnum",nil];
+
+    }
+    else
+    {
+       dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",start],@"pnum",@"10",@"psize",tel,@"username",searchBar.text.length > 0?searchBar.text:@"",@"word",nil];
     }
     
-    NSString *tel = [[MySharetools shared]getPhoneNumber];
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",start],@"pnum",@"10",@"psize",tel,@"username",searchBar.text.length > 0?searchBar.text:@"",@"word",nil];
-    NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];;
+    return [MySharetools getParmsForPostWith:dic];
+}
+
+
+-(void)loadData:(NSInteger)start{
+    if (_common_current_pageNum > 100) { return;}
+    
+    NSDictionary *paramDict = [self getParmsForRequest:start];
     NSInteger index = mysegment.selectedSegmentIndex;
     if (index == 0) {
-        RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_getbookbill", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:self.vcType ==2?NSLocalizedString(@"url_jiedan", @""): NSLocalizedString(@"url_getbookbill", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
                 if ([[responseObject objectForKey:@"result"] integerValue] ==0) {
                     if (start == 1) {
@@ -167,7 +182,7 @@
         }];
         [HttpRequestManager doPostOperationWithTask:task];
     }else if (index == 1){
-        RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_getbookth", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:self.vcType ==2?NSLocalizedString(@"url_tongh_list", @""): NSLocalizedString(@"url_getbookth", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
                 if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
                     if (start == 1) {

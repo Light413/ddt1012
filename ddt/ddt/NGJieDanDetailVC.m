@@ -8,6 +8,10 @@
 
 #import "NGJieDanDetailVC.h"
 #import <CoreText/CoreText.h>
+
+#define btnEnableColor  [UIColor colorWithRed:0.976 green:0.643 blue:0.180 alpha:1]
+#define btnDisableColor  [UIColor colorWithRed:0.757 green:0.757 blue:0.757 alpha:1]
+
 @interface NGJieDanDetailVC ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 @property (weak, nonatomic) IBOutlet UILabel *ageLab;
@@ -63,7 +67,23 @@
     _s11 = [self.danZiInfoDic objectForKey:@"jifen"]?[self.danZiInfoDic objectForKey:@"jifen"]:@"0";
     _s12 = [self.danZiInfoDic objectForKey:@"fromxm"]?[self.danZiInfoDic objectForKey:@"fromxm"]:@"0";//联系人
     _s13 = [self.danZiInfoDic objectForKey:@"fmobile"]?[self.danZiInfoDic objectForKey:@"fmobile"]:@"---";//电话
+    
     self.btn_love.selected = [[self.danZiInfoDic objectForKey:@"isbook"] boolValue];
+    
+    //是否被锁定
+    BOOL _b = [[self.danZiInfoDic objectForKey:@"zt"] boolValue];
+    if (_b) {
+        self.btn_qiangDan.backgroundColor = btnDisableColor;
+        [self.btn_qiangDan setTitle:@"您来晚了,已被他人锁定"];
+        [self.btn_qiangDan setUserInteractionEnabled:NO];
+    }
+    else
+    {
+        self.btn_qiangDan.backgroundColor = btnEnableColor;
+        [self.btn_qiangDan setTitle:@"立即锁定"];
+    }
+    //收藏按钮是否隐藏
+    self.btn_love.hidden = self.isLove;
 }
 
 -(void)initSubviews
@@ -107,7 +127,6 @@
     self.contactPersonLab.text = [NSString stringWithFormat:@"联系人: %@",_s12];
     [self.btn_tel setNormalTitle:_s13 andID:@""];//tel
     
-    self.btn_love.hidden = self.isLove;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -210,15 +229,5 @@ static const float _h =80;
 }
 
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
