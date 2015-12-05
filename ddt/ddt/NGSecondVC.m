@@ -533,6 +533,8 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 #pragma mark --UItableView delegate
 
 float _h =0;
+#define cellNoLockBgColor   [UIColor colorWithRed:1.000 green:0.961 blue:0.918 alpha:1]
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _common_list_dataSource.count;
@@ -596,6 +598,8 @@ float _h =0;
             cell1.nameLab.frame = rec;
             _h = _new.height + 20;
             
+            BOOL _b = [[_dic0 objectForKey:@"zt"] boolValue];
+            cell.backgroundColor = _b ? [UIColor clearColor]:cellNoLockBgColor;
             [(NGJieDanListCell *)cell setCellWith:_dic0];
 
         }break;

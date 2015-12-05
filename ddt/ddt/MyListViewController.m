@@ -58,7 +58,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     mysegment.selectedSegmentIndex = 0;
     [self.view addSubview:mysegment];
     
-    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, mysegment.bottom+5, CurrentScreenWidth, CurrentScreenHeight-mysegment.bottom-10-64) style:UITableViewStylePlain];
+    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, mysegment.bottom+5, CurrentScreenWidth, CurrentScreenHeight-mysegment.bottom-5-64) style:UITableViewStylePlain];
     myTableView.delegate = self;
     myTableView.dataSource = self;
     myTableView.tableFooterView = [[UIView alloc]init];
@@ -260,12 +260,6 @@ float _h;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    menuDetailViewController *menu =[[MySharetools shared]getViewControllerWithIdentifier:@"menuDetail" andstoryboardName:@"me"];
-//    MenuOfMyCenterModel *model = _dataArr[indexPath.row];
-//    menu.menuModel = model;
-//    menu.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:menu animated:YES];
-    
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"homeSB" bundle:nil];
     NGJieDanDetailVC* vc=  [sb instantiateViewControllerWithIdentifier:@"NGJieDanDetailVCID"];
     vc.danZiInfoDic = [_common_dataArr objectAtIndex:indexPath.row];
@@ -279,6 +273,29 @@ float _h;
     if (_common_current_pageNum != NSNotFound && indexPath.row == _common_dataArr.count - 1) {
         _common_current_pageNum++;
         [myTableView.footer beginRefreshing];
+    }
+}
+
+//cell delete
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger index = mysegment.selectedSegmentIndex;
+
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [_common_dataArr removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        [self getDataFromCommon:index];
+        
     }
 }
 

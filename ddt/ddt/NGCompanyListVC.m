@@ -13,6 +13,8 @@
 #import "NGJieDanDetailVC.h"
 #import "NGJieDanListCell.h"
 
+#define cellNoLockBgColor   [UIColor colorWithRed:1.000 green:0.961 blue:0.918 alpha:1]
+
 @interface NGCompanyListVC ()<NGSearchBarDelegate,NGPopListDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     //pop view相关
@@ -314,6 +316,14 @@ float _h;
     NGJieDanListCell * cell;
     NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:indexPath.row];
     cell = [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
+    BOOL _b = [[_dic0 objectForKey:@"zt"] boolValue];
+    if (_b) {
+        cell.backgroundColor = [UIColor clearColor];
+    }
+    else
+    {
+        cell.backgroundColor = cellNoLockBgColor;
+    }
     
     NSString * str = [_dic0 objectForKey:@"bz"];
     CGSize _new =  [ToolsClass calculateSizeForText:str :cellMaxFitSize font:cellFitfont];

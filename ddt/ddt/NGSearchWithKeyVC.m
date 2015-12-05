@@ -51,10 +51,6 @@
     searchbar.showsCancelButton = YES;
     searchbar.placeholder = @"请输入搜索关键字";
     searchbar.tintColor = [UIColor blackColor];
-
-//    UIView *_v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 300, 30)];
-//    _v.backgroundColor = [UIColor redColor];
-    
     self.navigationItem.titleView = searchbar;
 }
 
@@ -65,6 +61,7 @@
 //    [self performSegueWithIdentifier:@"showUserSearchDetailId" sender:nil];
     MyCollectionViewController *collection = [[MyCollectionViewController alloc]init];
     collection.vcType = 2;
+    collection.searchKeyWord = [_btnTitleArr objectAtIndex:sender.tag - btnTagBase];
     collection.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:collection animated:YES];
     
@@ -85,9 +82,9 @@
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
-//    [self performSegueWithIdentifier:@"showUserSearchDetailId" sender:nil];
     MyCollectionViewController *collection = [[MyCollectionViewController alloc]init];
     collection.vcType = 2;
+    collection.searchKeyWord = searchBar.text;
     collection.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:collection animated:YES];
 }

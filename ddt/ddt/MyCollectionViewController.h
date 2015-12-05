@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger,VcTypeValue)
 
 @property(nonatomic,assign)VcTypeValue vcType;
 
-
+@property(nonatomic,copy)NSString *searchKeyWord;//搜索关键字，来自搜索页面的参数
 
 
 

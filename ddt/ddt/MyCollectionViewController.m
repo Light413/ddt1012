@@ -42,7 +42,9 @@
     MJRefreshState _tableview1_footerStatus;
     MJRefreshState _tableview2_footerStatus;
     
-    NGSearchBar *searchBar;
+    NGSearchBar *_searchBar;
+    NSString *_search_key_word1;//搜索关键字
+    NSString *_search_key_word2;//搜索关键字
     
     int psize;//每页大小
     BOOL _isLoved;//是否收藏
@@ -77,11 +79,14 @@
     mysegment.selectedSegmentIndex = 0;
     [self.view addSubview:mysegment];
     
-    searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(10, mysegment.bottom+10, CurrentScreenWidth -20 , 30)];
-    searchBar.delegate  =self;
-    searchBar.placeholder = @"搜索";
-    [self.view addSubview:searchBar];
-    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, searchBar.bottom+2, CurrentScreenWidth, CurrentScreenHeight-searchBar.bottom-10-64) style:UITableViewStylePlain];
+    _searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(10, mysegment.bottom+10, CurrentScreenWidth -20 , 30)];
+    _searchBar.delegate  =self;
+    _searchBar.placeholder = @"请输入搜索关键字";
+    if (self.searchKeyWord) {
+        _searchBar.text = self.searchKeyWord;
+    }
+    [self.view addSubview:_searchBar];
+    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, _searchBar.bottom+2, CurrentScreenWidth, CurrentScreenHeight-_searchBar.bottom-2-64) style:UITableViewStylePlain];
     myTableView.delegate = self;
     myTableView.dataSource = self;
     myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -111,6 +116,16 @@
     _common_current_pageNum = 1;
     _tableview1_current_pageNum = 1;
     _tableview2_current_pageNum = 1;
+    
+    if (self.searchKeyWord) {
+        _search_key_word1 = self.searchKeyWord;
+        _search_key_word2 = self.searchKeyWord;
+    }
+    else
+    {
+        _search_key_word1 = @"";
+        _search_key_word2 = @"";
+    }
 }
 
 -(NSDictionary*)getParmsForRequest:(NSInteger)start
@@ -118,12 +133,12 @@
     NSDictionary *dic ;
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     if (self.vcType ==2) {
-        dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", @"",@"quyu",@"",@"yewu",searchBar.text.length > 0?searchBar.text:@"",@"word",@"",@"time",@"10",@"psize",@(start),@"pnum",nil];
+        dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", @"",@"quyu",@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",@"",@"time",@"10",@"psize",@(start),@"pnum",nil];
 
     }
     else
     {
-       dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",start],@"pnum",@"10",@"psize",tel,@"username",searchBar.text.length > 0?searchBar.text:@"",@"word",nil];
+       dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",start],@"pnum",@"10",@"psize",tel,@"username",_searchBar.text.length > 0?_searchBar.text:@"",@"word",nil];
     }
     
     return [MySharetools getParmsForPostWith:dic];
@@ -305,7 +320,7 @@ float _h;
         case 0:{
             NGJieDanDetailVC* vc= [[MySharetools shared]getViewControllerWithIdentifier:@"NGJieDanDetailVCID" andstoryboardName:@"homeSB"];
             vc.danZiInfoDic = [_tableview1_dataArr objectAtIndex:indexPath.row];
-            vc.isLove = YES;
+            vc.isLove = NO;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
@@ -323,6 +338,67 @@ float _h;
     }
 }
 
+//cell delete
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.vcType ==2) {
+        return NO;
+    }
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger index = mysegment.selectedSegmentIndex;
+    NSString *_uid = nil;
+    NSInteger _type = 0;
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if (index ==0) {
+            NSDictionary *_dic = [_tableview1_dataArr objectAtIndex:indexPath.row];
+            _uid = [_dic objectForKey:@"id"];
+            _type = 3;
+        }
+        else
+        {
+            NSDictionary *_dic = [_tonghangArr objectAtIndex:indexPath.row];
+            _uid = [_dic objectForKey:@"uid"];
+            _type = 1;
+        }
+        
+        //请求网络
+        NSString *tel = [[MySharetools shared]getPhoneNumber];
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",@(_type),@"type",_uid,@"id", nil];
+        NSDictionary *_d1 = [MySharetools getParmsForPostWith:dic];
+        
+        [SVProgressHUD showWithStatus:@"取消收藏"];
+        NSString *_url =NSLocalizedString(@"url_my_nolove", @"");
+        RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:_url parms:_d1 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [SVProgressHUD dismiss];
+            if (index ==0) {
+                [_tableview1_dataArr removeObjectAtIndex:indexPath.row];
+            }
+            else
+            {
+                [_tableview2_dataModel_Arr removeObjectAtIndex:indexPath.row];
+                [_tonghangArr removeObjectAtIndex:indexPath.row];
+            }
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD showInfoWithStatus:[error localizedDescription]];
+        }];
+        [HttpRequestManager doPostOperationWithTask:_task];
+    }
+}
+
+
+
+//...no use
 - (void)addheader:(UITableView *)freshTableView{
     freshTableView.header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadHeaderData)];
     [freshTableView.header beginRefreshing];
@@ -337,13 +413,13 @@ float _h;
     
 }
 
-//UISegmentedControl 操作相关
+#pragma mark -- UISegmentedControl 操作相关
 -(void)setDataToCommon : (NSInteger)index
 {
     _common_current_pageNum = 1;
     if (index ==0) {
         _common_current_pageNum = _tableview1_current_pageNum;
-        
+        _searchBar.text = _search_key_word1;
         if (_tableview1_footerStatus == MJRefreshStateIdle) {
             [myTableView.footer resetNoMoreData];
         }
@@ -355,6 +431,7 @@ float _h;
     else
     {
         _common_current_pageNum = _tableview2_current_pageNum;
+        _searchBar.text = _search_key_word2;
         if (_tableview2_footerStatus == MJRefreshStateIdle) {
             [myTableView.footer resetNoMoreData];
         }
@@ -409,10 +486,19 @@ float _h;
 -(void)searchBarDidBeginSearch:(NGSearchBar *)searchBar withStr:(NSString *)str
 {
     NSLog(@"did : %@",searchBar.text);
-//    _common_current_pageNum = 1;
-//    [_tableview1_dataArr removeAllObjects];
-//    [self loadData:_common_current_pageNum];
+    NSInteger index = mysegment.selectedSegmentIndex;
+    if (index ==0) {
+        _search_key_word1 = searchBar.text;
+    }
+    else
+    {
+        _search_key_word2 = searchBar.text;
+    }
+    [myTableView.header beginRefreshing];
 }
+
+
+//...other
 -(void)goback:(UIButton *)btn{
     [self.navigationController popViewControllerAnimated:YES];
 }

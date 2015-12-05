@@ -76,14 +76,15 @@
         self.btn_qiangDan.backgroundColor = btnDisableColor;
         [self.btn_qiangDan setTitle:@"您来晚了,已被他人锁定"];
         [self.btn_qiangDan setUserInteractionEnabled:NO];
+        //收藏按钮是否隐藏
+        self.btn_love.hidden = YES;
     }
     else
     {
         self.btn_qiangDan.backgroundColor = btnEnableColor;
         [self.btn_qiangDan setTitle:@"立即锁定"];
     }
-    //收藏按钮是否隐藏
-    self.btn_love.hidden = self.isLove;
+
 }
 
 -(void)initSubviews
