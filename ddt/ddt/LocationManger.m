@@ -96,10 +96,17 @@
 //        _b =YES;
 //
 //    }
-
+    //保存经纬度信息
+    CLLocation * _loc = [locations lastObject];
+    double log = _loc.coordinate.longitude;
+    double lat = _loc.coordinate.latitude;
+    [[NSUserDefaults standardUserDefaults]setObject:@(lat) forKey:CURRENT_LOCATION_LAT];
+    [[NSUserDefaults standardUserDefaults]setObject:@(log) forKey:CURRENT_LOCATION_LOG];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    
    __block NSString *cityname;
     CLGeocoder *geo = [[CLGeocoder alloc]init];
-    [geo reverseGeocodeLocation:[locations lastObject] completionHandler:^(NSArray *placemarks, NSError *error) {
+    [geo reverseGeocodeLocation:_loc completionHandler:^(NSArray *placemarks, NSError *error) {
         for (CLPlacemark *place in placemarks) {
 //            NSLog(@"name,%@",place.name);                       // 位置名
 //            NSLog(@"thoroughfare,%@",place.thoroughfare);       // 街道

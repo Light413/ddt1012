@@ -368,6 +368,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         NSLog(@"...page error ");
         return;
     }
+    NSLog(@"##############: %ld",_pageNum);
     
     [self initParams];
     NSDictionary *_d = [MySharetools getParmsForPostWith:_common_list_request_parm];

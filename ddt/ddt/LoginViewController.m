@@ -135,7 +135,7 @@
         
         if ([[responseObject objectForKey:@"result"]integerValue] == 0) {
             [SVProgressHUD showSuccessWithStatus:@"登录成功"];
-            
+            [[NSUserDefaults standardUserDefaults]removeObjectForKey:QIAN_DAO_JIFEN_KEY];
             NSDictionary *dict = [responseObject objectForKey:@"data"];
             if ([dict isKindOfClass:[NSDictionary class]]&&dict) {
                 [[NSUserDefaults standardUserDefaults]setObject:dict forKey:@"loginSuccessInfo"];

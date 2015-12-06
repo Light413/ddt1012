@@ -40,6 +40,20 @@
     else if (index == 1)
     {
         self.btn_fujin.hidden = NO;
+        NSString * _title = @"无位置";
+        NSString *_dis = [dic objectForKey:@"distance"]?[dic objectForKey:@"distance"]:@"";
+        NSString *mylog = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_LOCATION_LOG];
+        NSString *mylat = [[NSUserDefaults standardUserDefaults]objectForKey:CURRENT_LOCATION_LAT];
+        if (![_dis isEqualToString:@""] && mylog &&mylat) {
+            NSArray *_arr  =[_dis componentsSeparatedByString:@","];
+            CLLocation *_location1= [[CLLocation alloc]initWithLatitude:[mylat doubleValue] longitude:[mylog doubleValue]];
+            CLLocation *_location2= [[CLLocation alloc]initWithLatitude:[_arr[1] doubleValue] longitude:[_arr[0] doubleValue]];
+            
+            double _s = [_location1 distanceFromLocation:_location2] / 1000;
+             _title = [NSString stringWithFormat:@"%.1fkm",_s];
+        }
+
+        [self.btn_fujin setTitle:_title];
     }
     
     UIButton * love = (UIButton *)[self viewWithTag:301];

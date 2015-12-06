@@ -78,7 +78,6 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
         //...上传位置信息<+31.19302052,+121.68571511>
         NSString *tel = [[MySharetools shared]getPhoneNumber];
         NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", tel,@"mobile",@"121.68571511,31.19302052",@"distance",nil];
-        
         NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
         
         RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_upLocation", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -272,8 +271,12 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
                 if (![[responseObject objectForKey:@"result"]boolValue]) {
                     [SVProgressHUD showSuccessWithStatus:@"签到成功,积分+5"];
-                    //...发送通知签到成功
-                    [[NSNotificationCenter defaultCenter]postNotificationName:QIAN_DAO_SUCCESS_NOTI object:@"5"];
+                    //签到成功,获取保存上次登录后积累的签到积分
+                    NSInteger oldaddjifen =[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY]? [[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY] integerValue] :0;
+                    
+                    [[NSUserDefaults standardUserDefaults]setObject:@(5 + oldaddjifen) forKey:QIAN_DAO_JIFEN_KEY];
+                    [[NSUserDefaults standardUserDefaults]synchronize];
+//                    [[NSNotificationCenter defaultCenter]postNotificationName:QIAN_DAO_SUCCESS_NOTI object:@"5"];
                 }
                 else if ([[responseObject objectForKey:@"result"]integerValue]==1)
                 {

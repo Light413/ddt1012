@@ -91,17 +91,14 @@
     UIImageView *line = (UIImageView *)[self.view viewWithTag:106];
     line.frame = CGRectMake(modifyBtn.left, modifyBtn.bottom, modifyBtn.frame.size.width, 1);
     
+    //积分
     UILabel *jifenLabel = (UILabel *)[self.view viewWithTag:102];
     NSString *jifen = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"fee"]];
-    if (![jifen isEqual:@"(null)"]) {
-        if (jifen.length>0) {
-            jifenLabel.text = jifen;
-        }else{
-            jifenLabel.text = @"0";
-        }
-    }else{
-        jifenLabel.text = @"0";
-    }
+    NSInteger oldjifen = jifen?[jifen integerValue]:0;
+    NSInteger addjifen =[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY]? [[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY] integerValue] :0;
+     jifenLabel.text = [NSString stringWithFormat:@"%ld",oldjifen + addjifen];
+    
+    //浏览人次
     UILabel *browseLabel = (UILabel *)[self.view viewWithTag:103];
     NSString *see = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"see"]];
     if (![see isEqual:@"(null)"]) {
@@ -147,17 +144,6 @@
                  @{KimageName: @"uc_system.png",
                    KlabelName:@"系统中心"},
                  ];
-
-    // Do any additional setup after loading the view from its nib.
-    
-//    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:login];
-//    [self presentViewController:nav animated:YES completion:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(qiandaoAction) name:QIAN_DAO_SUCCESS_NOTI object:nil];
-}
-
--(void)qiandaoAction
-{
-    NSLog(@"...qiandaole");
 }
 
 -(void)creatTableView{
