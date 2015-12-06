@@ -31,20 +31,30 @@
     nameLabel.text = @"手 机:";
     nameLabel.textColor = [UIColor blackColor];
     [phoneView addSubview:nameLabel];
-    UITextField *phoneNumberField = [[UITextField alloc]initWithFrame:CGRectMake(nameLabel.right, 5, phoneView.width-nameLabel.width-3, 30)];
+    UITextField *phoneNumberField = [[UITextField alloc]initWithFrame:CGRectMake(nameLabel.right, 5, phoneView.width-nameLabel.width-15, 30)];
     phoneNumberField.keyboardType = UIKeyboardTypeNumberPad;
     phoneNumberField.tag = 201;
+    phoneNumberField.clearsOnBeginEditing = YES;
+    phoneNumberField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    phoneNumberField.placeholder = @"请输入注册时手机号码";
+    phoneNumberField.font = [UIFont systemFontOfSize:13];
     phoneNumberField.delegate = self;
     [phoneView addSubview:phoneNumberField];
     
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20, phoneView.bottom+5, CurrentScreenWidth-30, 30)];
-    label.text = @"密码会发送到注册时设置的邮箱中";
-    label.font = [UIFont systemFontOfSize:14];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20, phoneView.bottom+3, CurrentScreenWidth-30, 30)];
+    label.text = @"密码会发送到注册时的手机号码";
+    label.font = [UIFont systemFontOfSize:13];
+    label.textColor = [UIColor darkGrayColor];
+    
     UIButton *findpassBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     findpassBtn.backgroundColor = RGBA(229, 165, 45, 1);
     findpassBtn.frame = CGRectMake(10, label.bottom+10, CurrentScreenWidth-20, 30);
     [findpassBtn setTitle:@"找回密码" forState:UIControlStateNormal];
     [findpassBtn addTarget:self action:@selector(findOK:) forControlEvents:UIControlEventTouchUpInside];
+    findpassBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    findpassBtn.layer.cornerRadius = 5;
+    findpassBtn.layer.masksToBounds = YES;
+    
     [self.view addSubview:phoneView];
     [self.view addSubview:label];
     [self.view addSubview:findpassBtn];
@@ -55,7 +65,7 @@
 -(void)findOK:(UIButton *)btn{
     UITextField *phoneNumberField = (UITextField *)[self.view viewWithTag:201];
     if (![[MySharetools shared]isMobileNumber:phoneNumberField.text]) {
-        [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
+        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号"];
         return;
     }
     NSString *nickName = [[MySharetools shared]getNickName];

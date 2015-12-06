@@ -14,6 +14,7 @@ CFBundleDisplayName="贷易通";
 "url_register"      = "/mydyt/web_service.php?doc=regsin";//注册
 "url_login"         = "/mydyt/web_service.php?doc=login";//登录
 "url_findpwd"       = "/mydyt/web_service.php?doc=findpwd";//找回密码
+"url_getcheckcode"  = "/mydyt/web_service.php?doc=getcheckcode";//发送验证码
 "url_serverPro"     = "http://www.123dyt.com/mydyt/services.html";//同意用户服务协议
 
 //首页相关

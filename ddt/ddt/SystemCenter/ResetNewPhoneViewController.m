@@ -8,7 +8,7 @@
 
 #import "ResetNewPhoneViewController.h"
 
-@interface ResetNewPhoneViewController ()
+@interface ResetNewPhoneViewController ()<UITextFieldDelegate>
 {
     NSTimer *_timer;
     int count ;
@@ -42,6 +42,7 @@
     phoneNumberField.tag = 201;
     phoneNumberField.font = [UIFont systemFontOfSize:14];
     phoneNumberField.delegate = self;
+    phoneNumberField.returnKeyType = UIReturnKeyDone;
     [phoneView addSubview:phoneNumberField];
     
     UIImageView *midLine = [[UIImageView alloc]initWithFrame:CGRectMake(0, 40, phoneView.width, 0.5)];
@@ -58,6 +59,7 @@
     phoneNumberField1.placeholder = @"请输入6位验证码";
     phoneNumberField1.font = [UIFont systemFontOfSize:14];
     phoneNumberField1.delegate = self;
+    phoneNumberField1.returnKeyType = UIReturnKeyDone;
     [phoneView addSubview:phoneNumberField1];
     UIButton *verifyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     verifyBtn.frame = CGRectMake(phoneView.width-110, 45, 100, 30);
@@ -73,11 +75,17 @@
     findpassBtn.frame = CGRectMake(10, phoneView.bottom+10, CurrentScreenWidth-20, 30);
     [findpassBtn setTitle:@"提交" forState:UIControlStateNormal];
     [findpassBtn addTarget:self action:@selector(findOK:) forControlEvents:UIControlEventTouchUpInside];
+    findpassBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    findpassBtn.layer.cornerRadius = 5;
+    findpassBtn.layer.masksToBounds = YES;
+    verifyBtn.layer.cornerRadius = 5;
+    verifyBtn.layer.masksToBounds = YES;
+    
     [self.view addSubview:phoneView];
     [self.view addSubview:findpassBtn];
-    
-    //[[NSTimer alloc]initWithFireDate:[NSDate date] interval:1 target:self selector:@selector(verifyBtnChange) userInfo:nil repeats:60];
+
 }
+
 -(void)verifyBtnClick:(UIButton *)btn{
     btn.backgroundColor = RGBA(235, 235, 235, 1.0);
     count = 60;
@@ -128,6 +136,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)findOK:(UIButton *)btn{
+    
 //    [SVProgressHUD showWithStatus:@"正在加载数据"];
 //    NSString *username = [[MySharetools shared]getPhoneNumber];
 //    NSString *tel = phoneNumberField.text;
@@ -162,14 +171,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

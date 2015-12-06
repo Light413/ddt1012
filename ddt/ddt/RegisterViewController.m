@@ -16,6 +16,8 @@
     UIView *textFieldView;
     NSTimer *_timer;
     int count ;
+    
+    NSString * _yzm;//生成的验证码
 }
 @end
 
@@ -70,11 +72,21 @@
 -(void)createRegisterViews{
     phoneNumField.delegate = self;
     phoneNumField.keyboardType = UIKeyboardTypeNumberPad;
+    phoneNumField.placeholder = @"请输入正确的手机号";
+    
     passwordField.secureTextEntry = YES;
     passwordField.delegate = self;
+    passwordField.placeholder = @"输入6-12位数字和字母组合";
+    
     confirmPasswordField.secureTextEntry = YES;
     confirmPasswordField.delegate = self;
+    confirmPasswordField.placeholder = @"请重新输入密码";
+    
+    mailField.placeholder = @"请输入验证码";
     mailField.delegate = self;
+    
+    self.verifyBtn.layer.cornerRadius = 3;
+    self.verifyBtn.layer.masksToBounds = YES;
 }
 -(void)goback:(UIButton *)btn{
     if ([_timer isValid]) {
@@ -115,6 +127,14 @@
 }
 */
 
+//判断密码是否合法
+-(BOOL)isRight:(NSString*)pwd
+{
+    NSString * regex = @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [pred evaluateWithObject:pwd];
+}
+
 #pragma mark --注册操作
 - (IBAction)registerBtnClick:(id)sender {
     //    jsondata={"mobile":"15136216190","pwd":"111","token":"15136216190(!)*^*1446701200"
@@ -122,18 +142,14 @@
         [SVProgressHUD showInfoWithStatus:@"请填入正确的手机号"];
         return;
     }
-    if (passwordField.text.length ==0) {
-        [SVProgressHUD showInfoWithStatus:@"请填入密码"];
-        return;
-    }
-    if (confirmPasswordField.text.length ==0) {
-        [SVProgressHUD showInfoWithStatus:@"请填入密码"];
-        return;
+    if (![self isRight:passwordField.text]) {
+        [SVProgressHUD showInfoWithStatus:@"请输入含有字母和数字的(6-12)位密码"];return;
     }
     if (![passwordField.text isEqual:confirmPasswordField.text]) {
         [SVProgressHUD showInfoWithStatus:@"两次密码输入不同，请重新输入"];
         return;
     }
+    
     NSDate *localDate = [NSDate date]; //获取当前时间
     NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
     NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",phoneNumField.text,timeString];
@@ -167,13 +183,40 @@
     [self.navigationController pushViewController:service animated:YES];
 }
 
+
+#pragma mark -- 生成验证码
+-(NSString*)makeyzm
+{
+    NSMutableString * _s = [[NSMutableString alloc] initWithCapacity:6];
+    for (int i = 0; i<6; i++) {
+        NSInteger index = arc4random()%10;
+        [_s appendString:[NSString stringWithFormat:@"%ld",index]];
+    }
+    return _s;
+}
+
+//获取验证码
 - (IBAction)verifyNumBtnClick:(id)sender {
+    //生成验证码
+    _yzm = [self makeyzm];
+    
+    //发送验证码
+    /*
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"",@"mobile",@"",@"username",@"",@"yzm",nil];
+    RequestTaskHandle *_h = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_getcheckcode", @"") parms:nil andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+    [HttpRequestManager doPostOperationWithTask:_h];
+    
     UIButton *btn = (UIButton *)sender;
     btn.backgroundColor = RGBA(235, 235, 235, 1.0);
     count = 60;
     if (!_timer) {
         _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(verifyBtnChange:) userInfo:nil repeats:YES];
-    }
+    }*/
 
 }
 -(void)verifyBtnChange:(NSTimer *)timer{
