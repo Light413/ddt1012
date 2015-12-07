@@ -59,7 +59,7 @@ CFBundleDisplayName="贷易通";
 "url_getmyfill"     = "/mydyt/web_service.php?doc=getmyfill";//个人中心（我的单子）接过的单子+甩过的单子
 "url_getcheckcode"  = "/mydyt/web_service.php?doc=getcheckcode";//获取验证码
 "url_reset_pwd"     = "/mydyt/web_service.php?doc=resetpwd";//修改密码
-
+"url_resetphone"    = "/mydyt/web_service.php?doc=resetphone";//重置手机号
 
 
 

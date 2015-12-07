@@ -14,6 +14,8 @@
     int count ;
     UITextField *phoneNumberField;
     UITextField *phoneNumberField1;
+    
+    NSString * _yzm;//生成的验证码
 }
 @end
 
@@ -74,7 +76,7 @@
     findpassBtn.backgroundColor = RGBA(229, 165, 45, 1);
     findpassBtn.frame = CGRectMake(10, phoneView.bottom+10, CurrentScreenWidth-20, 30);
     [findpassBtn setTitle:@"提交" forState:UIControlStateNormal];
-    [findpassBtn addTarget:self action:@selector(findOK:) forControlEvents:UIControlEventTouchUpInside];
+    [findpassBtn addTarget:self action:@selector(resetTel:) forControlEvents:UIControlEventTouchUpInside];
     findpassBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     findpassBtn.layer.cornerRadius = 5;
     findpassBtn.layer.masksToBounds = YES;
@@ -86,7 +88,49 @@
 
 }
 
+#pragma mark -- 生成验证码
+-(NSString*)makeyzm
+{
+    NSMutableString * _s = [[NSMutableString alloc] initWithCapacity:6];
+    for (int i = 0; i<6; i++) {
+        NSInteger index = arc4random()%10;
+        [_s appendString:[NSString stringWithFormat:@"%ld",index]];
+    }
+    return _s;
+}
+
 -(void)verifyBtnClick:(UIButton *)btn{
+    //判断手机号
+    if (![[MySharetools shared]isMobileNumber:phoneNumberField.text]) {
+        [SVProgressHUD showInfoWithStatus:@"请填入正确的手机号"];
+        return;
+    }
+    //生成验证码
+    _yzm = [self makeyzm];
+    if (_yzm ==nil) {
+        _yzm = @"134736";
+    }
+    //发送验证码
+    NSDate *localDate = [NSDate date]; //获取当前时间
+    NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
+    NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",phoneNumberField.text,timeString];
+    
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:phoneNumberField.text,@"mobile",phoneNumberField.text,@"username",_yzm,@"yzm",token,@"token",nil];
+    NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata", nil];
+    
+    RequestTaskHandle *_h = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_getcheckcode", @"") parms:dic2 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
+                NSLog(@"发送验证码成功");
+            }
+        }
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+    [HttpRequestManager doPostOperationWithTask:_h];
+    
     btn.backgroundColor = RGBA(235, 235, 235, 1.0);
     count = 60;
     if (!_timer) {
@@ -94,26 +138,7 @@
     }
 }
 -(void)verifyBtnChange:(NSTimer *)timer{
-    [SVProgressHUD showWithStatus:@"正在加载数据"];
     UIButton *btn = (UIButton *)[self.view viewWithTag:101];
-    NSString *username = [[MySharetools shared]getPhoneNumber];
-    NSString *tel = phoneNumberField.text;
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:tel,@"mobile",username,@"username",nil];
-    NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];
-    RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_findpwd", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            if ([[responseObject objectForKey:@"result"] integerValue] ==0) {
-                
-            }else{
-                
-            }
-        }
-    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
-        
-    }];
-    //[myTableView reloadData];
-    [HttpRequestManager doPostOperationWithTask:task];
     
     --count;
     [btn setTitle:[NSString stringWithFormat:@"%d秒后重新获取",count] forState:UIControlStateNormal];
@@ -135,30 +160,49 @@
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)findOK:(UIButton *)btn{
+
+
+#pragma mark --提交
+-(void)resetTel:(UIButton *)btn{
+    if (![[MySharetools shared]isMobileNumber:phoneNumberField.text]) {
+        [SVProgressHUD showInfoWithStatus:@"请填入正确的手机号"];
+        return;
+    }
+    if (![phoneNumberField1.text isEqualToString:_yzm]) {
+        [SVProgressHUD showInfoWithStatus:@"请输入正确的验证码"];return;
+    }
     
-//    [SVProgressHUD showWithStatus:@"正在加载数据"];
-//    NSString *username = [[MySharetools shared]getPhoneNumber];
-//    NSString *tel = phoneNumberField.text;
-//    NSString *yzm = phoneNumberField1.text;
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:tel,@"mobile",username,@"username",yzm,@"yzm",nil];
-//    NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];;
-//    
-//    RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_findpwd", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        if ([responseObject isKindOfClass:[NSDictionary class]]) {
-//            if ([[responseObject objectForKey:@"result"] integerValue] ==0) {
-//                
-//            }
-//            
-//            
-//        }
-//    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
-//        
-//    }];
-//    //[myTableView reloadData];
-//    [HttpRequestManager doPostOperationWithTask:task];
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"username",phoneNumberField.text,@"mobile", nil];
+    NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];
+    [SVProgressHUD showWithStatus:@"正在提交"];
+    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_resetphone", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
+                [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+            }
+            else
+            {
+                [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+            }
+        }
+        
+        NSLog(@"...responseObject  :%@",responseObject);
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
+    }];
+    
+    [HttpRequestManager doPostOperationWithTask:_task];
+
 }
+
+#pragma mark -- uitextfield method
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     UITextField *textField = (UITextField *)[self.view viewWithTag:201];
     if ([textField isFirstResponder]) {

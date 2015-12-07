@@ -149,6 +149,9 @@
         [SVProgressHUD showInfoWithStatus:@"两次密码输入不同，请重新输入"];
         return;
     }
+    if (![self.mailField.text isEqualToString:_yzm]) {
+        [SVProgressHUD showInfoWithStatus:@"请输入正确的验证码"];return;
+    }
     
     NSDate *localDate = [NSDate date]; //获取当前时间
     NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
@@ -197,14 +200,31 @@
 
 //获取验证码
 - (IBAction)verifyNumBtnClick:(id)sender {
+    //判断手机号
+    if (![[MySharetools shared]isMobileNumber:phoneNumField.text]) {
+        [SVProgressHUD showInfoWithStatus:@"请填入正确的手机号"];
+        return;
+    }
     //生成验证码
     _yzm = [self makeyzm];
-    
+    if (_yzm ==nil) {
+        _yzm = @"134736";
+    }
     //发送验证码
-    /*
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"",@"mobile",@"",@"username",@"",@"yzm",nil];
-    RequestTaskHandle *_h = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_getcheckcode", @"") parms:nil andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+    NSDate *localDate = [NSDate date]; //获取当前时间
+    NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
+    NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",phoneNumField.text,timeString];
+    
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:phoneNumField.text,@"mobile",phoneNumField.text,@"username",_yzm,@"yzm",token,@"token",nil];
+    NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata", nil];
+
+    RequestTaskHandle *_h = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_getcheckcode", @"") parms:dic2 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
+                NSLog(@"发送验证码成功");
+            }
+        }
     } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
@@ -216,7 +236,7 @@
     count = 60;
     if (!_timer) {
         _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(verifyBtnChange:) userInfo:nil repeats:YES];
-    }*/
+    }
 
 }
 -(void)verifyBtnChange:(NSTimer *)timer{
