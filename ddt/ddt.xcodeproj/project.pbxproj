@@ -128,6 +128,7 @@
 		A1F0FB691BECA97C00FFC02F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1F0FB671BECA97C00FFC02F /* Info.plist */; };
 		A1F0FB6C1BECA9BC00FFC02F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1F0FB6E1BECA9BC00FFC02F /* InfoPlist.strings */; };
 		A1F680BD1BFD95EA0088D456 /* wx108x108.png in Resources */ = {isa = PBXBuildFile; fileRef = A1F680BC1BFD95EA0088D456 /* wx108x108.png */; };
+		AD5AFC121C1DB67E00D1A3A3 /* NGMyZPVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5AFC111C1DB67E00D1A3A3 /* NGMyZPVC.m */; settings = {ASSET_TAGS = (); }; };
 		AD5B11CC1BDB236F00285255 /* common_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD5B11CB1BDB236F00285255 /* common_data.plist */; };
 		AD5B11D01BDB360C00285255 /* DTComDataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11CF1BDB360C00285255 /* DTComDataManger.m */; };
 		AD5B11D41BDB694C00285255 /* DTCompanyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5B11D21BDB694C00285255 /* DTCompanyListCell.m */; };
@@ -423,6 +424,8 @@
 		A1F0FB6D1BECA9BC00FFC02F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A1F0FB6F1BECA9C400FFC02F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A1F680BC1BFD95EA0088D456 /* wx108x108.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wx108x108.png; sourceTree = "<group>"; };
+		AD5AFC101C1DB67E00D1A3A3 /* NGMyZPVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGMyZPVC.h; sourceTree = "<group>"; };
+		AD5AFC111C1DB67E00D1A3A3 /* NGMyZPVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGMyZPVC.m; sourceTree = "<group>"; };
 		AD5B11CB1BDB236F00285255 /* common_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = common_data.plist; sourceTree = "<group>"; };
 		AD5B11CE1BDB360C00285255 /* DTComDataManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTComDataManger.h; sourceTree = "<group>"; };
 		AD5B11CF1BDB360C00285255 /* DTComDataManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTComDataManger.m; sourceTree = "<group>"; };
@@ -1207,6 +1210,8 @@
 				B269C4EB1BE5B7AB00127226 /* menuDetailViewController.h */,
 				B269C4EC1BE5B7AB00127226 /* menuDetailViewController.m */,
 				B2879BD81BDCC92900B39021 /* SystemCenter */,
+				AD5AFC101C1DB67E00D1A3A3 /* NGMyZPVC.h */,
+				AD5AFC111C1DB67E00D1A3A3 /* NGMyZPVC.m */,
 			);
 			name = me;
 			sourceTree = "<group>";
@@ -1638,6 +1643,7 @@
 				ADD3053E1BDD011C002F5BAE /* NGShuaiDantVC.m in Sources */,
 				B2879BD71BDCC8B400B39021 /* SystemCenterViewController.m in Sources */,
 				A12441F91BD0EFD900D2588C /* FMDatabasePool.m in Sources */,
+				AD5AFC121C1DB67E00D1A3A3 /* NGMyZPVC.m in Sources */,
 				A12CD4F51BCBAC990020CB27 /* UIViewController+RBStoryboardLink.m in Sources */,
 				A1AC85551BC8DB460099C7F7 /* NGCollectionReusableView.m in Sources */,
 				AD7206941BF0F15D00573C4C /* DTJieDanCell.m in Sources */,

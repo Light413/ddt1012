@@ -17,6 +17,9 @@
 #import "ReleaseMeetingViewController.h"
 #import "SystemCenterViewController.h"
 #import "ModifyPasswordViewController.h"
+
+#import "NGMyZPVC.h"
+
 #define HeaderViewHeight 120.0
 #define iconHeight 15.0
 #define KimageName @"imageName"
@@ -136,14 +139,18 @@
                  @{KimageName: @"uc_danzi.png",
                    KlabelName:@"我的单子"},
                  @{KimageName: @"uc_jianli.png",
-                   KlabelName:@"我的简历"},
+                   KlabelName:@"我要招聘"},
                  @{KimageName: @"uc_fabu.png",
                    KlabelName:@"发布交流会"},
-                 @{KimageName: @"uc_jianli.png",
-                   KlabelName:@"升级为公司会员"},
+//                 @{KimageName: @"uc_jianli.png",
+//                   KlabelName:@"升级为公司会员"},
                  @{KimageName: @"uc_system.png",
                    KlabelName:@"系统中心"},
                  ];
+    
+    UIBarButtonItem *_item = [[UIBarButtonItem alloc]init];
+    _item.title = @"";
+    self.navigationItem.backBarButtonItem = _item;
 }
 
 -(void)creatTableView{
@@ -211,9 +218,14 @@
             break;
         case 2:
         {
-            MyResumeViewController *resume = [[MySharetools shared]getViewControllerWithIdentifier:@"MyResume" andstoryboardName:@"me"];
+//            MyResumeViewController *resume = [[MySharetools shared]getViewControllerWithIdentifier:@"MyResume" andstoryboardName:@"me"];
+//            resume.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:resume animated:YES];
+            //去掉我的简历，改为我的招聘
+            NGMyZPVC *resume = [[MySharetools shared]getViewControllerWithIdentifier:@"MyZP" andstoryboardName:@"me"];
             resume.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:resume animated:YES];
+//            [self performSegueWithIdentifier:@"showMyZPID" sender:nil];
         }
             break;
         case 3:
@@ -223,14 +235,14 @@
             [self.navigationController pushViewController:meeting animated:YES];
         }
             break;
+//        case 4:
+//        {
+//            AddCommanyInfoViewController *commany = [[MySharetools shared]getViewControllerWithIdentifier:@"AddCommany" andstoryboardName:@"me"];
+//            commany.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:commany animated:YES];
+//        }
+//            break;
         case 4:
-        {
-            AddCommanyInfoViewController *commany = [[MySharetools shared]getViewControllerWithIdentifier:@"AddCommany" andstoryboardName:@"me"];
-            commany.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:commany animated:YES];
-        }
-            break;
-        case 5:
         {
             SystemCenterViewController *system = [[SystemCenterViewController alloc]init];
             system.hidesBottomBarWhenPushed = YES;
