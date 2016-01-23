@@ -25,6 +25,7 @@
 
 static NSString *NGCollectionHeaderReuseID = @"NGCollectionHeaderReuseID";
 static NSString *showItemDetailIdentifier = @"showItemDetailIdentifier";//item 详情页Id
+static NSString *showItemDetailIdentifier_in = @"showItemDetailIdentifier_in";//公司个人入口
 
 static NSString *showSecondVCID     = @"showSecondVCID";//附近同行、接单、求职招聘
 static NSString *showFeedBackVCID   = @"showFeedBackVCID";//意见反馈
@@ -149,13 +150,16 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     self.title  = @"贷易通";
     self.automaticallyAdjustsScrollViewInsets = NO;
     leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.frame = CGRectMake(0, 0, 60, 40);
+    leftBtn.frame = CGRectMake(0, 0, 100, 40);
     [leftBtn setImage:[UIImage imageNamed:@"bar_down_icon"] forState:UIControlStateNormal];
     [leftBtn setTitle:@"定位中" forState:UIControlStateNormal];
-    leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    leftBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     leftBtn.titleLabel.textAlignment  = NSTextAlignmentLeft;
-    [leftBtn setTitleEdgeInsets:UIEdgeInsetsMake(3, -20, 3, -5)];
-    [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(5, -15, 5, 52)];
+    [leftBtn setTitleEdgeInsets:UIEdgeInsetsMake(3, -10, 3, -10)];
+    [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(5, -10, 5, 95)];
+    leftBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
+    leftBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    
     [leftBtn addTarget:self action:@selector(locationBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftBtn];
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -597,6 +601,8 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     {
         NSLog(@"...company");
     }
+    
+    [self performSegueWithIdentifier:showItemDetailIdentifier_in sender:nil];
 }
 
 

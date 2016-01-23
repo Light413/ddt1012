@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn_select_area;
 @property (weak, nonatomic) IBOutlet UIButton *btn_select_type;
 @property (weak, nonatomic) IBOutlet UITextField *tf_search_key;
+@property (weak, nonatomic) IBOutlet UIButton *btn_search_dz;//btn搜单子
+@property (weak, nonatomic) IBOutlet UIButton *btn_search_th;//btn搜同行
 
 @property(nonatomic,copy)NSString*itemKey;
 @end
@@ -62,6 +64,11 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.backView.layer.borderColor = [RGBA(207, 207, 207, 1)CGColor];
     self.backView.layer.borderWidth = 1;
+    
+    UIImage *img1 = [UIImage imageNamed:@"btn_bg"];
+    UIImage *img2 = [img1 stretchableImageWithLeftCapWidth:5 topCapHeight:5];
+    [self.btn_search_dz setBackgroundImage:img2 forState:UIControlStateNormal];
+    [self.btn_search_th setBackgroundImage:img2 forState:UIControlStateNormal];
 }
 
 -(void)awakeFromNib
