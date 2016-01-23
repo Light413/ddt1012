@@ -93,10 +93,12 @@ BMKMapManager* _mapManager;
 -(void)initTabBar
 {
     NSArray *titleArr  = @[@"首页",@"同行",@"单子",@"我的",];
-    self.rootTabVC.tabBar.tintColor = BarDefaultColor;
+    self.rootTabVC.tabBar.barTintColor = [UIColor blackColor];//[UIColor colorWithRed:0.224 green:0.227 blue:0.231 alpha:1];
+    self.rootTabVC.tabBar.tintColor = [UIColor whiteColor];
     NSArray *_itemArr = self.rootTabVC.tabBar.items;
     [_itemArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [(UIBarButtonItem *)obj setTitle:[titleArr objectAtIndex:idx]];
+//        [(UIBarButtonItem *)obj setTintColor:[UIColor whiteColor]];
     }];
 }
 

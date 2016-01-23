@@ -338,7 +338,7 @@ float _h;
     return cell;
 }
 
-const float cellDefaultHeight = 60.0;
+//const float cellDefaultHeight = 60.0;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 

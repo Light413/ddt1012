@@ -15,7 +15,9 @@
 @optional
 -(void)searchBarWillBeginSearch:(NGSearchBar*)searchBar;
 
-@required
+-(BOOL)searchBarshouldChangeCharactersInRange:(NGSearchBar*)searchBar;
+
+//@required
 -(void)searchBarDidBeginSearch:(NGSearchBar*)searchBar withStr:(NSString *)str;
 
 @end

@@ -16,9 +16,10 @@
 #import "LoginViewController.h"
 
 #import <PgyUpdate/PgyUpdateManager.h>
+#import "NewAddView.h"
 
 #define ScrollViewHeight    100
-#define CollectionHeaderViewHight 140
+#define CollectionHeaderViewHight (140 + 85 +90)
 #define FootRecordData @"FootRecordData"
 #define TapStr @"最近访问的类别会出现在这里"
 
@@ -33,7 +34,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 
 //#import "BaiDuLocationManger.h"
 
-@interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,UMSocialUIDelegate>
+@interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,UMSocialUIDelegate,NGSearchBarDelegate>
 
 @end
 
@@ -49,6 +50,8 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     NSDictionary *_selectItemDic;//选中cell的数据项
     NSString *_option_info;//item附件信息，表明企业OR个人
     NSInteger _selectIndex;//选中cell索引,section =1用到
+    
+    UIView *searchView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -143,6 +146,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 #pragma mark-init subview
 -(void)initTopView
 {
+    self.title  = @"贷易通";
     self.automaticallyAdjustsScrollViewInsets = NO;
     leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBtn.frame = CGRectMake(0, 0, 60, 40);
@@ -165,7 +169,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
     
     //搜索栏初始化
-    UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(leftBtn.right+5, 0, CurrentScreenWidth -leftBtn.width-rightBtn.width-30, 25)];
+    searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth -100, 35)];
     UITextField *searchField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, searchView.width, searchView.height)];
     searchField.backgroundColor = [UIColor whiteColor];
     searchField.alpha = .95;
@@ -186,7 +190,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     btn.frame = CGRectMake(0, 0, searchView.width, 20);
     [btn addTarget:self action:@selector(jumpTosearch) forControlEvents:UIControlEventTouchUpInside];
     [searchView addSubview:btn];
-    self.navigationItem.titleView = searchView;
+//    self.navigationItem.titleView = searchView;
 
     _pageCtr = [[UIPageControl alloc]initWithFrame:CGRectMake((CurrentScreenWidth - 100)/2.0, ScrollViewHeight - 20, 100, 20)];
     _pageCtr.numberOfPages  = 4;
@@ -394,34 +398,65 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     }
     
     UILabel *_line = [[UILabel alloc]init];
-    [reuseView addSubview:_line];
+//    [reuseView addSubview:_line];
     _line.backgroundColor = [UIColor lightGrayColor];
     _line.alpha = 0.5;
     
     if (indexPath.section ==0) {
         [reuseView addSubview:_topScrollView];
         
-        UIImageView *_igv = [[UIImageView alloc]initWithFrame:CGRectMake(0,ScrollViewHeight+ (CollectionHeaderViewHight - 20 - ScrollViewHeight)/2.0, 20, 20)];
-        _igv.image = [UIImage imageNamed:@"footer"];
-        [reuseView addSubview:_igv];
-        UILabel*_footLab = [[UILabel alloc]initWithFrame:CGRectMake(_igv.frame.origin.x + 20, ScrollViewHeight+(CollectionHeaderViewHight - 20 -ScrollViewHeight)/2.0, 250, 20)];
-        _footLab.font = [UIFont systemFontOfSize:13];
-        [reuseView addSubview:_footLab];
-        NSString *_ss = [self footerRecord:nil];
-        _footLab.text =[NSString stringWithFormat:@"足迹:%@",_ss] ;//...
-        //        _footLab.backgroundColor = [UIColor lightGrayColor];
-        _footLab.textColor =[UIColor colorWithRed:0.624 green:0.624 blue:0.624 alpha:1];
+        //今日新增
+        NSArray *_addarr = [[NSBundle mainBundle]loadNibNamed:@"NewAddView" owner:nil options:nil];
+        NewAddView *_newadd = [_addarr lastObject];
+        _newadd.frame = CGRectMake(0, _topScrollView.bottom + 5, CurrentScreenWidth, 80);
+        [reuseView addSubview:_newadd];
         
+        //搜索栏
+        NGSearchBar *_searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(5,_newadd.bottom, CurrentScreenWidth  -70, 30)];
+        _searchBar.placeholder = @"输入搜索关键字";
+        _searchBar.delegate = self;
+        [reuseView addSubview:_searchBar];
+        
+        //分享按钮
         UIButton *_shareBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-        _shareBtn.frame = CGRectMake(CurrentScreenWidth -80,ScrollViewHeight+ 0, 80, CollectionHeaderViewHight -ScrollViewHeight);
+        _shareBtn.frame = CGRectMake(CurrentScreenWidth -60,_newadd.bottom-5, 60, 40);
         [reuseView addSubview:_shareBtn];
-        [_shareBtn setTitle:@"分享赚积分" forState:UIControlStateNormal];
+        [_shareBtn setTitle:@"分享" forState:UIControlStateNormal];
         [_shareBtn setImage:[UIImage imageNamed:@"share_icon"] forState:UIControlStateNormal];
-        [_shareBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 0, 5, 60)];
-        [_shareBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -8, 0, -5)];
+        [_shareBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 35)];
+        [_shareBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         [_shareBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        _shareBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+        _shareBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [_shareBtn addTarget:self action:@selector(shareBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        //企业和个人渠道btn
+        float _btn_w = (CurrentScreenWidth -20)/ 2.0;
+        for (int i =0; i<2; i++) {
+            UIButton *btnport = [UIButton buttonWithType:UIButtonTypeCustom];
+            btnport.frame = CGRectMake(5+(_btn_w + 10) *i, _shareBtn.bottom + 10, _btn_w, 70);
+            [reuseView addSubview:btnport];
+            btnport.tag = 17 + i;
+            btnport.layer.cornerRadius = 5;
+            btnport.layer.masksToBounds = YES;
+            [btnport setTintColor:[UIColor whiteColor]];
+            btnport.titleLabel.font = [UIFont systemFontOfSize:14];
+            [btnport setImageEdgeInsets:UIEdgeInsetsMake(10, 0, 10, _btn_w - 70)];
+            [btnport setTitleEdgeInsets:UIEdgeInsetsMake(0, -55, 0, 5)];
+            [btnport setShowsTouchWhenHighlighted:YES];
+            [btnport addTarget:self action:@selector(btnAction_in:) forControlEvents:UIControlEventTouchUpInside];
+            if (i==0) {
+                btnport.backgroundColor = [UIColor colorWithRed:0.914 green:0.416 blue:0.282 alpha:1];
+                [btnport setImage:[UIImage imageNamed:@"person_in"] forState:UIControlStateNormal];
+                [btnport setTitle:@"个人贷款渠道" forState:UIControlStateNormal];
+            }
+            else if (i == 1)
+            {
+                btnport.backgroundColor = [UIColor colorWithRed:0.278 green:0.545 blue:0.788 alpha:1];
+                [btnport setImage:[UIImage imageNamed:@"company_in"] forState:UIControlStateNormal];
+                [btnport setTitle:@"企业贷款渠道" forState:UIControlStateNormal];
+            }
+        }
         
         _line.frame = CGRectMake(0,  CollectionHeaderViewHight - 1, CurrentScreenWidth, 1);
     }
@@ -540,6 +575,30 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 }
 
 
+#pragma mark --NGSearchBarDelegate
+-(void)searchBarWillBeginSearch:(NGSearchBar *)searchBar
+{
+    [self jumpTosearch];
+}
+
+-(BOOL)searchBarshouldChangeCharactersInRange:(NGSearchBar *)searchBar
+{
+    return NO;
+}
+
+
+#pragma mark --个人，企业贷款入口
+-(void)btnAction_in:(UIButton*)btn
+{
+    if (btn.tag ==17) {
+        NSLog(@"...person");
+    }
+    else if (btn.tag ==18)
+    {
+        NSLog(@"...company");
+    }
+}
+
 
 #pragma mark - Navigation
 
@@ -548,7 +607,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     if ([segue.identifier isEqualToString:showItemDetailIdentifier]) {//item详情页
         NGItemsDetailVC *_vc = [segue destinationViewController];
         _vc.superdic = _selectItemDic;
-        _vc.optional_info = _option_info;
+//        _vc.optional_info = _option_info;
     }
     else if ([segue.identifier isEqualToString:showSecondVCID])
     {

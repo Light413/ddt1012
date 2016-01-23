@@ -76,6 +76,14 @@
     }
 }
 
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([self.delegate respondsToSelector:@selector(searchBarshouldChangeCharactersInRange:)]) {
+      return  [self.delegate performSelector:@selector(searchBarshouldChangeCharactersInRange:) withObject:self];
+    }
+    return YES;
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
