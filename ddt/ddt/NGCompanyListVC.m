@@ -171,7 +171,12 @@
     }
     
     NSString *tel = [[MySharetools shared]getPhoneNumber];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedTime,@"time",@"10",@"psize",@(_pageNum),@"pnum",nil];
+    
+    NSDate *localDate = [NSDate date]; //获取当前时间
+    NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
+    NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",tel,timeString];
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedTime,@"time",@"10",@"psize",@(_pageNum),@"pnum",token,@"token",nil];
     NSLog(@".............%ld",_pageNum);
     
     NSDictionary *_d = [MySharetools getParmsForPostWith:dic];

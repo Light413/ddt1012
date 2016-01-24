@@ -113,29 +113,6 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     [btn setTitle:btn.selected ? @"关闭自己位置":@"公开自己位置" forState:UIControlStateNormal];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    if ([[MySharetools shared]isSessionid]) {
-        if (_isfirstAppear) {
-            _isfirstAppear = NO;
-            [_tableView.header beginRefreshing];
-        }
-    }
-    else
-    {
-        if ([MySharetools shared].isFirstSignupViewController == YES) {
-            [MySharetools shared].isFirstSignupViewController = NO;
-            [MySharetools shared].isFromMycenter = YES;
-            LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
-            NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
-            [self.tabBarController presentViewController:nav animated:YES completion:nil];
-        }else{
-            self.tabBarController.selectedIndex = 0;
-        }
-    }
-}
-
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -288,7 +265,12 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         case NGVCTypeId_2:
             _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex: @"",@"xb",nil];break;
         case NGVCTypeId_1://,@"121.68571511,31.19302052"
-            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex:@"",@"xb",@"121.68571511",@"mapx",@"31.19302052",@"mapy",nil];break;
+        {
+            NSDate *localDate = [NSDate date]; //获取当前时间
+            NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
+            NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",tel,timeString];
+            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex:@"",@"xb",@"121.68571511",@"mapx",@"31.19302052",@"mapy",token,@"token",nil];
+        }break;
             
         case NGVCTypeId_4://接单
             _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedTime,@"time",@"10",@"psize",@(_pageNum),@"pnum",nil];
@@ -337,14 +319,9 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         case NGVCTypeId_6:
             [_tableView registerNib:[UINib nibWithNibName:@"NGZhaoPinCell" bundle:nil] forCellReuseIdentifier:@"NGZhaoPinCellId"];break;
             break;
-            
-        default:
-            break;
+        default:break;
     }
 
-
-    
-    
     //添加下拉刷新
     __weak __typeof(self) weakSelf = self;
     _tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -371,6 +348,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     NSLog(@"##############: %ld",_pageNum);
     
     [self initParams];
+
     NSDictionary *_d = [MySharetools getParmsForPostWith:_common_list_request_parm];
     
     RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:_common_list_url parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {

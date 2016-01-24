@@ -12,4 +12,7 @@
 
 @property(nonatomic,retain)NSDictionary *superdic;//上级传递的参数
 @property(nonatomic,copy)NSString *optional_info;//附加信息(可选)
+
+@property(nonatomic,assign)NSInteger vcType;//1：itemdetail 2:person-in 3:gongsi-in
+
 @end

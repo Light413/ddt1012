@@ -16,9 +16,10 @@
 @property (weak, nonatomic) IBOutlet UIView *backView;
 @property (weak, nonatomic) IBOutlet UIButton *btn_normal;
 @property (weak, nonatomic) IBOutlet UIButton *btn_no_normal;
-@property (weak, nonatomic) IBOutlet UIButton *btn_select_area;
-@property (weak, nonatomic) IBOutlet UIButton *btn_select_type;
-@property (weak, nonatomic) IBOutlet UITextField *tf_search_key;
+@property (weak, nonatomic) IBOutlet UIButton *btn_select_area;//选择区域
+@property (weak, nonatomic) IBOutlet UIButton *btn_dk_body;//贷款主体
+@property (weak, nonatomic) IBOutlet UIButton *btn_select_type;//选择类型
+@property (weak, nonatomic) IBOutlet UITextField *tf_search_key;//搜索
 @property (weak, nonatomic) IBOutlet UIButton *btn_search_dz;//btn搜单子
 @property (weak, nonatomic) IBOutlet UIButton *btn_search_th;//btn搜同行
 
@@ -26,9 +27,10 @@
 @end
 
 typedef NS_ENUM(NSUInteger, NGSelectDataType) {
-    NGSelectDataTypeNone,  //0
+    NGSelectDataTypeNone,     //0
     NGSelectDataTypeArea,     //选择区域数据
     NGSelectDataTypeTaskType, //选择业务类型
+    NGSelectDataTypePortType, //选择入口类型
 };
 
 @implementation NGItemsDetailVC
@@ -37,6 +39,9 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     
     NGSelectDataType _pickerViewType;
     UIButton *_selectedBtn;//当前被选中的btn
+    
+    NSArray * _in_data_arr;//个人或者企业主体数据
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,12 +52,32 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 #pragma mark --init
 -(void)initData
 {
-    if (!self.superdic) {
-        [SVProgressHUD showInfoWithStatus:@"数据获取失败,请重试"];
-        [self.navigationController popViewControllerAnimated:YES];return;
+    switch (self.vcType) {
+        case 1:
+        {
+            self.title = [NSString stringWithFormat:@"%@%@",[self.superdic objectForKey:@"title"],_optional_info?_optional_info:@""];
+            self.itemKey = [self.superdic objectForKey:@"key"];
+        } break;
+        case 2://个人贷款渠道
+        case 3://企业贷款渠道
+        {
+            if (self.vcType ==2) {
+                self.title = @"个人贷款渠道";
+                _in_data_arr = @[@{@"ID":@"11",@"NAME":@"银行信贷个人"},@{@"ID":@"12",@"NAME":@"银行抵押个人"},@{@"ID":@"13",@"NAME":@"民间信贷个人"},@{@"ID":@"14",@"NAME":@"民间抵押个人"}];
+            }
+            else if (self.vcType ==3)
+            {
+                self.title = @"企业贷款渠道";
+                _in_data_arr = @[@{@"ID":@"21",@"NAME":@"银行信贷企业"},@{@"ID":@"22",@"NAME":@"银行抵押企业"},@{@"ID":@"23",@"NAME":@"民间信贷企业"},@{@"ID":@"24",@"NAME":@"民间抵押企业"}];
+            }
+    
+            NSDictionary *_dd = [_in_data_arr objectAtIndex:0];
+            [self.btn_dk_body setNormalTitle:[_dd objectForKey:@"NAME"] andID:[_dd objectForKey:@"ID"]];
+            self.itemKey = [self.btn_dk_body ID];
+        } break;
+        default:break;
     }
-    self.title = [NSString stringWithFormat:@"%@%@",[self.superdic objectForKey:@"title"],_optional_info?_optional_info:@""];
-    self.itemKey = [self.superdic objectForKey:@"key"];
+
     
     NSLog(@"------------key : %@",_itemKey);
     
@@ -80,17 +105,23 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 -(void)giveDataToPickerWithTypee:(NGSelectDataType)type
 {
     if (type == NGSelectDataTypeArea) {
-//        [0]	(null)	@"ID" : @"719"
-//        [1]	(null)	@"NAME" : @"黄浦区"
         NSArray *_a =[NGXMLReader getCurrentLocationAreas];;
         _pickViewDataArr =_a ;
     }
     else if (type == NGSelectDataTypeTaskType)
     {
+        if(self.btn_dk_body.ID)
+        {
+            self.itemKey = self.btn_dk_body.ID;
+        }
         if (self.itemKey) {
             NSArray *_a =[NGXMLReader getBaseTypeDataWithKey:self.itemKey];
             _pickViewDataArr =_a ;
         }
+    }
+    else if (type == NGSelectDataTypePortType)//个人，企业入口数据
+    {
+        _pickViewDataArr = _in_data_arr;
     }
 }
 
@@ -118,6 +149,11 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     {
         _pickerViewType = NGSelectDataTypeTaskType;
     }
+    else if (sender == _btn_dk_body)
+    {
+        _pickerViewType = NGSelectDataTypePortType;
+    }
+    
     [self giveDataToPickerWithTypee:_pickerViewType];
     _selectedBtn = sender;
     
@@ -191,7 +227,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 {
     _pickerViewType = NGSelectDataTypeNone;
     NSDictionary *_d = [_pickViewDataArr objectAtIndex:row];
-    [_selectedBtn setNormalTitle:[_d objectForKey:@"NAME"] andID:nil];
+    [_selectedBtn setNormalTitle:[_d objectForKey:@"NAME"] andID:[_d objectForKey:@"ID"]];
     _pickViewDataArr = nil;
 }
 

@@ -34,6 +34,13 @@ static NSString *showShuaiDanID     = @"showShuaiDanID";//甩单
 static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 
 //#import "BaiDuLocationManger.h"
+typedef NS_ENUM(NSInteger ,NextvcType)
+{
+    NextvcType_0,
+    NextvcType_1,
+    NextvcType_2,
+    NextvcType_3,
+};
 
 @interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,UMSocialUIDelegate,NGSearchBarDelegate>
 
@@ -53,7 +60,10 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     NSInteger _selectIndex;//选中cell索引,section =1用到
     
     UIView *searchView;
+    
+    NextvcType _vctype;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSString *path= [[NSBundle mainBundle]pathForResource:@"menuItem" ofType:@"plist"];
@@ -488,6 +498,7 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     }
     
     //key,title
+    _vctype = NextvcType_1;
     _option_info =nil;
     _selectItemDic =[[_itemArray objectAtIndex:indexPath.section ] objectAtIndex:indexPath.row];
     [self footerRecord:[_selectItemDic objectForKey:@"title"]];
@@ -596,10 +607,12 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
 {
     if (btn.tag ==17) {
         NSLog(@"...person");
+        _vctype = NextvcType_2;
     }
     else if (btn.tag ==18)
     {
         NSLog(@"...company");
+        _vctype = NextvcType_3;
     }
     
     [self performSegueWithIdentifier:showItemDetailIdentifier_in sender:nil];
@@ -613,7 +626,14 @@ static NSString *showCarPriceVCID   = @"showCarPriceVCID";//车价评估
     if ([segue.identifier isEqualToString:showItemDetailIdentifier]) {//item详情页
         NGItemsDetailVC *_vc = [segue destinationViewController];
         _vc.superdic = _selectItemDic;
+        _vc.vcType = _vctype;
 //        _vc.optional_info = _option_info;
+    }
+    else if ([segue.identifier isEqualToString:showItemDetailIdentifier_in])
+    {
+        NGItemsDetailVC *_vc = [segue destinationViewController];
+        _vc.superdic = _selectItemDic;
+        _vc.vcType = _vctype;
     }
     else if ([segue.identifier isEqualToString:showSecondVCID])
     {
