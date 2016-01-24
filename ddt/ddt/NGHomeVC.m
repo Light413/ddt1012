@@ -62,6 +62,8 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     UIView *searchView;
     
     NextvcType _vctype;
+    
+    NewAddView *_todaynewadd;//今日新增同行-单子视图
 }
 
 - (void)viewDidLoad {
@@ -71,6 +73,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     _selectIndex = 0;
     
     [self initCollectionView];
+    [self getNewadd];
     
     _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
     //获取位置信息
@@ -138,6 +141,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     [super viewWillAppear:animated];
     [_timer setFireDate:[NSDate distantPast]];
     [_collectionView reloadData];
+//    [self getNewadd];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -152,6 +156,36 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 //    backitem.image = [UIImage imageNamed:@"leftArrow"];
     backitem.title = @"";
     self.navigationItem.backBarButtonItem =backitem ;
+}
+
+-(void)getNewadd
+{
+    NSDate *_date = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateString = [dateFormatter stringFromDate:_date];
+    
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[_date timeIntervalSince1970]];  //转化为UNIX时间戳
+    NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",tel,timeString];
+    
+    NSDictionary *_dic =[NSDictionary dictionaryWithObjectsAndKeys:dateString,@"date",token,@"token",tel,@"mobile", nil];
+    
+    NSDictionary *_d = [MySharetools getParmsForPostWith:_dic];
+    
+    RequestTaskHandle *_h = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_todaynewadd", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"today new add : %@",responseObject);
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
+                NSDictionary *_value = [responseObject objectForKey:@"data"];
+                _todaynewadd.add_th = [_value objectForKey:@"userCount"];
+                _todaynewadd.add_bil = [_value objectForKey:@"billCount"];
+            }
+        }
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    [HttpRequestManager doPostOperationWithTask:_h];
 }
 
 #pragma mark-init subview
@@ -227,6 +261,10 @@ typedef NS_ENUM(NSInteger ,NextvcType)
         [_topScrollView addSubview:imgv];
     }
     [_topScrollView addSubview:_pageCtr];
+    
+    //今日新增视图
+    NSArray *_addarr = [[NSBundle mainBundle]loadNibNamed:@"NewAddView" owner:nil options:nil];
+    _todaynewadd = [_addarr lastObject];
 }
 
 -(void)initCollectionView
@@ -420,20 +458,18 @@ typedef NS_ENUM(NSInteger ,NextvcType)
         [reuseView addSubview:_topScrollView];
         
         //今日新增
-        NSArray *_addarr = [[NSBundle mainBundle]loadNibNamed:@"NewAddView" owner:nil options:nil];
-        NewAddView *_newadd = [_addarr lastObject];
-        _newadd.frame = CGRectMake(0, _topScrollView.bottom + 5, CurrentScreenWidth, 80);
-        [reuseView addSubview:_newadd];
+        _todaynewadd.frame = CGRectMake(0, _topScrollView.bottom + 5, CurrentScreenWidth, 80);
+        [reuseView addSubview:_todaynewadd];
         
         //搜索栏
-        NGSearchBar *_searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(5,_newadd.bottom, CurrentScreenWidth  -70, 30)];
+        NGSearchBar *_searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(5,_todaynewadd.bottom, CurrentScreenWidth  -70, 30)];
         _searchBar.placeholder = @"输入搜索关键字";
         _searchBar.delegate = self;
         [reuseView addSubview:_searchBar];
         
         //分享按钮
         UIButton *_shareBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-        _shareBtn.frame = CGRectMake(CurrentScreenWidth -60,_newadd.bottom-5, 60, 40);
+        _shareBtn.frame = CGRectMake(CurrentScreenWidth -60,_todaynewadd.bottom-5, 60, 40);
         [reuseView addSubview:_shareBtn];
         [_shareBtn setTitle:@"分享" forState:UIControlStateNormal];
         [_shareBtn setImage:[UIImage imageNamed:@"share_icon"] forState:UIControlStateNormal];

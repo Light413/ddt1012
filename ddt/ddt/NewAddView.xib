@@ -71,6 +71,7 @@
             <connections>
                 <outlet property="addbil" destination="Zdz-wN-1E5" id="2jw-Yc-lrY"/>
                 <outlet property="addtg" destination="cJ9-vc-18T" id="An0-fI-8gH"/>
+                <outlet property="btn" destination="cJ9-vc-18T" id="Saa-ow-lUP"/>
             </connections>
             <point key="canvasLocation" x="355" y="170"/>
         </view>

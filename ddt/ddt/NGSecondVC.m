@@ -89,8 +89,10 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     [self initData];
     [self initSubviews];
     [self createLeftBarItemWithBackTitle];
+    [self loadMoreData];
 
 }
+
 -(void)awakeFromNib
 {
     UIBarButtonItem *_backitem =[ [UIBarButtonItem alloc]init];
@@ -111,6 +113,12 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 {
     btn.selected = !btn.selected;
     [btn setTitle:btn.selected ? @"关闭自己位置":@"公开自己位置" forState:UIControlStateNormal];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_tableView.header beginRefreshing];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -264,7 +272,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         case NGVCTypeId_3:
         case NGVCTypeId_2:
             _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex: @"",@"xb",nil];break;
-        case NGVCTypeId_1://,@"121.68571511,31.19302052"
+        case NGVCTypeId_1://,@"121.68571511,31.19302052"-同行
         {
             NSDate *localDate = [NSDate date]; //获取当前时间
             NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
@@ -350,7 +358,6 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     [self initParams];
 
     NSDictionary *_d = [MySharetools getParmsForPostWith:_common_list_request_parm];
-    
     RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:_common_list_url parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         _pageNum ==1?({[_tableView.header endRefreshing];[_common_list_dataSource removeAllObjects];
             [_tableView reloadData];}):([_tableView.footer endRefreshing]);

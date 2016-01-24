@@ -25,6 +25,7 @@ CFBundleDisplayName="贷易通";
 "url_qiuzhi"        = "/mydyt/web_service.php?doc=getworklist";//求职
 "url_zhaopin"       = "/mydyt/web_service.php?doc=getqzlist";//招聘
 "url_jiaoliuhui"    = "/mydyt/web_service.php?doc=getmeeting";//同行交流会列表
+"url_todaynewadd"   = "/mydyt/web_service.php?doc=getdaycount";//今日新增
 
 "url_upLocation"    = "/mydyt/web_service.php?doc=addmapxy";//上传坐标
 "url_http_cheprice" = "http://www.che300.com/dyt";//车价评估
@@ -60,6 +61,6 @@ CFBundleDisplayName="贷易通";
 "url_getcheckcode"  = "/mydyt/web_service.php?doc=getcheckcode";//获取验证码
 "url_reset_pwd"     = "/mydyt/web_service.php?doc=resetpwd";//修改密码
 "url_resetphone"    = "/mydyt/web_service.php?doc=resetphone";//重置手机号
-
+"url_add_zhaopin"   = "/mydyt/web_service.php?doc=addzhaopin";//发布招聘
 
 

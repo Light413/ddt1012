@@ -10,4 +10,7 @@
 
 @interface NewAddView : UIView
 
+@property(nonatomic,copy)NSString * add_th;
+@property(nonatomic,copy)NSString * add_bil;
+
 @end
