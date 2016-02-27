@@ -277,7 +277,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
             NSDate *localDate = [NSDate date]; //获取当前时间
             NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
             NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",tel,timeString];
-            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex:@"",@"xb",@"121.68571511",@"mapx",@"31.19302052",@"mapy",token,@"token",nil];
+            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex:@"",@"xb",@"121.68571511",@"mapx",@"31.19302052",@"mapy",token,@"token",nil];
         }break;
             
         case NGVCTypeId_4://接单

@@ -142,6 +142,8 @@
 		AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB921BD21E3000C23992 /* NGXMLReader.m */; };
 		AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */; };
 		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; };
+		ADA813431C81CA7A001780EE /* MeInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA813411C81CA7A001780EE /* MeInfoCell.m */; settings = {ASSET_TAGS = (); }; };
+		ADA813441C81CA7A001780EE /* MeInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA813421C81CA7A001780EE /* MeInfoCell.xib */; settings = {ASSET_TAGS = (); }; };
 		ADCA44871C07507A0066A371 /* NGZhaoPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCA44851C07507A0066A371 /* NGZhaoPinCell.m */; };
 		ADCA44881C07507A0066A371 /* NGZhaoPinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADCA44861C07507A0066A371 /* NGZhaoPinCell.xib */; };
 		ADCA448B1C0750DA0066A371 /* NGZhaoPinDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCA448A1C0750DA0066A371 /* NGZhaoPinDetailVC.m */; };
@@ -450,6 +452,9 @@
 		AD92EB951BD22A6400C23992 /* NGXMLDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGXMLDataModel.m; sourceTree = "<group>"; };
 		AD92EB971BD24A0300C23992 /* NGXMLBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGXMLBaseModel.h; sourceTree = "<group>"; };
 		AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGXMLBaseModel.m; sourceTree = "<group>"; };
+		ADA813401C81CA7A001780EE /* MeInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeInfoCell.h; sourceTree = "<group>"; };
+		ADA813411C81CA7A001780EE /* MeInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeInfoCell.m; sourceTree = "<group>"; };
+		ADA813421C81CA7A001780EE /* MeInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeInfoCell.xib; sourceTree = "<group>"; };
 		ADCA44841C07507A0066A371 /* NGZhaoPinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGZhaoPinCell.h; sourceTree = "<group>"; };
 		ADCA44851C07507A0066A371 /* NGZhaoPinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGZhaoPinCell.m; sourceTree = "<group>"; };
 		ADCA44861C07507A0066A371 /* NGZhaoPinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGZhaoPinCell.xib; sourceTree = "<group>"; };
@@ -946,6 +951,9 @@
 				AD07F7531C538255005B692B /* NewAddView.xib */,
 				AD07F7551C5386B3005B692B /* NewAddView.h */,
 				AD07F7561C5386B3005B692B /* NewAddView.m */,
+				ADA813401C81CA7A001780EE /* MeInfoCell.h */,
+				ADA813411C81CA7A001780EE /* MeInfoCell.m */,
+				ADA813421C81CA7A001780EE /* MeInfoCell.xib */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1573,6 +1581,7 @@
 				ADD431581BE509EE000C03D8 /* UMSLoginViewController.xib in Resources */,
 				A1042B8A1B64D55400A74215 /* image3.png in Resources */,
 				9FEFFCD71BCFBADE0036C23D /* MycenterViewController.xib in Resources */,
+				ADA813441C81CA7A001780EE /* MeInfoCell.xib in Resources */,
 				A1042B881B64D55400A74215 /* image1.png in Resources */,
 				A12442081BD0F6A100D2588C /* districts.xml in Resources */,
 				A12CD4DD1BCBA6960020CB27 /* SVProgressHUD.bundle in Resources */,
@@ -1671,6 +1680,7 @@
 				B269C4E91BE5A88000127226 /* MenuTableViewCell.m in Sources */,
 				A13A48181C044F90002C450B /* BaiDuLocationManger.mm in Sources */,
 				AD92EB961BD22A6400C23992 /* NGXMLDataModel.m in Sources */,
+				ADA813431C81CA7A001780EE /* MeInfoCell.m in Sources */,
 				AD5B11D41BDB694C00285255 /* DTCompanyListCell.m in Sources */,
 				A12441D91BD0EDD200D2588C /* UIScrollView+MJExtension.m in Sources */,
 				A12CD4F41BCBAC990020CB27 /* RBStoryboardSegue.m in Sources */,

@@ -193,7 +193,12 @@
             else
             {
                 [SVProgressHUD showInfoWithStatus:@"暂无数据"];
-                [_tableView.footer endRefreshingWithNoMoreData];
+                if ([_tableView.header isRefreshing]) {
+                    [_tableView.header endRefreshing];
+                }
+                if ([_tableView.footer isRefreshing]) {
+                      [_tableView.footer endRefreshingWithNoMoreData];
+                }
             }
         }
     } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {

@@ -19,17 +19,24 @@
 #import "ModifyPasswordViewController.h"
 
 #import "NGMyZPVC.h"
+#import "MeInfoCell.h"
 
 #define HeaderViewHeight 120.0
 #define iconHeight 15.0
 #define KimageName @"imageName"
 #define KlabelName @"labelName"
+
+static NSString * MeInfoCellID = @"MeInfoCellID";
+
 @interface MycenterViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     NSArray *datalist;
     UITableView *myTableView;
     UIView *backVIew;
     UIView *footView;
+    
+    
+    UIImageView * _user_icon_img;
 }
 @end
 
@@ -131,21 +138,26 @@
     
     self.title = @"我的";
     [self createLeftBarItemWithBackTitle];
-    [self createHeader];
+//    [self createHeader];
     [self creatFooter];
     [self creatTableView];
-    datalist = @[@{KimageName: @"uc_shouc.png",
+    datalist = @[@[@{KimageName: @"uc_shouc.png",
                    KlabelName:@"我的收藏"},
                  @{KimageName: @"uc_danzi.png",
-                   KlabelName:@"我的单子"},
-                 @{KimageName: @"uc_jianli.png",
+                   KlabelName:@"我的单子"}],
+                 
+                 @[@{KimageName: @"uc_jianli.png",
                    KlabelName:@"我要招聘"},
                  @{KimageName: @"uc_fabu.png",
-                   KlabelName:@"发布交流会"},
-//                 @{KimageName: @"uc_jianli.png",
-//                   KlabelName:@"升级为公司会员"},
-                 @{KimageName: @"uc_system.png",
-                   KlabelName:@"系统中心"},
+                   KlabelName:@"发布交流会"}],
+
+                 @[ @{KimageName: @"uc_system.png",
+                      KlabelName:@"系统中心"},
+                    @{KimageName: @"uc_pwd.png",
+                     KlabelName:@"修改密码"}],
+                 
+                 @[ @{KimageName: @"uc_exit.png",
+                      KlabelName:@"退出账号"}]
                  ];
     
     UIBarButtonItem *_item = [[UIBarButtonItem alloc]init];
@@ -154,42 +166,82 @@
 }
 
 -(void)creatTableView{
-    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, CurrentScreenWidth, CurrentScreenHeight-49) style:UITableViewStylePlain];
+    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, CurrentScreenWidth, CurrentScreenHeight-49) style:UITableViewStyleGrouped];
     myTableView.delegate = self;
     myTableView.dataSource = self;
     myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:myTableView];
     myTableView.hidden = YES;
-    [myTableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+    [myTableView setContentInset:UIEdgeInsetsMake(5, 0, 20, 0)];
     
-    [myTableView setTableHeaderView:backVIew];
-    [myTableView setTableFooterView:footView];
+//    [myTableView setTableHeaderView:backVIew];
+//    [myTableView setTableFooterView:footView];
+    [myTableView registerNib:[UINib nibWithNibName:@"MeInfoCell" bundle:nil] forCellReuseIdentifier:MeInfoCellID];
 }
+
 #pragma mark --tableview 代理
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section ==0) {
+        return 120;
+    }
     return 50;
 }
-//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    return HeaderViewHeight;
-//}
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-//    return HeaderViewHeight;
-//}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return datalist.count;
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 1;
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 20;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 5;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section ==0) {
+        return 1;
+    }
+    return ((NSArray*)[datalist objectAtIndex:section - 1]).count;
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section ==0) {
+        MeInfoCell * cell = [tableView dequeueReusableCellWithIdentifier:MeInfoCellID forIndexPath:indexPath];
+        __block typeof(self)weakSelf = self;
+        
+        cell.tapIconBlock = ^(UIImageView *img){
+            [weakSelf usericon:img];
+        };
+        
+        
+        NSString*avatar = [[MySharetools shared]getUserAvatarName];
+        NSString *icon_url;
+        
+        if (avatar && avatar.length > 11) {
+            icon_url = [NSString stringWithFormat:@"%@/%@",NSLocalizedString(@"url_get_avatar", @""),avatar];
+        }
+        
+        [cell setCell:icon_url name:[[MySharetools shared]getNickName] jifen:[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"fee"] liulan:[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"see"] comm:[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"judge"]];
+        
+        return cell;
+    }
+    
     static NSString *cellId = @"cellid";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    UIImage *image = [UIImage imageNamed:datalist[indexPath.row][KimageName]];
+    NSArray *_arr = [datalist objectAtIndex:indexPath.section - 1];
+    
+    UIImage *image = [UIImage imageNamed:_arr[indexPath.row][KimageName]];
     image = [UIImage imageWithCGImage:image.CGImage scale:2 orientation:UIImageOrientationUp];
     
     cell.imageView.image = image;
-    cell.textLabel.font = [UIFont systemFontOfSize:14];
-    cell.textLabel.text = datalist[indexPath.row][KlabelName];
+    cell.textLabel.font = [UIFont systemFontOfSize:15];
+    cell.textLabel.text = _arr[indexPath.row][KlabelName];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     UIImageView *dimageview = [[UIImageView alloc] init];
     dimageview.frame=CGRectMake(0, 49, CurrentScreenWidth, 1);
@@ -292,142 +344,15 @@
     [self.tabBarController presentViewController:nav animated:YES completion:nil];
 }
 
--(void)createHeader{
-    backVIew = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, HeaderViewHeight)];
-    backVIew.backgroundColor = [UIColor clearColor];
-    UIImageView *backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, HeaderViewHeight)];
-    backImage.image = [UIImage imageNamed:@"bg_credit"];
-    backImage.userInteractionEnabled = YES;
-    //backImage.backgroundColor = [UIColor redColor];
-    [backVIew addSubview:backImage];
-    UIButton *userIcon = [UIButton buttonWithType:UIButtonTypeCustom];
-    userIcon.tag = 107;
-    userIcon.layer.cornerRadius = 40;
-    userIcon.layer.masksToBounds = YES;
-    
-    userIcon.frame = CGRectMake(10, 10+20, HeaderViewHeight-40, HeaderViewHeight-40);
-    
-    //...
-    NSString*avatar = [[MySharetools shared]getUserAvatarName];
-    if (avatar && avatar.length > 11) {
-        NSString * url = [NSString stringWithFormat:@"%@/%@",NSLocalizedString(@"url_get_avatar", @""),avatar];
-        [userIcon setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"head_noregist"]];
-    }
-    else
-    [userIcon setBackgroundImage:[UIImage imageNamed:@"head_noregist"] forState:UIControlStateNormal];
-    
-    [userIcon addTarget:self action:@selector(usericonBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [backVIew addSubview:userIcon];
-    UILabel *nickNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(userIcon.right+10, 10+20, 20, 20)];
-    nickNameLabel.text = [[MySharetools shared]getNickName];
-    nickNameLabel.font = [UIFont systemFontOfSize:14];
-    nickNameLabel.textColor = [UIColor orangeColor];
-//    nickNameLabel.backgroundColor = [UIColor blackColor];//...
-    nickNameLabel.tag = 101;
-    [nickNameLabel sizeToFit];
-    [backVIew addSubview:nickNameLabel];
-    
-    UIButton *modifyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    modifyBtn.frame = CGRectMake(nickNameLabel.right+10, 10, 50, 15);
-    [modifyBtn setTitle:@"点击修改" forState:UIControlStateNormal];
-    modifyBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    modifyBtn.tag = 105;
-    [modifyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [modifyBtn addTarget:self action:@selector(modifyInfo:) forControlEvents:UIControlEventTouchUpInside];
-    UIImageView *line = [[UIImageView alloc]initWithFrame:CGRectMake(modifyBtn.left, modifyBtn.bottom, modifyBtn.frame.size.width, 1)];
-    line.backgroundColor = [UIColor blackColor];
-    line.tag = 106;
-    [backVIew addSubview:modifyBtn];
-    [backVIew addSubview:line];
-    
-    
-    
-    UIImageView *jifenicon = [[UIImageView alloc]initWithFrame:CGRectMake(userIcon.right+10, line.bottom+22+20, iconHeight, iconHeight)];
-    jifenicon.image = [UIImage imageNamed:@"uc_shouc"];
-    UILabel *jifenName = [[UILabel alloc]initWithFrame:CGRectMake(jifenicon.right, line.bottom+20+20, 30, 20)];
-    jifenName.text = @"积分";
-    jifenName.textAlignment = NSTextAlignmentRight;
-    jifenName.font = [UIFont systemFontOfSize:12];
-    UILabel *jifenLabel = [[UILabel alloc]initWithFrame:CGRectMake(jifenicon.left,jifenicon.bottom+5,iconHeight+30, 20)];
-    jifenLabel.font = [UIFont systemFontOfSize:12];
-    jifenLabel.textAlignment = NSTextAlignmentCenter;
-    jifenLabel.tag = 102;
-//    NSString *jifen = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"fee"]];
-//    if (![jifen isEqual:@"(null)"]) {
-//        if (jifen.length>0) {
-//            jifenLabel.text = jifen;
-//        }else{
-//            jifenLabel.text = @"0";
-//        }
-//    }
-    
-    
-    UIImageView *browseicon = [[UIImageView alloc]initWithFrame:CGRectMake(jifenName.right+5, line.bottom+22+20, iconHeight, iconHeight)];
-    browseicon.image = [UIImage imageNamed:@"uc_add"];
-    UILabel *browseName = [[UILabel alloc]initWithFrame:CGRectMake(browseicon.right, line.bottom+20+20, 30, 20)];
-    browseName.text = @"浏览";
-    browseName.textAlignment = NSTextAlignmentRight;
-    browseName.font = [UIFont systemFontOfSize:12];
-    UILabel *browseLabel = [[UILabel alloc]initWithFrame:CGRectMake(browseicon.left, jifenicon.bottom+5, iconHeight+30, 20)];
-    browseLabel.font = [UIFont systemFontOfSize:12];
-    browseLabel.textAlignment = NSTextAlignmentCenter;
-    browseLabel.tag = 103;
-//    NSString *see = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"see"]];
-//    if (![see isEqual:@"(null)"]) {
-//        if (see.length>0) {
-//            browseLabel.text = see;
-//        }else{
-//            browseLabel.text = @"0";
-//        }
-//    }
-    
-    UIImageView *judgeicon = [[UIImageView alloc]initWithFrame:CGRectMake(browseName.right+5, line.bottom+22+20, iconHeight, iconHeight)];
-    judgeicon.image = [UIImage imageNamed:@"uc_say"];
-    UILabel *judegeName = [[UILabel alloc]initWithFrame:CGRectMake(judgeicon.right, line.bottom+20+20, 30, 20)];
-    judegeName.text = @"评论";
-    judegeName.textAlignment = NSTextAlignmentRight;
-    judegeName.font = [UIFont systemFontOfSize:12];
-    UILabel *judgeLabel = [[UILabel alloc]initWithFrame:CGRectMake(judgeicon.left, jifenicon.bottom+5, iconHeight+30, 20)];
-    //judgeLabel.text = @"";
-    judgeLabel.font = [UIFont systemFontOfSize:12];
-    judgeLabel.textAlignment = NSTextAlignmentCenter;
-    judgeLabel.tag = 104;
-    
-    [backVIew addSubview:jifenLabel];
-    [backVIew addSubview:jifenicon];
-    [backVIew addSubview:jifenName];
-    
-    [backVIew addSubview:browseLabel];
-    [backVIew addSubview:browseicon];
-    [backVIew addSubview:browseName];
-    
-    [backVIew addSubview:judgeLabel];
-    [backVIew addSubview:judgeicon];
-    [backVIew addSubview:judegeName];
-    //[self.view addSubview:backVIew];
-    
-    
-}
 -(void)modifyInfo:(UIButton *)btn{
     PersonalInfoViewController *person = [[MySharetools shared]getViewControllerWithIdentifier:@"personInfo" andstoryboardName:@"me"];
     person.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:person animated:YES];
 }
-- (void)usericonBtn:(UIButton *)btn{
-    //    UIView *bgView = [[UIView alloc]initWithFrame:self.window.frame];
-    //    bgView.tag = 800;
-    //    bgView.backgroundColor = [UIColor blackColor];
-    //    bgView.alpha = 0.4;
-    //    [self.window addSubview:bgView];
-    //    UIView *secondView = [[UIView alloc]initWithFrame:CGRectMake(20, 100, CurrentScreenWidth-40, 150)];
-    //    secondView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
-    //    secondView.backgroundColor = [UIColor whiteColor];
-    //    secondView.tag = 801;
-    //    secondView.layer.masksToBounds = YES;
-    //    secondView.layer.cornerRadius = 8;
-    //    [self.window addSubview:secondView];
-    
-    
+
+#pragma mark --修改用户头像
+- (void)usericon:(UIImageView *)img{
+    _user_icon_img = img;
     UIActionSheet *useraction = [[UIActionSheet alloc]initWithTitle:@"修改头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"选择本地图片",@"拍照", nil];
     [useraction showInView:[UIApplication sharedApplication].keyWindow];
 }
@@ -512,8 +437,7 @@
               [SVProgressHUD showSuccessWithStatus:@"上传完成"];
               //...设置当前头像的图片
                 UIImage *_ig = [[UIImage alloc]initWithData:dataImage];
-                UIButton *usericon = (UIButton *)[self.view viewWithTag:107];
-                [usericon setBackgroundImage:_ig forState:UIControlStateNormal];
+                _user_icon_img.image = _ig;
             }
             else
             {
