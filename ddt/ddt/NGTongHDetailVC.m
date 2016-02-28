@@ -38,6 +38,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lable_2;//所属公司
 @property (weak, nonatomic) IBOutlet UILabel *lable_3;//业务说明
 @property (weak, nonatomic) IBOutlet UIButton *is_love_btn;//收藏按钮
+@property (weak, nonatomic) IBOutlet UITableViewCell *yewu_cell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *gs_cell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *yewude_cell;
 
 @end
 
@@ -46,10 +49,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc]init];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+//    [self.tableView setContentInset:UIEdgeInsetsMake(0, -10, 0, -20)];
+    self.yewu_cell.layer.borderColor = [UIColor colorWithRed:0.906 green:0.910 blue:0.914 alpha:1].CGColor;
+    self.yewu_cell.layer.borderWidth = .5;
+    
+    self.gs_cell.layer.borderColor = [UIColor colorWithRed:0.906 green:0.910 blue:0.914 alpha:1].CGColor;
+    self.gs_cell.layer.borderWidth = .5;
+    
+    self.yewude_cell.layer.borderColor = [UIColor colorWithRed:0.906 green:0.910 blue:0.914 alpha:1].CGColor;
+    self.yewude_cell.layer.borderWidth = .5;
+    
     
     [self loadData];
     [self initSubviews];
-    [self initHeaderView];
+//    [self initHeaderView];
+    
+    NSArray *_arr = [[NSBundle mainBundle]loadNibNamed:@"PersonInfoTop" owner:self options:nil];
+    UIView *_v = _arr[0];
+    _v.frame =  _imgView.frame;
+    [_imgView addSubview:_v];
 }
 
 //

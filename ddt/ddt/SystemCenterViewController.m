@@ -40,11 +40,11 @@
                    KlabelName:@"关于我们"},
                  @{KimageName: @"uc_danzi.png",
                    KlabelName:versionstr},
-                 @{KimageName: @"uc_fabu.png",
+                 @{KimageName: @"uc_app.png",
                    KlabelName:@"意见反馈"},
-                 @{KimageName: @"uc_fabu.png",
+                 @{KimageName: @"uc_pwd.png",
                    KlabelName:@"加入我们"},
-                 @{KimageName: @"uc_say.png",
+                 @{KimageName: @"uc_setting_1.png",
                    KlabelName:@"重置手机号"},
                  ];
 
@@ -74,7 +74,7 @@
     image = [UIImage imageWithCGImage:image.CGImage scale:2 orientation:UIImageOrientationUp];
     
     cell.imageView.image = image;
-    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    cell.textLabel.font = [UIFont systemFontOfSize:15];
     cell.textLabel.text = datalist[indexPath.row][KlabelName];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     UIImageView *dimageview = [[UIImageView alloc] init];

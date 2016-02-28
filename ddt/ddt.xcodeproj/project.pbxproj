@@ -144,6 +144,7 @@
 		AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92EB981BD24A0300C23992 /* NGXMLBaseModel.m */; };
 		ADA813431C81CA7A001780EE /* MeInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA813411C81CA7A001780EE /* MeInfoCell.m */; settings = {ASSET_TAGS = (); }; };
 		ADA813441C81CA7A001780EE /* MeInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA813421C81CA7A001780EE /* MeInfoCell.xib */; settings = {ASSET_TAGS = (); }; };
+		ADB630AE1C8338C40062BE9A /* PersonInfoTop.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB630AD1C8338C40062BE9A /* PersonInfoTop.xib */; settings = {ASSET_TAGS = (); }; };
 		ADCA44871C07507A0066A371 /* NGZhaoPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCA44851C07507A0066A371 /* NGZhaoPinCell.m */; };
 		ADCA44881C07507A0066A371 /* NGZhaoPinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADCA44861C07507A0066A371 /* NGZhaoPinCell.xib */; };
 		ADCA448B1C0750DA0066A371 /* NGZhaoPinDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCA448A1C0750DA0066A371 /* NGZhaoPinDetailVC.m */; };
@@ -455,6 +456,7 @@
 		ADA813401C81CA7A001780EE /* MeInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeInfoCell.h; sourceTree = "<group>"; };
 		ADA813411C81CA7A001780EE /* MeInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeInfoCell.m; sourceTree = "<group>"; };
 		ADA813421C81CA7A001780EE /* MeInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeInfoCell.xib; sourceTree = "<group>"; };
+		ADB630AD1C8338C40062BE9A /* PersonInfoTop.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonInfoTop.xib; sourceTree = "<group>"; };
 		ADCA44841C07507A0066A371 /* NGZhaoPinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGZhaoPinCell.h; sourceTree = "<group>"; };
 		ADCA44851C07507A0066A371 /* NGZhaoPinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGZhaoPinCell.m; sourceTree = "<group>"; };
 		ADCA44861C07507A0066A371 /* NGZhaoPinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGZhaoPinCell.xib; sourceTree = "<group>"; };
@@ -954,6 +956,7 @@
 				ADA813401C81CA7A001780EE /* MeInfoCell.h */,
 				ADA813411C81CA7A001780EE /* MeInfoCell.m */,
 				ADA813421C81CA7A001780EE /* MeInfoCell.xib */,
+				ADB630AD1C8338C40062BE9A /* PersonInfoTop.xib */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1549,6 +1552,7 @@
 				ADCA44881C07507A0066A371 /* NGZhaoPinCell.xib in Resources */,
 				9F1DF5161BD77A6E00956512 /* TonghangTableViewCell.xib in Resources */,
 				A17B7CFD1B43F867003CF895 /* MainSB.storyboard in Resources */,
+				ADB630AE1C8338C40062BE9A /* PersonInfoTop.xib in Resources */,
 				A1042B871B64D55400A74215 /* image0.png in Resources */,
 				ADD431591BE509EE000C03D8 /* UMSnsAccountViewController.xib in Resources */,
 				A12CD4F61BCBAC990020CB27 /* LICENSE in Resources */,

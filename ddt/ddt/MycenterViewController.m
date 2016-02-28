@@ -173,6 +173,7 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
     [self.view addSubview:myTableView];
     myTableView.hidden = YES;
     [myTableView setContentInset:UIEdgeInsetsMake(5, 0, 20, 0)];
+    myTableView.showsVerticalScrollIndicator = NO;
     
 //    [myTableView setTableHeaderView:backVIew];
 //    [myTableView setTableFooterView:footView];
@@ -251,59 +252,63 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSInteger index = indexPath.row;
+    NSInteger index = indexPath.section;
 
     switch (index) {
         case 0:
         {
-            MyCollectionViewController *collection = [[MyCollectionViewController alloc]init];
-            collection.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:collection animated:YES];
-        }
-            break;
-        case 1:
-        {
-            MyListViewController *list = [[MyListViewController alloc]init];
-            list .hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:list animated:YES];
-        }
-            break;
-        case 2:
-        {
-//            MyResumeViewController *resume = [[MySharetools shared]getViewControllerWithIdentifier:@"MyResume" andstoryboardName:@"me"];
-//            resume.hidesBottomBarWhenPushed = YES;
-//            [self.navigationController pushViewController:resume animated:YES];
-            //去掉我的简历，改为我的招聘
-            NGMyZPVC *resume = [[MySharetools shared]getViewControllerWithIdentifier:@"MyZP" andstoryboardName:@"me"];
-            resume.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:resume animated:YES];
-//            [self performSegueWithIdentifier:@"showMyZPID" sender:nil];
-        }
-            break;
-        case 3:
-        {
-            ReleaseMeetingViewController *meeting = [[MySharetools shared]getViewControllerWithIdentifier:@"ReleaseMeeting" andstoryboardName:@"me"];
-            meeting.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:meeting animated:YES];
-        }
-            break;
-//        case 4:
-//        {
-//            AddCommanyInfoViewController *commany = [[MySharetools shared]getViewControllerWithIdentifier:@"AddCommany" andstoryboardName:@"me"];
-//            commany.hidesBottomBarWhenPushed = YES;
-//            [self.navigationController pushViewController:commany animated:YES];
-//        }
-//            break;
-        case 4:
-        {
-            SystemCenterViewController *system = [[SystemCenterViewController alloc]init];
-            system.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:system animated:YES];
-        }
-            break;
+            [self modifyInfo:nil];
             
-        default:
+        }
             break;
+        case 1://我的收藏+我的单子
+        {
+            !indexPath.row?(
+                {MyCollectionViewController *collection = [[MyCollectionViewController alloc]init];
+                collection.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:collection animated:YES];}
+            ):
+            (
+                {MyListViewController *list = [[MyListViewController alloc]init];
+                list .hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:list animated:YES];}
+             );
+        }break;
+        case 2://我要招聘+发布交流会
+        {
+            !indexPath.row?(
+                {NGMyZPVC *resume = [[MySharetools shared]getViewControllerWithIdentifier:@"MyZP" andstoryboardName:@"me"];
+                resume.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:resume animated:YES];}
+                ):
+    //            [self performSegueWithIdentifier:@"showMyZPID" sender:nil];
+            
+            (
+             {ReleaseMeetingViewController *meeting = [[MySharetools shared]getViewControllerWithIdentifier:@"ReleaseMeeting" andstoryboardName:@"me"];
+                meeting.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:meeting animated:YES];}
+             );
+        }break;
+        case 3://系统中心+修改密码
+        {
+            !indexPath.row?(
+            {
+                SystemCenterViewController *system = [[SystemCenterViewController alloc]init];
+                system.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:system animated:YES];}):
+            (
+                {
+                    [self modifyPassword:nil];
+                }
+            );
+        }break;
+
+        case 4://退出账号
+        {
+            [self logout:nil];
+        }break;
+            
+        default: break;
     }
 }
 #pragma mark--创建尾视图
@@ -349,6 +354,11 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
     person.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:person animated:YES];
 }
+
+
+
+
+
 
 #pragma mark --修改用户头像
 - (void)usericon:(UIImageView *)img{

@@ -1,7 +1,7 @@
 //
 //  NGCompanyListVC.m
 //  ddt
-//
+//单子列表
 //  Created by wyg on 15/11/10.
 //  Copyright © 2015年 Light. All rights reserved.
 //
@@ -192,7 +192,7 @@
             }
             else
             {
-                [SVProgressHUD showInfoWithStatus:@"暂无数据"];
+//                [SVProgressHUD showInfoWithStatus:@"暂无数据"];
                 if ([_tableView.header isRefreshing]) {
                     [_tableView.header endRefreshing];
                 }
@@ -309,14 +309,14 @@ float _h;
     NGJieDanListCell * cell;
     NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:indexPath.row];
     cell = [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
-    BOOL _b = [[_dic0 objectForKey:@"zt"] boolValue];
-    if (_b) {
-        cell.backgroundColor = [UIColor clearColor];
-    }
-    else
-    {
-        cell.backgroundColor = cellNoLockBgColor;
-    }
+//    BOOL _b = [[_dic0 objectForKey:@"zt"] boolValue];
+//    if (_b) {
+//        cell.backgroundColor = [UIColor clearColor];
+//    }
+//    else
+//    {
+//        cell.backgroundColor = cellNoLockBgColor;
+//    }
     
     NSString * str = [_dic0 objectForKey:@"bz"];
     CGSize _new =  [ToolsClass calculateSizeForText:str :cellMaxFitSize font:cellFitfont];
@@ -335,7 +335,7 @@ float _h;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    return _h + 40 > 80?_h + 40:80;
+    return 90;//_h + 40 > 80?_h + 40:80;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

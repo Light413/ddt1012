@@ -234,7 +234,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     _common_cellId_arr = @[NGSecondListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId,JieDanCellReuseId,NGSecondListCellReuseId,@"NGZhaoPinCellId"];
     _common_list_cellReuseId = [_common_cellId_arr objectAtIndex:self.vcType - 1];
     
-    cellMaxFitSize = CGSizeMake(CurrentScreenWidth -30, 999);
+    cellMaxFitSize = CGSizeMake(CurrentScreenWidth -130, 999);
     cellFitfont = [UIFont systemFontOfSize:14];
     
 }
@@ -350,17 +350,14 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 -(void)loadMoreData
 {
     if (_pageNum == NSNotFound) {
-        NSLog(@"...page error ");
-        return;
+        NSLog(@"...page error ");return;
     }
     NSLog(@"##############: %ld",_pageNum);
     
     [self initParams];
-
     NSDictionary *_d = [MySharetools getParmsForPostWith:_common_list_request_parm];
     RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:_common_list_url parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        _pageNum ==1?({[_tableView.header endRefreshing];[_common_list_dataSource removeAllObjects];
-            [_tableView reloadData];}):([_tableView.footer endRefreshing]);
+        _pageNum ==1?({[_tableView.header endRefreshing];}):([_tableView.footer endRefreshing]);
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
                 NSArray *dataarr = [responseObject objectForKey:@"data"];
@@ -371,14 +368,16 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
                         _pageNum = NSNotFound;
                         [_tableView.footer endRefreshingWithNoMoreData];
                     }
+                    if (_pageNum ==1) {
+                        [_common_list_dataSource removeAllObjects];}
+                    
                     [_common_list_dataSource addObjectsFromArray:dataarr];
                     [_tableView reloadData];
                 }
             }
             else
             {
-                [SVProgressHUD showInfoWithStatus:@"暂无数据"];
-                [_tableView.footer endRefreshingWithNoMoreData];
+//                [SVProgressHUD showInfoWithStatus:@"暂无数据"];
                 _pageNum = NSNotFound;
                 [_tableView.footer endRefreshingWithNoMoreData];
             }
@@ -436,7 +435,6 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         {
             if (index ==3)
             {
-//                _selectedTime = str;
                 NSArray *_arr = @[@"全部",@"今天",@"最近3天",@"最近7天",@"最近30天"];
                 [_arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([(NSString *)obj isEqualToString:str]) {
@@ -504,7 +502,6 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 
 -(void)searchBarDidBeginSearch:(NGSearchBar *)searchBar withStr:(NSString *)str
 {
-    NSLog(@"did : %@",searchBar.text);
     if (searchBar.text.length > 0) {
         [self loadMoreData];
     }
@@ -541,9 +538,9 @@ float _h =0;
         {
             NGSecondListCell *cell1 = (NGSecondListCell *)cell;
             [(NGSecondListCell *)cell setCellWith:_dic0 withOptionIndex:self.vcType];
-            CGRect rec = cell1.lab_type.frame;
+            CGRect rec = cell1.lab_yewu.frame;
             rec.size.height = _new.height;
-            cell1.lab_type.frame = rec;
+            cell1.lab_yewu.frame = rec;
             _h = _new.height + 10;
             
            NSString *tel =  [_dic0 objectForKey:@"mobile"];
@@ -589,45 +586,10 @@ float _h =0;
             [(NGJieDanListCell *)cell setCellWith:_dic0];
 
         }break;
-            
-//        case NGVCTypeId_5:
-//        case NGVCTypeId_6:
-//        {
-//            NSString * str = [_dic0 objectForKey:@"content"];
-//            CGSize _new =  [ToolsClass calculateSizeForText:str :cellMaxFitSize font:cellFitfont];
-//            NGZhaoPinCell *cell1 = (NGZhaoPinCell *)cell;
-//            CGRect rec = cell1.nameLab.frame;
-//            rec.size.height = _new.height+10;
-//            cell1.contentLab.frame = rec;
-//            _h = _new.height;
-//            
-//           NSString* _s4 = [_dic0 objectForKey:@"fmobile"];
-//            [(NGZhaoPinCell *)cell setCellWith:_dic0];
-//            ((NGZhaoPinCell *)cell).btnClickBlock = ^(NSInteger tag){
-//                NSLog(@"...cell btn click : %ld",tag);
-//                NSString *str;
-//                if (tag == 300) {
-//                    //tel
-//                    str = [NSString stringWithFormat:@"tel://%@",_s4];
-//                }
-//                else if (tag ==301)
-//                {
-//                    //msg
-//                    str = [NSString stringWithFormat:@"sms://%@",_s4];
-//                }
-//                
-//                [[UIApplication sharedApplication ]openURL:[NSURL URLWithString:str]];
-//            };
-//            
-//        }break;
-        
+
         default:break;
     }
-    
-    
-    
-    
-    
+
     return cell;
 }
 

@@ -12,7 +12,7 @@
 - (void)awakeFromNib {
     // Initialization code
     self.lab_phone.textColor = [UIColor colorWithRed:0.906 green:0.824 blue:0.404 alpha:1];
-    self.img_avatar .layer.cornerRadius = 27.5;
+    self.img_avatar .layer.cornerRadius = 30;
     self.img_avatar.layer.masksToBounds = YES;
 }
 
@@ -30,16 +30,11 @@
     }
     
     self.lab_name.text = [dic objectForKey:@"xm"];
+    self.sexLab.text = [dic objectForKey:@"xb"];
     self.lab_phone.text = [dic objectForKey:@"mobile"];
-    self.lab_type.text = [dic objectForKey:@"yewu"];
-    self.lab_detail.text = [dic objectForKey:@"word"];
+    self.lab_gs.text = [dic objectForKey:@"company"];
+    self.lab_yewu.text = [dic objectForKey:@"yewu"];
     
-    if (index ==3) {
-        self.btn_fujin.hidden = YES;
-    }
-    else if (index == 1)
-    {
-        self.btn_fujin.hidden = NO;
         NSString * _title = @"无位置";
         NSString *_dis = [dic objectForKey:@"distance"]?[dic objectForKey:@"distance"]:@"";
         NSString *mylog = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_LOCATION_LOG];
@@ -52,9 +47,8 @@
             double _s = [_location1 distanceFromLocation:_location2] / 1000;
              _title = [NSString stringWithFormat:@"%.1fkm",_s];
         }
-
-        [self.btn_fujin setTitle:_title];
-    }
+    
+    self.disLab.text = _title;
     
     UIButton * love = (UIButton *)[self viewWithTag:301];
     love.selected = [[dic objectForKey:@"isbook"]boolValue];
