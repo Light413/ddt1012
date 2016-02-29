@@ -122,6 +122,7 @@
 		A1AC85551BC8DB460099C7F7 /* NGCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AC85531BC8DB460099C7F7 /* NGCollectionReusableView.m */; };
 		A1AC85561BC8DB460099C7F7 /* NGCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1AC85541BC8DB460099C7F7 /* NGCollectionReusableView.xib */; };
 		A1AC85581BC8F2FA0099C7F7 /* menuItem.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1AC85571BC8F2FA0099C7F7 /* menuItem.plist */; };
+		A1C233721C840C0800462D3E /* PersonInfoTop.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C233711C840C0700462D3E /* PersonInfoTop.m */; settings = {ASSET_TAGS = (); }; };
 		A1C309F91BC65DD300B46BC2 /* LocationManger.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C309F81BC65DD300B46BC2 /* LocationManger.m */; };
 		A1DAAE691B492F84004F634B /* NGBaseNavigationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DAAE681B492F84004F634B /* NGBaseNavigationVC.m */; };
 		A1DAAE6C1B492FC2004F634B /* NGBaseTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DAAE6B1B492FC2004F634B /* NGBaseTableVC.m */; };
@@ -417,6 +418,8 @@
 		A1AC85531BC8DB460099C7F7 /* NGCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGCollectionReusableView.m; sourceTree = "<group>"; };
 		A1AC85541BC8DB460099C7F7 /* NGCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGCollectionReusableView.xib; sourceTree = "<group>"; };
 		A1AC85571BC8F2FA0099C7F7 /* menuItem.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = menuItem.plist; sourceTree = "<group>"; };
+		A1C233701C840C0700462D3E /* PersonInfoTop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoTop.h; sourceTree = "<group>"; };
+		A1C233711C840C0700462D3E /* PersonInfoTop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoTop.m; sourceTree = "<group>"; };
 		A1C309F71BC65DD300B46BC2 /* LocationManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManger.h; sourceTree = "<group>"; };
 		A1C309F81BC65DD300B46BC2 /* LocationManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManger.m; sourceTree = "<group>"; };
 		A1DAAE671B492F84004F634B /* NGBaseNavigationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGBaseNavigationVC.h; sourceTree = "<group>"; };
@@ -957,6 +960,8 @@
 				ADA813411C81CA7A001780EE /* MeInfoCell.m */,
 				ADA813421C81CA7A001780EE /* MeInfoCell.xib */,
 				ADB630AD1C8338C40062BE9A /* PersonInfoTop.xib */,
+				A1C233701C840C0700462D3E /* PersonInfoTop.h */,
+				A1C233711C840C0700462D3E /* PersonInfoTop.m */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1712,6 +1717,7 @@
 				9FEFFCD61BCFBADE0036C23D /* MycenterViewController.m in Sources */,
 				A1042B7E1B64D0F000A74215 /* NGBaseVC.m in Sources */,
 				A12441CB1BD0EDD200D2588C /* MJRefreshComponent.m in Sources */,
+				A1C233721C840C0800462D3E /* PersonInfoTop.m in Sources */,
 				088F23CF1C0070E60051BA3E /* MemuSCModel.m in Sources */,
 				ADD4F8661BECF6BA005F57F0 /* NGTHContactCell.m in Sources */,
 				A12441CD1BD0EDD200D2588C /* MJRefreshHeader.m in Sources */,

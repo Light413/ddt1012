@@ -7,8 +7,10 @@
 //
 
 #import "NGTongHDetailVC.h"
+#import "PersonInfoTop.h"
+
 #define Font    [UIFont systemFontOfSize:15]
-#define Size    CGSizeMake(CurrentScreenWidth - 50, 1000)
+#define Size    CGSizeMake(CurrentScreenWidth - 70, 1000)
 
 #define Color_1 [UIColor colorWithRed:0.412 green:0.635 blue:0.757 alpha:1]
 #define Color_2 [UIColor colorWithRed:0.161 green:0.439 blue:0.122 alpha:1]
@@ -27,6 +29,9 @@
     NSString *_s8;//业务类型
     NSString *_s9;//所属公司
     NSString *_s10;//业务说明
+    
+    NSString *_s11;//微信
+    NSString *_s12;//区域
 }
 @property (weak, nonatomic) IBOutlet UILabel *telLab;
 @property (weak, nonatomic) IBOutlet UILabel *ywlxLab;
@@ -46,6 +51,8 @@
 
 @implementation NGTongHDetailVC
 
+const float border_w = 0.6;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc]init];
@@ -53,23 +60,18 @@
     
 //    [self.tableView setContentInset:UIEdgeInsetsMake(0, -10, 0, -20)];
     self.yewu_cell.layer.borderColor = [UIColor colorWithRed:0.906 green:0.910 blue:0.914 alpha:1].CGColor;
-    self.yewu_cell.layer.borderWidth = .5;
+    self.yewu_cell.layer.borderWidth = border_w;
     
     self.gs_cell.layer.borderColor = [UIColor colorWithRed:0.906 green:0.910 blue:0.914 alpha:1].CGColor;
-    self.gs_cell.layer.borderWidth = .5;
+    self.gs_cell.layer.borderWidth = border_w;
     
     self.yewude_cell.layer.borderColor = [UIColor colorWithRed:0.906 green:0.910 blue:0.914 alpha:1].CGColor;
-    self.yewude_cell.layer.borderWidth = .5;
+    self.yewude_cell.layer.borderWidth = border_w;
     
     
     [self loadData];
     [self initSubviews];
-//    [self initHeaderView];
-    
-    NSArray *_arr = [[NSBundle mainBundle]loadNibNamed:@"PersonInfoTop" owner:self options:nil];
-    UIView *_v = _arr[0];
-    _v.frame =  _imgView.frame;
-    [_imgView addSubview:_v];
+    [self initHeaderView];
 }
 
 //
@@ -125,6 +127,9 @@
         _s8 = [self.personInfoDic objectForKey:@"yewu"];
         _s9 = [self.personInfoDic objectForKey:@"company"];
         _s10 = [self.personInfoDic objectForKey:@"content"];
+        _s11 = [self.personInfoDic objectForKey:@"wx"]?[self.personInfoDic objectForKey:@"wx"]:@"";
+        _s12 = [self.personInfoDic objectForKey:@"quyu"]?[self.personInfoDic objectForKey:@"quyu"]:@"";
+        
         self.is_love_btn.selected = [[self.personInfoDic objectForKey:@"isbook"]boolValue];
     }
     else
@@ -151,6 +156,36 @@
 
 -(void)initHeaderView
 {
+    NSArray *_arr = [[NSBundle mainBundle]loadNibNamed:@"PersonInfoTop" owner:self options:nil];
+    PersonInfoTop *_v = _arr[0];
+    _v.frame =  _imgView.frame;
+    
+    //头像
+    NSString * pic =[self.personInfoDic objectForKey:@"pic"];
+    if (pic && pic.length > 11 ) {
+        NSString * url = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"url_get_avatar", @""),pic];
+        [_v.avantar setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"cell_avatar_default"]];
+    }
+    else
+    {
+        _v.avantar.image =[UIImage imageNamed:@"cell_avatar_default"];
+    }
+
+    _v.name.text = _s1;
+    _v.sex.text = _s2;
+    _v.age.text = _s3;
+    
+    _v.jifen.text = _s4;
+    _v.renqi.text = _s5;
+    _v.pinlun.text = _s6;
+    _v.tel.text = _s7;
+    _v.weixin.text = _s11;
+    _v.area.text = _s12;
+    
+    [_imgView addSubview:_v];
+    
+    
+    /*
     float _h = _imgView.frame.size.height;
     UIImageView *_avarimg = [[UIImageView alloc]initWithFrame:CGRectMake(5, 10, 80, 80)];
     _avarimg.layer.cornerRadius = 40;
@@ -232,6 +267,8 @@
     _ageLab.textColor = Color_1;
     _ageLab.text = _s3;
     [_imgView addSubview:_ageLab];
+     */
+    
 }
 
 -(void)awakeFromNib
@@ -291,26 +328,24 @@
     switch (indexPath.row) {
         case 0:
         {
-            _h = 0 ;
-            
+            _h += [ToolsClass calculateSizeForText:_s9 :Size font:Font].height;
+
         }break;
         case 1:
         {
             _h += [ToolsClass calculateSizeForText:_s8 :Size font:Font].height;
-            
         }break;
         case 2:
-        {
-            _h += [ToolsClass calculateSizeForText:_s9 :Size font:Font].height;
-        }break;
-        case 3:
         {
             _h += [ToolsClass calculateSizeForText:_s10 :Size font:Font].height;
             
         }break;
+        case 3:
+        {
+            _h = 0 ;
             
-        default:return 0;
-            break;
+        }break;
+        default:return 0;break;
     }
     
     return _h > heightValue ? _h : heightValue;

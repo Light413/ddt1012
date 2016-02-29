@@ -38,4 +38,13 @@
 //toolsclass
 #import "ToolsClass.h"
 #import "Base64.h"
+
+#ifndef __OPTIMIZE__
+#define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#define NSLog(...) {}
+#endif
+
+
+
 #endif

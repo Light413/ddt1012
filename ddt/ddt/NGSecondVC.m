@@ -118,7 +118,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [_tableView.header beginRefreshing];
+//    [_tableView.header beginRefreshing];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
