@@ -79,10 +79,14 @@ static NSString * thcontactCellReuseId = @"thcontactCellReuseId";
         NSLog(@"...page error ");
         return;
     }
-    
-    NSString *tel = [[MySharetools shared]getPhoneNumber];
-  NSDictionary*  _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"",@"quyu",@"",@"yewu",@"10",@"psize",@(1),@"pnum",@"",@"word",nil];
-    NSDictionary *_d = [MySharetools getParmsForPostWith:_common_list_request_parm];
+
+//    NSString *tel = [[MySharetools shared]getPhoneNumber];
+//    NSDate *localDate = [NSDate date]; //获取当前时间
+//    NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
+//    NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",tel,timeString];
+
+  NSDictionary*  _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys: @"",@"quyu",@"",@"yewu",@"10",@"psize",@(1),@"pnum",@"",@"word",nil];
+    NSDictionary *_d = [MySharetools getParmsForPostWith:_common_list_request_parm withToken:YES];
     
     RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_jiaoliuhui", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         _pageNum ==1?({[self.tableView.header endRefreshing];[_dataArray removeAllObjects];

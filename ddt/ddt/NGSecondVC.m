@@ -89,8 +89,9 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     [self initData];
     [self initSubviews];
     [self createLeftBarItemWithBackTitle];
-    [self loadMoreData];
-
+    
+//    [self loadMoreData];
+    [_tableView.header beginRefreshing];
 }
 
 -(void)awakeFromNib
@@ -179,7 +180,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         } break;
             
         case NGVCTypeId_5:
-        {//求职
+        {//招聘
             NSArray *tmp = @[@"区域",@"类型",@"工资",@"职位",@"经验"];
             NSArray *_a1 = [DTComDataManger getData_qwxz];
             NSArray *_a2 = [DTComDataManger getData_gwlx];
@@ -189,41 +190,8 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
             _common_list_url  =NSLocalizedString(@"url_qiuzhi", @"");
             _selectedArea = @"";
             _selectedType = @"";
-            
-            UIButton *rightbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            rightbtn.frame = CGRectMake(0, 0, 100, 30);
-            [rightbtn setTitle:@"发布简历" forState:UIControlStateNormal];
-            rightbtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-            rightbtn.titleLabel.textAlignment = NSTextAlignmentRight;
-            [rightbtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -50)];
-            rightbtn.tag = 150;
-            [rightbtn addTarget:self action:@selector(rightItemClick:) forControlEvents:UIControlEventTouchUpInside];
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightbtn];
-            
         } break;
-            
-        case NGVCTypeId_6:
-        {//招聘
-            NSArray *tmp = @[@"区域",@"类型",@"性别",@"职位",@"经验"];
-            NSArray *_a2 = [DTComDataManger getData_gwlx];
-            NSArray *_a3 = [DTComDataManger getData_gzjy];
-            _common_pop_btnTitleArr = tmp;
-            _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr,_a2,_a3];
-            _common_list_url  =NSLocalizedString(@"url_zhaopin", @"");
-            _selectedArea = @"";
-            _selectedType = @"";
-            
-            UIButton *rightbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            rightbtn.frame = CGRectMake(0, 0, 100, 30);
-            [rightbtn setTitle:@"发布招聘" forState:UIControlStateNormal];
-            rightbtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-            rightbtn.titleLabel.textAlignment = NSTextAlignmentRight;
-            [rightbtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -50)];
-            rightbtn.tag = 151;
-            [rightbtn addTarget:self action:@selector(rightItemClick:) forControlEvents:UIControlEventTouchUpInside];
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightbtn];
-        } break;
-            
+
         default: break;
     }
     
@@ -231,28 +199,12 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     //....此处获取tableview的数据源
     //...test   tableview
     _common_list_dataSource = [[NSMutableArray alloc]init];
-    _common_cellId_arr = @[NGSecondListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId,JieDanCellReuseId,NGSecondListCellReuseId,@"NGZhaoPinCellId"];
+    _common_cellId_arr = @[NGSecondListCellReuseId,NGSecondListCellReuseId,NGSecondListCellReuseId,JieDanCellReuseId,@"NGZhaoPinCellId"];
     _common_list_cellReuseId = [_common_cellId_arr objectAtIndex:self.vcType - 1];
     
     cellMaxFitSize = CGSizeMake(CurrentScreenWidth -130, 999);
     cellFitfont = [UIFont systemFontOfSize:14];
     
-}
-
-#pragma mark --发布求职、简历
--(void)rightItemClick:(UIButton*)btn
-{
-    if (btn.tag ==150)
-    {//发布简历
-        MyResumeViewController *resume = [[MySharetools shared]getViewControllerWithIdentifier:@"MyResume" andstoryboardName:@"me"];
-        resume.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:resume animated:YES];
-    }
-    else if (btn.tag == 151)
-    {//发布招聘
-        UIAlertView *_a = [[UIAlertView alloc]initWithTitle:@"贷易通友情提示" message:@"只有公司会员才能发布招聘信息,您要免费开通吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        [_a show];
-    }
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -283,10 +235,8 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         case NGVCTypeId_4://接单
             _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedTime,@"time",@"10",@"psize",@(_pageNum),@"pnum",nil];
             break;
-        case NGVCTypeId_5://求职
+        case NGVCTypeId_5://招聘
             _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",@"",@"money",@"",@"old",@"",@"work",@"10",@"psize",@(_pageNum),@"pnum",nil]; break;
-        case NGVCTypeId_6://招聘
-            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex:@"",@"xb",_selectedJingYan?_selectedJingYan: @"",@"old",_selectedZhiWei?_selectedZhiWei: @"",@"work",@"10",@"psize",@(_pageNum),@"pnum",nil];break;
         default:break;
     }
 }
@@ -324,9 +274,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
             self.navigationItem.rightBarButtonItem  = nil;
             [_tableView registerNib:[UINib nibWithNibName:@"NGJieDanListCell" bundle:nil] forCellReuseIdentifier:JieDanCellReuseId];break;
         case NGVCTypeId_5:
-        case NGVCTypeId_6:
             [_tableView registerNib:[UINib nibWithNibName:@"NGZhaoPinCell" bundle:nil] forCellReuseIdentifier:@"NGZhaoPinCellId"];break;
-            break;
         default:break;
     }
 
@@ -355,7 +303,8 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     NSLog(@"##############: %ld",_pageNum);
     
     [self initParams];
-    NSDictionary *_d = [MySharetools getParmsForPostWith:_common_list_request_parm];
+    NSDictionary *_d = [MySharetools getParmsForPostWith:_common_list_request_parm withToken:YES];
+    
     RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:_common_list_url parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         _pageNum ==1?({[_tableView.header endRefreshing];}):([_tableView.footer endRefreshing]);
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
@@ -488,7 +437,6 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         default:break;
     }
 
-    
     [_tableView.header beginRefreshing];
 }
 
@@ -586,7 +534,13 @@ float _h =0;
             [(NGJieDanListCell *)cell setCellWith:_dic0];
 
         }break;
-
+            
+        case NGVCTypeId_5:
+        {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"NGZhaoPinCellId" forIndexPath:indexPath];
+            [((NGZhaoPinCell*)cell)setCellWith:_dic0];
+        }break;
+            
         default:break;
     }
 
@@ -638,16 +592,11 @@ const float cellDefaultHeight = 80.0;
             vc.isLove = NO;
             [self.navigationController pushViewController:vc animated:YES];
         }break;
-        case NGVCTypeId_5://求职
+        case NGVCTypeId_5://招聘
         {
             [self performSegueWithIdentifier:showQinZhiVcID sender:nil];
         }break;
-        case NGVCTypeId_6://招聘
-        {
-            [self performSegueWithIdentifier:showZhaoPinVcID sender:nil];
-        }break;
-        default:
-            break;
+        default:break;
     }
 }
 

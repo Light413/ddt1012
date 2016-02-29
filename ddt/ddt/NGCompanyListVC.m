@@ -50,6 +50,8 @@
     [self initData];
     [self initSubviews];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(hasRecNoti) name:@"hasDanziCollectionNoti" object:nil];
+    
+    [_tableView.header beginRefreshing];
 }
 
 -(void)hasRecNoti
@@ -98,7 +100,7 @@
 {
     [super viewWillAppear:animated];
 
-    [_tableView.header beginRefreshing];
+//    [_tableView.header beginRefreshing];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

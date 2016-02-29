@@ -37,8 +37,8 @@
  *
  *  @return dic
  */
-+(NSDictionary*)getParmsForPostWith:(NSDictionary*)dic;
++(NSDictionary*)getParmsForPostWith:(NSDictionary*)dic ;
 
-
++(NSDictionary*)getParmsForPostWith:(NSDictionary*)dic withToken:(BOOL)is;
 
 @end

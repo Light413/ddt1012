@@ -99,9 +99,42 @@ static MySharetools *instance = nil;
         return nil;
     }
     
-    NSString * session = [[self alloc]getsessionid];
+    NSString * session = [[self alloc]getsessionid];//成功登陆
     NSString *jsonstr = [NSString jsonStringFromDictionary:dic];
     NSDictionary *new = [NSDictionary dictionaryWithObjectsAndKeys:jsonstr,@"jsondata",session,@"session", nil];
+    return new;
+}
+
++(NSDictionary*)getParmsForPostWith:(NSDictionary*)dic withToken:(BOOL)is
+{
+    if (dic == nil) {
+        NSLog(@"post请求参数为空");
+        return nil;
+    }
+    
+    NSDictionary *new;
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSMutableDictionary *_pars = [[NSMutableDictionary alloc]initWithDictionary:dic];
+    [_pars setObject:tel forKey:@"mobile"];
+    [_pars setObject:tel forKey:@"username"];
+    
+    if (is) {
+        NSDate *localDate = [NSDate date]; //获取当前时间
+        NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
+        NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",tel,timeString];
+        [_pars setObject:token forKey:@"token"];
+        
+        NSString *jsonstr = [NSString jsonStringFromDictionary:_pars];
+        new = [NSDictionary dictionaryWithObjectsAndKeys:jsonstr,@"jsondata", nil];
+    }
+    
+    else
+    {
+        NSString * session = [[self alloc]getsessionid];//成功登陆
+        NSString *jsonstr = [NSString jsonStringFromDictionary:_pars];
+        new = [NSDictionary dictionaryWithObjectsAndKeys:jsonstr,@"jsondata",session,@"session", nil];
+    }
+    
     return new;
 }
 
