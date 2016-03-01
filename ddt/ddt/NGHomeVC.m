@@ -519,19 +519,19 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (![[MySharetools shared]isSessionid])
-    {
-        if ([MySharetools shared].isFirstSignupViewController == YES) {
-            [MySharetools shared].isFirstSignupViewController = NO;
-            [MySharetools shared].isFromMycenter = YES;
-            LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
-            NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
-            [self.tabBarController presentViewController:nav animated:YES completion:nil];
-        }else{
-            self.tabBarController.selectedIndex = 0;
-        }
-        return;
-    }
+//    if (![[MySharetools shared]isSessionid])
+//    {
+//        if ([MySharetools shared].isFirstSignupViewController == YES) {
+//            [MySharetools shared].isFirstSignupViewController = NO;
+//            [MySharetools shared].isFromMycenter = YES;
+//            LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
+//            NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
+//            [self.tabBarController presentViewController:nav animated:YES completion:nil];
+//        }else{
+//            self.tabBarController.selectedIndex = 0;
+//        }
+//        return;
+//    }
     
     //key,title
     _vctype = NextvcType_1;

@@ -10,4 +10,6 @@
 
 @interface NGZhaoPinDetailVC : NGBaseTableVC
 
+@property(nonatomic,retain)NSDictionary *infoDic;
+
 @end

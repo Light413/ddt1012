@@ -56,6 +56,7 @@ static NSString * thcontactCellReuseId = @"thcontactCellReuseId";
     _pageNum = 1;
     
     UIBarButtonItem *rightitem = [[UIBarButtonItem alloc]initWithTitle:@"我要发布" style:UIBarButtonItemStyleBordered target:self action:@selector(rightItemClick)];
+    [rightitem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15],NSFontAttributeName, nil] forState:UIControlStateNormal];
     
     self.navigationItem.rightBarButtonItem = rightitem;
     

@@ -21,6 +21,8 @@
 #import "AddCommanyInfoViewController.h"
 #import "MyResumeViewController.h"
 
+#import "NGZhaoPinDetailVC.h"
+
 #import "NGSecondListCell.h"
 #import "DTCompanyListCell.h"
 #import "NGJieDanListCell.h"
@@ -36,7 +38,7 @@ static NSString * NGSecondListCellReuseId = @"NGSecondListCellReuseId";
 static NSString * NGCompanyListCellReuseId = @"NGCompanyListCellReuseId";
 static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 
-@interface NGSecondVC ()<NGSearchBarDelegate,NGPopListDelegate,UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
+@interface NGSecondVC ()<NGSearchBarDelegate,NGPopListDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     //pop view相关
     NGPopListView *popView;
@@ -88,17 +90,20 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     [super viewDidLoad];
     [self initData];
     [self initSubviews];
-    [self createLeftBarItemWithBackTitle];
+//    [self createLeftBarItemWithBackTitle];
     
 //    [self loadMoreData];
     [_tableView.header beginRefreshing];
+    if (self.vcType == NGVCTypeId_5) {
+        self.navigationItem.rightBarButtonItem= nil;
+    }
 }
 
 -(void)awakeFromNib
 {
-    UIBarButtonItem *_backitem =[ [UIBarButtonItem alloc]init];
-    _backitem.title = @"";
-    self.navigationItem.backBarButtonItem = _backitem;
+    UIBarButtonItem *_item = [[UIBarButtonItem alloc]init];
+    _item.title = @"";
+    self.navigationItem.backBarButtonItem = _item;
     
     UIButton *rightbtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightbtn.frame = CGRectMake(0, 0, 100, 30);
@@ -110,6 +115,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     [rightbtn addTarget:self action:@selector(closedLocation:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightbtn];
 }
+
 -(void)closedLocation :(UIButton*)btn
 {
     btn.selected = !btn.selected;
@@ -207,15 +213,6 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        AddCommanyInfoViewController *commany = [[MySharetools shared]getViewControllerWithIdentifier:@"AddCommany" andstoryboardName:@"me"];
-        commany.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:commany animated:YES];
-    }
-}
-
 //请求参数初始化
 -(void)initParams
 {
@@ -309,6 +306,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         _pageNum ==1?({[_tableView.header endRefreshing];}):([_tableView.footer endRefreshing]);
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
+                if (_pageNum ==1) { [_common_list_dataSource removeAllObjects];}
                 NSArray *dataarr = [responseObject objectForKey:@"data"];
                 if (dataarr) {
                     //...没有数据了，不能在刷新加载了
@@ -317,8 +315,6 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
                         _pageNum = NSNotFound;
                         [_tableView.footer endRefreshingWithNoMoreData];
                     }
-                    if (_pageNum ==1) {
-                        [_common_list_dataSource removeAllObjects];}
                     
                     [_common_list_dataSource addObjectsFromArray:dataarr];
                     [_tableView reloadData];
@@ -431,9 +427,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
                 }
                 else
                 _selectedJingYan = str;
-            }
-             break;
-            
+            }break;
         default:break;
     }
 
@@ -529,16 +523,20 @@ float _h =0;
             cell1.nameLab.frame = rec;
             _h = _new.height + 20;
             
-            BOOL _b = [[_dic0 objectForKey:@"zt"] boolValue];
-            cell.backgroundColor = _b ? [UIColor clearColor]:cellNoLockBgColor;
+//            BOOL _b = [[_dic0 objectForKey:@"zt"] boolValue];
+//            cell.backgroundColor = _b ? [UIColor clearColor]:cellNoLockBgColor;
             [(NGJieDanListCell *)cell setCellWith:_dic0];
 
         }break;
             
         case NGVCTypeId_5:
         {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"NGZhaoPinCellId" forIndexPath:indexPath];
             [((NGZhaoPinCell*)cell)setCellWith:_dic0];
+                NSString *tel =  [_dic0 objectForKey:@"phone"];
+                ((NGZhaoPinCell *)cell).btnClickBlock = ^(NSInteger tag){
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",tel]]];
+                };
+                
         }break;
             
         default:break;
@@ -558,10 +556,10 @@ const float cellDefaultHeight = 80.0;
             return 50 + _h > cellDefaultHeight?50 + _h:cellDefaultHeight;
         }break;
             
-        case NGVCTypeId_4:return _h + 40 > 80?_h + 40:80; break;
+        case NGVCTypeId_4:return 90;//_h + 40 > 80?_h + 40:80;
+            break;
             
-        case NGVCTypeId_5:
-        case NGVCTypeId_6:return _h + 70 > 90?_h + 70:90;break;
+        case NGVCTypeId_5:return cellDefaultHeight;break;
         default:break;
     }
     
@@ -628,6 +626,11 @@ const float cellDefaultHeight = 80.0;
     else if ([segue.identifier isEqualToString:showZhaoPinVcID])//单子信息
     {
         NGZPPersonInfoVC *vc = [segue destinationViewController];
+        vc.infoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
+    }
+    else if ([segue.identifier isEqualToString:showQinZhiVcID])
+    {
+        NGZhaoPinDetailVC *vc = [segue destinationViewController];
         vc.infoDic = [_common_list_dataSource objectAtIndex:_selectRowIndex];
     }
 }

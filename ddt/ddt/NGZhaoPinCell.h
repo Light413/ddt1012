@@ -10,9 +10,11 @@
 
 @interface NGZhaoPinCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
-@property (weak, nonatomic) IBOutlet UILabel *zhiweiLab;
-@property (weak, nonatomic) IBOutlet UILabel *gongziLab;
-@property (weak, nonatomic) IBOutlet UILabel *contentLab;
+@property (weak, nonatomic) IBOutlet UILabel *typeLab;
+@property (weak, nonatomic) IBOutlet UILabel *areaLab;
+@property (weak, nonatomic) IBOutlet UILabel *gsLab;
+@property (weak, nonatomic) IBOutlet UILabel *numLab;
+@property (weak, nonatomic) IBOutlet UILabel *wageLab;
 
 @property(nonatomic,copy)void(^btnClickBlock)(NSInteger tag);
 

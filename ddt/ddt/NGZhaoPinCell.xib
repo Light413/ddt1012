@@ -16,22 +16,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="业务员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2DM-dX-e3A">
-                        <rect key="frame" x="8" y="3" width="45" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <rect key="frame" x="8" y="3" width="42" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.21568627450980393" green="0.45882352941176469" blue="0.74509803921568629" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全河南省" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5IX-DH-ZCZ">
-                        <rect key="frame" x="8" y="31" width="52" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="招聘人数:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vz6-VL-LB7">
-                        <rect key="frame" x="8" y="55" width="56" height="16"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="56" id="uRW-9L-toD"/>
-                        </constraints>
+                        <rect key="frame" x="8" y="30" width="52" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -48,25 +39,25 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="运营类" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFF-xC-Rqp">
-                        <rect key="frame" x="73" y="4" width="39" height="16"/>
+                        <rect key="frame" x="70" y="4" width="39" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.29019607843137257" green="0.6588235294117647" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="郑州一带有限公司" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YjE-dK-5Xs">
-                        <rect key="frame" x="69" y="31" width="104" height="16"/>
+                        <rect key="frame" x="69" y="30" width="104" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yg9-lz-OES">
-                        <rect key="frame" x="69" y="55" width="15" height="16"/>
+                        <rect key="frame" x="69" y="54" width="15" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.21568627450980393" green="0.45882352941176469" blue="0.74509803921568629" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="薪资:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zcc-Vm-x4c">
-                        <rect key="frame" x="94" y="55" width="30" height="16"/>
+                        <rect key="frame" x="94" y="54" width="30" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="hpc-Io-Erv"/>
                         </constraints>
@@ -75,9 +66,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3000以上" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BV5-jT-gTP">
-                        <rect key="frame" x="129" y="55" width="59" height="16"/>
+                        <rect key="frame" x="129" y="54" width="59" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.92156862745098034" green="0.69019607843137254" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="招聘人数:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vz6-VL-LB7">
+                        <rect key="frame" x="8" y="54" width="56" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="56" id="uRW-9L-toD"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -122,11 +122,14 @@
             </tableViewCellContentView>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
-                <outlet property="gongziLab" destination="vz6-VL-LB7" id="cN9-KO-DEf"/>
-                <outlet property="nameLab" destination="2DM-dX-e3A" id="Les-Hg-6aJ"/>
-                <outlet property="zhiweiLab" destination="5IX-DH-ZCZ" id="sd4-2x-J9U"/>
+                <outlet property="areaLab" destination="5IX-DH-ZCZ" id="T0H-mZ-IZK"/>
+                <outlet property="gsLab" destination="YjE-dK-5Xs" id="WEb-jT-rWL"/>
+                <outlet property="nameLab" destination="2DM-dX-e3A" id="yFS-KI-eYo"/>
+                <outlet property="numLab" destination="yg9-lz-OES" id="hXE-4a-yuS"/>
+                <outlet property="typeLab" destination="aFF-xC-Rqp" id="vDb-kn-lqa"/>
+                <outlet property="wageLab" destination="BV5-jT-gTP" id="lYD-Ph-jTZ"/>
             </connections>
-            <point key="canvasLocation" x="706" y="762"/>
+            <point key="canvasLocation" x="781" y="902"/>
         </tableViewCell>
     </objects>
     <resources>
