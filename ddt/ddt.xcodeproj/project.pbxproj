@@ -118,6 +118,8 @@
 		A17B7CFF1B43F867003CF895 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A17B7CFE1B43F867003CF895 /* Images.xcassets */; };
 		A17B7D021B43F867003CF895 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A17B7D001B43F867003CF895 /* LaunchScreen.xib */; };
 		A17B7D0E1B43F867003CF895 /* ddtTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A17B7D0D1B43F867003CF895 /* ddtTests.m */; };
+		A17BCF6C1C8580E000CFCD9C /* DanziTop.xib in Resources */ = {isa = PBXBuildFile; fileRef = A17BCF6B1C8580E000CFCD9C /* DanziTop.xib */; settings = {ASSET_TAGS = (); }; };
+		A17BCF6F1C85816200CFCD9C /* DanziTop.m in Sources */ = {isa = PBXBuildFile; fileRef = A17BCF6E1C85816200CFCD9C /* DanziTop.m */; settings = {ASSET_TAGS = (); }; };
 		A17D0CD11BD4C0DE00E465A7 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = A17D0CD01BD4C0DE00E465A7 /* ChineseToPinyin.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		A1AC85551BC8DB460099C7F7 /* NGCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AC85531BC8DB460099C7F7 /* NGCollectionReusableView.m */; };
 		A1AC85561BC8DB460099C7F7 /* NGCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1AC85541BC8DB460099C7F7 /* NGCollectionReusableView.xib */; };
@@ -412,6 +414,9 @@
 		A17B7D071B43F867003CF895 /* ddtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ddtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A17B7D0C1B43F867003CF895 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A17B7D0D1B43F867003CF895 /* ddtTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ddtTests.m; sourceTree = "<group>"; };
+		A17BCF6B1C8580E000CFCD9C /* DanziTop.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DanziTop.xib; sourceTree = "<group>"; };
+		A17BCF6D1C85816200CFCD9C /* DanziTop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DanziTop.h; sourceTree = "<group>"; };
+		A17BCF6E1C85816200CFCD9C /* DanziTop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DanziTop.m; sourceTree = "<group>"; };
 		A17D0CCF1BD4C0DE00E465A7 /* ChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyin.h; sourceTree = "<group>"; };
 		A17D0CD01BD4C0DE00E465A7 /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
 		A1AC85521BC8DB460099C7F7 /* NGCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCollectionReusableView.h; sourceTree = "<group>"; };
@@ -962,6 +967,9 @@
 				ADB630AD1C8338C40062BE9A /* PersonInfoTop.xib */,
 				A1C233701C840C0700462D3E /* PersonInfoTop.h */,
 				A1C233711C840C0700462D3E /* PersonInfoTop.m */,
+				A17BCF6B1C8580E000CFCD9C /* DanziTop.xib */,
+				A17BCF6D1C85816200CFCD9C /* DanziTop.h */,
+				A17BCF6E1C85816200CFCD9C /* DanziTop.m */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1604,6 +1612,7 @@
 				AD5B11CC1BDB236F00285255 /* common_data.plist in Resources */,
 				ADD431601BE509EE000C03D8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A1AC85581BC8F2FA0099C7F7 /* menuItem.plist in Resources */,
+				A17BCF6C1C8580E000CFCD9C /* DanziTop.xib in Resources */,
 				AD5B11D51BDB694C00285255 /* DTCompanyListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1725,6 +1734,7 @@
 				A12CD4F21BCBAC990020CB27 /* RBStoryboardPopoverSegue.m in Sources */,
 				A12441CE1BD0EDD200D2588C /* MJRefreshAutoGifFooter.m in Sources */,
 				A12CD4DC1BCBA6960020CB27 /* SVIndefiniteAnimatedView.m in Sources */,
+				A17BCF6F1C85816200CFCD9C /* DanziTop.m in Sources */,
 				AD7206981BF0FC9100573C4C /* NGCompanyListVC.m in Sources */,
 				9FC099FD1C0EA47100978F6A /* TonghangSCModel.m in Sources */,
 				A17B7CF71B43F867003CF895 /* AppDelegate.m in Sources */,
