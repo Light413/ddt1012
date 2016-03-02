@@ -166,6 +166,11 @@
     
     NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
     RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_jiedan", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"##########################:%@",responseObject);
+        
+        
+        
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
                 if (_pageNum == 1) {

@@ -41,6 +41,7 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell_6;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell_7;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell_8;
+@property (weak, nonatomic) IBOutlet UITableViewCell *cell_9;
 
 
 @end
@@ -53,13 +54,22 @@
     NSString * _s4;
     NSString * _s5;
     NSString * _s6;
-    NSString * _s7;
-    NSString * _s8;
-    NSString * _s9;
-    NSString * _s10;
-    NSString * _s11;
-    NSString * _s12;
-    NSString * _s13;
+    NSString * _s7;//详细说明
+    NSString * _s8;//积分
+    NSString * _s9;//是否收藏
+    NSString * _s10;//名字
+    NSString * _s11;//tel
+    NSString * _s12;//立即锁定-按钮状态
+    
+    //top -个人信息数据
+    NSString * _s13;//avantar
+    NSString * _s14;//区域
+    NSString * _s15;//甩单时间
+    NSString * _s16;//浏览次数
+    NSString * _s17;//靠谱指数
+    NSString * _s18;//单子状态
+    
+    DanziTop *_top_v;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -67,12 +77,7 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
     [self initData];
     [self initSubviews];
-    
-    NSArray *_arr = [[NSBundle mainBundle]loadNibNamed:@"DanziTop" owner:self options:nil];
-    DanziTop *_v = [_arr lastObject];
-    _v.frame = CGRectMake(0, 0, CurrentScreenWidth, 100);
-    
-    self.tableView.tableHeaderView = _v;
+
 }
 
 -(void)initData
@@ -86,11 +91,13 @@
     _s7 = [self.danZiInfoDic objectForKey:@"bz"]?[self.danZiInfoDic objectForKey:@"bz"]:@"";
     _s8 = [self.danZiInfoDic objectForKey:@"jifen"]?[self.danZiInfoDic objectForKey:@"jifen"]:@"0";
     
-//    _s9 = [self.danZiInfoDic objectForKey:@"see"]?[self.danZiInfoDic objectForKey:@"see"]:@"0";
-//    _s10 = [self.danZiInfoDic objectForKey:@"tjsj"]?[self.danZiInfoDic objectForKey:@"tjsj"]:@"未知";
-//    _s11 = [self.danZiInfoDic objectForKey:@"jifen"]?[self.danZiInfoDic objectForKey:@"jifen"]:@"0";
-//    _s12 = [self.danZiInfoDic objectForKey:@"fromxm"]?[self.danZiInfoDic objectForKey:@"fromxm"]:@"0";//联系人
-//    _s13 = [self.danZiInfoDic objectForKey:@"fmobile"]?[self.danZiInfoDic objectForKey:@"fmobile"]:@"---";//电话
+    //top
+    _s13 = [self.danZiInfoDic objectForKey:@"formpic"]?[self.danZiInfoDic objectForKey:@"formpic"]:@"";
+    _s14 = [self.danZiInfoDic objectForKey:@"yw_quyu"]?[self.danZiInfoDic objectForKey:@"yw_quyu"]:@"";
+    _s15 = [self.danZiInfoDic objectForKey:@"tjsj"]?[self.danZiInfoDic objectForKey:@"tjsj"]:@"";
+    _s16 = [self.danZiInfoDic objectForKey:@"see"]?[self.danZiInfoDic objectForKey:@"see"]:@"";
+    _s17 = [self.danZiInfoDic objectForKey:@"frompf"]?[self.danZiInfoDic objectForKey:@"frompf"]:@"0";//...靠谱指数
+    _s18 = [self.danZiInfoDic objectForKey:@"zt"]?[self.danZiInfoDic objectForKey:@"zt"]:@"";//...单子状态
     
     self.btn_love.selected = [[self.danZiInfoDic objectForKey:@"isbook"] boolValue];
     
@@ -113,14 +120,34 @@
 
 -(void)initSubviews
 {
+    //cell
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    for (UITableViewCell *_cell in @[self.cell_1,self.cell_2,self.cell_3,self.cell_4,self.cell_5,self.cell_6,self.cell_7,self.cell_8]) {
+    for (UITableViewCell *_cell in @[self.cell_1,self.cell_2,self.cell_3,self.cell_4,self.cell_5,self.cell_6,self.cell_7,self.cell_8,self.cell_9]) {
         _cell.layer.borderColor = cellSepLineColor;
         _cell.layer.borderWidth = cellSepLineWidth;
     }
+
+    //tableview -headerview
+    NSArray *_arr = [[NSBundle mainBundle]loadNibNamed:@"DanziTop" owner:self options:nil];
+    _top_v = [_arr lastObject];
+    _top_v.frame = CGRectMake(0, 0, CurrentScreenWidth, 100);
     
+    if (_s13 && _s13.length > 11 ) {
+        NSString * url = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"url_get_avatar", @""),_s13];
+        [_top_v.avatarimg setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"cell_avatar_default"]];
+    }
+    else
+    {
+        _top_v.avatarimg.image =[UIImage imageNamed:@"cell_avatar_default"];
+    }
+    _top_v.areaLab.text = _s14;
+    _top_v.timeLab.text = _s15;
+    _top_v.timesLab.text = _s16;
+    float _pf = [_s17 floatValue];
+    _top_v.lead_value.constant -= (5 - _pf) * 20;
+    _top_v.width_value.constant+= (5 - _pf) * 20;
     
-    
+    self.tableView.tableHeaderView = _top_v;
     
     self.nameLab.text = _s1;
     self.cs_typeLab.text = _s2;
@@ -209,7 +236,8 @@
 
 //打电话
 - (IBAction)telAction:(UIButton *)sender {
-
+    sender.layer.cornerRadius = 1;
+    sender.layer.masksToBounds = YES;
     NSString* str = [NSString stringWithFormat:@"tel://%@",_s13];
     [[UIApplication sharedApplication ]openURL:[NSURL URLWithString:str]];
 }
@@ -217,8 +245,14 @@
 static const float _h =50;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    CGSize _new =  [ToolsClass calculateSizeForText:_s7 : CGSizeMake(CurrentScreenWidth -30, 999) font:[UIFont systemFontOfSize:14]];
-//    return _new.height + 40 > 80?_new.height + 40:80;
+    if (indexPath.row ==6) {
+        CGSize _new =  [ToolsClass calculateSizeForText:_s7 : CGSizeMake(CurrentScreenWidth - 140, 999) font:[UIFont systemFontOfSize:15]];
+        return _new.height > 50?_new.height:50;
+    }
+    else if (indexPath.row ==9)
+    {//btn
+        return 60;
+    }
     return _h;
     
 }

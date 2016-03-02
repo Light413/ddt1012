@@ -18,4 +18,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *maskView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *bill_statue_img;//工单状态
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lead_value;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *width_value;
+
 @end

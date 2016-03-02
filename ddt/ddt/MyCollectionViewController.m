@@ -255,7 +255,7 @@ float _h;
     NSInteger index = mysegment.selectedSegmentIndex;
     switch (index) {
         case 0:
-            height = _h + 40 > 80?_h + 40:80;
+            height = _h + 40 > 90?_h + 40:90;
             break;
         case 1:
         {
