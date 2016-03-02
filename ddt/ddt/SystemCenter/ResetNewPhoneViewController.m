@@ -64,17 +64,17 @@
     phoneNumberField1.returnKeyType = UIReturnKeyDone;
     [phoneView addSubview:phoneNumberField1];
     UIButton *verifyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    verifyBtn.frame = CGRectMake(phoneView.width-110, 45, 100, 30);
+    verifyBtn.frame = CGRectMake(phoneView.width-110, 50, 100, 25);
     [verifyBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
     verifyBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    verifyBtn.backgroundColor = RGBA(229, 165, 45, 1);
+    verifyBtn.backgroundColor = BarDefaultColor;
     verifyBtn.tag = 101;
     [verifyBtn addTarget:self action:@selector(verifyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [phoneView addSubview:verifyBtn];
     
     UIButton *findpassBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    findpassBtn.backgroundColor = RGBA(229, 165, 45, 1);
-    findpassBtn.frame = CGRectMake(10, phoneView.bottom+10, CurrentScreenWidth-20, 30);
+    findpassBtn.backgroundColor = BarDefaultColor;
+    findpassBtn.frame = CGRectMake(10, phoneView.bottom+10, CurrentScreenWidth-20, 35);
     [findpassBtn setTitle:@"提交" forState:UIControlStateNormal];
     [findpassBtn addTarget:self action:@selector(resetTel:) forControlEvents:UIControlEventTouchUpInside];
     findpassBtn.titleLabel.font = [UIFont systemFontOfSize:15];

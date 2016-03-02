@@ -63,7 +63,7 @@
     [phoneView addSubview:phoneNumberField1];
     
     UIButton *findpassBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    findpassBtn.backgroundColor = RGBA(229, 165, 45, 1);
+    findpassBtn.backgroundColor = BarDefaultColor;
     findpassBtn.frame = CGRectMake(10, phoneView.bottom+10, CurrentScreenWidth-20, 40);
     [findpassBtn setTitle:@"确认修改" forState:UIControlStateNormal];
     [findpassBtn addTarget:self action:@selector(findOK:) forControlEvents:UIControlEventTouchUpInside];

@@ -11,7 +11,6 @@
 #import "TonghangTableViewCell.h"
 #import "MyScTableViewCell.h"
 #import "MenuTableViewCell.h"
-#import "menuDetailViewController.h"
 #import "NGTongHDetailVC.h"
 #import "NGCompanyDetailVC.h"
 #import "MemuSCModel.h"

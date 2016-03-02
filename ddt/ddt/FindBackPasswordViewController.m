@@ -47,7 +47,7 @@
     label.textColor = [UIColor darkGrayColor];
     
     UIButton *findpassBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    findpassBtn.backgroundColor = RGBA(229, 165, 45, 1);
+    findpassBtn.backgroundColor = BarDefaultColor;
     findpassBtn.frame = CGRectMake(10, label.bottom+10, CurrentScreenWidth-20, 30);
     [findpassBtn setTitle:@"找回密码" forState:UIControlStateNormal];
     [findpassBtn addTarget:self action:@selector(findOK:) forControlEvents:UIControlEventTouchUpInside];

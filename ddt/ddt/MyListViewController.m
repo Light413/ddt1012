@@ -8,7 +8,6 @@
 
 #import "MyListViewController.h"
 #import "MenuTableViewCell.h"
-#import "menuDetailViewController.h"
 #import "MenuOfMyCenterModel.h"
 
 
@@ -236,7 +235,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 
 float _h;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return _h + 40 > 80?_h + 40:80;
+    return _h + 40 > 90?_h + 40:90;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

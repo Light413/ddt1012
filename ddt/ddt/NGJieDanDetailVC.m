@@ -11,30 +11,27 @@
 
 #import "DanziTop.h"
 
-#define btnEnableColor  [UIColor colorWithRed:0.976 green:0.643 blue:0.180 alpha:1]
-#define btnDisableColor  [UIColor colorWithRed:0.757 green:0.757 blue:0.757 alpha:1]
-
 #define cellSepLineColor [UIColor colorWithRed:0.906 green:0.910 blue:0.914 alpha:1].CGColor
 #define cellSepLineWidth 0.5
 
-@interface NGJieDanDetailVC ()
+@interface NGJieDanDetailVC ()<UMSocialUIDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 @property (weak, nonatomic) IBOutlet UILabel *cs_typeLab;
-
 @property (weak, nonatomic) IBOutlet UILabel *ageLab;
 @property (weak, nonatomic) IBOutlet UILabel *jineLab;
 @property (weak, nonatomic) IBOutlet UILabel *timeLab;
 @property (weak, nonatomic) IBOutlet UILabel *zxqkLab;
 @property (weak, nonatomic) IBOutlet UILabel *detailLab;
-
 @property (weak, nonatomic) IBOutlet UILabel *jifenLab;
-
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_love;//收藏
 
+@property (weak, nonatomic) IBOutlet UILabel *lxrLab;
+@property (weak, nonatomic) IBOutlet UIButton *btn_tel;//tel
+@property (weak, nonatomic) IBOutlet UIButton *btn_lock;//lock
+
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell_1;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell_2;
-
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell_3;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell_4;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell_5;
@@ -77,8 +74,54 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
     [self initData];
     [self initSubviews];
-
 }
+
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setBackgroundImage:[UIImage imageNamed:@"share_icon_2"] forState:UIControlStateNormal];
+    btn.frame = CGRectMake(0, 0, 30, 30);
+    [btn addTarget:self action:@selector(shareBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+}
+
+#pragma mark -shareBtn Action
+-(void)shareBtnAction
+{
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:umengkey
+                                      shareText:@"贷易通-你身边的贷款专家,http://www.123dyt.com"
+                                     shareImage:[UIImage imageNamed:@"wx108x108"]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite,UMShareToSms,nil]
+                                       delegate:self];
+}
+
+-(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
+{
+    NSLog(@"...%@",platformName);
+    if ([platformName isEqualToString:@"wxsession"]) {
+        [UMSocialData defaultData].extConfig.wechatSessionData.title = @"";
+    }
+    else if ([platformName isEqualToString:@"qq"])
+    {
+        [UMSocialData defaultData].extConfig.qqData.title = @"贷易通";
+    }//sina
+    
+}
+
+//实现回调方法（可选）
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+    }
+}
+
 
 -(void)initData
 {
@@ -91,30 +134,34 @@
     _s7 = [self.danZiInfoDic objectForKey:@"bz"]?[self.danZiInfoDic objectForKey:@"bz"]:@"";
     _s8 = [self.danZiInfoDic objectForKey:@"jifen"]?[self.danZiInfoDic objectForKey:@"jifen"]:@"0";
     
+    _s10 = [self.danZiInfoDic objectForKey:@"fromxm"]?[self.danZiInfoDic objectForKey:@"fromxm"]:@"";
+    _s11 = [self.danZiInfoDic objectForKey:@"fmobile"]?[self.danZiInfoDic objectForKey:@"fmobile"]:@"";
+    _s12 = [self.danZiInfoDic objectForKey:@"zt"]?[self.danZiInfoDic objectForKey:@"zt"]:@"0";//0-未 1-已抢 2-已锁
+    
+    
     //top
     _s13 = [self.danZiInfoDic objectForKey:@"formpic"]?[self.danZiInfoDic objectForKey:@"formpic"]:@"";
     _s14 = [self.danZiInfoDic objectForKey:@"yw_quyu"]?[self.danZiInfoDic objectForKey:@"yw_quyu"]:@"";
     _s15 = [self.danZiInfoDic objectForKey:@"tjsj"]?[self.danZiInfoDic objectForKey:@"tjsj"]:@"";
     _s16 = [self.danZiInfoDic objectForKey:@"see"]?[self.danZiInfoDic objectForKey:@"see"]:@"";
     _s17 = [self.danZiInfoDic objectForKey:@"frompf"]?[self.danZiInfoDic objectForKey:@"frompf"]:@"0";//...靠谱指数
-    _s18 = [self.danZiInfoDic objectForKey:@"zt"]?[self.danZiInfoDic objectForKey:@"zt"]:@"";//...单子状态
     
     self.btn_love.selected = [[self.danZiInfoDic objectForKey:@"isbook"] boolValue];
     
     //是否被锁定
-//    BOOL _b = [[self.danZiInfoDic objectForKey:@"zt"] boolValue];
-//    if (_b) {
-//        self.btn_qiangDan.backgroundColor = btnDisableColor;
-//        [self.btn_qiangDan setTitle:@"您来晚了,已被他人锁定"];
-//        [self.btn_qiangDan setUserInteractionEnabled:NO];
-//        //收藏按钮是否隐藏
-//        self.btn_love.hidden = YES;
-//    }
-//    else
-//    {
-//        self.btn_qiangDan.backgroundColor = btnEnableColor;
-//        [self.btn_qiangDan setTitle:@"立即锁定"];
-//    }
+    BOOL _b = [[self.danZiInfoDic objectForKey:@"zt"] boolValue];
+    if (_b) {
+        self.btn_lock.backgroundColor = btnDefaultColor;
+        [self.btn_lock setTitle:@"您来晚了,已被他人锁定"];
+        [self.btn_lock setUserInteractionEnabled:NO];
+        //收藏按钮是否隐藏
+        self.btn_love.hidden = YES;
+    }
+    else
+    {
+        self.btn_lock.backgroundColor = BarDefaultColor;
+        [self.btn_lock setTitle:@"立即锁定"];
+    }
 
 }
 
@@ -131,7 +178,6 @@
     NSArray *_arr = [[NSBundle mainBundle]loadNibNamed:@"DanziTop" owner:self options:nil];
     _top_v = [_arr lastObject];
     _top_v.frame = CGRectMake(0, 0, CurrentScreenWidth, 100);
-    
     if (_s13 && _s13.length > 11 ) {
         NSString * url = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"url_get_avatar", @""),_s13];
         [_top_v.avatarimg setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"cell_avatar_default"]];
@@ -147,6 +193,15 @@
     _top_v.lead_value.constant -= (5 - _pf) * 20;
     _top_v.width_value.constant+= (5 - _pf) * 20;
     
+    NSString *_tmp1;
+    switch ([_s12 integerValue]) {
+        case 0:_tmp1 = @"icon_bill_state0"; break;
+        case 1:_tmp1 = @"icon_bill_state1"; break;
+        case 2:_tmp1 = @"icon_bill_state2"; break;
+        default:_tmp1 = @"icon_bill_state0";break;
+    }
+    _top_v.bill_statue_img.image = [UIImage imageNamed:_tmp1];
+    
     self.tableView.tableHeaderView = _top_v;
     
     self.nameLab.text = _s1;
@@ -156,11 +211,10 @@
     self.timeLab.text = _s5;
     self.zxqkLab.text = _s6;
     self.detailLab.text = _s7;
-    
     self.jifenLab.text = [NSString stringWithFormat:@"锁定此单,需花费 %@ 个积分",_s8];
     NSMutableAttributedString *mutableAttributedString_attrs = [[NSMutableAttributedString alloc] initWithString:self.jifenLab.text];
     [mutableAttributedString_attrs beginEditing];
-    NSRange rang = NSMakeRange(9, _s11.length);
+    NSRange rang = NSMakeRange(9, _s8.length);
 
     [mutableAttributedString_attrs addAttribute:(NSString *)NSForegroundColorAttributeName
                                           value:(id)[UIColor redColor]
@@ -171,6 +225,8 @@
                                           range:rang];
     self.jifenLab.attributedText = [mutableAttributedString_attrs copy];
     
+    self.lxrLab.text = _s10;
+    [self.btn_tel setTitle:_s11 forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -184,7 +240,7 @@
 - (IBAction)qinagDanAction:(id)sender {
     NSString *uid = [self.danZiInfoDic objectForKey:@"id"];
     NSString *tel = [[MySharetools shared]getPhoneNumber];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",_s11,@"fee",uid,@"id", nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",_s8,@"fee",uid,@"id", nil];
     NSDictionary *_d1 = [MySharetools getParmsForPostWith:dic];
     
     [SVProgressHUD showWithStatus:@"正在请求锁定"];
@@ -238,21 +294,26 @@
 - (IBAction)telAction:(UIButton *)sender {
     sender.layer.cornerRadius = 1;
     sender.layer.masksToBounds = YES;
-    NSString* str = [NSString stringWithFormat:@"tel://%@",_s13];
+    NSString* str = [NSString stringWithFormat:@"tel://%@",_s11];
     [[UIApplication sharedApplication ]openURL:[NSURL URLWithString:str]];
 }
 
 static const float _h =50;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row ==6) {
-        CGSize _new =  [ToolsClass calculateSizeForText:_s7 : CGSizeMake(CurrentScreenWidth - 140, 999) font:[UIFont systemFontOfSize:15]];
-        return _new.height > 50?_new.height:50;
+    switch (indexPath.row) {
+        case 6:
+        {
+            CGSize _new =  [ToolsClass calculateSizeForText:_s7 : CGSizeMake(CurrentScreenWidth - 140, 999) font:[UIFont systemFontOfSize:15]];
+            return _new.height > 50?_new.height:50;
+        }break;
+            
+        case 8:return self.isLove?_h:0; break;
+            
+        case 9:return self.isLove?0:60;; break;
+        default: break;
     }
-    else if (indexPath.row ==9)
-    {//btn
-        return 60;
-    }
+
     return _h;
     
 }

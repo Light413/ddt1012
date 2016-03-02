@@ -372,7 +372,7 @@
         <scene sceneID="e7B-KA-Cho">
             <objects>
                 <tableViewController storyboardIdentifier="NGJieDanDetailVCID" title="单子信息" id="TX6-R8-3Zd" customClass="NGJieDanDetailVC" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" id="UCn-Fe-QOv">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" id="UCn-Fe-QOv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -852,7 +852,9 @@
                     </tableView>
                     <connections>
                         <outlet property="ageLab" destination="UNR-0l-BrD" id="nQL-P8-Ufb"/>
+                        <outlet property="btn_lock" destination="g7k-8a-GUW" id="yo9-Si-3cz"/>
                         <outlet property="btn_love" destination="MG4-tD-Skd" id="K5W-Mb-ain"/>
+                        <outlet property="btn_tel" destination="sLc-6j-SMd" id="ruT-FV-tsG"/>
                         <outlet property="cell_1" destination="unI-qb-BTI" id="hkE-zQ-RMu"/>
                         <outlet property="cell_2" destination="m4D-fg-3Y8" id="Pkj-Wk-ypY"/>
                         <outlet property="cell_3" destination="KUb-Bn-z62" id="xXy-K0-RId"/>
@@ -866,6 +868,7 @@
                         <outlet property="detailLab" destination="D2a-vb-O7Q" id="lfJ-nE-0iG"/>
                         <outlet property="jifenLab" destination="YBD-va-dWh" id="3a7-IA-Y0E"/>
                         <outlet property="jineLab" destination="OMB-nm-GGt" id="yKP-ec-hHT"/>
+                        <outlet property="lxrLab" destination="oZb-Tj-f0f" id="DQP-vr-A7z"/>
                         <outlet property="nameLab" destination="EuJ-Vi-6G7" id="SB3-0u-wnG"/>
                         <outlet property="timeLab" destination="8MS-Z3-hbo" id="eHH-tP-Dtt"/>
                         <outlet property="zxqkLab" destination="Ghx-WJ-7dg" id="GpO-qm-vjh"/>
@@ -2311,12 +2314,19 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0EL-ss-cky">
                                                     <rect key="frame" x="8" y="18" width="584" height="44"/>
+                                                    <color key="backgroundColor" red="0.1647058824" green="0.34901960780000002" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="uh0-pr-Xa0"/>
                                                     </constraints>
                                                     <state key="normal" title="立即甩单">
-                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="submintAction:" destination="Ayx-JG-bPJ" eventType="touchUpInside" id="gsV-tt-TIa"/>
                                                     </connections>
@@ -2860,15 +2870,21 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AD2-ua-C0S">
-                                                    <rect key="frame" x="10" y="249" width="580" height="30"/>
-                                                    <color key="backgroundColor" red="0.3921568627" green="0.69411764710000001" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <rect key="frame" x="10" y="249" width="580" height="40"/>
+                                                    <color key="backgroundColor" red="0.1647058824" green="0.34901960780000002" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="Xpm-nA-Wru"/>
+                                                        <constraint firstAttribute="height" constant="40" id="Xpm-nA-Wru"/>
                                                     </constraints>
                                                     <state key="normal" title="提交">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="submitingBtnClick:" destination="7oC-pl-w4V" eventType="touchUpInside" id="Mex-Ux-tBp"/>
                                                     </connections>

@@ -18,8 +18,6 @@
 #import "NGTongHDetailVC.h"
 #import "NGJieDanDetailVC.h"
 #import "NGZPPersonInfoVC.h"
-#import "AddCommanyInfoViewController.h"
-#import "MyResumeViewController.h"
 
 #import "NGZhaoPinDetailVC.h"
 
