@@ -47,7 +47,7 @@
     
     int psize;//每页大小
     BOOL _isLoved;//是否收藏
-     BOOL _isfirst;//YES
+    BOOL _isfirst;//YES
     
     NSMutableArray *_tonghangArr;
 }
@@ -65,7 +65,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self createLeftBarItemWithBackTitle];
     self.title =self.vcType==VcTypeValue_2?@"搜索结果" :@"我的收藏";
     NSArray *segmentArr =self.vcType==VcTypeValue_2?@[@"搜单子",@"搜同行"]: @[@"单子收藏",@"同行好友"];
     [self initData];

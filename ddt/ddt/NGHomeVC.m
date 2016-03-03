@@ -19,7 +19,7 @@
 #import "NewAddView.h"
 
 #define ScrollViewHeight    100
-#define CollectionHeaderViewHight (140 + 85 +90)
+#define CollectionHeaderViewHight (100 + 85 +110)
 #define FootRecordData @"FootRecordData"
 #define TapStr @"最近访问的类别会出现在这里"
 
@@ -210,9 +210,9 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     rightBtn.frame = CGRectMake(0, 0, 60, 40);
     [rightBtn setImage:[UIImage imageNamed:@"bar_qiandao_icon"] forState:UIControlStateNormal];
     [rightBtn setTitle:@"签到" forState:UIControlStateNormal];
-    rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -5, 0, -35)];
-    [rightBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 22, 0, -10)];
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -35)];
+    [rightBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 20, 5, -10)];
     [rightBtn addTarget:self action:@selector(siginBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
     
@@ -274,7 +274,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     _layout.itemSize =CGSizeMake(_w, 80);
     _layout.minimumLineSpacing = 10;
     _layout.minimumInteritemSpacing = 1;
-    _layout.sectionInset = UIEdgeInsetsMake(5, 10, 10, 10);
+    _layout.sectionInset = UIEdgeInsetsMake(5, 0, 10, 0);
     _layout.headerReferenceSize = CGSizeMake(0, CollectionHeaderViewHight);//_topScrollView.frame.origin.y+ScrollViewHeight
     
     _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, CurrentScreenWidth, CurrentScreenHeight -64-44) collectionViewLayout:_layout];
@@ -283,6 +283,8 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     [self.view addSubview:_collectionView];
     _collectionView.delegate = self;
     _collectionView.dataSource  = self;
+    _collectionView.showsVerticalScrollIndicator = NO;
+    
     [_collectionView registerNib:[UINib nibWithNibName:@"NGCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"NGCollectionViewCellID"];
     [_collectionView registerNib:[UINib nibWithNibName:@"NGCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NGCollectionHeaderReuseID];
 }
@@ -455,21 +457,21 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     _line.alpha = 0.5;
     
     if (indexPath.section ==0) {
-        [reuseView addSubview:_topScrollView];
+        [reuseView addSubview:_topScrollView];//100
         
         //今日新增
-        _todaynewadd.frame = CGRectMake(0, _topScrollView.bottom + 5, CurrentScreenWidth, 80);
+        _todaynewadd.frame = CGRectMake(5, _topScrollView.bottom + 5, CurrentScreenWidth - 10, 80);//85
         [reuseView addSubview:_todaynewadd];
         
         //搜索栏
-        NGSearchBar *_searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(5,_todaynewadd.bottom, CurrentScreenWidth  -70, 30)];
-        _searchBar.placeholder = @"输入搜索关键字";
+        NGSearchBar *_searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(10,_todaynewadd.bottom, CurrentScreenWidth  -80, 30)];
+        _searchBar.placeholder = @"输入搜索关键字";//30
         _searchBar.delegate = self;
         [reuseView addSubview:_searchBar];
         
         //分享按钮
         UIButton *_shareBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-        _shareBtn.frame = CGRectMake(CurrentScreenWidth -60,_todaynewadd.bottom-5, 60, 40);
+        _shareBtn.frame = CGRectMake(CurrentScreenWidth -70,_todaynewadd.bottom-5, 60, 40);
         [reuseView addSubview:_shareBtn];
         [_shareBtn setTitle:@"分享" forState:UIControlStateNormal];
         [_shareBtn setImage:[UIImage imageNamed:@"share_icon"] forState:UIControlStateNormal];
@@ -481,17 +483,17 @@ typedef NS_ENUM(NSInteger ,NextvcType)
         
         
         //企业和个人渠道btn
-        float _btn_w = (CurrentScreenWidth -20)/ 2.0;
+        float _btn_w = (CurrentScreenWidth -30)/ 2.0;
         for (int i =0; i<2; i++) {
-            UIButton *btnport = [UIButton buttonWithType:UIButtonTypeCustom];
-            btnport.frame = CGRectMake(5+(_btn_w + 10) *i, _shareBtn.bottom + 10, _btn_w, 70);
+            UIButton *btnport = [UIButton buttonWithType:UIButtonTypeCustom];//70
+            btnport.frame = CGRectMake(10+(_btn_w + 10) *i, _shareBtn.bottom + 5, _btn_w, 60);
             [reuseView addSubview:btnport];
             btnport.tag = 17 + i;
             btnport.layer.cornerRadius = 5;
             btnport.layer.masksToBounds = YES;
             [btnport setTintColor:[UIColor whiteColor]];
             btnport.titleLabel.font = [UIFont systemFontOfSize:14];
-            [btnport setImageEdgeInsets:UIEdgeInsetsMake(10, 0, 10, _btn_w - 70)];
+            [btnport setImageEdgeInsets:UIEdgeInsetsMake(10, 0, 10, _btn_w - 60)];
             [btnport setTitleEdgeInsets:UIEdgeInsetsMake(0, -55, 0, 5)];
             [btnport setShowsTouchWhenHighlighted:YES];
             [btnport addTarget:self action:@selector(btnAction_in:) forControlEvents:UIControlEventTouchUpInside];

@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"系统中心";
-    [self createLeftBarItemWithBackTitle];
+
     [self creatTableView];
     NSString * versionstr = [NSString stringWithFormat:@"版本更新 (当前版本:%@)",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleShortVersionString"]];
 //    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]init];

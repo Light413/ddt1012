@@ -88,8 +88,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     [super viewDidLoad];
     [self initData];
     [self initSubviews];
-//    [self createLeftBarItemWithBackTitle];
-    
+
 //    [self loadMoreData];
     [_tableView.header beginRefreshing];
     if (self.vcType == NGVCTypeId_5) {

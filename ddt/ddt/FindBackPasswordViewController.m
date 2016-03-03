@@ -16,7 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self createLeftBarItemWithBackTitle];
     self.title = @"贷易通";
     [self creatViews];
     // Do any additional setup after loading the view.

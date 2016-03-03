@@ -7,6 +7,7 @@
 //
 
 #import "NGBaseTableVC.h"
+#import "PersonanlBusinessViewController.h"
 
 @interface NGMyZPVC : NGBaseTableVC
 

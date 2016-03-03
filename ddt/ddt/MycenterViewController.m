@@ -41,8 +41,9 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
 @implementation MycenterViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    
+
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
     if (![[MySharetools shared]isSessionid]) {
         if ([MySharetools shared].isFirstSignupViewController == YES) {
             [MySharetools shared].isFirstSignupViewController = NO;
@@ -135,7 +136,6 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
     [super viewDidLoad];
     
     self.title = @"我的";
-    [self createLeftBarItemWithBackTitle];
 //    [self createHeader];
     [self creatFooter];
     [self creatTableView];

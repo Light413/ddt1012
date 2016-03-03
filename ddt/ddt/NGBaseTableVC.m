@@ -22,10 +22,33 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    UIBarButtonItem *_item = [[UIBarButtonItem alloc]init];
-    _item.title = @"";
-    self.navigationItem.backBarButtonItem = _item;
+    
+    if (self.navigationController.viewControllers.count > 1) {
+        [self createLeftBarItemWithBackTitle];
+    }
+
 }
+
+
+
+-(void)createLeftBarItemWithBackTitle{
+    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundColor:[UIColor clearColor]];
+    [button setFrame:CGRectMake(0, 0, 16, 22)] ;
+    [button setImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateNormal] ;
+    [button setImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateSelected] ;
+    [button addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* item=[[UIBarButtonItem alloc]initWithCustomView:button];
+    [self.navigationItem setLeftBarButtonItem:item];
+    [button setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)] ;
+}
+
+-(void)goback:(UIButton *)btn{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

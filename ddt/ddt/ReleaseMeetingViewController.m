@@ -75,6 +75,7 @@
     
     [HttpRequestManager doPostOperationWithTask:_task];
 }
+
 -(void)textViewDidChange:(UITextView *)textView{
     if (textView.text.length>0) {
         self.placeHolderLabel.hidden = YES;

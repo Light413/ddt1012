@@ -12,13 +12,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日甩单量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6A-H2-6Jw">
-                    <rect key="frame" x="251.5" y="10" width="65" height="16"/>
+                    <rect key="frame" x="251" y="10" width="65" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJ9-vc-18T">
-                    <rect key="frame" x="5" y="31" width="179.5" height="59"/>
+                    <rect key="frame" x="5" y="31" width="179" height="59"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="E9Z-rj-kay"/>
                     </constraints>
@@ -32,7 +32,7 @@
                     </variation>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zdz-wN-1E5">
-                    <rect key="frame" x="194.5" y="31" width="179" height="59"/>
+                    <rect key="frame" x="194" y="31" width="179" height="59"/>
                     <state key="normal" title="0">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
