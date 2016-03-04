@@ -83,6 +83,9 @@ static MySharetools *instance = nil;
 }
 - (NSString *)getPhoneNumber{
     NSString *phone = [[NSUserDefaults standardUserDefaults]objectForKey:@"rememberPhone"];
+    if (phone == nil) {
+        phone = @"";
+    }
     return phone;
 }
 //获取密码
