@@ -34,6 +34,9 @@ static MySharetools *instance = nil;
 #pragma mark --- 获取sessionid
 - (NSString *)getsessionid{
     NSString *sessionid = [[NSUserDefaults standardUserDefaults]objectForKey:@"sessionid"];
+    if (sessionid == nil) {
+        sessionid = @"";
+    }
     return sessionid;
 }
 #pragma mark ---删除sessionid
@@ -58,11 +61,17 @@ static MySharetools *instance = nil;
 -(NSString *)getUserAvatarName
 {
     NSString *tmp = [[NSUserDefaults standardUserDefaults]objectForKey:@"userAvatar"];
+    if (tmp==nil) {
+        tmp = @"";
+    }
     return tmp;
 }
 
 -(NSString *)getNickName{
     NSString *nickName = [[NSUserDefaults standardUserDefaults]objectForKey:@"nickName"];
+    if (nickName==nil) {
+        nickName = @"";
+    }
     return nickName;
 }
 - (BOOL)isAutoLogin{
@@ -91,6 +100,9 @@ static MySharetools *instance = nil;
 //获取密码
 - (NSString *)getPassWord{
     NSString *passWord = [[NSUserDefaults standardUserDefaults]objectForKey:@"remeberPassword"];
+    if (passWord==nil) {
+        passWord = @"";
+    }
     return passWord;
 }
 
