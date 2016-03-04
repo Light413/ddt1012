@@ -236,6 +236,7 @@
                             <constraint firstItem="bSR-VY-hmx" firstAttribute="top" secondItem="vU0-pp-6V3" secondAttribute="bottom" constant="9" id="zlY-JL-byE"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="zeJ-df-XXw"/>
                     <connections>
                         <outlet property="autoLoginNextime" destination="bSR-VY-hmx" id="cdW-TX-9fz"/>
                         <outlet property="findPasswordBtn" destination="kyc-ky-Cxa" id="LBm-bt-TdX"/>
@@ -250,7 +251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W8x-pf-gzW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="113" y="1468"/>
+            <point key="canvasLocation" x="925" y="1468"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="YDo-7S-d8H">
@@ -264,7 +265,7 @@
                             <tableViewSection id="bX4-yl-Jqe">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="265" id="T7f-wt-PWY">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="265"/>
+                                        <rect key="frame" x="0.0" y="64" width="600" height="265"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T7f-wt-PWY" id="nLa-j3-S4A">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="265"/>
@@ -550,7 +551,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xHS-w5-hzZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1263" y="1468"/>
+            <point key="canvasLocation" x="2075" y="1468"/>
         </scene>
         <!--个人信息完善-->
         <scene sceneID="Baj-dr-JjQ">
@@ -2197,6 +2198,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14D-ae-8cN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="985" y="-488"/>
+        </scene>
+        <!--Base NavigationVC-->
+        <scene sceneID="5v2-RG-1Gm">
+            <objects>
+                <navigationController storyboardIdentifier="LoginVCSBID" automaticallyAdjustsScrollViewInsets="NO" id="ubZ-K4-UdH" customClass="NGBaseNavigationVC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j6v-b7-Ef9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2ql-mj-hI5" kind="relationship" relationship="rootViewController" id="Pi1-vk-dSr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hB1-Fx-feb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="113" y="1468"/>
         </scene>
     </scenes>
     <resources>

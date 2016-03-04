@@ -30,10 +30,7 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
 {
     NSArray *datalist;
     UITableView *myTableView;
-    UIView *backVIew;
-    UIView *footView;
-    
-    
+
     UIImageView * _user_icon_img;
 }
 @end
@@ -41,46 +38,7 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
 @implementation MycenterViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-    
-    if (![[MySharetools shared]isSessionid]) {
-        if ([MySharetools shared].isFirstSignupViewController == YES) {
-            [MySharetools shared].isFirstSignupViewController = NO;
-            [MySharetools shared].isFromMycenter = YES;
-            LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
-            NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
-            [self.tabBarController presentViewController:nav animated:YES completion:nil];
-        }else{
-            self.tabBarController.selectedIndex = 0;
-        }
-        myTableView.hidden = YES;
-    }else{
-        if ([[MySharetools shared]isAutoLogin]) {
-            if([MySharetools shared].isFirstLoginSuccess){
-                [MySharetools shared].isFirstLoginSuccess = NO;
-                self.tabBarController.selectedIndex = 0;
-            }
-            [self showMydata];
-            //myTableView.hidden = NO;
-        }else{
-            if ([MySharetools shared].isFirstSignupViewController == YES) {
-                myTableView.hidden = YES;
-                [MySharetools shared].isFirstSignupViewController = NO;
-                [MySharetools shared].isFromMycenter = YES;
-                LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
-                NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
-                [self.tabBarController presentViewController:nav animated:YES completion:nil];
-            }else if([MySharetools shared].isFirstLoginSuccess){
-                [MySharetools shared].isFirstLoginSuccess = NO;
-                self.tabBarController.selectedIndex = 0;
-                [self showMydata];
-            }else{
-                //myTableView.hidden = NO;
-            }
-        }
-//        [self showMydata];
-    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -89,55 +47,14 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
--(void)showMydata{
-    UILabel *nickNameLabel = (UILabel *)[self.view viewWithTag:101];
-    NSString *ss =[[MySharetools shared]getNickName];
-    nickNameLabel.text = ss;
-    
-    [nickNameLabel sizeToFit];
-    UIButton *modifyBtn = (UIButton *)[self.view viewWithTag:105];
-    modifyBtn.frame = CGRectMake(nickNameLabel.right+10, 10+20, 50, 15);
-    UIImageView *line = (UIImageView *)[self.view viewWithTag:106];
-    line.frame = CGRectMake(modifyBtn.left, modifyBtn.bottom, modifyBtn.frame.size.width, 1);
-    
-    //积分
-    UILabel *jifenLabel = (UILabel *)[self.view viewWithTag:102];
-    NSString *jifen = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"fee"]];
-    NSInteger oldjifen = jifen?[jifen integerValue]:0;
-    NSInteger addjifen =[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY]? [[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY] integerValue] :0;
-     jifenLabel.text = [NSString stringWithFormat:@"%ld",oldjifen + addjifen];
-    
-    //浏览人次
-    UILabel *browseLabel = (UILabel *)[self.view viewWithTag:103];
-    NSString *see = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"see"]];
-    if (![see isEqual:@"(null)"]) {
-        if (see.length>0) {
-            browseLabel.text = see;
-        }else{
-            browseLabel.text = @"0";
-        }
-    }else{
-        browseLabel.text = @"0";
-    }
-    UILabel *judegeName = (UILabel *)[self.view viewWithTag:104];
-    NSString *judge = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"judge"]];
-    if (![judge isEqual:@"(null)"]) {
-        if (judge.length>0) {
-            judegeName.text = judge;
-        }else{
-            judegeName.text = @"0";
-        }
-    }else{
-        judegeName.text = @"0";
-    }
-    myTableView.hidden = NO;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //检测是否登录
+    [[MySharetools shared]hasSuccessLogin];
+    
     self.title = @"我的";
-//    [self createHeader];
-    [self creatFooter];
+
     [self creatTableView];
     datalist = @[@[@{KimageName: @"uc_shouc.png",
                    KlabelName:@"我的收藏"},
@@ -169,12 +86,10 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
     myTableView.dataSource = self;
     myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:myTableView];
-    myTableView.hidden = YES;
+//    myTableView.hidden = YES;
     [myTableView setContentInset:UIEdgeInsetsMake(5, 0, 20, 0)];
     myTableView.showsVerticalScrollIndicator = NO;
-    
-//    [myTableView setTableHeaderView:backVIew];
-//    [myTableView setTableFooterView:footView];
+
     [myTableView registerNib:[UINib nibWithNibName:@"MeInfoCell" bundle:nil] forCellReuseIdentifier:MeInfoCellID];
 }
 
@@ -309,31 +224,8 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
         default: break;
     }
 }
-#pragma mark--创建尾视图
--(void)creatFooter{
-    footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, 120)];
-    UIButton *modifyBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    modifyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:13];
-    modifyBtn.frame = CGRectMake(10, 20, CurrentScreenWidth-20, 35);
-    modifyBtn.backgroundColor = RGBA(100, 177, 62, 1);
-    [modifyBtn setTitle:@"修改密码" forState:UIControlStateNormal];
-    [modifyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    modifyBtn.layer.masksToBounds = YES;
-    modifyBtn.layer.cornerRadius = 5;
-    [modifyBtn addTarget:self action:@selector(modifyPassword:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *logouBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    logouBtn.titleLabel.font = [UIFont boldSystemFontOfSize:13];
-    logouBtn.frame = CGRectMake(10, modifyBtn.bottom+10, CurrentScreenWidth-20, 35);
-    logouBtn.backgroundColor = RGBA(100, 177, 62, 1);
-    [logouBtn setTitle:@"退出账号" forState:UIControlStateNormal];
-    [logouBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    logouBtn.layer.masksToBounds = YES;
-    logouBtn.layer.cornerRadius = 5;
-    [logouBtn addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
-    [footView addSubview:modifyBtn];
-    [footView addSubview:logouBtn];
-}
+
+
 -(void)modifyPassword:(UIButton *)btn{
     ModifyPasswordViewController *modify = [[ModifyPasswordViewController alloc]init];
     modify.hidesBottomBarWhenPushed = YES;

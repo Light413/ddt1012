@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MySharetools : NSObject
+@interface MySharetools : NSObject<UIAlertViewDelegate>
 @property (nonatomic) BOOL isFirstSignupViewController;
 @property (nonatomic) BOOL isFromMycenter;
 @property (nonatomic) BOOL isFirstLoginSuccess;
@@ -40,5 +40,11 @@
 +(NSDictionary*)getParmsForPostWith:(NSDictionary*)dic ;
 
 +(NSDictionary*)getParmsForPostWith:(NSDictionary*)dic withToken:(BOOL)is;
+
+
+-(void)hasSuccessLogin;
+
+-(void)changeRootVcWithLogin:(BOOL)_b;
+
 
 @end

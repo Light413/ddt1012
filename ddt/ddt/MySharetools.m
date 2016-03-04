@@ -27,10 +27,36 @@ static MySharetools *instance = nil;
 + (void)msgBox:(NSString *)msg{
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:msg
-                                                   delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                                                   delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
     [alert show];
-    
 }
+
+
+#pragma mark --登录相关
+//切换根视图
+-(void)changeRootVcWithLogin:(BOOL)_b
+{
+    UIViewController *_vc;
+    _vc =_b? [self getViewControllerWithIdentifier:@"LoginVCSBID" andstoryboardName:@"me"]:({_vc = [[MySharetools shared]getViewControllerWithIdentifier:@"mainVCSBID" andstoryboardName:@"MainSB"];
+        ((UITabBarController*)_vc).tabBar.barTintColor = [UIColor blackColor];
+        ((UITabBarController*)_vc).tabBar.tintColor = [UIColor whiteColor];
+        ((UITabBarController*)_vc).selectedIndex = 0;
+        _vc;
+    });
+    
+    [[UIApplication sharedApplication].keyWindow setRootViewController:_vc];
+}
+
+-(void)hasSuccessLogin
+{
+    if (![self isSessionid]) {
+//        [MySharetools msgBox:@"只有登录后才能操作"];//return NO;
+        [self changeRootVcWithLogin:YES];
+    }
+}
+
+
+
 #pragma mark --- 获取sessionid
 - (NSString *)getsessionid{
     NSString *sessionid = [[NSUserDefaults standardUserDefaults]objectForKey:@"sessionid"];
@@ -289,4 +315,14 @@ static MySharetools *instance = nil;
         return NO;
     }
 }
+
+
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex ==1) {
+        [self changeRootVcWithLogin:YES];
+    }
+}
+
 @end

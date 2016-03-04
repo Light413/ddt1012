@@ -70,14 +70,17 @@
 }
 -(void)goback:(UIButton *)btn{
    // [self dismissViewControllerAnimated:YES completion:nil];
-    if ([MySharetools shared].isFromMycenter) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:^{
-            [MySharetools shared].isFirstSignupViewController = YES;
-        }];
-    }else{
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+//    if ([MySharetools shared].isFromMycenter) {
+//        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+//            [MySharetools shared].isFirstSignupViewController = YES;
+//        }];
+//    }else{
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }
+    
+    [[MySharetools shared]changeRootVcWithLogin:NO];
 }
+
 -(void)initViews{
     phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
     phoneNumTextField.font = [UIFont systemFontOfSize:14];
@@ -110,15 +113,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (IBAction)loginBtnClick:(id)sender {
     //    jsondata={"mobile":"15136216190","pwd":"111","token":"15136216190(!)*^*1446701200"//18016373660,123456789www wyg
     NSDate *localDate = [NSDate date]; //获取当前时间
@@ -172,14 +167,15 @@
             [[NSUserDefaults standardUserDefaults]synchronize];
             [MySharetools shared].isFirstLoginSuccess = YES;
             
-            if ([MySharetools shared].isFromMycenter) {
-                [MySharetools shared].isFirstSignupViewController = NO;
-                [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                    //[MySharetools shared].isFirstSignupViewController = YES;
-                }];
-            }else{
-                [self.navigationController popViewControllerAnimated:YES];
-            }
+            [[MySharetools shared]changeRootVcWithLogin:NO];
+//            if ([MySharetools shared].isFromMycenter) {
+//                [MySharetools shared].isFirstSignupViewController = NO;
+//                [self.navigationController dismissViewControllerAnimated:YES completion:^{
+//                    //[MySharetools shared].isFirstSignupViewController = YES;
+//                }];
+//            }else{
+//                [self.navigationController popViewControllerAnimated:YES];
+//            }
         }
         else
         {

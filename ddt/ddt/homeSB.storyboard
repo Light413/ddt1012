@@ -287,10 +287,10 @@
             </objects>
             <point key="canvasLocation" x="170" y="-2133"/>
         </scene>
-        <!--HomeVC-->
+        <!--首页-->
         <scene sceneID="7P4-0d-yLu">
             <objects>
-                <viewController id="VX3-rW-bQV" customClass="NGHomeVC" sceneMemberID="viewController">
+                <viewController title="首页" id="VX3-rW-bQV" customClass="NGHomeVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2cH-q9-Er9"/>
                         <viewControllerLayoutGuide type="bottom" id="gza-vL-rhR"/>

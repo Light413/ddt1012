@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--我要接单-->
+        <!--单子-->
         <scene sceneID="KeZ-be-di1">
             <objects>
-                <viewController storyboardIdentifier="NGCompanyListVCID" title="我要接单" id="Iwh-eD-qeu" customClass="NGCompanyListVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NGCompanyListVCID" title="单子" id="Iwh-eD-qeu" customClass="NGCompanyListVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aVA-YD-IB9"/>
                         <viewControllerLayoutGuide type="bottom" id="tlt-TK-g4J"/>

@@ -8,7 +8,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="F2f-QV-3bB">
             <objects>
-                <tabBarController id="evo-jx-HbP" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainVCSBID" id="evo-jx-HbP" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="3WZ-7W-HL6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -97,11 +97,11 @@
             </objects>
             <point key="canvasLocation" x="1670" y="-465"/>
         </scene>
-        <!--同行名片-->
+        <!--同行-->
         <scene sceneID="hi9-La-VP8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cZ2-DX-FPl" customClass="NGBaseNavigationVC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="同行名片" image="tab2" id="vo3-QY-Ida">
+                    <tabBarItem key="tabBarItem" title="同行" image="tab2" id="vo3-QY-Ida">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="tab2_selected"/>
                             <userDefinedRuntimeAttribute type="image" keyPath="image" value="tab2"/>
@@ -121,11 +121,11 @@
             </objects>
             <point key="canvasLocation" x="859" y="-462"/>
         </scene>
-        <!--公司名录-->
+        <!--单子-->
         <scene sceneID="Ca0-k7-gwd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iPo-hp-aIc" customClass="NGBaseNavigationVC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="公司名录" image="tab3" id="h5Y-Oh-qSh">
+                    <tabBarItem key="tabBarItem" title="单子" image="tab3" id="h5Y-Oh-qSh">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="tab3_selected"/>
                             <userDefinedRuntimeAttribute type="image" keyPath="image" value="tab3"/>
@@ -189,11 +189,11 @@
             </objects>
             <point key="canvasLocation" x="1654" y="1212"/>
         </scene>
-        <!--个人中心-->
+        <!--我的-->
         <scene sceneID="Kuo-pa-EI1">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iDw-hl-pds" customClass="NGBaseNavigationVC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="个人中心" image="tab4" id="GE2-fb-xwo">
+                    <tabBarItem key="tabBarItem" title="我的" image="tab4" id="GE2-fb-xwo">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="tab4_selected"/>
                             <userDefinedRuntimeAttribute type="image" keyPath="image" value="tab4"/>
@@ -215,13 +215,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tab1" width="25" height="25"/>
-        <image name="tab1_selected" width="25" height="25"/>
-        <image name="tab2" width="25" height="25"/>
-        <image name="tab2_selected" width="25" height="25"/>
-        <image name="tab3" width="25" height="25"/>
-        <image name="tab3_selected" width="25" height="25"/>
-        <image name="tab4" width="25" height="25"/>
-        <image name="tab4_selected" width="25" height="25"/>
+        <image name="tab1" width="30" height="30"/>
+        <image name="tab1_selected" width="30" height="30"/>
+        <image name="tab2" width="30" height="30"/>
+        <image name="tab2_selected" width="30" height="30"/>
+        <image name="tab3" width="30" height="30"/>
+        <image name="tab3_selected" width="30" height="30"/>
+        <image name="tab4" width="30" height="30"/>
+        <image name="tab4_selected" width="30" height="30"/>
     </resources>
 </document>

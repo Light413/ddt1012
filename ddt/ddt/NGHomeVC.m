@@ -316,6 +316,9 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 //签到
 -(void)siginBtnAction :(UIButton*)btn
 {
+    //检测是否登录
+    [[MySharetools shared]hasSuccessLogin];
+    
     if ([[MySharetools shared]isSessionid]) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -349,18 +352,18 @@ typedef NS_ENUM(NSInteger ,NextvcType)
         
         [HttpRequestManager doPostOperationWithTask:_task];
     }
-    else
-    {
-        if ([MySharetools shared].isFirstSignupViewController == YES) {
-            [MySharetools shared].isFirstSignupViewController = NO;
-            [MySharetools shared].isFromMycenter = YES;
-            LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
-            NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
-            [self.tabBarController presentViewController:nav animated:YES completion:nil];
-        }else{
-            self.tabBarController.selectedIndex = 0;
-        }
-    }
+//    else
+//    {
+//        if ([MySharetools shared].isFirstSignupViewController == YES) {
+//            [MySharetools shared].isFirstSignupViewController = NO;
+//            [MySharetools shared].isFromMycenter = YES;
+//            LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
+//            NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
+//            [self.tabBarController presentViewController:nav animated:YES completion:nil];
+//        }else{
+//            self.tabBarController.selectedIndex = 0;
+//        }
+//    }
   
 }
 
@@ -550,6 +553,9 @@ typedef NS_ENUM(NSInteger ,NextvcType)
         switch (indexPath.row) {
             case 0://甩单
             {
+                //检测是否登录
+                [[MySharetools shared]hasSuccessLogin];
+                
                 [self performSegueWithIdentifier:showShuaiDanID sender:nil];
             }break;
                 
