@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.titlaLab.font = [UIFont boldSystemFontOfSize:14];
+//    self.titlaLab.font = [UIFont boldSystemFontOfSize:14];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

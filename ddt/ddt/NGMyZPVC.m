@@ -66,32 +66,46 @@
     self.navigationItem.rightBarButtonItem = rightitem;
 }
 
+//$mobile = $data['mobile'];
+//$uid = $data['username'];
+//$work = $data['work'];
+//$num = $data['num'];
+//$xl = $data['xl'];
+//$old = $data['old'];
+//$money = $data['money'];
+//$company = $data['company'];
+//$address = $data['address'];
+//$yw_type = $data['yw_type'];
+//$yw_quyu = $data['yw_quyu'];
+//$content = $data['content'];
+//$wtype = $data['wtype'];
+//$lxr = $data['lxr'];
+//$phone = $data['phone'];
 #pragma mark --发布
 -(void)rightItemClick
 {
     if (![self checkAllDataIsValid]) {
         return;
     }
-    
-    
+
     NSString *tel = [[MySharetools shared]getPhoneNumber];
-//    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"mobile",tel,@"username",self.titleField.text,@"m_title",self.addressField.text,@"m_address",self.meetingTimeBtn.titleLabel.text,@"m_time",self.introTextView.text,@"content", nil];
-    NSDictionary *paramDict = [MySharetools getParmsForPostWith:nil];
+    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"mobile",tel,@"username",self.tf_zhiwei.text,@"work",self.tf_zpnum.text,@"num", self.btn_xueli.title,@"xl",self.btn_workyear.title,@"old",self.btn_wages.title,@"money",self.tf_gsname.text,@"company",self.tf_addr.text,@"address",self.btn_yewu_type.title,@"yw_type",self.btn_area.title,@"yw_quyu",self.text_detail.text,@"content",self.btn_zhiwei_type.title,@"wtype",self.tf_lxr.text,@"lxr",self.tf_lxr_tel.text,@"phone",nil];
+    
+    NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];
     [SVProgressHUD showWithStatus:@"正在提交"];
     RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_add_zhaopin", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
-                [SVProgressHUD showSuccessWithStatus:@"保存完成"];
-                
-                [self.navigationController popViewControllerAnimated:YES];
+                [SVProgressHUD showSuccessWithStatus:@"发布成功"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 0.5), dispatch_get_main_queue(), ^{
+                          [self.navigationController popViewControllerAnimated:YES];
+                });
             }
             else
             {
                 [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
             }
         }
-        
-        NSLog(@"...responseObject  :%@",responseObject);
     } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showInfoWithStatus:@"请求服务器失败"];
     }];

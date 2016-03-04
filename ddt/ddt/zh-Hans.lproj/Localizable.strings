@@ -38,7 +38,7 @@ CFBundleDisplayName="贷易通";
 "url_tongh_list"    = "/mydyt/web_service.php?doc=gettonghang";//同行列表
 "url_tongh_detial"  = "/mydyt/web_service.php?doc=getthdetial";//同行详情
 "url_tongh_fj_list" = "/mydyt/web_service.php?doc=getaroundth";//附近同行
-//http://www.123dyt.com/mydyt/upload/pic/手机号.jpg 上传头像
+//http://www.123dyt.com/mydyt/upload/pic/手机号.jpg 上传头像-http://www.123dyt.com/mydyt/upload/pic/18016373660.jpg 
 "url_get_avatar" = "http://www.123dyt.com/mydyt/upload/pic";//获取头像+手机号.jpg拼接
 
 //公司相关

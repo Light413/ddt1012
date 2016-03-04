@@ -130,7 +130,7 @@
 {
     NSDictionary *dic ;
     NSString *tel = [[MySharetools shared]getPhoneNumber];
-    if (self.vcType ==2) {
+    if (self.vcType ==2) {//来自首页-搜索
         dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", @"",@"quyu",@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",@"",@"time",@"10",@"psize",@(start),@"pnum",nil];
 
     }
@@ -139,7 +139,7 @@
        dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",start],@"pnum",@"10",@"psize",tel,@"username",_searchBar.text.length > 0?_searchBar.text:@"",@"word",nil];
     }
     
-    return [MySharetools getParmsForPostWith:dic];
+    return self.vcType ==2? [MySharetools getParmsForPostWith:dic withToken:YES]:[MySharetools getParmsForPostWith:dic];
 }
 
 

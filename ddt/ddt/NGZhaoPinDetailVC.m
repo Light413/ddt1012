@@ -1,7 +1,7 @@
 //
 //  NGZhaoPinDetailVC.m
 //  ddt
-//
+//招聘信息
 //  Created by wyg on 15/11/26.
 //  Copyright © 2015年 Light. All rights reserved.
 //
@@ -47,7 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    cellMaxFitSize = CGSizeMake(CurrentScreenWidth -150, 999);
+    cellMaxFitSize = CGSizeMake(CurrentScreenWidth -130, 999);
     cellFitfont = [UIFont systemFontOfSize:15];
     
     [self initData];

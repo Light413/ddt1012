@@ -46,7 +46,6 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]&&animated==YES)
-        
         self.interactivePopGestureRecognizer.delegate = nil;
 
     [super pushViewController:viewController animated:animated];

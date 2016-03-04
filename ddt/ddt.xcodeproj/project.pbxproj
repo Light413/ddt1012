@@ -1226,9 +1226,9 @@
 				B2879BD61BDCC8B400B39021 /* SystemCenterViewController.m */,
 				B27BB3A91BDFAAAF007DB68B /* ModifyPasswordViewController.h */,
 				B27BB3AA1BDFAAAF007DB68B /* ModifyPasswordViewController.m */,
-				B2879BD81BDCC92900B39021 /* SystemCenter */,
 				AD5AFC101C1DB67E00D1A3A3 /* NGMyZPVC.h */,
 				AD5AFC111C1DB67E00D1A3A3 /* NGMyZPVC.m */,
+				B2879BD81BDCC92900B39021 /* SystemCenter */,
 			);
 			name = me;
 			sourceTree = "<group>";
