@@ -33,9 +33,9 @@
     self.workTypeLab.text = (
     {
       NSString *_typestr = [dic objectForKey:@"cs_type"]?[dic objectForKey:@"cs_type"]:@"0";
-        NSString * _s;
+        NSString * _s = @"上班";
         switch ([_typestr integerValue]) {
-            case 1: _s = @"上班族"; break;
+            case 1: _s = @"上班"; break;
             case 2: _s = @"个体"; break;
             case 3: _s = @"企业"; break;
             default: break;

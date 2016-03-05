@@ -68,8 +68,8 @@ static MySharetools *instance = nil;
 
 
 
-//sessionid相关方法
-#pragma mark --- 获取sessionid
+#pragma mark ---sessionid相关方法
+//获取sessionid
 - (NSString *)getsessionid{
     NSString *sessionid = [[NSUserDefaults standardUserDefaults]objectForKey:@"sessionid"];
     if (sessionid == nil) {
@@ -77,14 +77,21 @@ static MySharetools *instance = nil;
     }
     return sessionid;
 }
-#pragma mark ---删除sessionid
-
+//退出登录-清除数据操作
 - (void)removeSessionid{
+//    删除sessionid
     [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"sessionid"];
+//    删除缓存的积分
+    [[NSUserDefaults standardUserDefaults]removeObjectForKey:QIAN_DAO_JIFEN_KEY];
+    
 //    [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"rememberPhone"];
+    
+//    删除缓存的用户头像数据
+    [self deleteImg];
+
 }
 
-#pragma mark ---是否登陆成功
+//是否登陆成功
 - (BOOL)isSessionid{
     NSString *sessionid = [[NSUserDefaults standardUserDefaults]objectForKey:@"sessionid"];
     if (sessionid !=nil &&![sessionid isEqual:@"null"]&&sessionid.length>0) {
@@ -94,6 +101,20 @@ static MySharetools *instance = nil;
     }
 }
 
+//登录成功后-修改头像数据
+-(UIImage*)getImg
+{
+    NSString *imageFile = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg",[self getPhoneNumber]]];
+    return  [[UIImage alloc]initWithContentsOfFile:imageFile];
+}
+
+-(void)deleteImg
+{
+    NSString *imageFile = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg",[self getPhoneNumber]]];
+    if (imageFile) {
+        [[NSFileManager defaultManager] removeItemAtPath:imageFile error:nil];
+    }
+}
 
 #pragma mark --获取登陆成功后的信息
 - (NSDictionary *)getLoginSuccessInfo{
@@ -333,6 +354,47 @@ static MySharetools *instance = nil;
     }
 }
 
+
+/**
+ *  增加积分(签到或分享成功后获得积分)
+ *
+ *  @param type 1-签到操作+5分 2-分享操作+1分
+ */
+-(void)addJIFenWithType:(NSString*)type
+{
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+        
+        NSString *tel = [self getPhoneNumber];
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", tel,@"mobile",@"5",@"fee",dateString,@"bz",type,@"type",nil];//type 1:签到积分 ; 2 : 分享
+        NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
+    
+        [type integerValue]==1? [SVProgressHUD showWithStatus:@"签到中"]:"";
+    
+        RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_qiandao", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                if (![[responseObject objectForKey:@"result"]boolValue]) {
+                    [type integerValue]==1? [SVProgressHUD showSuccessWithStatus:@"签到成功,积分+5"]:[SVProgressHUD showSuccessWithStatus:@"分享成功,积分+1"];
+                    //获取保存上次登录后积累的签到积分
+                    NSInteger oldaddjifen =[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY]? [[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY] integerValue] :0;
+                    
+                    [[NSUserDefaults standardUserDefaults]setObject:@(([type integerValue] ==1? 5 : 1) + oldaddjifen) forKey:QIAN_DAO_JIFEN_KEY];
+                    [[NSUserDefaults standardUserDefaults]synchronize];
+                }
+                else if ([[responseObject objectForKey:@"result"]integerValue]==1)
+                {
+                    [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+                }
+                else
+                    [SVProgressHUD showInfoWithStatus:@"操作失败,请稍后重试"];
+            }
+        } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD showInfoWithStatus:@"操作失败,请稍后重试"];
+        }];
+        
+        [HttpRequestManager doPostOperationWithTask:_task];
+}
 
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex

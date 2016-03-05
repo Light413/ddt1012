@@ -28,7 +28,6 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"登录";
-    [self createLeftBarItemWithBackTitle];
     mainView.layer.borderColor = [RGBA(207, 207, 207, 1)CGColor];
     mainView.layer.borderWidth = 1;
     remeberPasswordandPhone.checked = YES;
@@ -68,16 +67,22 @@
     } completion:^(BOOL finished) {
     }];
 }
--(void)goback:(UIButton *)btn{
-   // [self dismissViewControllerAnimated:YES completion:nil];
-//    if ([MySharetools shared].isFromMycenter) {
-//        [self.navigationController dismissViewControllerAnimated:YES completion:^{
-//            [MySharetools shared].isFirstSignupViewController = YES;
-//        }];
-//    }else{
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }
+
+-(void)awakeFromNib
+{
+    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundColor:[UIColor clearColor]];
+    [button setFrame:CGRectMake(0, 0, 20, 20)] ;
+    [button setImage:[UIImage imageNamed:@"close_icon"] forState:UIControlStateNormal] ;
+    [button setImage:[UIImage imageNamed:@"close_icon"] forState:UIControlStateHighlighted] ;
+    [button addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* item=[[UIBarButtonItem alloc]initWithCustomView:button];
+    [self.navigationItem setLeftBarButtonItem:item];
+    [button setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)] ;
     
+}
+
+-(void)goback:(UIButton *)btn{
     [[MySharetools shared]changeRootVcWithLogin:NO];
 }
 

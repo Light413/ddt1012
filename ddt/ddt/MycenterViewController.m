@@ -39,6 +39,7 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [myTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -299,68 +300,71 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [picker dismissViewControllerAnimated:YES completion:^() {
         NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
-        NSString *documentsDirectory =NSTemporaryDirectory();
-        
+
         if ([mediaType isEqualToString:@"public.image"]){
             UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-            
-            NSString *imageFile = [documentsDirectory stringByAppendingPathComponent:@"temp0.jpg"];
-            [UIImageJPEGRepresentation(image, 1.0f) writeToFile:imageFile atomically:YES];
-
             UIImage *_img = [[MySharetools shared]formatUploadImage:image];
             NSData *dataImage = UIImageJPEGRepresentation(_img, 0.6);
-//            NSMutableArray *dataArray = [[NSMutableArray alloc]init];
-//            [dataArray addObject:dataImage];
+
             [self postData:dataImage];
         }
     }];
 }
-
--(void)postData:(NSData *)dataImage{
-    //获取json参数字符串
-    NSString * token = [[MySharetools shared]getsessionid];
-    NSString *dataStr = [Base64 stringByEncodingData:dataImage];
-//    NSMutableString *_str = [[NSMutableString alloc]initWithString:dataStr];
-//    [_str replaceOccurrencesOfString:@"+" withString:@"%2b" options:NSLiteralSearch range:NSMakeRange(0, _str.length)];
-    
-    NSString *tel = [[MySharetools shared]getPhoneNumber];
-    NSString *imgname = [NSString stringWithFormat:@"/%@.jpg",tel];
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",imgname,@"pic",dataStr,@"data",nil];
-    NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
-    
-    //post请求参数：jsondata + token
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata",token,@"session" ,nil];
-    
-    [SVProgressHUD showWithStatus:@"正在上传头像"];
-    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_usericon", @"") parms:dic2 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
-              [SVProgressHUD showSuccessWithStatus:@"上传完成"];
-              //...设置当前头像的图片
-                UIImage *_ig = [[UIImage alloc]initWithData:dataImage];
-                _user_icon_img.image = _ig;
-            }
-            else
-            {
-                [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
-            }
-        }
-
-        NSLog(@"...responseObject  :%@",responseObject);
-    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD showInfoWithStatus:@"设置头像失败,请稍后重试"];
-    }];
-
-    [HttpRequestManager doPostOperationWithTask:_task];
-}
-
-
 
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:^(){
     }];
 }
+
+
+-(void)postData:(NSData *)dataImage{
+    //获取json参数字符串
+    NSString * token = [[MySharetools shared]getsessionid];
+    NSString *dataStr = [Base64 stringByEncodingData:dataImage];
+    //    NSMutableString *_str = [[NSMutableString alloc]initWithString:dataStr];
+    //    [_str replaceOccurrencesOfString:@"+" withString:@"%2b" options:NSLiteralSearch range:NSMakeRange(0, _str.length)];
+    
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSString *imgname = [NSString stringWithFormat:@"/%@.jpg",tel];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",imgname,@"pic",dataStr,@"data",nil];
+    NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:jsonStr,@"jsondata",token,@"session" ,nil];
+    
+    [SVProgressHUD showWithStatus:@"正在上传头像"];
+    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_usericon", @"") parms:dic2 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
+                [SVProgressHUD showSuccessWithStatus:@"上传完成"];
+                //...设置当前头像的图片
+                UIImage *_ig = [[UIImage alloc]initWithData:dataImage];
+                _user_icon_img.image = _ig;
+                
+                NSString *imageFile = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg",[[MySharetools shared]getPhoneNumber]]];
+                [UIImageJPEGRepresentation(_ig, 1.0f) writeToFile:imageFile atomically:YES];
+            }
+            else
+            {
+                [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+            }
+        }
+        
+        NSLog(@"...responseObject  :%@",responseObject);
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"设置头像失败,请稍后重试"];
+    }];
+    
+    [HttpRequestManager doPostOperationWithTask:_task];
+}
+
+
+-(void)saveFileWithImg:(UIImage*)img
+{
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSString *path = [NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),tel];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

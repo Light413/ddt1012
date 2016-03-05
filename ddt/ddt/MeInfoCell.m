@@ -27,14 +27,30 @@
 
 -(void)setCell:(NSString*)imgurl name:(NSString*)names jifen:(NSString*)jifens liulan :(NSString*)liulans comm :(NSString *)comms
 {
-    if (imgurl) {
-         [icon_img setImageWithURL:[NSURL URLWithString:imgurl] placeholderImage:[UIImage imageNamed:@"head_noregist"]];
+    //设置头像
+    NSString *imageFile = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg",[[MySharetools shared]getPhoneNumber]]];
+    UIImage *_ig = [[UIImage alloc]initWithContentsOfFile:imageFile];
+    if (_ig) {
+      [icon_img setImage:_ig];
     }
     else
-    [icon_img setImage:[UIImage imageNamed:@"head_noregist"]];
+    {
+        if (imgurl) {
+            [icon_img setImageWithURL:[NSURL URLWithString:imgurl] placeholderImage:[UIImage imageNamed:@"head_noregist"]];
+        }
+        else
+            [icon_img setImage:[UIImage imageNamed:@"head_noregist"]];
+    }
+
     
     name.text = names ? names : @"---";
-    jifen.text = jifens ? jifens :@"0";
+    
+    //积分
+     NSInteger oldaddjifen =[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY]? [[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY] integerValue] :0;
+    
+    NSInteger total = [(jifens ? jifens :@"0") integerValue] + oldaddjifen;
+    jifen.text = [NSString stringWithFormat:@"%ld",total];
+    
     liulab.text = liulans ? liulans  :@"0";
     comm.text = comms ? comms :@"0";
     

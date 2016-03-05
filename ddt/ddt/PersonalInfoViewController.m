@@ -1,7 +1,7 @@
 //
 //  PersonalInfoViewController.m
 //  ddt
-//
+//完善个人信心
 //  Created by allen on 15/10/19.
 //  Copyright (c) 2015年 Light. All rights reserved.
 //

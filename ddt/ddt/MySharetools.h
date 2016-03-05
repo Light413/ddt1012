@@ -38,13 +38,35 @@
  *  @return dic
  */
 +(NSDictionary*)getParmsForPostWith:(NSDictionary*)dic ;
-
 +(NSDictionary*)getParmsForPostWith:(NSDictionary*)dic withToken:(BOOL)is;
+
 
 
 -(void)hasSuccessLogin;
 
+
 -(void)changeRootVcWithLogin:(BOOL)_b;
 
 
+/**
+ *  增加积分(签到或分享成功后获得积分)
+ *
+ *  @param type 1-签到操作+5分 2-分享操作+1分
+ */
+-(void)addJIFenWithType:(NSString*)type;
+
+
+
+
 @end
+
+
+
+
+
+
+
+
+
+
+

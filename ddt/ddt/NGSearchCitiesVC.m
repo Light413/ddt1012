@@ -27,8 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.backgroundView = nil;
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor whiteColor];
+//    self.tableView.backgroundColor = [UIColor redColor];
     
     [self initData];
 }
@@ -39,7 +39,7 @@
     self.tableView.backgroundView = nil;
 //    self.backgroundColor = [UIColor whiteColor];
     
-    self.title = @"城市列表";
+    self.title = @"选择城市";
     _allKey = [[NSMutableArray alloc]init];
     _dataSourceDic = [[NSMutableDictionary alloc]init];
     self.isSearchStatus= NO;
@@ -52,13 +52,13 @@
 {
     UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
     [button setBackgroundColor:[UIColor clearColor]];
-    [button setFrame:CGRectMake(0, 0, 16, 22)] ;
-    [button setImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateNormal] ;
-    [button setImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateSelected] ;
+    [button setFrame:CGRectMake(0, 0, 20, 20)] ;
+    [button setImage:[UIImage imageNamed:@"close_icon"] forState:UIControlStateNormal] ;
+    [button setImage:[UIImage imageNamed:@"close_icon"] forState:UIControlStateHighlighted] ;
     [button addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* item=[[UIBarButtonItem alloc]initWithCustomView:button];
     [self.navigationItem setLeftBarButtonItem:item];
-    [button setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)] ;
+    [button setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)] ;
 
 }
 -(void)goback:(id)btn

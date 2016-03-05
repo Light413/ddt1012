@@ -196,6 +196,8 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBtn.frame = CGRectMake(0, 0, 100, 40);
     [leftBtn setImage:[UIImage imageNamed:@"bar_down_icon"] forState:UIControlStateNormal];
+    [leftBtn setImage:[UIImage imageNamed:@"bar_down_icon"] forState:UIControlStateHighlighted];
+    
     [leftBtn setTitle:@"定位中" forState:UIControlStateNormal];
     leftBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     leftBtn.titleLabel.textAlignment  = NSTextAlignmentLeft;
@@ -209,6 +211,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(0, 0, 60, 40);
     [rightBtn setImage:[UIImage imageNamed:@"bar_qiandao_icon"] forState:UIControlStateNormal];
+    [rightBtn setImage:[UIImage imageNamed:@"bar_qiandao_icon"] forState:UIControlStateHighlighted];
     [rightBtn setTitle:@"签到" forState:UIControlStateNormal];
     rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -35)];
@@ -337,7 +340,6 @@ typedef NS_ENUM(NSInteger ,NextvcType)
                     
                     [[NSUserDefaults standardUserDefaults]setObject:@(5 + oldaddjifen) forKey:QIAN_DAO_JIFEN_KEY];
                     [[NSUserDefaults standardUserDefaults]synchronize];
-//                    [[NSNotificationCenter defaultCenter]postNotificationName:QIAN_DAO_SUCCESS_NOTI object:@"5"];
                 }
                 else if ([[responseObject objectForKey:@"result"]integerValue]==1)
                 {
@@ -630,6 +632,8 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     {
         //得到分享到的微博平台名
         NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+        
+        [[MySharetools shared]addJIFenWithType:@"2"];
     }
 }
 
