@@ -142,6 +142,9 @@
     return self.vcType ==2? [MySharetools getParmsForPostWith:dic withToken:YES]:[MySharetools getParmsForPostWith:dic];
 }
 
+//[0]	(null)	@"result" : @"9"
+//[1]	(null)	@"message" : @"会话超时,请重新登录..."
+//[2]	(null)	@"data" : @"{}"
 
 -(void)loadData:(NSInteger)start{
     if (_common_current_pageNum > 100) { return;}

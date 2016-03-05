@@ -37,9 +37,20 @@ static MySharetools *instance = nil;
 -(void)changeRootVcWithLogin:(BOOL)_b
 {
     UIViewController *_vc;
-    _vc =_b? [self getViewControllerWithIdentifier:@"LoginVCSBID" andstoryboardName:@"me"]:({_vc = [[MySharetools shared]getViewControllerWithIdentifier:@"mainVCSBID" andstoryboardName:@"MainSB"];
+    _vc =_b? (
+    {
+        [self removeSessionid];
+        [self getViewControllerWithIdentifier:@"LoginVCSBID" andstoryboardName:@"me"];
+    }): \
+    ({_vc = [[MySharetools shared]getViewControllerWithIdentifier:@"mainVCSBID" andstoryboardName:@"MainSB"];
         ((UITabBarController*)_vc).tabBar.barTintColor = [UIColor blackColor];
         ((UITabBarController*)_vc).tabBar.tintColor = [UIColor whiteColor];
+        NSArray *titleArr  = @[@"首页",@"同行",@"单子",@"我的",];
+        NSArray *_itemArr = ((UITabBarController*)_vc).tabBar.items;
+        [_itemArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [(UIBarButtonItem *)obj setTitle:[titleArr objectAtIndex:idx]];
+        }];
+        
         ((UITabBarController*)_vc).selectedIndex = 0;
         _vc;
     });
@@ -57,6 +68,7 @@ static MySharetools *instance = nil;
 
 
 
+//sessionid相关方法
 #pragma mark --- 获取sessionid
 - (NSString *)getsessionid{
     NSString *sessionid = [[NSUserDefaults standardUserDefaults]objectForKey:@"sessionid"];
@@ -66,9 +78,12 @@ static MySharetools *instance = nil;
     return sessionid;
 }
 #pragma mark ---删除sessionid
+
 - (void)removeSessionid{
     [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"sessionid"];
+//    [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"rememberPhone"];
 }
+
 #pragma mark ---是否登陆成功
 - (BOOL)isSessionid{
     NSString *sessionid = [[NSUserDefaults standardUserDefaults]objectForKey:@"sessionid"];
@@ -78,6 +93,8 @@ static MySharetools *instance = nil;
         return NO;
     }
 }
+
+
 #pragma mark --获取登陆成功后的信息
 - (NSDictionary *)getLoginSuccessInfo{
     NSDictionary *dict = [[NSUserDefaults standardUserDefaults]objectForKey:@"loginSuccessInfo"];

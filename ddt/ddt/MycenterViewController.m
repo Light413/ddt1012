@@ -135,7 +135,7 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
         NSString *icon_url;
         
         if (avatar && avatar.length > 11) {
-            icon_url = [NSString stringWithFormat:@"%@/%@",NSLocalizedString(@"url_get_avatar", @""),avatar];
+            icon_url = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"url_get_avatar", @""),avatar];
         }
         
         [cell setCell:icon_url name:[[MySharetools shared]getNickName] jifen:[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"fee"] liulan:[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"see"] comm:[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"judge"]];
@@ -232,11 +232,12 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
     [self.navigationController pushViewController:modify animated:YES];
 }
 -(void)logout:(UIButton *)btn{
-    [[MySharetools shared]removeSessionid];
-    [MySharetools shared].isFromMycenter = YES;
-    LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
-    NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
-    [self.tabBarController presentViewController:nav animated:YES completion:nil];
+//    [[MySharetools shared]removeSessionid];
+//    [MySharetools shared].isFromMycenter = YES;
+//    LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
+//    NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
+//    [self.tabBarController presentViewController:nav animated:YES completion:nil];
+    [[MySharetools shared]changeRootVcWithLogin:YES];
 }
 
 -(void)modifyInfo:(UIButton *)btn{
@@ -323,7 +324,7 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
 //    [_str replaceOccurrencesOfString:@"+" withString:@"%2b" options:NSLiteralSearch range:NSMakeRange(0, _str.length)];
     
     NSString *tel = [[MySharetools shared]getPhoneNumber];
-    NSString *imgname = [NSString stringWithFormat:@"%@.jpg",tel];
+    NSString *imgname = [NSString stringWithFormat:@"/%@.jpg",tel];
     NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",imgname,@"pic",dataStr,@"data",nil];
     NSString *jsonStr = [NSString jsonStringFromDictionary:dic1];
     
