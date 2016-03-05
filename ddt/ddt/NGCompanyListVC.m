@@ -139,10 +139,10 @@
         _pageNum = 1;
         [weakSelf loadMoreData];
     }];
-    _tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [_tableView.footer resetNoMoreData];
-        [weakSelf loadMoreData];
-    }];
+//    _tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//        [_tableView.footer resetNoMoreData];
+//        [weakSelf loadMoreData];
+//    }];
 }
 
 
@@ -164,9 +164,7 @@
     RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_jiedan", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
 //        NSLog(@"##########################:%@",responseObject);
-        
-        
-        
+
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
                 if (_pageNum == 1) {
@@ -256,23 +254,23 @@
         [_arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([(NSString *)obj isEqualToString:str]) {
                 if (idx==0) {
-                    _selectedTime = @"";
+                    _selectedTime = @"";return ;
                 }
                 else if (idx ==1)
                 {
-                    _selectedTime = @"1";
+                    _selectedTime = @"1";return ;
                 }
                 else if (idx ==2)
                 {
-                    _selectedTime = @"3";
+                    _selectedTime = @"3";return ;
                 }
-                else if (idx ==31)
+                else if (idx ==3)
                 {
-                    _selectedTime = @"7";
+                    _selectedTime = @"7";return ;
                 }
                 else if (idx ==4)
                 {
-                    _selectedTime = @"30";
+                    _selectedTime = @"30";return ;
                 }
             }
         }];
@@ -307,11 +305,26 @@ float _h;
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _common_list_dataSource.count;
+    return _common_list_dataSource.count> 0?_common_list_dataSource.count:1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (_common_list_dataSource.count ==0) {
+        static NSString *_nodatareusecellid = @"_nodatareusecellid";
+       UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:_nodatareusecellid];
+        if (cell ==nil) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_nodatareusecellid];
+            cell.textLabel.text = @"没有数据?\n下拉刷新试试\n\n\n\n\n\n";
+            cell.textLabel.numberOfLines = 0;
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.textLabel.font = [UIFont systemFontOfSize:18];
+            cell.textLabel.textColor = [UIColor lightGrayColor];
+            cell.userInteractionEnabled = NO;
+        }
+        return cell;
+    }
+    
     NGJieDanListCell * cell;
     NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:indexPath.row];
     cell = [tableView dequeueReusableCellWithIdentifier:_common_list_cellReuseId forIndexPath:indexPath];
@@ -340,7 +353,10 @@ float _h;
 //const float cellDefaultHeight = 60.0;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    if (_common_list_dataSource.count ==0) {
+        return tableView.frame.size.height;
+    }
+    
     return 90;//_h + 40 > 80?_h + 40:80;
 }
 
@@ -357,9 +373,9 @@ float _h;
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_pageNum != NSNotFound && indexPath.row == _common_list_dataSource.count - 1) {
-//        _pageNum++;
+        _pageNum++;
 //        [_tableView.footer beginRefreshing];
-//        [self loadMoreData];
+        [self loadMoreData];
     }
 }
 

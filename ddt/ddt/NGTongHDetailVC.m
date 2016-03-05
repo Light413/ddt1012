@@ -127,7 +127,7 @@ const float border_w = 0.6;
         _s8 = [self.personInfoDic objectForKey:@"yewu"];
         _s9 = [self.personInfoDic objectForKey:@"company"];
         _s10 = [self.personInfoDic objectForKey:@"content"];
-        _s11 = [self.personInfoDic objectForKey:@"wx"]?[self.personInfoDic objectForKey:@"wx"]:@"";
+        _s11 = [self.personInfoDic objectForKey:@"weixin"]?[self.personInfoDic objectForKey:@"weixin"]:@"";
         _s12 = [self.personInfoDic objectForKey:@"quyu"]?[self.personInfoDic objectForKey:@"quyu"]:@"";
         
         self.is_love_btn.selected = [[self.personInfoDic objectForKey:@"isbook"]boolValue];

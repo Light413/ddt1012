@@ -163,7 +163,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
             NSArray *_btnTitleArr1 = @[@"服务区域",@"业务类型",@"性别"];
             _common_pop_btnTitleArr = _btnTitleArr1;
             _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
-            _common_list_url =self.vcType < NGVCTypeId_3? NSLocalizedString(@"url_tongh_list", @""):NSLocalizedString(@"url_tongh_fj_list", @"");
+            _common_list_url =self.vcType < NGVCTypeId_3? NSLocalizedString(@"url_tongh_fj_list", @""):NSLocalizedString(@"url_tongh_fj_list", @"");//url_tongh_list
             _selectedArea = @"";
             _selectedType = @"";
             _selectedSex = @"";
@@ -217,7 +217,6 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     switch (self.vcType) {
         case NGVCTypeId_3:
         case NGVCTypeId_2:
-            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex: @"",@"xb",nil];break;
         case NGVCTypeId_1://,@"121.68571511,31.19302052"-同行
         {
             NSDate *localDate = [NSDate date]; //获取当前时间
@@ -278,10 +277,10 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         _pageNum = 1;
         [weakSelf loadMoreData];
     }];
-    _tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [_tableView.footer resetNoMoreData];
-        [weakSelf loadMoreData];
-    }];
+//    _tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//        [_tableView.footer resetNoMoreData];
+//        [weakSelf loadMoreData];
+//    }];
    
     if (self.vcType == NGVCTypeId_4) {
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -459,12 +458,27 @@ float _h =0;
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _common_list_dataSource.count;
+    return _common_list_dataSource.count > 0?_common_list_dataSource.count:1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell * cell;
+    if (_common_list_dataSource.count ==0) {
+        static NSString *_nodatareusecellid = @"_nodatareusecellid";
+        cell = [tableView dequeueReusableCellWithIdentifier:_nodatareusecellid];
+        if (cell ==nil) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_nodatareusecellid];
+            cell.textLabel.text = @"没有数据?\n下拉刷新试试\n\n\n\n\n\n";
+            cell.textLabel.numberOfLines = 0;
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.textLabel.font = [UIFont systemFontOfSize:18];
+            cell.textLabel.textColor = [UIColor lightGrayColor];
+            cell.userInteractionEnabled = NO;
+        }
+        return cell;
+    }
+    
     NSDictionary *_dic0 = [_common_list_dataSource objectAtIndex:indexPath.row];
     NSString * str = [_dic0 objectForKey:@"yewu"];
     CGSize _new =  [ToolsClass calculateSizeForText:str :cellMaxFitSize font:cellFitfont];
@@ -545,6 +559,10 @@ float _h =0;
 const float cellDefaultHeight = 80.0;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (_common_list_dataSource.count ==0) {
+        return tableView.frame.size.height;
+    }
+    
     switch (self.vcType) {
         case NGVCTypeId_1:
         case NGVCTypeId_2:
@@ -599,7 +617,8 @@ const float cellDefaultHeight = 80.0;
 {
     if (_pageNum != NSNotFound && indexPath.row == _common_list_dataSource.count - 1) {
         _pageNum++;
-        [_tableView.footer beginRefreshing];
+//        [_tableView.footer beginRefreshing];
+        [self loadMoreData];
     }
 }
 

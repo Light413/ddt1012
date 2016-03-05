@@ -98,6 +98,11 @@
         [phoneNumTextField resignFirstResponder];
         [passwordTextField becomeFirstResponder];
     }
+    else
+    {
+        [textField resignFirstResponder];
+    }
+    
     return YES;
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -114,7 +119,26 @@
 }
 
 
+-(BOOL)isavlidityForParms
+{
+    if (phoneNumTextField.text.length < 1 || passwordTextField.text.length < 1) {
+        [SVProgressHUD showInfoWithStatus:@"手机或密码不能为空"];
+        return NO;
+    }
+    else if (![[MySharetools shared] isMobileNumber:phoneNumTextField.text])
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入有效的手机号"];
+        return NO;
+    }
+    
+    return YES;
+}
+
 - (IBAction)loginBtnClick:(id)sender {
+    if (![self isavlidityForParms]) {
+        return;
+    }
+    
     //    jsondata={"mobile":"15136216190","pwd":"111","token":"15136216190(!)*^*1446701200"//18016373660,123456789www wyg
     NSDate *localDate = [NSDate date]; //获取当前时间
     NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
