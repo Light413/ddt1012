@@ -157,6 +157,7 @@
 		ADD085C41BEB98C900D2EBC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADD085C61BEB98C900D2EBC4 /* Localizable.strings */; };
 		ADD15E041BF23F8100CD868C /* NGJieDanListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD15E021BF23F8100CD868C /* NGJieDanListCell.m */; };
 		ADD15E051BF23F8100CD868C /* NGJieDanListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD15E031BF23F8100CD868C /* NGJieDanListCell.xib */; };
+		ADD298431C8BE7BD0010CF31 /* CheckAvatarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD298421C8BE7BD0010CF31 /* CheckAvatarVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */; };
 		ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305311BDCFFD7002F5BAE /* NGTHContactVC.m */; };
 		ADD305351BDD005D002F5BAE /* NGReleaseContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305341BDD005D002F5BAE /* NGReleaseContactVC.m */; };
@@ -478,6 +479,8 @@
 		ADD15E011BF23F8100CD868C /* NGJieDanListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGJieDanListCell.h; sourceTree = "<group>"; };
 		ADD15E021BF23F8100CD868C /* NGJieDanListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGJieDanListCell.m; sourceTree = "<group>"; };
 		ADD15E031BF23F8100CD868C /* NGJieDanListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGJieDanListCell.xib; sourceTree = "<group>"; };
+		ADD298411C8BE7BD0010CF31 /* CheckAvatarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckAvatarVC.h; sourceTree = "<group>"; };
+		ADD298421C8BE7BD0010CF31 /* CheckAvatarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckAvatarVC.m; sourceTree = "<group>"; };
 		ADD3052D1BDC72FA002F5BAE /* ToolsClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsClass.h; sourceTree = "<group>"; };
 		ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsClass.m; sourceTree = "<group>"; };
 		ADD305301BDCFFD7002F5BAE /* NGTHContactVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTHContactVC.h; sourceTree = "<group>"; };
@@ -1177,6 +1180,8 @@
 				A143F83F1BCCA5D60029E555 /* NGSecondVC.m */,
 				AD5B11D61BDBA43700285255 /* NGTongHDetailVC.h */,
 				AD5B11D71BDBA43700285255 /* NGTongHDetailVC.m */,
+				ADD298411C8BE7BD0010CF31 /* CheckAvatarVC.h */,
+				ADD298421C8BE7BD0010CF31 /* CheckAvatarVC.m */,
 			);
 			name = tonghang;
 			sourceTree = "<group>";
@@ -1727,6 +1732,7 @@
 				A17B7CF41B43F867003CF895 /* main.m in Sources */,
 				A12441D31BD0EDD200D2588C /* MJRefreshBackStateFooter.m in Sources */,
 				ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */,
+				ADD298431C8BE7BD0010CF31 /* CheckAvatarVC.m in Sources */,
 				088F23D21C00A2830051BA3E /* CommanySCModel.m in Sources */,
 				9F690B001BD73AA600DDCED6 /* MyBaseTableViewController.m in Sources */,
 				A12441CF1BD0EDD200D2588C /* MJRefreshAutoNormalFooter.m in Sources */,

@@ -30,22 +30,22 @@
     self.title = @"系统中心";
 
     [self creatTableView];
-    NSString * versionstr = [NSString stringWithFormat:@"版本更新 (当前版本:%@)",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleShortVersionString"]];
 //    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]init];
 //    [attr addAttribute:(NSString*)kCTForegroundColorAttributeName value:(id)[UIColor redColor].CGColor range:NSMakeRange(5, 10)];
 //    [attr addAttribute:(NSString *)kCTFontAttributeName
 //                        value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont boldSystemFontOfSize:14].fontName,14,NULL))range:NSMakeRange(5, 10)];
     
-    datalist = @[@{KimageName: @"uc_system.png",
-                   KlabelName:@"关于我们"},
-                 @{KimageName: @"uc_danzi.png",
-                   KlabelName:versionstr},
+    datalist = @[
                  @{KimageName: @"uc_app.png",
                    KlabelName:@"意见反馈"},
-                 @{KimageName: @"uc_pwd.png",
-                   KlabelName:@"加入我们"},
                  @{KimageName: @"uc_setting_1.png",
                    KlabelName:@"重置手机号"},
+                 @{KimageName: @"uc_system.png",
+                   KlabelName:@"关于我们"},
+                 @{KimageName: @"uc_pwd.png",
+                   KlabelName:@"加入我们"},
+                 @{KimageName: @"uc_danzi.png",
+                   KlabelName:@"给贷易通评分"},
                  ];
 
     // Do any additional setup after loading the view.
@@ -56,6 +56,15 @@
     myTableView.dataSource = self;
     myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:myTableView];
+    
+    UILabel *_footer = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, 100)];
+    _footer.text = [NSString stringWithFormat:@"当前版本:%@",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleShortVersionString"]];
+    _footer.textAlignment = NSTextAlignmentCenter;
+    _footer.font = [UIFont systemFontOfSize:15];
+    _footer.textColor = [UIColor darkGrayColor];
+    
+    myTableView.tableFooterView = _footer;
+    
 }
 #pragma mark --tableview 代理
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -84,42 +93,37 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    
-    UIBarButtonItem *_item = [[UIBarButtonItem alloc]init];
-    _item.title = @"";
-    self.navigationItem.backBarButtonItem = _item;
-    
+
     if (indexPath.row == 0) {
-        AboutUsViewController *us = [[AboutUsViewController alloc]init];
-        us.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:us animated:YES];
-    }
-    if (indexPath.row == 1) {
-        
-    }
-    if (indexPath.row == 2) {
         DeviceFeedBackViewController *feedback = [[MySharetools shared]getViewControllerWithIdentifier:@"DeviceFeedBack" andstoryboardName:@"me"];
         feedback.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:feedback animated:YES];
+    }
+    if (indexPath.row == 1) {
+        ResetNewPhoneViewController *reset = [[ResetNewPhoneViewController alloc]init];
+        reset.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:reset animated:YES];
+    }
+    if (indexPath.row == 2) {
+        AboutUsViewController *us = [[AboutUsViewController alloc]init];
+        us.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:us animated:YES];
     }
     if (indexPath.row == 3) {
         JoinUsViewController *joinUS = [[JoinUsViewController alloc]init];
         joinUS.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:joinUS animated:YES];
     }
-    if (indexPath.row == 4) {
-        ResetNewPhoneViewController *reset = [[ResetNewPhoneViewController alloc]init];
-        reset.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:reset animated:YES];
+    if (indexPath.row ==4) {
+        //给我评分
+        
     }
     
 }
--(void)goback:(UIButton *)btn{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

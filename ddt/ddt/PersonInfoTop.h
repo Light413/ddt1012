@@ -20,4 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *renqi;
 @property (weak, nonatomic) IBOutlet UILabel *pinlun;
 
+
+@property(nonatomic,copy)void(^tapAvatarBlock)();
+
 @end

@@ -8,6 +8,7 @@
 
 #import "NGTongHDetailVC.h"
 #import "PersonInfoTop.h"
+#import "CheckAvatarVC.h"
 
 #define Font    [UIFont systemFontOfSize:15]
 #define Size    CGSizeMake(CurrentScreenWidth - 70, 1000)
@@ -156,9 +157,16 @@ const float border_w = 0.6;
 
 -(void)initHeaderView
 {
+    __weak typeof(self)weakself = self;
+    
     NSArray *_arr = [[NSBundle mainBundle]loadNibNamed:@"PersonInfoTop" owner:self options:nil];
     PersonInfoTop *_v = _arr[0];
     _v.frame =  _imgView.frame;
+    _v.tapAvatarBlock = ^{
+        CheckAvatarVC *vc = [[CheckAvatarVC alloc]init];
+        [weakself.navigationController pushViewController:vc animated:YES];
+    };
+    
     
     //头像
     NSString * pic =[self.personInfoDic objectForKey:@"pic"];

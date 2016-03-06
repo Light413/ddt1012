@@ -14,7 +14,17 @@
 {
     self.avantar.layer.cornerRadius = 40;
     self.avantar.layer.masksToBounds = YES;
+    
+    [self.avantar addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapIcon)]];
 }
+
+-(void)tapIcon
+{
+    if (self.tapAvatarBlock) {
+        self.tapAvatarBlock();
+    }
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

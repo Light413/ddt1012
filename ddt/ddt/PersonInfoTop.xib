@@ -17,7 +17,7 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cell_avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="H0T-oZ-Pqi">
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cell_avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="H0T-oZ-Pqi">
                     <rect key="frame" x="5" y="5" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="dxX-Xb-Dra"/>
