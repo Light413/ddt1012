@@ -158,6 +158,7 @@
 		ADD15E041BF23F8100CD868C /* NGJieDanListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD15E021BF23F8100CD868C /* NGJieDanListCell.m */; };
 		ADD15E051BF23F8100CD868C /* NGJieDanListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD15E031BF23F8100CD868C /* NGJieDanListCell.xib */; };
 		ADD298431C8BE7BD0010CF31 /* CheckAvatarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD298421C8BE7BD0010CF31 /* CheckAvatarVC.m */; settings = {ASSET_TAGS = (); }; };
+		ADD298461C8C3F330010CF31 /* ScrollPicView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD298451C8C3F330010CF31 /* ScrollPicView.m */; settings = {ASSET_TAGS = (); }; };
 		ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */; };
 		ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305311BDCFFD7002F5BAE /* NGTHContactVC.m */; };
 		ADD305351BDD005D002F5BAE /* NGReleaseContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305341BDD005D002F5BAE /* NGReleaseContactVC.m */; };
@@ -481,6 +482,8 @@
 		ADD15E031BF23F8100CD868C /* NGJieDanListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGJieDanListCell.xib; sourceTree = "<group>"; };
 		ADD298411C8BE7BD0010CF31 /* CheckAvatarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckAvatarVC.h; sourceTree = "<group>"; };
 		ADD298421C8BE7BD0010CF31 /* CheckAvatarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckAvatarVC.m; sourceTree = "<group>"; };
+		ADD298441C8C3F330010CF31 /* ScrollPicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollPicView.h; sourceTree = "<group>"; };
+		ADD298451C8C3F330010CF31 /* ScrollPicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPicView.m; sourceTree = "<group>"; };
 		ADD3052D1BDC72FA002F5BAE /* ToolsClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsClass.h; sourceTree = "<group>"; };
 		ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsClass.m; sourceTree = "<group>"; };
 		ADD305301BDCFFD7002F5BAE /* NGTHContactVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTHContactVC.h; sourceTree = "<group>"; };
@@ -1286,6 +1289,8 @@
 			children = (
 				ADCF91DE1BEDA5F000DC6CF7 /* NGWebView.h */,
 				ADCF91DF1BEDA5F000DC6CF7 /* NGWebView.m */,
+				ADD298441C8C3F330010CF31 /* ScrollPicView.h */,
+				ADD298451C8C3F330010CF31 /* ScrollPicView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1696,6 +1701,7 @@
 				ADD305351BDD005D002F5BAE /* NGReleaseContactVC.m in Sources */,
 				9FEE0A531BCDFA4F00EA5261 /* UIViewExt.m in Sources */,
 				9FEFFCD21BCFAFE80036C23D /* QCheckBox.m in Sources */,
+				ADD298461C8C3F330010CF31 /* ScrollPicView.m in Sources */,
 				9FFEE94B1BD0CDF100D53553 /* RegisterViewController.m in Sources */,
 				A15F1C4A1BD615A600E854A7 /* NGSecondListCell.m in Sources */,
 				A12441CA1BD0EDD200D2588C /* MJRefreshBackFooter.m in Sources */,

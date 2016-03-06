@@ -17,6 +17,7 @@
 
 #import <PgyUpdate/PgyUpdateManager.h>
 #import "NewAddView.h"
+#import "ScrollPicView.h"
 
 #define ScrollViewHeight    100
 #define CollectionHeaderViewHight (100 + 85 +110)
@@ -76,6 +77,8 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     [self getNewadd];
     
     _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
+    
     //获取位置信息
 //    [SVProgressHUD showWithStatus:@"正在获取位置"];
     [[LocationManger shareManger]getLocationWithSuccessBlock:^(NSString *str) {
@@ -111,6 +114,9 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     
     //...test检查版本更新
     [[PgyUpdateManager sharedPgyManager]checkUpdate];
+    
+    
+    [self getTopPic];
   /*
     [[BaiDuLocationManger share]getLocationWithSuccessBlock:^(CLLocation *loaction) {
 //        CLGeocoder *geo = [[CLGeocoder alloc]init];
@@ -151,13 +157,10 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 -(void)awakeFromNib
 {
     [self initTopView];
-    
-    UIBarButtonItem *backitem = [[UIBarButtonItem alloc]init];
-//    backitem.image = [UIImage imageNamed:@"leftArrow"];
-    backitem.title = @"";
-    self.navigationItem.backBarButtonItem =backitem ;
 }
 
+#pragma mark --获取数据
+//新增
 -(void)getNewadd
 {
     NSDate *_date = [NSDate date];
@@ -187,6 +190,27 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     }];
     [HttpRequestManager doPostOperationWithTask:_h];
 }
+
+-(void)getTopPic
+{
+//    http://123dyt.com/mydyt/upload/hot/a1.png
+
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSDictionary *_dic =[NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"5",@"psize",@"1",@"pnum",@"1",@"type",nil];
+    
+    NSDictionary *_d = [MySharetools getParmsForPostWith:_dic];
+    RequestTaskHandle *_h = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_gethot_pic", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
+
+            }
+        }
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    [HttpRequestManager doPostOperationWithTask:_h];
+}
+
 
 #pragma mark-init subview
 -(void)initTopView
@@ -247,23 +271,25 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     _pageCtr.numberOfPages  = 4;
     _pageCtr.currentPageIndicatorTintColor =[UIColor colorWithRed:0.345 green:0.678 blue:0.910 alpha:1];
     _pageCtr.pageIndicatorTintColor = [UIColor lightGrayColor];
-    _topScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, ScrollViewHeight)];
-    _topScrollView.backgroundColor = [UIColor lightGrayColor];
-    _topScrollView.contentSize = CGSizeMake(CurrentScreenWidth * 4, ScrollViewHeight);
-    _topScrollView.contentInset = UIEdgeInsetsZero;
-    //[self.view addSubview:_topScrollView];
-    _topScrollView.delegate  =self;
-    _topScrollView.pagingEnabled = YES;
-    _topScrollView.showsHorizontalScrollIndicator = NO;
+    
+    _topScrollView = [[ScrollPicView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, ScrollViewHeight) withData:@[@1,@2,@2,@2]];
+    
+//    _topScrollView.backgroundColor = [UIColor lightGrayColor];
+//    _topScrollView.contentSize = CGSizeMake(CurrentScreenWidth * 4, ScrollViewHeight);
+//    _topScrollView.contentInset = UIEdgeInsetsZero;
+//    //[self.view addSubview:_topScrollView];
+//    _topScrollView.delegate  =self;
+//    _topScrollView.pagingEnabled = YES;
+//    _topScrollView.showsHorizontalScrollIndicator = NO;
     
     //...test
-    for (int i=0; i < 4; i++) {
-        UIImageView *imgv = [[UIImageView alloc]init];
-        imgv.frame = CGRectMake(CurrentScreenWidth * i, 0, CurrentScreenWidth, ScrollViewHeight);
-        imgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"image%d.png",i]];
-        [_topScrollView addSubview:imgv];
-    }
-    [_topScrollView addSubview:_pageCtr];
+//    for (int i=0; i < 4; i++) {
+//        UIImageView *imgv = [[UIImageView alloc]init];
+//        imgv.frame = CGRectMake(CurrentScreenWidth * i, 0, CurrentScreenWidth, ScrollViewHeight);
+//        imgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"image%d.png",i]];
+//        [_topScrollView addSubview:imgv];
+//    }
+//    [_topScrollView addSubview:_pageCtr];
     
     //今日新增视图
     NSArray *_addarr = [[NSBundle mainBundle]loadNibNamed:@"NewAddView" owner:nil options:nil];
@@ -295,19 +321,19 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 #pragma mark -timer action
 -(void)timerAction
 {
-    CGPoint currentPoint = _topScrollView.contentOffset;
-    currentPoint.x += CurrentScreenWidth;
-    if (currentPoint.x > 3 * CurrentScreenWidth) {
-        currentPoint = CGPointZero;
-        _topScrollView.contentOffset = CGPointMake(0, 0);
-    }
-    
-    [UIView animateWithDuration:.2 animations:^{
-        _topScrollView.contentOffset = currentPoint;
-    } completion:^(BOOL finished) {
-        _pageCtr.currentPage = currentPoint.x / CurrentScreenWidth;
-        _pageCtr.frame = CGRectMake(currentPoint.x + (CurrentScreenWidth - 100)/2.0, ScrollViewHeight - 20, 100, 20);
-    }];
+//    CGPoint currentPoint = _topScrollView.contentOffset;
+//    currentPoint.x += CurrentScreenWidth;
+//    if (currentPoint.x > 3 * CurrentScreenWidth) {
+//        currentPoint = CGPointZero;
+//        _topScrollView.contentOffset = CGPointMake(0, 0);
+//    }
+//    
+//    [UIView animateWithDuration:.2 animations:^{
+//        _topScrollView.contentOffset = currentPoint;
+//    } completion:^(BOOL finished) {
+//        _pageCtr.currentPage = currentPoint.x / CurrentScreenWidth;
+////        _pageCtr.frame = CGRectMake(currentPoint.x + (CurrentScreenWidth - 100)/2.0, ScrollViewHeight - 20, 100, 20);
+//    }];
 }
 
 #pragma mark -选择城市
@@ -354,41 +380,27 @@ typedef NS_ENUM(NSInteger ,NextvcType)
         
         [HttpRequestManager doPostOperationWithTask:_task];
     }
-//    else
-//    {
-//        if ([MySharetools shared].isFirstSignupViewController == YES) {
-//            [MySharetools shared].isFirstSignupViewController = NO;
-//            [MySharetools shared].isFromMycenter = YES;
-//            LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
-//            NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
-//            [self.tabBarController presentViewController:nav animated:YES completion:nil];
-//        }else{
-//            self.tabBarController.selectedIndex = 0;
-//        }
-//    }
-  
 }
 
 #pragma mark -UITextFieldDelegate
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    
     return NO;
 }
 
 #pragma mark -UIScrollViewDelegate
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    if (scrollView == _topScrollView) {
-        NSInteger index = scrollView.contentOffset.x / CurrentScreenWidth;
-        if (index != _pageCtr.currentPage) {
-            _pageCtr.currentPage = scrollView.contentOffset.x / CurrentScreenWidth;
-            _pageCtr.frame = CGRectMake(scrollView.contentOffset.x + (CurrentScreenWidth - 100)/2.0, ScrollViewHeight - 20, 100, 20);
-        }
-    }
-}
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//{
+//    if (scrollView == _topScrollView) {
+//        NSInteger index = scrollView.contentOffset.x / CurrentScreenWidth;
+//        if (index != _pageCtr.currentPage) {
+//            _pageCtr.currentPage = scrollView.contentOffset.x / CurrentScreenWidth;
+////            _pageCtr.frame = CGRectMake(scrollView.contentOffset.x + (CurrentScreenWidth - 100)/2.0, ScrollViewHeight - 20, 100, 20);
+//        }
+//    }
+//}
 
-//记录访问足迹
+//记录访问足迹 -(已弃用)
 -(NSString *)footerRecord:(NSString*)str
 {
     NSMutableString *_des = [[NSMutableString alloc]init];

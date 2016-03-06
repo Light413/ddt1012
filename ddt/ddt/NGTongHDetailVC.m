@@ -18,7 +18,7 @@
 #define Color_3 [UIColor colorWithRed:0.835 green:0.722 blue:0.439 alpha:1]
 
 
-@interface NGTongHDetailVC ()<UIAlertViewDelegate>
+@interface NGTongHDetailVC ()<UIAlertViewDelegate,UIScrollViewDelegate>
 {
     NSString *_s1;//姓名
     NSString *_s2;//性别
@@ -33,6 +33,10 @@
     
     NSString *_s11;//微信
     NSString *_s12;//区域
+    
+    UIView *_maskView;
+    UIImageView *_bigimgView;
+    
 }
 @property (weak, nonatomic) IBOutlet UILabel *telLab;
 @property (weak, nonatomic) IBOutlet UILabel *ywlxLab;
@@ -152,6 +156,7 @@ const float border_w = 0.6;
     _lable_1.text = _s8;
     _lable_2.text = _s9;
     _lable_3.text = _s10;
+
 }
 
 
@@ -159,17 +164,19 @@ const float border_w = 0.6;
 {
     __weak typeof(self)weakself = self;
     
+    //头像
+    NSString * pic =[self.personInfoDic objectForKey:@"pic"];
+    
     NSArray *_arr = [[NSBundle mainBundle]loadNibNamed:@"PersonInfoTop" owner:self options:nil];
     PersonInfoTop *_v = _arr[0];
     _v.frame =  _imgView.frame;
     _v.tapAvatarBlock = ^{
-        CheckAvatarVC *vc = [[CheckAvatarVC alloc]init];
-        [weakself.navigationController pushViewController:vc animated:YES];
+//        CheckAvatarVC *vc = [[CheckAvatarVC alloc]init];
+//        [weakself.navigationController pushViewController:vc animated:YES];
+        [weakself showImgWith:pic];
     };
     
     
-    //头像
-    NSString * pic =[self.personInfoDic objectForKey:@"pic"];
     if (pic && pic.length > 11 ) {
         NSString * url = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"url_get_avatar", @""),pic];
         [_v.avantar setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"cell_avatar_default"]];
@@ -361,6 +368,67 @@ const float border_w = 0.6;
 
 
 
+
+#pragma mark --头像的缩放和显示
+-(void)showImgWith:(NSString *)urlStr
+{
+    
+    if (_maskView == nil) {
+        float _h = 300;
+        
+        _maskView = [[UIView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+        _maskView.backgroundColor = [UIColor blackColor];
+        
+        _bigimgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, (CurrentScreenHeight - _h) / 2.0, CurrentScreenWidth,  _h)];
+        _bigimgView.userInteractionEnabled = YES;
+        
+        UIScrollView *_scr = [[UIScrollView alloc]initWithFrame:_maskView.frame];
+        _scr.contentSize = [[UIScreen mainScreen] bounds].size;
+        _scr.delegate  =self;
+        _scr.minimumZoomScale = 0.5;
+        _scr.maximumZoomScale = 3;
+        _scr.showsHorizontalScrollIndicator = NO;
+        _scr.showsVerticalScrollIndicator = NO;
+        
+        [_maskView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissImg)]];
+        
+        if (urlStr && urlStr.length > 11 ) {
+            NSString * url = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"url_get_avatar", @""),urlStr];
+            [_bigimgView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"cell_avatar_default"]];
+        }
+        else
+        {
+            _bigimgView.image =[UIImage imageNamed:@"cell_avatar_default"];
+        }
+        
+        [_scr addSubview:_bigimgView];
+        [_maskView addSubview:_scr];
+    }
+    [[UIApplication sharedApplication].keyWindow addSubview:_maskView];
+}
+
+-(void)dismissImg
+{
+    [_maskView removeFromSuperview];
+    _maskView = nil;
+}
+
+#pragma mark --UIScrollViewDelegate
+
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return _bigimgView;
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    CGFloat offsetX = (scrollView.bounds.size.width > scrollView.contentSize.width)?
+    (scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5 : 0.0;
+    CGFloat offsetY = (scrollView.bounds.size.height > scrollView.contentSize.height)?
+    (scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5 : 0.0;
+    _bigimgView.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,
+                                    scrollView.contentSize.height * 0.5 + offsetY);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
