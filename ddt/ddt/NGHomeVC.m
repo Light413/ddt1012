@@ -484,6 +484,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
         NGSearchBar *_searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(10,_todaynewadd.bottom, CurrentScreenWidth  -80, 30)];
         _searchBar.placeholder = @"输入搜索关键字";//30
         _searchBar.delegate = self;
+//        _searchBar.enable = NO;
         [reuseView addSubview:_searchBar];
         
         //分享按钮
@@ -538,20 +539,6 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (![[MySharetools shared]isSessionid])
-//    {
-//        if ([MySharetools shared].isFirstSignupViewController == YES) {
-//            [MySharetools shared].isFirstSignupViewController = NO;
-//            [MySharetools shared].isFromMycenter = YES;
-//            LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
-//            NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
-//            [self.tabBarController presentViewController:nav animated:YES completion:nil];
-//        }else{
-//            self.tabBarController.selectedIndex = 0;
-//        }
-//        return;
-//    }
-    
     //key,title
     _vctype = NextvcType_1;
     _option_info =nil;
@@ -656,11 +643,10 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     [self jumpTosearch];
 }
 
--(BOOL)searchBarshouldChangeCharactersInRange:(NGSearchBar *)searchBar
+- (BOOL)textFieldShouldEndEditing:(NGSearchBar*)textField
 {
-    return NO;
+    return YES;
 }
-
 
 #pragma mark --个人，企业贷款入口
 -(void)btnAction_in:(UIButton*)btn
@@ -718,25 +704,9 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 
 #pragma mark -- 点击搜索在此跳转
 -(void)jumpTosearch{
-    if ([[MySharetools shared]isSessionid]) {
-         [self performSegueWithIdentifier:@"showUserSearchId" sender:nil];
-    }
-    else
-    {
-        if ([MySharetools shared].isFirstSignupViewController == YES) {
-            [MySharetools shared].isFirstSignupViewController = NO;
-            [MySharetools shared].isFromMycenter = YES;
-            LoginViewController *login = [[MySharetools shared]getViewControllerWithIdentifier:@"loginView" andstoryboardName:@"me"];
-            NGBaseNavigationVC *nav = [[NGBaseNavigationVC alloc]initWithRootViewController:login];
-            [self.tabBarController presentViewController:nav animated:YES completion:nil];
-        }else{
-            self.tabBarController.selectedIndex = 0;
-        }
-    }
+    
+     [self performSegueWithIdentifier:@"showUserSearchId" sender:nil];
 }
-
-
-
 
 @end
 

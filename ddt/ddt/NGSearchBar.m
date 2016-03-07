@@ -66,6 +66,10 @@
     _tf.text = text;
 }
 
+-(void)setEnable:(BOOL)enable
+{
+    _tf.enabled = enable;
+}
 
 #pragma mark - textfield delegate
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -88,7 +92,23 @@
 {
     [textField resignFirstResponder];
     if ([self.delegate respondsToSelector:@selector(searchBarDidBeginSearch:withStr:)]) {
-        [self.delegate performSelector:@selector(searchBarDidBeginSearch:withStr:) withObject:self withObject:textField.text];
+      return  [self.delegate performSelector:@selector(searchBarDidBeginSearch:withStr:) withObject:self withObject:textField.text];
+    }
+    return YES;
+}
+
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+//{
+//    if ([self.delegate respondsToSelector:@selector(textFieldShouldEndEditing:)]) {
+//       return [self .delegate performSelector:@selector(textFieldShouldEndEditing:) withObject:textField];
+//    }
+//    return YES;
+//}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    if ([self.delegate respondsToSelector:@selector(textFieldShouldEndEditing:)]) {
+       return [self .delegate performSelector:@selector(textFieldShouldEndEditing:) withObject:textField];
     }
     return YES;
 }

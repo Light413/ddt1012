@@ -17,6 +17,8 @@
 
 -(BOOL)searchBarshouldChangeCharactersInRange:(NGSearchBar*)searchBar;
 
+- (BOOL)textFieldShouldEndEditing:(NGSearchBar*)textField;
+
 //@required
 -(void)searchBarDidBeginSearch:(NGSearchBar*)searchBar withStr:(NSString *)str;
 
@@ -29,6 +31,7 @@
 
 @property(nonatomic,copy)   NSString               *text;                 // default is nil
 @property(nonatomic,copy)   NSString               *placeholder;
+@property(nonatomic,assign) BOOL                    enable;
 
 @property(nonatomic,assign) id<NGSearchBarDelegate> delegate;
 @end
