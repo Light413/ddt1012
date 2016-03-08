@@ -8,7 +8,13 @@
 
 #import "MySharetools.h"
 
+#import "Reachability.h"
+
 @implementation MySharetools
+{
+    Reachability *_reach;
+}
+
 static MySharetools *instance = nil;
 +(MySharetools *)shared{
     @synchronized(self){
@@ -403,6 +409,20 @@ static MySharetools *instance = nil;
     if (buttonIndex ==1) {
         [self changeRootVcWithLogin:YES];
     }
+}
+
+
+
+//检测网络
+-(void)startMonitor
+{
+    _reach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
+    [_reach startNotifier];
+}
+
+-(BOOL)isNotReachable
+{
+   return NotReachable ==[_reach currentReachabilityStatus];
 }
 
 @end

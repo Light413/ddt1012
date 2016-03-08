@@ -90,7 +90,8 @@ BMKMapManager* _mapManager;
     }
     
     //net reach
-    [self startMonitor];
+//    [self startMonitor];
+    [[MySharetools shared]startMonitor];
 }
 
 -(void)initTabBar

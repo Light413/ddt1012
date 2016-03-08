@@ -55,7 +55,9 @@
  */
 -(void)addJIFenWithType:(NSString*)type;
 
-
+//网络检测
+-(void)startMonitor;
+-(BOOL)isNotReachable;
 
 
 @end

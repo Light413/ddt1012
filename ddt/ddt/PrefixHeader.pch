@@ -45,6 +45,12 @@
 #define NSLog(...) {}
 #endif
 
-
+#define NetIsReachable   ( {                                                \
+                            if([[MySharetools shared]isNotReachable])        \
+                                {                                             \
+                                    [SVProgressHUD showInfoWithStatus:@"无法连接网络,请检查系统设置"];return;\
+                                }\
+                            }\
+                        )
 
 #endif

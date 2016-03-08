@@ -194,7 +194,6 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 -(void)getTopPic
 {
 //    http://123dyt.com/mydyt/upload/hot/a1.png
-
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     NSDictionary *_dic =[NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"5",@"psize",@"1",@"pnum",@"1",@"type",nil];
     
@@ -345,6 +344,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 //签到
 -(void)siginBtnAction :(UIButton*)btn
 {
+    NetIsReachable;
     //检测是否登录
     [[MySharetools shared]hasSuccessLogin];
     

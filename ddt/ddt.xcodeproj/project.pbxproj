@@ -104,6 +104,7 @@
 		A14468E81BF055F7000D6A2B /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14468E61BF055F7000D6A2B /* PgyUpdate.framework */; };
 		A1487A401BEB3CCD00326359 /* NSString+ToJson.m in Sources */ = {isa = PBXBuildFile; fileRef = A1487A3F1BEB3CCC00326359 /* NSString+ToJson.m */; };
 		A149A4411BCF37320098E7C3 /* NGBaseListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A149A4401BCF37320098E7C3 /* NGBaseListView.m */; };
+		A15011FC1C8EC93B006B5421 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A15011FB1C8EC93B006B5421 /* Reachability.m */; settings = {ASSET_TAGS = (); }; };
 		A157110E1BD4EAB500D586F6 /* LPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A157110D1BD4EAB500D586F6 /* LPickerView.m */; };
 		A15A95271BC7C3F200643170 /* NGCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A15A95251BC7C3F200643170 /* NGCollectionViewCell.m */; };
 		A15A95281BC7C3F200643170 /* NGCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15A95261BC7C3F200643170 /* NGCollectionViewCell.xib */; };
@@ -389,6 +390,8 @@
 		A1487A3F1BEB3CCC00326359 /* NSString+ToJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ToJson.m"; sourceTree = "<group>"; };
 		A149A43F1BCF37320098E7C3 /* NGBaseListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGBaseListView.h; sourceTree = "<group>"; };
 		A149A4401BCF37320098E7C3 /* NGBaseListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGBaseListView.m; sourceTree = "<group>"; };
+		A15011FA1C8EC93B006B5421 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		A15011FB1C8EC93B006B5421 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		A157110C1BD4EAB500D586F6 /* LPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPickerView.h; sourceTree = "<group>"; };
 		A157110D1BD4EAB500D586F6 /* LPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPickerView.m; sourceTree = "<group>"; };
 		A15A95241BC7C3F200643170 /* NGCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCollectionViewCell.h; sourceTree = "<group>"; };
@@ -1257,6 +1260,8 @@
 				AD5B11CF1BDB360C00285255 /* DTComDataManger.m */,
 				ADD3052D1BDC72FA002F5BAE /* ToolsClass.h */,
 				ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */,
+				A15011FA1C8EC93B006B5421 /* Reachability.h */,
+				A15011FB1C8EC93B006B5421 /* Reachability.m */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -1780,6 +1785,7 @@
 				A1C309F91BC65DD300B46BC2 /* LocationManger.m in Sources */,
 				9FFEE9481BD0AB3D00D53553 /* FindBackPasswordViewController.m in Sources */,
 				A12CD4F11BCBAC990020CB27 /* RBStoryboardModalSegue.m in Sources */,
+				A15011FC1C8EC93B006B5421 /* Reachability.m in Sources */,
 				A143F8401BCCA5D60029E555 /* NGSecondVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
