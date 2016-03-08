@@ -170,6 +170,7 @@ static MySharetools *instance = nil;
     return passWord;
 }
 
+#pragma mark --请求参数处理
 //获取网络请求参数
 +(NSDictionary*)getParmsForPostWith:(NSDictionary*)dic
 {

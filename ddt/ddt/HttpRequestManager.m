@@ -112,6 +112,10 @@
 //post请求操作类方法
 +(AFHTTPRequestOperation*)doPostOperationWithTask:(RequestTaskHandle*)task
 {
+//    if (![AFNetworkReachabilityManager sharedManager].isReachable) {
+//        [SVProgressHUD showInfoWithStatus:@"无法连接网络,请检查系统设置"];
+////        return nil;
+//    }
    return [[HttpRequestManager shareManger] requestPostOperationWithTas:task];
 }
 

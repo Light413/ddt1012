@@ -88,6 +88,9 @@ BMKMapManager* _mapManager;
         NSLog(@".....start parser.....");
         [NGXMLReader parser];
     }
+    
+    //net reach
+    [self startMonitor];
 }
 
 -(void)initTabBar
@@ -147,7 +150,16 @@ BMKMapManager* _mapManager;
     }
 }
 
-
+//检测网络状态
+-(void)startMonitor
+{
+    AFNetworkReachabilityManager *_manger = [AFNetworkReachabilityManager sharedManager];
+    [_manger setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        NSLog(@"______net change  :%ld",status);
+    }];
+    
+    [_manger startMonitoring];
+}
 
 
 
