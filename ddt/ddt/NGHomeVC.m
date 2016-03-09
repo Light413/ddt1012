@@ -14,6 +14,7 @@
 #import "NGSecondVC.h"
 #import "NGSearchBar.h"
 #import "LoginViewController.h"
+#import "HotPicVC.h"
 
 #import <PgyUpdate/PgyUpdateManager.h>
 #import "NewAddView.h"
@@ -43,18 +44,16 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     NextvcType_3,
 };
 
-@interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,UMSocialUIDelegate,NGSearchBarDelegate>
+@interface NGHomeVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,UMSocialUIDelegate,NGSearchBarDelegate,TopClickDelegate>
 
 @end
 
 @implementation NGHomeVC
 {
     UIButton *leftBtn ;
-    UIPageControl *_pageCtr;
-    UIScrollView *_topScrollView;
+    ScrollPicView *_topScrollView;
     UICollectionView *_collectionView;
-    NSTimer *_timer;
-    
+
     NSArray *_itemArray;//item元素项
     NSDictionary *_selectItemDic;//选中cell的数据项
     NSString *_option_info;//item附件信息，表明企业OR个人
@@ -75,12 +74,8 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     
     [self initCollectionView];
     [self getNewadd];
-    
-    _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
-    
+
     //获取位置信息
-//    [SVProgressHUD showWithStatus:@"正在获取位置"];
     [[LocationManger shareManger]getLocationWithSuccessBlock:^(NSString *str) {
         [SVProgressHUD dismiss];
         NSLog(@"current location : %@",str);
@@ -117,6 +112,13 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     
     
     [self getTopPic];
+    
+   ;
+
+    
+    
+    NSLog(@"#############:%@",NSStringFromCGRect(CurrentScreenFrame));
+    NSLog(@"#############:%f",SCREEN_SCALE);
   /*
     [[BaiDuLocationManger share]getLocationWithSuccessBlock:^(CLLocation *loaction) {
 //        CLGeocoder *geo = [[CLGeocoder alloc]init];
@@ -145,14 +147,12 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [_timer setFireDate:[NSDate distantPast]];
     [_collectionView reloadData];
 //    [self getNewadd];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [_timer setFireDate:[NSDate distantFuture]];
 }
 -(void)awakeFromNib
 {
@@ -201,7 +201,20 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     RequestTaskHandle *_h = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_gethot_pic", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
-
+                NSArray *_arr = [responseObject objectForKey:@"data"];
+//                if (_arr && _arr.count > 0) {
+//                    
+//                    [[NSUserDefaults standardUserDefaults ]setObject:_arr forKey:@"SCROLL_PIC_DATA"];
+//                    [[NSUserDefaults standardUserDefaults]synchronize];
+//                    
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        [_topScrollView removeFromSuperview];
+//                        _topScrollView = nil;
+//                        _topScrollView = [[ScrollPicView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, ScrollViewHeight) withData:_arr];
+//                        [_collectionView reloadData];
+//                    });
+//
+//                }
             }
         }
     } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -266,29 +279,10 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     [searchView addSubview:btn];
 //    self.navigationItem.titleView = searchView;
 
-    _pageCtr = [[UIPageControl alloc]initWithFrame:CGRectMake((CurrentScreenWidth - 100)/2.0, ScrollViewHeight - 20, 100, 20)];
-    _pageCtr.numberOfPages  = 4;
-    _pageCtr.currentPageIndicatorTintColor =[UIColor colorWithRed:0.345 green:0.678 blue:0.910 alpha:1];
-    _pageCtr.pageIndicatorTintColor = [UIColor lightGrayColor];
+    NSArray *_a22 = [[NSUserDefaults standardUserDefaults] objectForKey:@"SCROLL_PIC_DATA"];
     
-    _topScrollView = [[ScrollPicView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, ScrollViewHeight) withData:@[@1,@2,@2,@2]];
-    
-//    _topScrollView.backgroundColor = [UIColor lightGrayColor];
-//    _topScrollView.contentSize = CGSizeMake(CurrentScreenWidth * 4, ScrollViewHeight);
-//    _topScrollView.contentInset = UIEdgeInsetsZero;
-//    //[self.view addSubview:_topScrollView];
-//    _topScrollView.delegate  =self;
-//    _topScrollView.pagingEnabled = YES;
-//    _topScrollView.showsHorizontalScrollIndicator = NO;
-    
-    //...test
-//    for (int i=0; i < 4; i++) {
-//        UIImageView *imgv = [[UIImageView alloc]init];
-//        imgv.frame = CGRectMake(CurrentScreenWidth * i, 0, CurrentScreenWidth, ScrollViewHeight);
-//        imgv.image = [UIImage imageNamed:[NSString stringWithFormat:@"image%d.png",i]];
-//        [_topScrollView addSubview:imgv];
-//    }
-//    [_topScrollView addSubview:_pageCtr];
+    _topScrollView = [[ScrollPicView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, ScrollViewHeight) withData:_a22];
+    _topScrollView.delegate = self;
     
     //今日新增视图
     NSArray *_addarr = [[NSBundle mainBundle]loadNibNamed:@"NewAddView" owner:nil options:nil];
@@ -317,23 +311,6 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     [_collectionView registerNib:[UINib nibWithNibName:@"NGCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NGCollectionHeaderReuseID];
 }
 
-#pragma mark -timer action
--(void)timerAction
-{
-//    CGPoint currentPoint = _topScrollView.contentOffset;
-//    currentPoint.x += CurrentScreenWidth;
-//    if (currentPoint.x > 3 * CurrentScreenWidth) {
-//        currentPoint = CGPointZero;
-//        _topScrollView.contentOffset = CGPointMake(0, 0);
-//    }
-//    
-//    [UIView animateWithDuration:.2 animations:^{
-//        _topScrollView.contentOffset = currentPoint;
-//    } completion:^(BOOL finished) {
-//        _pageCtr.currentPage = currentPoint.x / CurrentScreenWidth;
-////        _pageCtr.frame = CGRectMake(currentPoint.x + (CurrentScreenWidth - 100)/2.0, ScrollViewHeight - 20, 100, 20);
-//    }];
-}
 
 #pragma mark -选择城市
 -(void)locationBtnAction :(UIButton*)btn
@@ -388,17 +365,15 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     return NO;
 }
 
-#pragma mark -UIScrollViewDelegate
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-//{
-//    if (scrollView == _topScrollView) {
-//        NSInteger index = scrollView.contentOffset.x / CurrentScreenWidth;
-//        if (index != _pageCtr.currentPage) {
-//            _pageCtr.currentPage = scrollView.contentOffset.x / CurrentScreenWidth;
-////            _pageCtr.frame = CGRectMake(scrollView.contentOffset.x + (CurrentScreenWidth - 100)/2.0, ScrollViewHeight - 20, 100, 20);
-//        }
-//    }
-//}
+#pragma mark -
+#pragma mark -TopClickDelegate
+-(void)clickPicWithUrl:(NSString *)url
+{
+    HotPicVC * vc = [[HotPicVC alloc]init];
+    vc.desurl = url;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 //记录访问足迹 -(已弃用)
 -(NSString *)footerRecord:(NSString*)str
@@ -484,7 +459,6 @@ typedef NS_ENUM(NSInteger ,NextvcType)
         NGSearchBar *_searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(10,_todaynewadd.bottom, CurrentScreenWidth  -80, 30)];
         _searchBar.placeholder = @"输入搜索关键字";//30
         _searchBar.delegate = self;
-//        _searchBar.enable = NO;
         [reuseView addSubview:_searchBar];
         
         //分享按钮

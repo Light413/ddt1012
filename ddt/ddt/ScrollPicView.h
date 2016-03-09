@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TopClickDelegate <NSObject>
+
+-(void)clickPicWithUrl : (NSString *)url ;
+
+
+@end
+
+
 @interface ScrollPicView : UIView
+
+@property(nonatomic,assign)id <TopClickDelegate>delegate;
 
 -(instancetype)initWithFrame:(CGRect)frame withData:(NSArray*)arr;
 

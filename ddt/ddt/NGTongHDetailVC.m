@@ -8,8 +8,6 @@
 
 #import "NGTongHDetailVC.h"
 #import "PersonInfoTop.h"
-#import "CheckAvatarVC.h"
-
 #define Font    [UIFont systemFontOfSize:15]
 #define Size    CGSizeMake(CurrentScreenWidth - 70, 1000)
 

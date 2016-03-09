@@ -28,8 +28,6 @@
 //bar默认颜色
 #define BarDefaultColor [UIColor colorWithRed:0.278 green:0.545 blue:0.788 alpha:1]
 #define btnDefaultColor  [UIColor colorWithRed:0.169 green:0.373 blue:0.549 alpha:1]
-
-
 #define RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 
@@ -46,5 +44,7 @@
 //签到积分
 #define QIAN_DAO_JIFEN_KEY  @"QIAN_DAO_JIFEN_KEY"
 
+#define BASE_SCREEN_W   640
+#define SCREEN_SCALE    ([UIScreen mainScreen].currentMode.size.width * 1.0 / BASE_SCREEN_W < 1? 1:[UIScreen mainScreen].currentMode.size.width * 1.0 / BASE_SCREEN_W)
 
 #endif

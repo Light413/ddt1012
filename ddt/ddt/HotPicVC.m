@@ -1,22 +1,33 @@
 //
-//  CheckAvatarVC.m
+//  HotPicVC.m
 //  ddt
 //
-//  Created by wyg on 16/3/6.
+//  Created by gener on 16/3/9.
 //  Copyright © 2016年 Light. All rights reserved.
 //
 
-#import "CheckAvatarVC.h"
+#import "HotPicVC.h"
 
-@interface CheckAvatarVC ()
+#import "NGWebView.h"
+
+@interface HotPicVC ()
 
 @end
 
-@implementation CheckAvatarVC
+@implementation HotPicVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.hidesBottomBarWhenPushed = YES;
+    
+    NGWebView *_view = [[NGWebView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, CurrentScreenHeight - 64) withUrl:self.desurl ? self.desurl:NSLocalizedString(@"url_http_aboutus", @"")];
+    
+    [self.view addSubview:_view];
+}
+
+-(void)awakeFromNib
+{
+    self.hidesBottomBarWhenPushed = YES;
 }
 
 - (void)didReceiveMemoryWarning {

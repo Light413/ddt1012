@@ -73,6 +73,7 @@
 		A12442081BD0F6A100D2588C /* districts.xml in Resources */ = {isa = PBXBuildFile; fileRef = A12442051BD0F6A100D2588C /* districts.xml */; };
 		A12442091BD0F6A100D2588C /* provinces.xml in Resources */ = {isa = PBXBuildFile; fileRef = A12442061BD0F6A100D2588C /* provinces.xml */; };
 		A124420B1BD0F6DE00D2588C /* base_data.xml in Resources */ = {isa = PBXBuildFile; fileRef = A124420A1BD0F6DE00D2588C /* base_data.xml */; };
+		A12BF42F1C8FFB9B002112D5 /* HotPicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A12BF42E1C8FFB9A002112D5 /* HotPicVC.m */; settings = {ASSET_TAGS = (); }; };
 		A12C56B81BCDE98200C6BF79 /* NGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A12C56B71BCDE98200C6BF79 /* NGSearchBar.m */; };
 		A12C56BC1BCDEDF600C6BF79 /* NGPopListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A12C56BB1BCDEDF600C6BF79 /* NGPopListView.m */; };
 		A12C7D321C07169F009A527A /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A12C7D311C07169E009A527A /* BaiduMapAPI_Search.framework */; };
@@ -158,7 +159,6 @@
 		ADD085C41BEB98C900D2EBC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADD085C61BEB98C900D2EBC4 /* Localizable.strings */; };
 		ADD15E041BF23F8100CD868C /* NGJieDanListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD15E021BF23F8100CD868C /* NGJieDanListCell.m */; };
 		ADD15E051BF23F8100CD868C /* NGJieDanListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD15E031BF23F8100CD868C /* NGJieDanListCell.xib */; };
-		ADD298431C8BE7BD0010CF31 /* CheckAvatarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD298421C8BE7BD0010CF31 /* CheckAvatarVC.m */; settings = {ASSET_TAGS = (); }; };
 		ADD298461C8C3F330010CF31 /* ScrollPicView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD298451C8C3F330010CF31 /* ScrollPicView.m */; settings = {ASSET_TAGS = (); }; };
 		ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */; };
 		ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305311BDCFFD7002F5BAE /* NGTHContactVC.m */; };
@@ -343,6 +343,8 @@
 		A12442051BD0F6A100D2588C /* districts.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = districts.xml; sourceTree = "<group>"; };
 		A12442061BD0F6A100D2588C /* provinces.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = provinces.xml; sourceTree = "<group>"; };
 		A124420A1BD0F6DE00D2588C /* base_data.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = base_data.xml; sourceTree = "<group>"; };
+		A12BF42D1C8FFB9A002112D5 /* HotPicVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotPicVC.h; sourceTree = "<group>"; };
+		A12BF42E1C8FFB9A002112D5 /* HotPicVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotPicVC.m; sourceTree = "<group>"; };
 		A12C56B61BCDE98200C6BF79 /* NGSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSearchBar.h; sourceTree = "<group>"; };
 		A12C56B71BCDE98200C6BF79 /* NGSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSearchBar.m; sourceTree = "<group>"; };
 		A12C56BA1BCDEDF600C6BF79 /* NGPopListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGPopListView.h; sourceTree = "<group>"; };
@@ -483,8 +485,6 @@
 		ADD15E011BF23F8100CD868C /* NGJieDanListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGJieDanListCell.h; sourceTree = "<group>"; };
 		ADD15E021BF23F8100CD868C /* NGJieDanListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGJieDanListCell.m; sourceTree = "<group>"; };
 		ADD15E031BF23F8100CD868C /* NGJieDanListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGJieDanListCell.xib; sourceTree = "<group>"; };
-		ADD298411C8BE7BD0010CF31 /* CheckAvatarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckAvatarVC.h; sourceTree = "<group>"; };
-		ADD298421C8BE7BD0010CF31 /* CheckAvatarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckAvatarVC.m; sourceTree = "<group>"; };
 		ADD298441C8C3F330010CF31 /* ScrollPicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollPicView.h; sourceTree = "<group>"; };
 		ADD298451C8C3F330010CF31 /* ScrollPicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPicView.m; sourceTree = "<group>"; };
 		ADD3052D1BDC72FA002F5BAE /* ToolsClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsClass.h; sourceTree = "<group>"; };
@@ -1175,6 +1175,8 @@
 				ADCA448A1C0750DA0066A371 /* NGZhaoPinDetailVC.m */,
 				ADD447001C09BAFF002247AC /* NGZPPersonInfoVC.h */,
 				ADD447011C09BAFF002247AC /* NGZPPersonInfoVC.m */,
+				A12BF42D1C8FFB9A002112D5 /* HotPicVC.h */,
+				A12BF42E1C8FFB9A002112D5 /* HotPicVC.m */,
 			);
 			name = home;
 			sourceTree = "<group>";
@@ -1186,8 +1188,6 @@
 				A143F83F1BCCA5D60029E555 /* NGSecondVC.m */,
 				AD5B11D61BDBA43700285255 /* NGTongHDetailVC.h */,
 				AD5B11D71BDBA43700285255 /* NGTongHDetailVC.m */,
-				ADD298411C8BE7BD0010CF31 /* CheckAvatarVC.h */,
-				ADD298421C8BE7BD0010CF31 /* CheckAvatarVC.m */,
 			);
 			name = tonghang;
 			sourceTree = "<group>";
@@ -1743,7 +1743,6 @@
 				A17B7CF41B43F867003CF895 /* main.m in Sources */,
 				A12441D31BD0EDD200D2588C /* MJRefreshBackStateFooter.m in Sources */,
 				ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */,
-				ADD298431C8BE7BD0010CF31 /* CheckAvatarVC.m in Sources */,
 				088F23D21C00A2830051BA3E /* CommanySCModel.m in Sources */,
 				9F690B001BD73AA600DDCED6 /* MyBaseTableViewController.m in Sources */,
 				A12441CF1BD0EDD200D2588C /* MJRefreshAutoNormalFooter.m in Sources */,
@@ -1774,6 +1773,7 @@
 				A157110E1BD4EAB500D586F6 /* LPickerView.m in Sources */,
 				9F690B031BD73AE200DDCED6 /* PersonalInfoViewController.m in Sources */,
 				B2977DE11BDCDEFD007B3021 /* PersonanlBusinessViewController.m in Sources */,
+				A12BF42F1C8FFB9B002112D5 /* HotPicVC.m in Sources */,
 				AD92EB991BD24A0300C23992 /* NGXMLBaseModel.m in Sources */,
 				A12441FB1BD0EFD900D2588C /* FMResultSet.m in Sources */,
 				ADD3053B1BDD00DE002F5BAE /* NGCarPriceVC.m in Sources */,

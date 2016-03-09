@@ -20,6 +20,8 @@ CFBundleDisplayName="贷易通";
 //首页相关
 "url_qiandao"       = "/mydyt/web_service.php?doc=addfee";//签到
 "url_gethot_pic"    = "/mydyt/web_service.php?doc=gethot";//滚动图片
+"url_scroll_pic"    = "http://123dyt.com/mydyt/upload/hot";//http://123dyt.com/mydyt/upload/hot/a1.png
+
 "url_jiedan"        = "/mydyt/web_service.php?doc=getbilllist";//接单列表
 "url_lock_danzi"    = "/mydyt/web_service.php?doc=addbillme";//锁定
 "url_shuaidan"      = "/mydyt/web_service.php?doc=addbill";//甩单
