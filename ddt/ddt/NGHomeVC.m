@@ -592,6 +592,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 -(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
 {
     NSLog(@"...%@",platformName);
+
     if ([platformName isEqualToString:@"wxsession"]) {
       [UMSocialData defaultData].extConfig.wechatSessionData.title = @"";
     }
@@ -608,6 +609,8 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     //根据`responseCode`得到发送结果,如果分享成功
     if(response.responseCode == UMSResponseCodeSuccess)
     {
+        [MobClick event:@"event_share"];
+        
         //得到分享到的微博平台名
         NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
         if ([MySharetools shared].isSessionid) {

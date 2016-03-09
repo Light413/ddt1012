@@ -38,6 +38,8 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
 @implementation MycenterViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    
+    [MobClick beginLogPageView:@"Me-Page"];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [myTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
@@ -45,6 +47,7 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"Me-Page"];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
@@ -219,6 +222,7 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
 
         case 4://退出账号
         {
+            [MobClick event:@"event_exit"];
             [self logout:nil];
         }break;
             
