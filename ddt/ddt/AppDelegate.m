@@ -40,6 +40,11 @@ BMKMapManager* _mapManager;
     //设置微信AppId、appSecret，分享url
     [UMSocialWechatHandler setWXAppId:@"wxb2eb04bf9f024905" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" url:@"http://www.123dyt.com"];
     
+    [MobClick setCrashReportEnabled:NO];
+    [MobClick setLogEnabled:YES];
+    [MobClick setAppVersion:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+    [MobClick startWithAppkey:umengkey reportPolicy:BATCH channelId:@"PGY"];
+    
     [[PgyUpdateManager sharedPgyManager]startManagerWithAppId:pgyAppId];
     [[PgyManager sharedPgyManager]startManagerWithAppId:pgyAppId];
     [[PgyManager sharedPgyManager]setEnableFeedback:NO];

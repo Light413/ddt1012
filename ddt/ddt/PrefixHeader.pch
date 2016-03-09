@@ -21,10 +21,11 @@
 #import "LKDBHelper.h"
 #import "NGXMLReader.h"
 #import "LPickerView.h"
-
 #import "NGBaseNavigationVC.h"
 #import "DTComDataManger.h"
+
 #import "UMSocial.h"
+#import "MobClick.h"
 #import <BaiduMapAPI_Location/BMKLocationService.h>
 //Http op
 #import "HttpRequestManager.h"

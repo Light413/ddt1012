@@ -74,6 +74,7 @@
 		A12442091BD0F6A100D2588C /* provinces.xml in Resources */ = {isa = PBXBuildFile; fileRef = A12442061BD0F6A100D2588C /* provinces.xml */; };
 		A124420B1BD0F6DE00D2588C /* base_data.xml in Resources */ = {isa = PBXBuildFile; fileRef = A124420A1BD0F6DE00D2588C /* base_data.xml */; };
 		A12BF42F1C8FFB9B002112D5 /* HotPicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A12BF42E1C8FFB9A002112D5 /* HotPicVC.m */; settings = {ASSET_TAGS = (); }; };
+		A12BF4341C901F75002112D5 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A12BF4311C901F75002112D5 /* libMobClickLibrary.a */; settings = {ASSET_TAGS = (); }; };
 		A12C56B81BCDE98200C6BF79 /* NGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A12C56B71BCDE98200C6BF79 /* NGSearchBar.m */; };
 		A12C56BC1BCDEDF600C6BF79 /* NGPopListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A12C56BB1BCDEDF600C6BF79 /* NGPopListView.m */; };
 		A12C7D321C07169F009A527A /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A12C7D311C07169E009A527A /* BaiduMapAPI_Search.framework */; };
@@ -345,6 +346,9 @@
 		A124420A1BD0F6DE00D2588C /* base_data.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = base_data.xml; sourceTree = "<group>"; };
 		A12BF42D1C8FFB9A002112D5 /* HotPicVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotPicVC.h; sourceTree = "<group>"; };
 		A12BF42E1C8FFB9A002112D5 /* HotPicVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotPicVC.m; sourceTree = "<group>"; };
+		A12BF4311C901F75002112D5 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		A12BF4321C901F75002112D5 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		A12BF4331C901F75002112D5 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		A12C56B61BCDE98200C6BF79 /* NGSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSearchBar.h; sourceTree = "<group>"; };
 		A12C56B71BCDE98200C6BF79 /* NGSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSearchBar.m; sourceTree = "<group>"; };
 		A12C56BA1BCDEDF600C6BF79 /* NGPopListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGPopListView.h; sourceTree = "<group>"; };
@@ -590,6 +594,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A12BF4341C901F75002112D5 /* libMobClickLibrary.a in Frameworks */,
 				A13A48151C044F07002C450B /* libsqlite3.0.tbd in Frameworks */,
 				A13A48131C044EE1002C450B /* libstdc++.6.0.9.tbd in Frameworks */,
 				A13A48111C044E87002C450B /* OpenGLES.framework in Frameworks */,
@@ -852,6 +857,16 @@
 			name = basedata;
 			sourceTree = "<group>";
 		};
+		A12BF4301C901F75002112D5 /* UMAnalytics_Sdk_3.6.7 */ = {
+			isa = PBXGroup;
+			children = (
+				A12BF4311C901F75002112D5 /* libMobClickLibrary.a */,
+				A12BF4321C901F75002112D5 /* MobClick.h */,
+				A12BF4331C901F75002112D5 /* MobClickSocialAnalytics.h */,
+			);
+			path = UMAnalytics_Sdk_3.6.7;
+			sourceTree = "<group>";
+		};
 		A12C56B91BCDEDC000C6BF79 /* popListView */ = {
 			isa = PBXGroup;
 			children = (
@@ -911,6 +926,7 @@
 			children = (
 				A14468E41BF055F7000D6A2B /* sdk */,
 				ADD4311D1BE509CD000C03D8 /* UMSocail */,
+				A12BF4301C901F75002112D5 /* UMAnalytics_Sdk_3.6.7 */,
 				A12441EB1BD0EFD900D2588C /* Helper */,
 				A12441DC1BD0EFD900D2588C /* FMDB */,
 				A124419C1BD0EDD200D2588C /* MJRefresh */,
@@ -1974,6 +1990,7 @@
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/YiXin",
+					"$(PROJECT_DIR)/ddt/UMAnalytics_Sdk_3.6.7",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.light.ddt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2011,6 +2028,7 @@
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/YiXin",
+					"$(PROJECT_DIR)/ddt/UMAnalytics_Sdk_3.6.7",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.light.ddt;
 				PRODUCT_NAME = "$(TARGET_NAME)";

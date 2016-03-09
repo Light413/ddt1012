@@ -213,6 +213,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
                         [_topScrollView removeFromSuperview];
                         _topScrollView = nil;
                         _topScrollView = [[ScrollPicView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, ScrollViewHeight) withData:_arr];
+                        _topScrollView.delegate = self;
                         [_collectionView reloadData];
                     });
 
@@ -339,6 +340,8 @@ typedef NS_ENUM(NSInteger ,NextvcType)
         RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_qiandao", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
                 if (![[responseObject objectForKey:@"result"]boolValue]) {
+                    [MobClick event:@"event_sign"];
+                    
                     [SVProgressHUD showSuccessWithStatus:@"签到成功,积分+5"];
                     //签到成功,获取保存上次登录后积累的签到积分
                     NSInteger oldaddjifen =[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY]? [[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY] integerValue] :0;
