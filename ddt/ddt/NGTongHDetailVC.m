@@ -80,6 +80,7 @@ const float border_w = 0.6;
 //
 -(void)loadData
 {
+    NetIsReachable;
     NSString *uid = [self.personInfoDic objectForKey:@"uid"];
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",uid,@"sid", nil];
@@ -304,6 +305,7 @@ const float border_w = 0.6;
         }break;
         case 313:// 收藏
         {
+            NetIsReachable;
             NSString *uid = [self.personInfoDic objectForKey:@"uid"];
             NSString *tel = [[MySharetools shared]getPhoneNumber];
             NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",@"1",@"type",uid,@"id", nil];

@@ -290,6 +290,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 #pragma mark --加载数据
 -(void)loadMoreData
 {
+    NetIsReachable;
     if (_pageNum == NSNotFound) {
         NSLog(@"...page error ");return;
     }
@@ -505,6 +506,7 @@ float _h =0;
                      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",tel]]];
                 }
                 else if (tag == 301) {
+                    NetIsReachable;
                         NSString *tel = [[MySharetools shared]getPhoneNumber];
                     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",@"1",@"type",uid,@"id", nil];
                    NSDictionary *_d1 = [MySharetools getParmsForPostWith:dic];

@@ -50,6 +50,8 @@
         [SVProgressHUD showErrorWithStatus:@"请录入会议说明"];
         return;
     }
+    
+    NetIsReachable;
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     //NSString *nickName = [[MySharetools shared]getNickName];
     NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"mobile",tel,@"username",self.titleField.text,@"m_title",self.addressField.text,@"m_address",self.meetingTimeBtn.titleLabel.text,@"m_time",self.introTextView.text,@"content", nil];

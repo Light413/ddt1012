@@ -144,6 +144,7 @@
         return;
     }
     
+    NetIsReachable;
     //    jsondata={"mobile":"15136216190","pwd":"111","token":"15136216190(!)*^*1446701200"//18016373660,123456789www wyg
     NSDate *localDate = [NSDate date]; //获取当前时间
     NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
@@ -197,14 +198,6 @@
             [MySharetools shared].isFirstLoginSuccess = YES;
             
             [[MySharetools shared]changeRootVcWithLogin:NO];
-//            if ([MySharetools shared].isFromMycenter) {
-//                [MySharetools shared].isFirstSignupViewController = NO;
-//                [self.navigationController dismissViewControllerAnimated:YES completion:^{
-//                    //[MySharetools shared].isFirstSignupViewController = YES;
-//                }];
-//            }else{
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }
         }
         else
         {

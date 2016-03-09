@@ -57,7 +57,7 @@
             imgv.frame = CGRectMake(frame.size.width * (i), 0, frame.size.width, frame.size.height);
             NSString *_imgurl = [NSString stringWithFormat:@"%@/%@",NSLocalizedString(@"url_scroll_pic", @""),[_d objectForKey:@"pic"]];
             NSLog(@" %d : %@",i,_imgurl);
-            [imgv setImageWithURL:[NSURL URLWithString:_imgurl] ];//placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"image%d.png",i]]
+            [imgv setImageWithURL:[NSURL URLWithString:_imgurl]placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"image%d.png",0]] ];//placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"image%d.png",i]]
             
             [_topScrollView addSubview:imgv];
             imgv.userInteractionEnabled = YES;
@@ -93,7 +93,9 @@
 {
     NSDictionary *dic = [_picArr objectAtIndex:_pageCtr.currentPage];
     NSString *url = [dic objectForKey:@"url"];
-    
+    if (!url) {
+        return;
+    }
     if (self.delegate && [self.delegate respondsToSelector:@selector(clickPicWithUrl:)]) {
         [self.delegate performSelector:@selector(clickPicWithUrl:) withObject:url];
     }

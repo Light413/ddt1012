@@ -201,6 +201,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 //立即甩单操作
 - (IBAction)submintAction:(id)sender {
     if ([self checkAllDataIsValid]) {
+        NetIsReachable;
        //所有参数都合法
         NSString *tel = [[MySharetools shared]getPhoneNumber];
         NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", self.tf_name.text,@"cs_ch",_kehusf,@"cs_type",@"",@"cs_xb",self.btn_age.title,@"cs_age",self.btn_jine.title,@"cs_dkje",self.btn_timelimit.title,@"cs_dkqx",self.btn_yewutype.title,@"yw_type",self.btn_area.title,@"yw_quyu",_zxstatus,@"zxqk",self.textview.text,@"bz",self.tf_jifen.text,@"jifen",nil];

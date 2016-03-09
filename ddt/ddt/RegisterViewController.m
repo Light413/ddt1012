@@ -153,6 +153,7 @@
         [SVProgressHUD showInfoWithStatus:@"请输入正确的验证码"];return;
     }
     
+    NetIsReachable;
     NSDate *localDate = [NSDate date]; //获取当前时间
     NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
     NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",phoneNumField.text,timeString];
@@ -210,6 +211,8 @@
     if (_yzm ==nil) {
         _yzm = @"134736";
     }
+    
+    NetIsReachable;
     //发送验证码
     NSDate *localDate = [NSDate date]; //获取当前时间
     NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳

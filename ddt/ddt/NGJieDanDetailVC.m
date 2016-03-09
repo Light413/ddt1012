@@ -119,6 +119,10 @@
     {
         //得到分享到的微博平台名
         NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+        
+        if ([MySharetools shared].isSessionid) {
+            [[MySharetools shared]addJIFenWithType:@"2"];
+        }
     }
 }
 
@@ -238,6 +242,7 @@
 #pragma mark --btn action
 
 - (IBAction)qinagDanAction:(id)sender {
+    NetIsReachable;
     NSString *uid = [self.danZiInfoDic objectForKey:@"id"];
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",_s8,@"fee",uid,@"id", nil];
@@ -268,6 +273,8 @@
 
 //收藏
 - (IBAction)love_btn_action:(UIButton *)sender {
+    
+    NetIsReachable;
     NSString *uid = [self.danZiInfoDic objectForKey:@"id"];
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",@"3",@"type",uid,@"id", nil];

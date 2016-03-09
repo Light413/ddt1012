@@ -180,6 +180,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 
 -(void)loadData:(NSInteger)start
 {
+    NetIsReachable;
     [SVProgressHUD showWithStatus:@"正在加载数据"];
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     NSInteger index = mysegment.selectedSegmentIndex;

@@ -67,6 +67,8 @@
         [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号"];
         return;
     }
+    
+    NetIsReachable;
     NSString *nickName = [[MySharetools shared]getNickName];
     NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:nickName,@"username",phoneNumberField.text,@"mobile", nil];
     NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];

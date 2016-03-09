@@ -319,6 +319,8 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
 
 
 -(void)postData:(NSData *)dataImage{
+    
+    NetIsReachable;
     //获取json参数字符串
     NSString * token = [[MySharetools shared]getsessionid];
     NSString *dataStr = [Base64 stringByEncodingData:dataImage];

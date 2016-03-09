@@ -76,6 +76,7 @@ static NSString * thcontactCellReuseId = @"thcontactCellReuseId";
 #pragma mark --加载数据
 -(void)loadMoreData
 {
+    NetIsReachable;
     if (_pageNum == NSNotFound) {
         NSLog(@"...page error ");
         return;

@@ -149,6 +149,7 @@
 #pragma mark --加载数据
 -(void)loadMoreData
 {
+    NetIsReachable;
     if (_pageNum == NSNotFound) {
         NSLog(@"...page error ");
          _pageNum ==1?({[_tableView.header endRefreshing];}):([_tableView.footer endRefreshing]);

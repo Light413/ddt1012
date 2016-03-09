@@ -163,6 +163,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 //新增
 -(void)getNewadd
 {
+    NetIsReachable;
     NSDate *_date = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -194,6 +195,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 -(void)getTopPic
 {
 //    http://123dyt.com/mydyt/upload/hot/a1.png
+    NetIsReachable;
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     NSDictionary *_dic =[NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", @"5",@"psize",@"1",@"pnum",@"1",@"type",nil];
     
@@ -202,19 +204,19 @@ typedef NS_ENUM(NSInteger ,NextvcType)
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
                 NSArray *_arr = [responseObject objectForKey:@"data"];
-//                if (_arr && _arr.count > 0) {
-//                    
-//                    [[NSUserDefaults standardUserDefaults ]setObject:_arr forKey:@"SCROLL_PIC_DATA"];
-//                    [[NSUserDefaults standardUserDefaults]synchronize];
-//                    
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        [_topScrollView removeFromSuperview];
-//                        _topScrollView = nil;
-//                        _topScrollView = [[ScrollPicView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, ScrollViewHeight) withData:_arr];
-//                        [_collectionView reloadData];
-//                    });
-//
-//                }
+                if (_arr && _arr.count > 0) {
+                    
+                    [[NSUserDefaults standardUserDefaults ]setObject:_arr forKey:@"SCROLL_PIC_DATA"];
+                    [[NSUserDefaults standardUserDefaults]synchronize];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [_topScrollView removeFromSuperview];
+                        _topScrollView = nil;
+                        _topScrollView = [[ScrollPicView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, ScrollViewHeight) withData:_arr];
+                        [_collectionView reloadData];
+                    });
+
+                }
             }
         }
     } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -605,8 +607,9 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     {
         //得到分享到的微博平台名
         NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
-        
-        [[MySharetools shared]addJIFenWithType:@"2"];
+        if ([MySharetools shared].isSessionid) {
+             [[MySharetools shared]addJIFenWithType:@"2"];
+        }
     }
 }
 

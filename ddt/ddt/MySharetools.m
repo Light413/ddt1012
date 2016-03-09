@@ -369,6 +369,7 @@ static MySharetools *instance = nil;
  */
 -(void)addJIFenWithType:(NSString*)type
 {
+        NetIsReachable;
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];

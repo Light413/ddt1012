@@ -105,6 +105,9 @@
         [SVProgressHUD showInfoWithStatus:@"请填入正确的手机号"];
         return;
     }
+    
+    NetIsReachable;
+    
     //生成验证码
     _yzm = [self makeyzm];
     if (_yzm ==nil) {
@@ -171,6 +174,8 @@
     if (![phoneNumberField1.text isEqualToString:_yzm]) {
         [SVProgressHUD showInfoWithStatus:@"请输入正确的验证码"];return;
     }
+    
+    NetIsReachable;
     
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"username",phoneNumberField.text,@"mobile", nil];

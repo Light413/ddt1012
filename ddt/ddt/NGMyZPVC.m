@@ -87,7 +87,8 @@
     if (![self checkAllDataIsValid]) {
         return;
     }
-
+    
+    NetIsReachable;
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"mobile",tel,@"username",self.tf_zhiwei.text,@"work",self.tf_zpnum.text,@"num", self.btn_xueli.title,@"xl",self.btn_workyear.title,@"old",self.btn_wages.title,@"money",self.tf_gsname.text,@"company",self.tf_addr.text,@"address",self.btn_yewu_type.title,@"yw_type",self.btn_area.title,@"yw_quyu",self.text_detail.text,@"content",self.btn_zhiwei_type.title,@"wtype",self.tf_lxr.text,@"lxr",self.tf_lxr_tel.text,@"phone",nil];
     

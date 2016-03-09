@@ -308,6 +308,8 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     }else{
         xb = @"女";
     }
+    
+    NetIsReachable;
     NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"username",nameField.text,@"xm",xb,@"xb",birthBtn.titleLabel.text,@"csrq",weixinField.text,@"weixin",companyField.text,@"company",bussinessSortBtn.titleLabel.text,@"yewu",serviceAreaBtn.titleLabel.text,@"quyu",InfoTextView.text,@"content",keyWordField.text,@"word", nil];
     NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];
     [SVProgressHUD showWithStatus:@"正在加载"];

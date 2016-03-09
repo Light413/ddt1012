@@ -109,6 +109,8 @@
         [SVProgressHUD showInfoWithStatus:@"输入内容不能为空"];
         return;
     }
+    
+    NetIsReachable;
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     //NSString *nickName = [[MySharetools shared]getNickName];
     NSDate *localDate = [NSDate date]; //获取当前时间

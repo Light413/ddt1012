@@ -149,6 +149,7 @@
 -(void)loadData:(NSInteger)start{
     if (_common_current_pageNum > 100) { return;}
     
+    NetIsReachable;
     NSDictionary *paramDict = [self getParmsForRequest:start];
     NSInteger index = mysegment.selectedSegmentIndex;
     if (index == 0) {
@@ -373,6 +374,7 @@ float _h;
         }
         
         //请求网络
+        NetIsReachable;
         NSString *tel = [[MySharetools shared]getPhoneNumber];
         NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",@(_type),@"type",_uid,@"id", nil];
         NSDictionary *_d1 = [MySharetools getParmsForPostWith:dic];

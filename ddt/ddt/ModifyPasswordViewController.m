@@ -94,6 +94,8 @@
         [SVProgressHUD showInfoWithStatus:@"两次输入的密码不一致"];return;
     }
     //
+    
+    NetIsReachable;
     NSString *tel = [[MySharetools shared]getPhoneNumber];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", [phoneNumberField.text stringFromMD5],@"pwd",nil];
     NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
