@@ -20,8 +20,13 @@
 #import "NewAddView.h"
 #import "ScrollPicView.h"
 
-#define ScrollViewHeight    100
-#define CollectionHeaderViewHight (100 + 85 +110)
+#define ScrollViewHeight    (110 * SCREEN_SCALE)
+#define AddViewHeight       80
+#define Btn_share_height    40
+#define Btn_qudao_height    60
+
+#define CollectionHeaderViewHight (ScrollViewHeight + AddViewHeight +Btn_share_height + Btn_qudao_height+20)
+
 #define FootRecordData @"FootRecordData"
 #define TapStr @"最近访问的类别会出现在这里"
 
@@ -299,7 +304,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     _layout.itemSize =CGSizeMake(_w, 80);
     _layout.minimumLineSpacing = 10;
     _layout.minimumInteritemSpacing = 1;
-    _layout.sectionInset = UIEdgeInsetsMake(5, 0, 10, 0);
+    _layout.sectionInset = UIEdgeInsetsMake(5, 0, 5, 0);
     _layout.headerReferenceSize = CGSizeMake(0, CollectionHeaderViewHight);//_topScrollView.frame.origin.y+ScrollViewHeight
     
     _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, CurrentScreenWidth, CurrentScreenHeight -64-44) collectionViewLayout:_layout];
@@ -326,42 +331,42 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 {
     NetIsReachable;
     //检测是否登录
-    [[MySharetools shared]hasSuccessLogin];
-    
-    if ([[MySharetools shared]isSessionid]) {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
-        
-        NSString *tel = [[MySharetools shared]getPhoneNumber];
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", tel,@"mobile",@"5",@"fee",dateString,@"bz",@"1",@"type",nil];//type 1:签到积分 ; 2 : 分享
-        NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
-        [SVProgressHUD showWithStatus:@"签到中"];
-        RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_qiandao", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            if ([responseObject isKindOfClass:[NSDictionary class]]) {
-                if (![[responseObject objectForKey:@"result"]boolValue]) {
-                    [MobClick event:@"event_sign"];
-                    
-                    [SVProgressHUD showSuccessWithStatus:@"签到成功,积分+5"];
-                    //签到成功,获取保存上次登录后积累的签到积分
-                    NSInteger oldaddjifen =[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY]? [[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY] integerValue] :0;
-                    
-                    [[NSUserDefaults standardUserDefaults]setObject:@(5 + oldaddjifen) forKey:QIAN_DAO_JIFEN_KEY];
-                    [[NSUserDefaults standardUserDefaults]synchronize];
-                }
-                else if ([[responseObject objectForKey:@"result"]integerValue]==1)
-                {
-                    [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
-                }
-                else
-                    [SVProgressHUD showInfoWithStatus:@"签到失败,请稍后重试"];
-            }
-        } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [SVProgressHUD showInfoWithStatus:@"签到失败,请稍后重试"];
-        }];
-        
-        [HttpRequestManager doPostOperationWithTask:_task];
+    if (![[MySharetools shared]hasSuccessLogin]) {
+        return;
     }
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+    
+    NSString *tel = [[MySharetools shared]getPhoneNumber];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", tel,@"mobile",@"5",@"fee",dateString,@"bz",@"1",@"type",nil];//type 1:签到积分 ; 2 : 分享
+    NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
+    [SVProgressHUD showWithStatus:@"签到中"];
+    RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_qiandao", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if (![[responseObject objectForKey:@"result"]boolValue]) {
+                [MobClick event:@"event_sign"];
+                
+                [SVProgressHUD showSuccessWithStatus:@"签到成功,积分+5"];
+                //签到成功,获取保存上次登录后积累的签到积分
+                NSInteger oldaddjifen =[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY]? [[[NSUserDefaults standardUserDefaults]objectForKey:QIAN_DAO_JIFEN_KEY] integerValue] :0;
+                
+                [[NSUserDefaults standardUserDefaults]setObject:@(5 + oldaddjifen) forKey:QIAN_DAO_JIFEN_KEY];
+                [[NSUserDefaults standardUserDefaults]synchronize];
+            }
+            else if ([[responseObject objectForKey:@"result"]integerValue]==1)
+            {
+                [SVProgressHUD showInfoWithStatus:[responseObject objectForKey:@"message"]];
+            }
+            else
+                [SVProgressHUD showInfoWithStatus:@"签到失败,请稍后重试"];
+        }
+    } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"签到失败,请稍后重试"];
+    }];
+    
+    [HttpRequestManager doPostOperationWithTask:_task];
 }
 
 #pragma mark -UITextFieldDelegate
@@ -459,18 +464,18 @@ typedef NS_ENUM(NSInteger ,NextvcType)
         [reuseView addSubview:_topScrollView];//100
         
         //今日新增
-        _todaynewadd.frame = CGRectMake(5, _topScrollView.bottom + 5, CurrentScreenWidth - 10, 80);//85
+        _todaynewadd.frame = CGRectMake(5, _topScrollView.bottom + 5, CurrentScreenWidth - 10, AddViewHeight);//85
         [reuseView addSubview:_todaynewadd];
         
         //搜索栏
-        NGSearchBar *_searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(10,_todaynewadd.bottom, CurrentScreenWidth  -80, 30)];
+        NGSearchBar *_searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(10,_todaynewadd.bottom+2, CurrentScreenWidth  -80, 30)];
         _searchBar.placeholder = @"输入搜索关键字";//30
         _searchBar.delegate = self;
         [reuseView addSubview:_searchBar];
         
         //分享按钮
         UIButton *_shareBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-        _shareBtn.frame = CGRectMake(CurrentScreenWidth -70,_todaynewadd.bottom-5, 60, 40);
+        _shareBtn.frame = CGRectMake(CurrentScreenWidth -70,_todaynewadd.bottom -2, 60, Btn_share_height);//40
         [reuseView addSubview:_shareBtn];
         [_shareBtn setTitle:@"分享" forState:UIControlStateNormal];
         [_shareBtn setImage:[UIImage imageNamed:@"share_icon"] forState:UIControlStateNormal];
@@ -480,12 +485,11 @@ typedef NS_ENUM(NSInteger ,NextvcType)
         _shareBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [_shareBtn addTarget:self action:@selector(shareBtnAction) forControlEvents:UIControlEventTouchUpInside];
         
-        
         //企业和个人渠道btn
         float _btn_w = (CurrentScreenWidth -30)/ 2.0;
         for (int i =0; i<2; i++) {
             UIButton *btnport = [UIButton buttonWithType:UIButtonTypeCustom];//70
-            btnport.frame = CGRectMake(10+(_btn_w + 10) *i, _shareBtn.bottom + 5, _btn_w, 60);
+            btnport.frame = CGRectMake(10+(_btn_w + 10) *i, _shareBtn.bottom + 5, _btn_w, Btn_qudao_height);//60
             [reuseView addSubview:btnport];
             btnport.tag = 17 + i;
             btnport.layer.cornerRadius = 5;
@@ -536,7 +540,9 @@ typedef NS_ENUM(NSInteger ,NextvcType)
             case 0://甩单
             {
                 //检测是否登录
-                [[MySharetools shared]hasSuccessLogin];
+                if (![[MySharetools shared]hasSuccessLogin]) {
+                    return;
+                }
                 
                 [self performSegueWithIdentifier:showShuaiDanID sender:nil];
             }break;

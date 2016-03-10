@@ -54,9 +54,6 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //检测是否登录
-    [[MySharetools shared]hasSuccessLogin];
-    
     self.title = @"我的";
 
     [self creatTableView];
@@ -142,6 +139,10 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
             icon_url = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"url_get_avatar", @""),avatar];
         }
         
+        //检测是否登录
+        if (![[MySharetools shared]hasSuccessLogin]) {
+            return cell;
+        }
         [cell setCell:icon_url name:[[MySharetools shared]getNickName] jifen:[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"fee"] liulan:[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"see"] comm:[[[MySharetools shared]getLoginSuccessInfo] objectForKey:@"judge"]];
         
         return cell;
@@ -169,6 +170,11 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //检测是否登录
+    if (![[MySharetools shared]hasSuccessLogin]) {
+        return;
+    }
+    
     NSInteger index = indexPath.section;
 
     switch (index) {
@@ -258,6 +264,11 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
 
 #pragma mark --修改用户头像
 - (void)usericon:(UIImageView *)img{
+    //检测是否登录
+    if (![[MySharetools shared]hasSuccessLogin]) {
+        return;
+    }
+    
     _user_icon_img = img;
     UIActionSheet *useraction = [[UIActionSheet alloc]initWithTitle:@"修改头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"选择本地图片",@"拍照", nil];
     [useraction showInView:[UIApplication sharedApplication].keyWindow];

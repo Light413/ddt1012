@@ -358,7 +358,7 @@ float _h;
         return tableView.frame.size.height;
     }
     
-    return 90;//_h + 40 > 80?_h + 40:80;
+    return 100;//_h + 40 > 80?_h + 40:80;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

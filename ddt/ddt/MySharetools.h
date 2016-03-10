@@ -16,7 +16,7 @@
 //@property (nonatomic) BOOL isRemeberPasswordandPhone;
 +(MySharetools *)shared;
 -(id)getViewControllerWithIdentifier:(NSString *)Identifier andstoryboardName:(NSString *)storyboardname;
-+ (void)msgBox:(NSString *)msg;
+- (void)msgBox:(NSString *)msg;
 - (NSString *)getsessionid;//获取sessionid
 - (void)removeSessionid;//删除sessionid
 - (BOOL)isSessionid;//是否登陆成功
@@ -42,7 +42,7 @@
 
 
 
--(void)hasSuccessLogin;
+-(BOOL)hasSuccessLogin;
 
 
 -(void)changeRootVcWithLogin:(BOOL)_b;

@@ -7,43 +7,62 @@
 */
 CFBundleDisplayName="贷易通";
 
-
 "base_url" = "http://www.123dyt.com";
 
-//jsondata={"mobile":"15136216190","pwd":"111","token":"15136216190(!)*^*1446701200"
-//用户注册 参数：jsondata
-"url_register" = "/mydyt/web_service.php?doc=regsin";
+//登录注册相关
+"url_register"      = "/mydyt/web_service.php?doc=regsin";//注册
+"url_login"         = "/mydyt/web_service.php?doc=login";//登录
+"url_findpwd"       = "/mydyt/web_service.php?doc=findpwd";//找回密码
+"url_getcheckcode"  = "/mydyt/web_service.php?doc=getcheckcode";//发送验证码
+"url_serverPro"     = "http://www.123dyt.com/mydyt/services.html";//同意用户服务协议
 
-//登录 参数：jsondata
-"url_login" = "/mydyt/web_service.php?doc=login";
+//首页相关
+"url_qiandao"       = "/mydyt/web_service.php?doc=addfee";//签到
+"url_gethot_pic"    = "/mydyt/web_service.php?doc=gethot";//滚动图片
+"url_scroll_pic"    = "http://123dyt.com/mydyt/upload/hot";//http://123dyt.com/mydyt/upload/hot/a1.png
 
-//登录 参数：jsondata
-"url_usericon" = "/mydyt/web_service.php?doc=adduserpic";
+"url_jiedan"        = "/mydyt/web_service.php?doc=getbilllist";//接单列表
+"url_lock_danzi"    = "/mydyt/web_service.php?doc=addbillme";//锁定
+"url_shuaidan"      = "/mydyt/web_service.php?doc=addbill";//甩单
+"url_qiuzhi"        = "/mydyt/web_service.php?doc=getworklist";//求职
+"url_zhaopin"       = "/mydyt/web_service.php?doc=getqzlist";//招聘
+"url_jiaoliuhui"    = "/mydyt/web_service.php?doc=getmeeting";//同行交流会列表
+"url_todaynewadd"   = "/mydyt/web_service.php?doc=getdaycount";//今日新增
 
-//同行
-"url_tongh_list" = "/mydyt/web_service.php?doc=gettonghang";
+"url_upLocation"    = "/mydyt/web_service.php?doc=addmapxy";//上传坐标
+"url_http_cheprice" = "http://www.che300.com/dyt";//车价评估
+"url_http_joinus"   = "http://www.123dyt.com/mydyt/joinus.html";//加入我们
+"url_http_aboutus"  = "http://www.123dyt.com/mydyt/aboutus.html";//关于我们
 
-//公司名片列表
-"url_company_list" = "/mydyt/web_service.php?doc=getcompany";
-//个人信息完善
-"url_adduserinfo" = "/mydyt/web_service.php?doc=adduserinfo";
-//设置简历
- "url_addjianli" = "/mydyt/web_service.php?doc=addjianli";
-//发布交流会
-"url_addmeeting" = "/mydyt/web_service.php?doc=addmeeting";
-//添加公司资料
-"url_addcompany" = "/mydyt/web_service.php?doc=addcompany";
-//意见反馈
-"url_addsay" = "/mydyt/web_service.php?doc=addsay";
-//找回密码
-"url_findpwd" = "/mydyt/web_service.php?doc=findpwd";
-//我的收藏(单子)
-"url_getbookbill" = "/mydyt/web_service.php?doc=getbookbill";
-//我的收藏(同行)
-"url_getbookth" = "/mydyt/web_service.php?doc=getbookth";
-//我的收藏(公司)
-"url_getbookcom" = "/mydyt/web_service.php?doc=getbookcom";
-//个人中心（我的单子）
-"url_getmyfill" = "/mydyt/web_service.php?doc=getmyfill";
-//获取验证码
-"url_getcheckcode" = "/mydyt/web_service.php?doc=getcheckcode";
+
+
+//同行相关
+"url_tongh_list"    = "/mydyt/web_service.php?doc=gettonghang";//同行列表
+"url_tongh_detial"  = "/mydyt/web_service.php?doc=getthdetial";//同行详情
+"url_tongh_fj_list" = "/mydyt/web_service.php?doc=getaroundth";//附近同行
+//http://www.123dyt.com/mydyt/upload/pic/手机号.jpg 上传头像-http://www.123dyt.com/mydyt/upload/pic/18016373660.jpg
+"url_get_avatar" = "http://www.123dyt.com/mydyt/upload/pic";//获取头像+手机号.jpg拼接
+
+//公司相关
+"url_company_list"  = "/mydyt/web_service.php?doc=getcompany";//公司列表
+"url_my_love"       = "/mydyt/web_service.php?doc=addbook";//添加收藏1、同行2、公司3、单子
+"url_my_nolove"     = "/mydyt/web_service.php?doc=delbook";//取消收藏
+
+
+//个人中心相关
+"url_usericon"      = "/mydyt/web_service.php?doc=adduserpic";//上传头像
+"url_adduserinfo"   = "/mydyt/web_service.php?doc=adduserinfo";//个人信息完善
+"url_addjianli"     = "/mydyt/web_service.php?doc=addjianli";//设置简历
+"url_addmeeting"    = "/mydyt/web_service.php?doc=addmeeting";//发布交流会
+"url_addcompany"    = "/mydyt/web_service.php?doc=addcompany";//添加公司资料
+"url_addsay"        = "/mydyt/web_service.php?doc=addsay";//意见反馈
+"url_getbookbill"   = "/mydyt/web_service.php?doc=getbookbill";//我的收藏(单子)
+"url_getbookth"     = "/mydyt/web_service.php?doc=getbookth";//我的收藏(同行)
+"url_getbookcom"    = "/mydyt/web_service.php?doc=getbookcom";//我的收藏(公司)
+"url_getmyfill"     = "/mydyt/web_service.php?doc=getmyfill";//个人中心（我的单子）接过的单子+甩过的单子
+"url_getcheckcode"  = "/mydyt/web_service.php?doc=getcheckcode";//获取验证码
+"url_reset_pwd"     = "/mydyt/web_service.php?doc=resetpwd";//修改密码
+"url_resetphone"    = "/mydyt/web_service.php?doc=resetphone";//重置手机号
+"url_add_zhaopin"   = "/mydyt/web_service.php?doc=addzhaopin";//发布招聘
+
+

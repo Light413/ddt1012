@@ -126,7 +126,9 @@ static NSString * thcontactCellReuseId = @"thcontactCellReuseId";
 -(void)rightItemClick
 {
     //检测是否登录
-    [[MySharetools shared]hasSuccessLogin];
+    if (![[MySharetools shared]hasSuccessLogin]) {
+        return;
+    }
     
     ReleaseMeetingViewController *meeting = [[MySharetools shared]getViewControllerWithIdentifier:@"ReleaseMeeting" andstoryboardName:@"me"];
     meeting.hidesBottomBarWhenPushed = YES;

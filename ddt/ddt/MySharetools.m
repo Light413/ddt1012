@@ -30,10 +30,10 @@ static MySharetools *instance = nil;
     return ViewController;
 }
 //提示窗口
-+ (void)msgBox:(NSString *)msg{
+- (void)msgBox:(NSString *)msg{
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:msg
-                                                   delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
+                                                   delegate:self cancelButtonTitle:@"暂不登陆" otherButtonTitles:@"前往登录",nil];
     [alert show];
 }
 
@@ -64,12 +64,14 @@ static MySharetools *instance = nil;
     [[UIApplication sharedApplication].keyWindow setRootViewController:_vc];
 }
 
--(void)hasSuccessLogin
+-(BOOL)hasSuccessLogin
 {
     if (![self isSessionid]) {
-//        [MySharetools msgBox:@"只有登录后才能操作"];//return NO;
-        [self changeRootVcWithLogin:YES];
+        [self msgBox:@"只有登录后才能操作"];return NO;
+//        [self changeRootVcWithLogin:YES];
     }
+    
+    return YES;
 }
 
 
@@ -405,6 +407,12 @@ static MySharetools *instance = nil;
 }
 
 
+#pragma mark --UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+
+}
+
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex ==1) {
@@ -413,8 +421,7 @@ static MySharetools *instance = nil;
 }
 
 
-
-//检测网络
+#pragma mark --检测网络
 -(void)startMonitor
 {
     _reach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
