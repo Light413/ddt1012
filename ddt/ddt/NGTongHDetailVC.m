@@ -77,6 +77,18 @@ const float border_w = 0.6;
     [self initHeaderView];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"check_person_info"];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"check_person_info"];
+}
+
 //
 -(void)loadData
 {
@@ -197,92 +209,6 @@ const float border_w = 0.6;
     _v.area.text = _s12;
     
     [_imgView addSubview:_v];
-    
-    
-    /*
-    float _h = _imgView.frame.size.height;
-    UIImageView *_avarimg = [[UIImageView alloc]initWithFrame:CGRectMake(5, 10, 80, 80)];
-    _avarimg.layer.cornerRadius = 40;
-    _avarimg.layer.masksToBounds = YES;
-    NSString * pic =[self.personInfoDic objectForKey:@"pic"];
-    if (pic && pic.length > 11 ) {
-        NSString * url = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"url_get_avatar", @""),pic];
-        [_avarimg setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"cell_avatar_default"]];
-    }
-    else
-    {
-        _avarimg.image =[UIImage imageNamed:@"cell_avatar_default"];
-    }
-
-    [_imgView addSubview:_avarimg];
-    
-    UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn1.frame = CGRectMake(_avarimg.frame.origin.x + _avarimg.frame.size.width, (_h - 20)/2.0, 50, 20);
-    [btn1 setTitle:@"积分" forState:UIControlStateNormal];
-    [btn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btn1 setImage:[UIImage imageNamed:@"uc_shouc"] forState:UIControlStateNormal];
-    [btn1 setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    [btn1 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    btn1.titleLabel.font = [UIFont systemFontOfSize:12];
-    [_imgView addSubview:btn1];
-    UILabel *_lab1 = [[UILabel alloc]initWithFrame:CGRectMake(btn1.frame.origin.x  + (btn1.frame.size.width -30)/2.0, btn1.frame.origin.y + btn1.frame.size.height + 1, 30, 20)];
-    _lab1.font = [UIFont systemFontOfSize:12];
-    _lab1.text = _s4;
-    _lab1.textAlignment = NSTextAlignmentCenter;
-    _lab1.textColor = Color_2;
-    [_imgView addSubview:_lab1];
-    
-    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn2.frame = CGRectMake(btn1.frame.origin.x + btn1.frame.size.width, (_h - 20)/2.0, 50, 20);
-    [btn2 setTitle:@"浏览" forState:UIControlStateNormal];
-    [btn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btn2 setImage:[UIImage imageNamed:@"uc_add"] forState:UIControlStateNormal];
-    [btn2 setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    [btn2 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    btn2.titleLabel.font = [UIFont systemFontOfSize:12];
-    [_imgView addSubview:btn2];
-    UILabel *_lab2 = [[UILabel alloc]initWithFrame:CGRectMake(btn2.frame.origin.x  + (btn2.frame.size.width -30)/2.0, btn2.frame.origin.y + btn2.frame.size.height + 1, 30, 20)];
-    _lab2.font = [UIFont systemFontOfSize:12];
-    _lab2.text = _s5;
-    _lab2.textAlignment = NSTextAlignmentCenter;
-    _lab2.textColor = Color_2;
-    [_imgView addSubview:_lab2];
-    
-    UIButton *btn3 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn3.frame = CGRectMake(btn2.frame.origin.x + btn2.frame.size.width, (_h - 20)/2.0, 50, 20);
-    [btn3 setTitle:@"评论" forState:UIControlStateNormal];
-    [btn3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btn3 setImage:[UIImage imageNamed:@"uc_say"] forState:UIControlStateNormal];
-    [btn3 setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    [btn3 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    btn3.titleLabel.font = [UIFont systemFontOfSize:12];
-    [_imgView addSubview:btn3];
-    UILabel *_lab3 = [[UILabel alloc]initWithFrame:CGRectMake(btn3.frame.origin.x  + (btn3.frame.size.width -30)/2.0, btn3.frame.origin.y + btn3.frame.size.height + 1, 30, 20)];
-    _lab3.font = [UIFont systemFontOfSize:12];
-    _lab3.text = _s6;
-    _lab3.textColor = Color_2;
-    _lab3.textAlignment = NSTextAlignmentCenter;
-    [_imgView addSubview:_lab3];
-    
-    UILabel *_nameLab = [[UILabel alloc]initWithFrame:CGRectMake(btn1.frame.origin.x+3, _avarimg.frame.origin.y, 60, 20)];
-    _nameLab.font = [UIFont boldSystemFontOfSize:16];
-    _nameLab.textColor = Color_1;
-    _nameLab.text = _s1;
-    [_imgView addSubview:_nameLab];
-    
-    UILabel *_sexLab = [[UILabel alloc]initWithFrame:CGRectMake(_nameLab.frame.origin.x + _nameLab.frame.size.width + 10, _avarimg.frame.origin.y, 20, 20)];
-    _sexLab.font = [UIFont systemFontOfSize:14];
-    _sexLab.textColor = Color_1;
-    _sexLab.text = _s2;
-    [_imgView addSubview:_sexLab];
-    
-    UILabel *_ageLab = [[UILabel alloc]initWithFrame:CGRectMake(_sexLab.frame.origin.x+_sexLab.frame.size.width +30, _avarimg.frame.origin.y, 20, 20)];
-    _ageLab.font = [UIFont systemFontOfSize:14];
-    _ageLab.textColor = Color_1;
-    _ageLab.text = _s3;
-    [_imgView addSubview:_ageLab];
-     */
-    
 }
 
 -(void)awakeFromNib

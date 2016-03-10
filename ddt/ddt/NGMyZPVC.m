@@ -98,6 +98,9 @@
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
                 [SVProgressHUD showSuccessWithStatus:@"发布成功"];
+                
+                [MobClick event:@"event_dis_zp"];
+                
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 0.5), dispatch_get_main_queue(), ^{
                           [self.navigationController popViewControllerAnimated:YES];
                 });

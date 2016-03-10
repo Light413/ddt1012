@@ -101,6 +101,8 @@
     NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
     RequestTaskHandle *_h = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_reset_pwd", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[responseObject objectForKey:@"result"]integerValue] == 0) {
+            [MobClick event:@"event_pwd"];
+            
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 0.5), dispatch_get_main_queue(), ^{
                 //...去重新登录

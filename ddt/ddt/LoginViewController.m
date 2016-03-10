@@ -159,6 +159,8 @@
         NSLog(@"...responseObject  :%@",responseObject);
         
         if ([[responseObject objectForKey:@"result"]integerValue] == 0) {
+            [MobClick event:@"event_login"];
+            
             [SVProgressHUD showSuccessWithStatus:@"登录成功"];
             [[NSUserDefaults standardUserDefaults]removeObjectForKey:QIAN_DAO_JIFEN_KEY];
             NSDictionary *dict = [responseObject objectForKey:@"data"];

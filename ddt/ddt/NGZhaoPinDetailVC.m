@@ -54,6 +54,18 @@
     [self initSubviews];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"check_zhiwei_info"];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"check_zhiwei_info"];
+}
+
 -(void)initData
 {
     if (self.infoDic) {

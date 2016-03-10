@@ -37,9 +37,16 @@
     [self initTopSubview];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"begin_search_vc"];
+}
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"begin_search_vc"];
     [searchbar resignFirstResponder];
 }
 

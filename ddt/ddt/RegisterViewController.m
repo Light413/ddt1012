@@ -167,6 +167,8 @@
         NSLog(@"...responseObject  :%@",responseObject);
         
         if ([[responseObject objectForKey:@"result"]integerValue] == 0) {
+            [MobClick event:@"event_register"];
+            
             [SVProgressHUD showSuccessWithStatus:@"注册成功"];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }

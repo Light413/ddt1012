@@ -172,17 +172,3 @@ BMKMapManager* _mapManager;
 @end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-

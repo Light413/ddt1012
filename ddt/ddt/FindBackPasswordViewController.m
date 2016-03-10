@@ -76,6 +76,8 @@
     RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_findpwd", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
+                [MobClick event:@"event_find_pwd"];
+                
                 [SVProgressHUD showSuccessWithStatus:@"提交成功"];
                 
                 [self.navigationController popViewControllerAnimated:YES];

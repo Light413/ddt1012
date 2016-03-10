@@ -211,6 +211,8 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 
         RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_shuaidan", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
             if (![[responseObject objectForKey:@"result"]boolValue]) {
+                [MobClick event:@"event_shuai_dan"];
+                
                 [SVProgressHUD showSuccessWithStatus:@"提交成功"];
                 [self.navigationController popViewControllerAnimated:YES];
             }

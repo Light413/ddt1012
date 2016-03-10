@@ -364,13 +364,6 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
 }
 
 
--(void)saveFileWithImg:(UIImage*)img
-{
-    NSString *tel = [[MySharetools shared]getPhoneNumber];
-    NSString *path = [NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),tel];
-    
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

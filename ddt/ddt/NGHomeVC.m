@@ -374,6 +374,8 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 #pragma mark -TopClickDelegate
 -(void)clickPicWithUrl:(NSString *)url
 {
+    [MobClick event:@"event_click_ad"];
+    
     HotPicVC * vc = [[HotPicVC alloc]init];
     vc.desurl = url;
     vc.hidesBottomBarWhenPushed = YES;

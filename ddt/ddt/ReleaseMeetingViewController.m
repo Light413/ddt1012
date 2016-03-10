@@ -60,6 +60,8 @@
     RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_addmeeting", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
+                [MobClick event:@"event_dis_jiaoliuhui"];
+                
                 [SVProgressHUD showSuccessWithStatus:@"保存完成"];
                
                 [self.navigationController popViewControllerAnimated:YES];

@@ -76,6 +76,18 @@
     [self initSubviews];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"check_danzi_info"];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"check_danzi_info"];
+}
+
 -(void)awakeFromNib
 {
     [super awakeFromNib];
@@ -117,6 +129,8 @@
     //根据`responseCode`得到发送结果,如果分享成功
     if(response.responseCode == UMSResponseCodeSuccess)
     {
+        [MobClick event:@"event_share"];
+        
         //得到分享到的微博平台名
         NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
         

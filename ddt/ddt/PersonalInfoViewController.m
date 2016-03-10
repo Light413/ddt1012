@@ -65,6 +65,19 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     [self showDefaultData];
         // Do any additional setup after loading the view.
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"check_me_info"];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"check_me_info"];
+}
+
 -(void)showDefaultData{
     if ([[[MySharetools shared]getNickName]length]>0) {
         nameField.text = [[MySharetools shared]getNickName];

@@ -184,6 +184,8 @@
     RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_resetphone", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
+                [MobClick event:@"event_reset_tel"];
+                
                 [SVProgressHUD showSuccessWithStatus:@"修改成功"];
             }
             else
