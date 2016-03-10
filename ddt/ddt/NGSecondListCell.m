@@ -22,7 +22,7 @@
     NSString * pic =[dic objectForKey:@"pic"];
     if (pic && pic.length > 11 ) {
         NSString * url = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"url_get_avatar", @""),pic];
-         [self.img_avatar setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"cell_avatar_default"]];
+        [self.img_avatar sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"cell_avatar_default"] options:SDWebImageRefreshCached];
     }
     else
     {

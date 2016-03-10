@@ -170,6 +170,13 @@
     self.af_imageRequestOperation = nil;
 }
 
++ (void)clearCache {
+    AFImageCache *cache = (AFImageCache *)[UIImageView sharedImageCache];
+    [cache removeAllObjects];
+}
+
+
+
 @end
 
 #pragma mark -
@@ -199,6 +206,7 @@ static inline NSString * AFImageCacheKeyFromURLRequest(NSURLRequest *request) {
         [self setObject:image forKey:AFImageCacheKeyFromURLRequest(request)];
     }
 }
+
 
 @end
 

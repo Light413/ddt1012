@@ -46,6 +46,10 @@
 */
 + (id <AFImageCache>)sharedImageCache;
 
+
++ (void)clearCache;
+
+
 /**
  Set the cache used for image loading.
  

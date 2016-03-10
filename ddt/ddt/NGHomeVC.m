@@ -289,7 +289,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 
     NSArray *_a22 = [[NSUserDefaults standardUserDefaults] objectForKey:@"SCROLL_PIC_DATA"];
     
-    _topScrollView = [[ScrollPicView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, ScrollViewHeight) withData:_a22];
+    _topScrollView = [[ScrollPicView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, ScrollViewHeight) withData:nil];
     _topScrollView.delegate = self;
     
     //今日新增视图

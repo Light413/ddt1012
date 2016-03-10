@@ -36,7 +36,7 @@
     else
     {
         if (imgurl) {
-            [icon_img setImageWithURL:[NSURL URLWithString:imgurl] placeholderImage:[UIImage imageNamed:@"head_noregist"]];
+            [icon_img sd_setImageWithURL:[NSURL URLWithString:imgurl] placeholderImage:[UIImage imageNamed:@"head_noregist"] options:SDWebImageRefreshCached];
         }
         else
             [icon_img setImage:[UIImage imageNamed:@"head_noregist"]];

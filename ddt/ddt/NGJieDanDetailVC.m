@@ -198,7 +198,7 @@
     _top_v.frame = CGRectMake(0, 0, CurrentScreenWidth, 100);
     if (_s13 && _s13.length > 11 ) {
         NSString * url = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"url_get_avatar", @""),_s13];
-        [_top_v.avatarimg setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"cell_avatar_default"]];
+        [_top_v.avatarimg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"cell_avatar_default"] options:SDWebImageRefreshCached];
     }
     else
     {
