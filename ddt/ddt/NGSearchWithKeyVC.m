@@ -11,6 +11,7 @@
 #import "MyCollectionViewController.h"
 
 #define btnTagBase  130
+#define bgColor [UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1]
 
 @interface NGSearchWithKeyVC ()<UISearchBarDelegate>
 {
@@ -26,7 +27,7 @@
     // Do any additional setup after loading the view.
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.tableView.backgroundView =  nil;
-    self.tableView.backgroundColor =[UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1];
+    self.tableView.backgroundColor =bgColor;
     
     _btnTitleArr = @[@"房贷",@"车贷",@"企业贷",@"信贷",@"抵押",@"零首付",@"短拆过桥",@"股票配资"];
 }
@@ -41,6 +42,7 @@
 {
     [super viewWillAppear:animated];
     [MobClick beginLogPageView:@"begin_search_vc"];
+//    [searchbar becomeFirstResponder];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -57,7 +59,7 @@
     searchbar.delegate = self;
     searchbar.showsCancelButton = YES;
     searchbar.placeholder = @"请输入搜索关键字";
-    searchbar.tintColor = [UIColor blackColor];
+    searchbar.tintColor = bgColor;
     self.navigationItem.titleView = searchbar;
 }
 

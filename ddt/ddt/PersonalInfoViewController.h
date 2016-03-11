@@ -24,12 +24,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *keyWordField;
 @property (weak, nonatomic) IBOutlet UILabel *typeInLabel;
 @property (weak, nonatomic) IBOutlet UITextView *InfoTextView;
-@property (weak, nonatomic) IBOutlet UIView *backView;
-- (IBAction)saveInfoBtnClick:(id)sender;
-@property(nonatomic,copy)NSString *itemKey;
 
-- (IBAction)maleBtnClick:(id)sender;
-- (IBAction)femaleBtnClick:(id)sender;
+- (IBAction)saveInfoBtnClick:(id)sender;
+
+@property(nonatomic,copy)NSString *itemKey;
 
 
 @end

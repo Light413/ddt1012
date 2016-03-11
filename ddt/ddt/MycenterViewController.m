@@ -37,18 +37,18 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
 
 @implementation MycenterViewController
 -(void)viewWillAppear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:YES];
     
     [MobClick beginLogPageView:@"Me-Page"];
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
     [myTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"Me-Page"];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 - (void)viewDidLoad {
@@ -252,7 +252,7 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
 }
 
 -(void)modifyInfo:(UIButton *)btn{
-    PersonalInfoViewController *person = [[MySharetools shared]getViewControllerWithIdentifier:@"personInfo" andstoryboardName:@"me"];
+    PersonalInfoViewController *person = [[MySharetools shared]getViewControllerWithIdentifier:@"personInfo_2" andstoryboardName:@"me"];
     person.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:person animated:YES];
 }

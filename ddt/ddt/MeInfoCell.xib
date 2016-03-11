@@ -22,7 +22,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYe-GJ-uxa">
-                        <rect key="frame" x="108" y="71" width="35" height="16"/>
+                        <rect key="frame" x="108" y="76" width="35" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="Evl-U5-QMU"/>
                             <constraint firstAttribute="width" constant="35" id="amo-NP-Ojf"/>
@@ -32,19 +32,19 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="浏览:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZE-tJ-Ggy">
-                        <rect key="frame" x="162" y="71" width="35" height="16"/>
+                        <rect key="frame" x="162" y="76" width="35" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评论:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3T-Fn-xCH">
-                        <rect key="frame" x="216" y="71" width="35" height="16"/>
+                        <rect key="frame" x="216" y="76" width="35" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxr-K5-rbi">
-                        <rect key="frame" x="251" y="71" width="9" height="16"/>
+                        <rect key="frame" x="251" y="76" width="9" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.015686274510000001" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -57,13 +57,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqg-21-8VN">
-                        <rect key="frame" x="143" y="71" width="9" height="16"/>
+                        <rect key="frame" x="143" y="76" width="9" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.015686274509803921" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v7x-Dz-CwN">
-                        <rect key="frame" x="197" y="71" width="9" height="16"/>
+                        <rect key="frame" x="197" y="76" width="9" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.015686274510000001" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -83,7 +83,7 @@
                     <constraint firstItem="5Et-Ni-gN3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZAp-aY-gvB"/>
                     <constraint firstItem="v7x-Dz-CwN" firstAttribute="leading" secondItem="cZE-tJ-Ggy" secondAttribute="trailing" id="b4c-Pu-Juf"/>
                     <constraint firstItem="sxr-K5-rbi" firstAttribute="leading" secondItem="f3T-Fn-xCH" secondAttribute="trailing" id="bTQ-sW-dbT"/>
-                    <constraint firstItem="cYe-GJ-uxa" firstAttribute="top" secondItem="0MX-Sz-MtH" secondAttribute="bottom" constant="20" id="j2V-Re-QA0"/>
+                    <constraint firstItem="cYe-GJ-uxa" firstAttribute="top" secondItem="0MX-Sz-MtH" secondAttribute="bottom" constant="25" id="j2V-Re-QA0"/>
                     <constraint firstItem="cYe-GJ-uxa" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jJO-Py-SkE"/>
                     <constraint firstItem="f3T-Fn-xCH" firstAttribute="height" secondItem="cYe-GJ-uxa" secondAttribute="height" id="joA-Y8-okj"/>
                     <constraint firstItem="cZE-tJ-Ggy" firstAttribute="height" secondItem="cYe-GJ-uxa" secondAttribute="height" id="m0a-fU-qLJ"/>

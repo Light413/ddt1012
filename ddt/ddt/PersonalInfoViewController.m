@@ -11,6 +11,8 @@
 #import "NGDatePicker.h"
 @interface PersonalInfoViewController ()<UITextFieldDelegate,UITextViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UITextField *recommandPersonTF;
+
 @end
 typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     NGSelectDataTypeNone,  //0
@@ -28,6 +30,8 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     UIDatePicker *datePicker;
     UITextField *recommandtextField;//填写推荐人
 //    UILabel *dateLabel;
+    
+    NSString *business;//业务类型
 }
 @synthesize nameField;
 @synthesize maleBtn;
@@ -41,29 +45,16 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 @synthesize keyWordField;
 @synthesize typeInLabel;
 @synthesize InfoTextView;
-@synthesize backView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"个人信息完善";
-    backView.layer.borderColor = [RGBA(207, 207, 207, 1)CGColor];
-    backView.layer.borderWidth = 1;
-    InfoTextView.delegate = self;
-    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
-    temporaryBarButtonItem.title = @"";
-    self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+
     maleBtn.selected = YES;
     femaleBtn.selected = NO;
-    maleBtn.backgroundColor = [UIColor clearColor];
-    femaleBtn.backgroundColor = [UIColor clearColor];
-    [maleBtn setBackgroundImage:[UIImage imageNamed:@"checkbox1_unchecked@2x"] forState:UIControlStateNormal];
-    [maleBtn setBackgroundImage:[UIImage imageNamed:@"checkbox1_checked@2x"] forState:UIControlStateSelected];
-    [femaleBtn setBackgroundImage:[UIImage imageNamed:@"checkbox1_unchecked@2x"] forState:UIControlStateNormal];
-    [femaleBtn setBackgroundImage:[UIImage imageNamed:@"checkbox1_checked@2x"] forState:UIControlStateSelected];
     _pickerViewType = NGSelectDataTypeNone;
     self.itemKey = @"11";
     [self showDefaultData];
-        // Do any additional setup after loading the view.
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -101,14 +92,19 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     }
     NSString *tjr = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"tjr"]];
     if (![tjr isEqual:@"(null)"]&&tjr.length>0) {
-        [recommandPersonBtn setTitle:tjr forState:UIControlStateNormal];
+        
+        self.recommandPersonTF.text = tjr;
+        
+//        [recommandPersonBtn setTitle:tjr forState:UIControlStateNormal];
     }
     NSString *area = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"quyu"]];
     [serviceAreaBtn setTitle:area forState:UIControlStateNormal];
-    NSString *business = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"yewu"]];
+    
+    business = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"yewu"]];
     [bussinessSortBtn setTitle:business forState:UIControlStateNormal];
     bussinessSortBtn.titleLabel.numberOfLines = 0;
-    bussinessSortBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+//    bussinessSortBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    
     keyWordField.text = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"word"]];
     NSString *content = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"content"]];
     if (![content isEqual:@"(null)"]&&content.length>0) {
@@ -123,19 +119,34 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark --UITableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 10;
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    switch (indexPath.row) {
+        case 6:
+        {
+            CGSize size = [ToolsClass calculateSizeForText:business :CGSizeMake(CurrentScreenWidth - 100, 300) font:[UIFont systemFontOfSize:14]];
+            return size.height > 50?size.height + 20:60;
+        }break;
+        case 8:return 90;break;
+        case 9:return 80;break;
+        default: return 50;
+            break;
+    }
+    
+    return 50;
+    
 }
-*/
+
+
 -(void)textViewDidChange:(UITextView *)textView{
     if (textView.text.length>0) {
         typeInLabel.hidden = YES;
@@ -269,12 +280,8 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
         [bussinessSortBtn setTitle:name forState:UIControlStateNormal];
     };
     [self.navigationController pushViewController:person animated:YES];
-//    _pickerViewType = NGSelectDataTypeTaskType;
-//    [self giveDataToPickerWithTypee:_pickerViewType];
-//    _selectedBtn = sender;
-//    LPickerView *_pickview = [[LPickerView alloc]initWithDelegate:self];
-//    [_pickview showIn:self.view];
 }
+
 #pragma mark---保存用户信息
 - (IBAction)saveInfoBtnClick:(id)sender {
     [self hideKeyboard];
@@ -294,10 +301,15 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
         [SVProgressHUD showInfoWithStatus:@"请填写公司"];
         return;
     }
-    if ([recommandPersonBtn.titleLabel.text isEqual:@"填写推荐人"]||recommandPersonBtn.titleLabel.text.length==0) {
+//    if ([recommandPersonBtn.titleLabel.text isEqual:@"填写推荐人"]||recommandPersonBtn.titleLabel.text.length==0) {
+//        [SVProgressHUD showInfoWithStatus:@"填写推荐人"];
+//        return;
+//    }
+    if (self.recommandPersonTF.text.length==0) {
         [SVProgressHUD showInfoWithStatus:@"填写推荐人"];
         return;
     }
+    
     if ([serviceAreaBtn.titleLabel.text isEqual:@"选择服务区域"]||serviceAreaBtn.titleLabel.text.length==0) {
         [SVProgressHUD showInfoWithStatus:@"请选择服务区域"];
         return;
@@ -325,18 +337,19 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     NetIsReachable;
     NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"username",nameField.text,@"xm",xb,@"xb",birthBtn.titleLabel.text,@"csrq",weixinField.text,@"weixin",companyField.text,@"company",bussinessSortBtn.titleLabel.text,@"yewu",serviceAreaBtn.titleLabel.text,@"quyu",InfoTextView.text,@"content",keyWordField.text,@"word", nil];
     NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];
-    [SVProgressHUD showWithStatus:@"正在加载"];
+    [SVProgressHUD showWithStatus:@"数据提交中"];
     RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_adduserinfo", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"] integerValue] == 0) {
-                [SVProgressHUD showSuccessWithStatus:@"保存完成"];
+                [SVProgressHUD showSuccessWithStatus:@"修改成功"];
                 [[NSUserDefaults standardUserDefaults]setObject:nameField.text forKey:@"nickName"];
                 NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[[MySharetools shared]getLoginSuccessInfo]];
                 [dict setObject:xb forKey:@"xb"];
                 [dict setObject:birthBtn.titleLabel.text forKey:@"csrq"];
                 [dict setObject:weixinField.text forKey:@"weixin"];
                 [dict setObject:companyField.text forKey:@"company"];
-                [dict setObject:recommandPersonBtn.titleLabel.text forKey:@"tjr"];
+//                [dict setObject:recommandPersonBtn.titleLabel.text forKey:@"tjr"];
+               [dict setObject:self.recommandPersonTF.text forKey:@"tjr"];
                 [dict setObject:serviceAreaBtn.titleLabel.text forKey:@"quyu"];
                 [dict setObject:bussinessSortBtn.titleLabel.text forKey:@"yewu"];
                 [dict setObject:keyWordField.text forKey:@"word"];
@@ -358,6 +371,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     
     [HttpRequestManager doPostOperationWithTask:_task];
 }
+
 - (IBAction)maleBtnClick:(id)sender {
     maleBtn.selected = !maleBtn.selected;
     if (maleBtn.selected) {
@@ -375,6 +389,8 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
         maleBtn.selected = YES;
     }
 }
+
+
 -(void)initViews{
     _maskView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, CurrentScreenHeight)];
     _maskView.backgroundColor = [UIColor blackColor];
@@ -476,4 +492,8 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
         return;
     }
 }
+
+
+
+
 @end

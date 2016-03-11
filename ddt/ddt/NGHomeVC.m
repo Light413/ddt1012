@@ -264,7 +264,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
     
     //搜索栏初始化
-    searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth -100, 35)];
+    searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 30)];
     UITextField *searchField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, searchView.width, searchView.height)];
     searchField.backgroundColor = [UIColor whiteColor];
     searchField.alpha = .95;
@@ -287,7 +287,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     [searchView addSubview:btn];
 //    self.navigationItem.titleView = searchView;
 
-    NSArray *_a22 = [[NSUserDefaults standardUserDefaults] objectForKey:@"SCROLL_PIC_DATA"];
+//    NSArray *_a22 = [[NSUserDefaults standardUserDefaults] objectForKey:@"SCROLL_PIC_DATA"];
     
     _topScrollView = [[ScrollPicView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, ScrollViewHeight) withData:nil];
     _topScrollView.delegate = self;
