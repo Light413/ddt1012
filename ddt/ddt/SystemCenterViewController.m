@@ -16,6 +16,9 @@
 
 #define KimageName @"imageName"
 #define KlabelName @"labelName"
+
+#define CellHeight  50
+
 @interface SystemCenterViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSArray *datalist;
@@ -68,7 +71,7 @@
 }
 #pragma mark --tableview 代理
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    return CellHeight;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return datalist.count;
@@ -87,7 +90,7 @@
     cell.textLabel.text = datalist[indexPath.row][KlabelName];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     UIImageView *dimageview = [[UIImageView alloc] init];
-    dimageview.frame=CGRectMake(0, 49, CurrentScreenWidth, 1);
+    dimageview.frame=CGRectMake(0, CellHeight - 1, CurrentScreenWidth, 1);
     dimageview.backgroundColor=RGBA(215, 215, 215, 1);
     [cell.contentView addSubview:dimageview];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

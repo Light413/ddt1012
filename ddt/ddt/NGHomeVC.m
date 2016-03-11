@@ -309,11 +309,12 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     
     _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, CurrentScreenWidth, CurrentScreenHeight -64-44) collectionViewLayout:_layout];
     _collectionView.backgroundColor = [UIColor whiteColor];
-//    _collectionView.bounces = NO;
+    _collectionView.bounces = NO;
     [self.view addSubview:_collectionView];
     _collectionView.delegate = self;
     _collectionView.dataSource  = self;
     _collectionView.showsVerticalScrollIndicator = NO;
+    [_collectionView setContentInset:UIEdgeInsetsMake(0, 0, 20, 0)];
     
     [_collectionView registerNib:[UINib nibWithNibName:@"NGCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"NGCollectionViewCellID"];
     [_collectionView registerNib:[UINib nibWithNibName:@"NGCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NGCollectionHeaderReuseID];

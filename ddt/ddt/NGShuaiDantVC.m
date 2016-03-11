@@ -77,8 +77,8 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     self.textview.inputAccessoryView = inputBtn;
     [self textviewDetaultDisp:YES];
 
-    _kehusfArr = @[@"上班",@"个体",@"企业"];
-    _zxstatusArr =@[@"正常",@"异常",@"白户"];
+    _kehusfArr = @[@"1",@"2",@"3"];//@[@"上班",@"个体",@"企业"] : 1,2,3
+    _zxstatusArr =@[@"1",@"2",@"0"];//@[@"正常",@"异常",@"白户"] :1,2,0
     
     self.tf_jifen.keyboardType = UIKeyboardTypeNumberPad;
 }

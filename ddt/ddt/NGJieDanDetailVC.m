@@ -144,11 +144,15 @@
 -(void)initData
 {
     _s1 = [self.danZiInfoDic objectForKey:@"cs_ch"]?[self.danZiInfoDic objectForKey:@"cs_ch"]:@"";
-    _s2 = [self.danZiInfoDic objectForKey:@"cs_type"]?[self.danZiInfoDic objectForKey:@"cs_type"]:@"";
+    _s2 = [self.danZiInfoDic objectForKey:@"cs_type"]?[self.danZiInfoDic objectForKey:@"cs_type"]:@"1";
+    _s2 = _s2.length > 1?@"1":_s2;
+    
     _s3 = [self.danZiInfoDic objectForKey:@"cs_age"]?[self.danZiInfoDic objectForKey:@"cs_age"]:@"0";
     _s4 = [self.danZiInfoDic objectForKey:@"cs_dkje"]?[self.danZiInfoDic objectForKey:@"cs_dkje"]:@"0";
     _s5 = [self.danZiInfoDic objectForKey:@"cs_dkqx"]?[self.danZiInfoDic objectForKey:@"cs_dkqx"]:@"0";
-    _s6 = [self.danZiInfoDic objectForKey:@"zxqk"]?[self.danZiInfoDic objectForKey:@"zxqk"]:@"";
+    _s6 = [self.danZiInfoDic objectForKey:@"zxqk"]?[self.danZiInfoDic objectForKey:@"zxqk"]:@"1";
+    _s6 = _s6.length > 1?@"1":_s6;
+    
     _s7 = [self.danZiInfoDic objectForKey:@"bz"]?[self.danZiInfoDic objectForKey:@"bz"]:@"";
     _s8 = [self.danZiInfoDic objectForKey:@"jifen"]?[self.danZiInfoDic objectForKey:@"jifen"]:@"0";
     
@@ -185,6 +189,9 @@
 
 -(void)initSubviews
 {
+    NSArray *_a1  =   @[@"上班",@"个体",@"企业"]; //: 1,2,3
+    NSArray *_a2  =   @[@"白户",@"正常",@"异常"]; //:1,2,0
+    
     //cell
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     for (UITableViewCell *_cell in @[self.cell_1,self.cell_2,self.cell_3,self.cell_4,self.cell_5,self.cell_6,self.cell_7,self.cell_8,self.cell_9]) {
@@ -223,11 +230,11 @@
     self.tableView.tableHeaderView = _top_v;
     
     self.nameLab.text = _s1;
-    self.cs_typeLab.text = _s2;
+    self.cs_typeLab.text = [_a1 objectAtIndex: [_s2 integerValue] - 1];
     self.ageLab.text = _s3;
     self.jineLab.text = _s4;
     self.timeLab.text = _s5;
-    self.zxqkLab.text = _s6;
+    self.zxqkLab.text = [_a2 objectAtIndex: [_s6 integerValue]];
     self.detailLab.text = _s7;
     self.jifenLab.text = [NSString stringWithFormat:@"锁定此单,需花费 %@ 个积分",_s8];
     NSMutableAttributedString *mutableAttributedString_attrs = [[NSMutableAttributedString alloc] initWithString:self.jifenLab.text];

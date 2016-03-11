@@ -298,20 +298,17 @@ const float border_w = 0.6;
 #pragma mark --头像的缩放和显示
 -(void)showImgWith:(NSString *)urlStr
 {
-    
     if (_maskView == nil) {
-        float _h = 300;
-        
         _maskView = [[UIView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
         _maskView.backgroundColor = [UIColor blackColor];
         
-        _bigimgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, (CurrentScreenHeight - _h) / 2.0, CurrentScreenWidth,  _h)];
+        _bigimgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, (CurrentScreenHeight - CurrentScreenWidth) / 2.0, CurrentScreenWidth,  CurrentScreenWidth)];
         _bigimgView.userInteractionEnabled = YES;
         
         UIScrollView *_scr = [[UIScrollView alloc]initWithFrame:_maskView.frame];
         _scr.contentSize = [[UIScreen mainScreen] bounds].size;
         _scr.delegate  =self;
-        _scr.minimumZoomScale = 0.5;
+        _scr.minimumZoomScale = 1;
         _scr.maximumZoomScale = 3;
         _scr.showsHorizontalScrollIndicator = NO;
         _scr.showsVerticalScrollIndicator = NO;
@@ -320,7 +317,7 @@ const float border_w = 0.6;
         
         if (urlStr && urlStr.length > 11 ) {
             NSString * url = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"url_get_avatar", @""),urlStr];
-            [_bigimgView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"cell_avatar_default"]];
+             [_bigimgView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"cell_avatar_default"] options:SDWebImageRefreshCached];
         }
         else
         {

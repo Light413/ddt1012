@@ -255,7 +255,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     _tableView.delegate =self;
     _tableView.dataSource  =self;
     [self.view  addSubview:_tableView];
-    [_tableView setContentInset:UIEdgeInsetsMake(0, 0, 5, 0)];
+    [_tableView setContentInset:UIEdgeInsetsMake(0, 0, 20, 0)];
     _tableView.tableFooterView = [[UIView alloc]init];
     
     switch (self.vcType) {
