@@ -78,7 +78,7 @@
     [button addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* item=[[UIBarButtonItem alloc]initWithCustomView:button];
     [self.navigationItem setLeftBarButtonItem:item];
-    [button setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)] ;
+    [button setImageEdgeInsets:UIEdgeInsetsMake(3, 3, 3, 3)] ;
     
 }
 

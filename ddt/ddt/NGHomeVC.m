@@ -83,12 +83,12 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     //获取位置信息
     [[LocationManger shareManger]getLocationWithSuccessBlock:^(NSString *str) {
         [SVProgressHUD dismiss];
-        NSLog(@"current location : %@",str);
-        [[NSUserDefaults standardUserDefaults]setObject:@"上海市" forKey:CURRENT_LOCATION_CITY];
-        [[NSUserDefaults standardUserDefaults]synchronize];
+        NSLog(@"%%%%%%%%current location : %@",str);
         
         if (str) {
-             [leftBtn setTitle:str forState:UIControlStateNormal];
+            [leftBtn setTitle:str forState:UIControlStateNormal];
+            [[NSUserDefaults standardUserDefaults]setObject:str forKey:CURRENT_LOCATION_CITY];
+            [[NSUserDefaults standardUserDefaults]synchronize];
         }
         else
         {
@@ -96,17 +96,17 @@ typedef NS_ENUM(NSInteger ,NextvcType)
         }
 
         //...上传位置信息<+31.19302052,+121.68571511>
-        NSString *tel = [[MySharetools shared]getPhoneNumber];
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", tel,@"mobile",@"121.68571511,31.19302052",@"distance",nil];
-        NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
-        
-        RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_upLocation", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-        } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-        }];
-        
-        [HttpRequestManager doPostOperationWithTask:_task];
+//        NSString *tel = [[MySharetools shared]getPhoneNumber];
+//        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", tel,@"mobile",@"121.68571511,31.19302052",@"distance",nil];
+//        NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
+//        
+//        RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_upLocation", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            
+//        } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            
+//        }];
+//        
+//        [HttpRequestManager doPostOperationWithTask:_task];
         
     } andFailBlock:^(NSError *error) {
         [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];

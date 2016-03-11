@@ -168,7 +168,9 @@
     _s16 = [self.danZiInfoDic objectForKey:@"see"]?[self.danZiInfoDic objectForKey:@"see"]:@"";
     _s17 = [self.danZiInfoDic objectForKey:@"frompf"]?[self.danZiInfoDic objectForKey:@"frompf"]:@"0";//...靠谱指数
     
-    self.btn_love.selected = [[self.danZiInfoDic objectForKey:@"isbook"] boolValue];
+    if ([[MySharetools shared]isSessionid]) {
+       self.btn_love.selected = [[self.danZiInfoDic objectForKey:@"isbook"] boolValue];
+    }
     
     //是否被锁定
     BOOL _b = [[self.danZiInfoDic objectForKey:@"zt"] boolValue];
@@ -263,6 +265,10 @@
 #pragma mark --btn action
 
 - (IBAction)qinagDanAction:(id)sender {
+    //检测是否登录
+    if (![[MySharetools shared]hasSuccessLogin]) {
+        return;
+    }
     NetIsReachable;
     NSString *uid = [self.danZiInfoDic objectForKey:@"id"];
     NSString *tel = [[MySharetools shared]getPhoneNumber];
@@ -294,7 +300,10 @@
 
 //收藏
 - (IBAction)love_btn_action:(UIButton *)sender {
-    
+    //检测是否登录
+    if (![[MySharetools shared]hasSuccessLogin]) {
+        return;
+    }
     NetIsReachable;
     NSString *uid = [self.danZiInfoDic objectForKey:@"id"];
     NSString *tel = [[MySharetools shared]getPhoneNumber];

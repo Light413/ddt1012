@@ -146,7 +146,9 @@ const float border_w = 0.6;
         _s11 = [self.personInfoDic objectForKey:@"weixin"]?[self.personInfoDic objectForKey:@"weixin"]:@"";
         _s12 = [self.personInfoDic objectForKey:@"quyu"]?[self.personInfoDic objectForKey:@"quyu"]:@"";
         
-        self.is_love_btn.selected = [[self.personInfoDic objectForKey:@"isbook"]boolValue];
+        if ([[MySharetools shared]isSessionid]) {
+              self.is_love_btn.selected = [[self.personInfoDic objectForKey:@"isbook"]boolValue];
+        }
     }
     else
     {
@@ -182,8 +184,6 @@ const float border_w = 0.6;
     PersonInfoTop *_v = _arr[0];
     _v.frame =  _imgView.frame;
     _v.tapAvatarBlock = ^{
-//        CheckAvatarVC *vc = [[CheckAvatarVC alloc]init];
-//        [weakself.navigationController pushViewController:vc animated:YES];
         [weakself showImgWith:pic];
     };
     
@@ -231,6 +231,10 @@ const float border_w = 0.6;
         }break;
         case 313:// 收藏
         {
+            //检测是否登录
+            if (![[MySharetools shared]hasSuccessLogin]) {
+                return;
+            }
             NetIsReachable;
             NSString *uid = [self.personInfoDic objectForKey:@"uid"];
             NSString *tel = [[MySharetools shared]getPhoneNumber];

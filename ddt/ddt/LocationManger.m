@@ -11,6 +11,7 @@
 @implementation LocationManger
 {
     CLLocationManager *_manger;
+    BOOL _hasSuccessLocation;//成功定位一次
 }
 
 +(instancetype)shareManger
@@ -29,12 +30,15 @@
     if(self == [super init])
     {
         _manger = [[CLLocationManager alloc]init];
+        _hasSuccessLocation = NO;
     }
     return self;
 }
 
 -(void)startLocation
 {
+    _hasSuccessLocation = NO;
+    
     UIAlertView *_alertView= nil;
     if([CLLocationManager locationServicesEnabled])
     {
@@ -49,8 +53,8 @@
         }
         
         _manger.delegate =self;
-        _manger.distanceFilter = 10.0;
-        _manger.desiredAccuracy =kCLLocationAccuracyBest;
+        _manger.distanceFilter = 500.0;
+        _manger.desiredAccuracy =kCLLocationAccuracyKilometer;
        
         if([_manger respondsToSelector:@selector(requestAlwaysAuthorization)])
         {
@@ -92,10 +96,6 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-//    if (_b == NO) {
-//        _b =YES;
-//
-//    }
     //保存经纬度信息
     CLLocation * _loc = [locations lastObject];
     double log = _loc.coordinate.longitude;
@@ -103,6 +103,8 @@
     [[NSUserDefaults standardUserDefaults]setObject:@(lat) forKey:CURRENT_LOCATION_LAT];
     [[NSUserDefaults standardUserDefaults]setObject:@(log) forKey:CURRENT_LOCATION_LOG];
     [[NSUserDefaults standardUserDefaults]synchronize];
+    
+    NSLog(@"+++++++jingdu : %f weidu  :%f",log,lat);
     
    __block NSString *cityname;
     CLGeocoder *geo = [[CLGeocoder alloc]init];
@@ -116,18 +118,21 @@
 //            NSLog(@"country,%@",place.country);                 // 国家
             cityname = place.locality;
         }
-
-       _succeessBlock(cityname);
-        [self stopLocation];
+        if (_hasSuccessLocation == NO) {
+            _hasSuccessLocation = YES;
+            _succeessBlock(cityname);
+            [self stopLocation];
+        }
     }];
-   
+    
+    [self stopLocation];
 }
 
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    _faillBlock(error);
     [self stopLocation];
+    _faillBlock(error);
 }
 
 

@@ -44,20 +44,22 @@
             CLLocation *_location1= [[CLLocation alloc]initWithLatitude:[mylat doubleValue] longitude:[mylog doubleValue]];
             CLLocation *_location2= [[CLLocation alloc]initWithLatitude:[_arr[1] doubleValue] longitude:[_arr[0] doubleValue]];
             
-            double _s = [_location1 distanceFromLocation:_location2] / 1000;
+            double _s = [_location1 distanceFromLocation:_location2] *1.0 / 1000;
              _title = [NSString stringWithFormat:@"%.1fkm",_s];
         }
     
     self.disLab.text = _title;
     
-    UIButton * love = (UIButton *)[self viewWithTag:301];
-    love.selected = [[dic objectForKey:@"isbook"]boolValue];
+    if ([[MySharetools shared]isSessionid]) {
+        UIButton * love = (UIButton *)[self viewWithTag:301];
+        love.selected = [[dic objectForKey:@"isbook"]boolValue];
+    }
 }
 
 
 
 - (IBAction)cellBtnAction:(UIButton *)sender {
-    if (sender.tag == 301) {
+    if (sender.tag == 301 &&[[MySharetools shared]isSessionid]) {
         sender.selected = !sender.selected;
     }
     

@@ -506,6 +506,10 @@ float _h =0;
                      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",tel]]];
                 }
                 else if (tag == 301) {
+                    //检测是否登录
+                    if (![[MySharetools shared]hasSuccessLogin]) {
+                        return;
+                    }
                     NetIsReachable;
                         NSString *tel = [[MySharetools shared]getPhoneNumber];
                     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile",@"1",@"type",uid,@"id", nil];

@@ -62,6 +62,7 @@
 
 -(void)awakeFromNib
 {
+    NSInteger _h = 3;
     UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
     [button setBackgroundColor:[UIColor clearColor]];
     [button setFrame:CGRectMake(0, 0, 20, 20)] ;
@@ -70,7 +71,7 @@
     [button addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* item=[[UIBarButtonItem alloc]initWithCustomView:button];
     [self.navigationItem setLeftBarButtonItem:item];
-    [button setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)] ;
+    [button setImageEdgeInsets:UIEdgeInsetsMake(_h,_h, _h, _h)] ;
 
 }
 -(void)goback:(id)btn

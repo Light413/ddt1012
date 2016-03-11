@@ -56,7 +56,6 @@
             UIImageView *imgv = [[UIImageView alloc]init];
             imgv.frame = CGRectMake(frame.size.width * (i), 0, frame.size.width, frame.size.height);
             NSString *_imgurl = [NSString stringWithFormat:@"%@/%@",NSLocalizedString(@"url_scroll_pic", @""),[_d objectForKey:@"pic"]];
-            NSLog(@" %d : %@",i,_imgurl);
             
             [imgv sd_setImageWithURL:[NSURL URLWithString:_imgurl] placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"image%d.png",0]] options:SDWebImageRefreshCached];
             
