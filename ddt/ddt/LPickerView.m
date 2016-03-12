@@ -40,7 +40,7 @@
     _maskView.alpha = .3;
 //    _maskView.userInteractionEnabled  =NO;
     
-    _bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 280)];
+    _bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 240)];
     _bgView.backgroundColor = [UIColor whiteColor];
     _bgView.layer.cornerRadius = 2;
     _bgView.layer.masksToBounds = YES;
@@ -50,14 +50,14 @@
     _btnCancel.frame = CGRectMake(0, 0, 60, 35);
     [_btnCancel setTitle:@"取消" forState:UIControlStateNormal];
     [_btnCancel setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    _btnCancel.titleLabel.font = [UIFont systemFontOfSize:15];
+    _btnCancel.titleLabel.font = [UIFont systemFontOfSize:18];
     [_bgView addSubview:_btnCancel];
     UIButton*_btnok = [UIButton buttonWithType:UIButtonTypeCustom];
     [_btnok addTarget:self action:@selector(btnok:) forControlEvents:UIControlEventTouchUpInside];
     _btnok.frame = CGRectMake(ScreenWidth - 60, 0, 60, 35);
     [_btnok setTitle:@"确定" forState:UIControlStateNormal];
     [_btnok setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    _btnok.titleLabel.font = [UIFont systemFontOfSize:15];
+    _btnok.titleLabel.font = [UIFont systemFontOfSize:18];
     [_bgView addSubview:_btnok];
     
     _pickView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, 35, ScreenWidth, 216)];

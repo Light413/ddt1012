@@ -32,6 +32,9 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 //    UILabel *dateLabel;
     
     NSString *business;//业务类型
+    
+    BOOL _textviewHasStart;
+    NSString * _yw_content;//业务内容
 }
 @synthesize nameField;
 @synthesize maleBtn;
@@ -54,6 +57,18 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     femaleBtn.selected = NO;
     _pickerViewType = NGSelectDataTypeNone;
     self.itemKey = @"11";
+    
+    
+    UIButton *inputBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    inputBtn.frame = CGRectMake(0, 0, 100, 30);
+    inputBtn.backgroundColor = [UIColor lightGrayColor];
+    [inputBtn setTitle:@"完成" forState:UIControlStateNormal];
+    [inputBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    inputBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [inputBtn addTarget:self action:@selector(inputbtnAction) forControlEvents:UIControlEventTouchUpInside];
+    self.InfoTextView.inputAccessoryView = inputBtn;
+    _yw_content = @"";
+    
     [self showDefaultData];
 }
 
@@ -103,15 +118,13 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     business = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"yewu"]];
     [bussinessSortBtn setTitle:business forState:UIControlStateNormal];
     bussinessSortBtn.titleLabel.numberOfLines = 0;
-//    bussinessSortBtn.titleLabel.font = [UIFont systemFontOfSize:10];
-    
+
     keyWordField.text = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"word"]];
     NSString *content = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"content"]];
     if (![content isEqual:@"(null)"]&&content.length>0) {
         InfoTextView.text = content;
-        typeInLabel.hidden = YES;
     }else{
-        typeInLabel.hidden = NO;
+        [self textviewDetaultDisp:YES];
     }
 
 }
@@ -133,7 +146,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     switch (indexPath.row) {
         case 6:
         {
-            CGSize size = [ToolsClass calculateSizeForText:business :CGSizeMake(CurrentScreenWidth - 100, 300) font:[UIFont systemFontOfSize:14]];
+            CGSize size = [ToolsClass calculateSizeForText:business :CGSizeMake(CurrentScreenWidth - 100, 800) font:[UIFont systemFontOfSize:14]];
             return size.height > 50?size.height + 20:60;
         }break;
         case 8:return 90;break;
@@ -147,17 +160,11 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 }
 
 
--(void)textViewDidChange:(UITextView *)textView{
-    if (textView.text.length>0) {
-        typeInLabel.hidden = YES;
-    }else{
-        typeInLabel.hidden = NO;
-    }
-}
 - (IBAction)birthBtnClick:(id)sender {
     [self initViews];
     [self hideKeyboard];
 }
+
 -(void)hideKeyboard{
     if ([nameField isFirstResponder]) {
         [nameField resignFirstResponder];
@@ -274,10 +281,13 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 }
 
 - (IBAction)bussinessSortBtnClick:(id)sender {
+    __weak typeof(self)weakSelf = self;
+    
     PersonanlBusinessViewController *person = [[PersonanlBusinessViewController alloc]init];
     person.hidesBottomBarWhenPushed = YES;
     person.btnClickBlock = ^(NSString *name){
         [bussinessSortBtn setTitle:name forState:UIControlStateNormal];
+        [weakSelf.tableView reloadData];
     };
     [self.navigationController pushViewController:person animated:YES];
 }
@@ -335,7 +345,8 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     }
     
     NetIsReachable;
-    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"username",nameField.text,@"xm",xb,@"xb",birthBtn.titleLabel.text,@"csrq",weixinField.text,@"weixin",companyField.text,@"company",bussinessSortBtn.titleLabel.text,@"yewu",serviceAreaBtn.titleLabel.text,@"quyu",InfoTextView.text,@"content",keyWordField.text,@"word", nil];
+    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:tel,@"username",nameField.text,@"xm",xb,@"xb",birthBtn.titleLabel.text,@"csrq",weixinField.text,@"weixin",companyField.text,@"company",bussinessSortBtn.titleLabel.text,@"yewu",serviceAreaBtn.titleLabel.text,@"quyu",InfoTextView.text,@"content",keyWordField.text,@"word",self.recommandPersonTF.text,@"tjr", nil];
+    
     NSDictionary *paramDict = [MySharetools getParmsForPostWith:dict];
     [SVProgressHUD showWithStatus:@"数据提交中"];
     RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_adduserinfo", @"") parms:paramDict andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -417,15 +428,12 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     [_btnok setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     _btnok.titleLabel.font = [UIFont systemFontOfSize:15];
     [_bgView addSubview:_btnok];
+    
     datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0, 35, CurrentScreenWidth, 216)];
     datePicker.datePickerMode = UIDatePickerModeDate;
     datePicker.locale = [[NSLocale alloc]initWithLocaleIdentifier:@"zh_CN"];
-//    if ([[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"csrq"] length]>0) {
-//        
-//    }else{
-//        [datePicker setDate:[NSDate date]];
-//    }
-
+    datePicker.maximumDate = [NSDate date];
+    
     
     [datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     [_bgView addSubview:datePicker];
@@ -493,6 +501,50 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     }
 }
 
+
+//textview相关方法
+-(void)inputbtnAction
+{
+    if (!_textviewHasStart || self.InfoTextView.text.length < 1) {
+        [self textviewDetaultDisp:YES];
+    }
+    [self.InfoTextView resignFirstResponder];
+}
+
+-(void)textviewDetaultDisp:(BOOL)has
+{
+//    if (has) {
+//        self.InfoTextView.text = @"请输入你的业务内容和详细描述.";
+//        self.InfoTextView.textColor = [UIColor lightGrayColor];
+//        _textviewHasStart = NO;
+//    }
+//    else
+//    {
+//        self.InfoTextView.text = @"";
+//        self.InfoTextView.textColor = [UIColor blackColor];
+//        _textviewHasStart = YES;
+//    }
+}
+
+#pragma mark -- UITextViewDelegate
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if (!_textviewHasStart) {
+        [self textviewDetaultDisp:NO];
+    }
+}
+
+-(void)textViewDidChange:(UITextView *)textView{
+    
+    if (textView.text == 0) {
+        [self textviewDetaultDisp:YES];
+    }
+}
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+
+    return YES;
+}
 
 
 

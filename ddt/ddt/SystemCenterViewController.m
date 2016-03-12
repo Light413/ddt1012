@@ -17,7 +17,7 @@
 #define KimageName @"imageName"
 #define KlabelName @"labelName"
 
-#define CellHeight  50
+#define CellHeight  55
 
 @interface SystemCenterViewController ()<UITableViewDataSource,UITableViewDelegate>
 {

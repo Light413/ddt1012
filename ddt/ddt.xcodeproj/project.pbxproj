@@ -1634,7 +1634,7 @@
 				TargetAttributes = {
 					A17B7CED1B43F867003CF895 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 8R29X3H9MY;
+						DevelopmentTeam = 9B5F6V769Z;
 					};
 					A17B7D061B43F867003CF895 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -2003,7 +2003,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zhiyong zheng (DE3P6YDHH8)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2023,7 +2023,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0759c63d-8961-4153-91cd-dd0e8aa4eedb";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2060,7 +2060,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "5ebb9ba5-e406-4d9f-9144-564def68b421";
+				PROVISIONING_PROFILE = "827eafe4-1d74-4e14-afe4-c2ac3bcf74af";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -2075,7 +2075,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zhiyong zheng (DE3P6YDHH8)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2098,9 +2098,9 @@
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/YiXin",
 					"$(PROJECT_DIR)/ddt/UMAnalytics_Sdk_3.6.7",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.light.ddt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.airwolf.dyt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0759c63d-8961-4153-91cd-dd0e8aa4eedb";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
@@ -2112,7 +2112,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2136,9 +2136,9 @@
 					"$(PROJECT_DIR)/ddt/UMSocial_Sdk_Extra_Frameworks/YiXin",
 					"$(PROJECT_DIR)/ddt/UMAnalytics_Sdk_3.6.7",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.light.ddt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.airwolf.dyt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5ebb9ba5-e406-4d9f-9144-564def68b421";
+				PROVISIONING_PROFILE = "827eafe4-1d74-4e14-afe4-c2ac3bcf74af";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;

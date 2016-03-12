@@ -20,7 +20,7 @@
     
     id _tableview1_selectedObj;//tableview1 选中的对象
     NSIndexPath* _tableview1_selectedIndex;//tableview1选中对象的索引
-    NSIndexPath* _tableview1_selectedIndex_last;
+    NSIndexPath* _tableview1_selectedIndex_last;//记录上一次的状态
     
     id _tableview2_selectedObj;//tableview2 选中的对象 ,若无tableview2 则为nil
     NSIndexPath* _tableview2_selectedIndex;//tableview2选中对象的索引
@@ -124,6 +124,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellReuseIdentifier"];
         cell.textLabel.font = [UIFont systemFontOfSize:13];
+        cell.selectedBackgroundView = nil;
     }
     for (id _obj in cell.subviews) {
         if ([_obj isKindOfClass:[UILabel class]]) {
@@ -207,6 +208,7 @@
     if (tableView.tag == 300) {
         _tableview1_selectedObj =[_dataSource objectAtIndex:indexPath.row];
         _tableview1_selectedIndex = indexPath;
+        _tableview1_selectedIndex_last = indexPath;
         
         if (_numberTableview == 1) {
             if ([self.delegate respondsToSelector:@selector(baseView:didSelectObj:atIndex:secondObj:atIndex:)]) {
@@ -228,7 +230,7 @@
         _tableview2_selectedObj = [_dataSource_2 objectAtIndex:indexPath.row];
         _tableview2_selectedIndex = indexPath;
         if ([self.delegate respondsToSelector:@selector(baseView:didSelectObj:atIndex:secondObj:atIndex:)]) {
-            [self.delegate baseView:self didSelectObj:_tableview1_selectedObj atIndex:_tableview1_selectedIndex secondObj:_tableview2_selectedObj atIndex:_tableview2_selectedIndex];
+            [self.delegate baseView:self didSelectObj:_tableview1_selectedObj atIndex:_tableview1_selectedIndex secondObj:_tableview2_selectedObj atIndex:_tableview2_selectedIndex];return;
         }
         
         if (_hasSelecetedIndexArr == nil) {
@@ -268,20 +270,6 @@
 }
 
 
-
-//-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-////    cell.accessoryType = UITableViewCellAccessoryNone;
-//}
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 @end
+
+

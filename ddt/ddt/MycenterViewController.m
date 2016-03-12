@@ -20,7 +20,8 @@
 #import "MeInfoCell.h"
 
 #define HeaderViewHeight 120.0
-#define iconHeight 15.0
+#define CellDefaultHeight   55
+
 #define KimageName @"imageName"
 #define KlabelName @"labelName"
 
@@ -99,7 +100,7 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
     if (indexPath.section ==0) {
         return 120;
     }
-    return 50;
+    return CellDefaultHeight;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -163,7 +164,7 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
     cell.textLabel.text = _arr[indexPath.row][KlabelName];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     UIImageView *dimageview = [[UIImageView alloc] init];
-    dimageview.frame=CGRectMake(0, 49, CurrentScreenWidth, 1);
+    dimageview.frame=CGRectMake(0, CellDefaultHeight - 1, CurrentScreenWidth, 1);
     dimageview.backgroundColor=RGBA(215, 215, 215, 1);
     [cell.contentView addSubview:dimageview];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

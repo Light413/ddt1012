@@ -142,8 +142,7 @@
 {
     NSInteger _index;
     NSLog(@"obj1 : %@ ---- obj2 :%@",obj1,obj2);
-//    [0]	(null)	@"ID" : @"719"
-//    [1]	(null)	@"NAME" : @"黄浦区"
+
     NSString *_title =obj2?[obj2 objectForKey:@"NAME"]:([obj1 isKindOfClass:[NSDictionary class]] ? [obj1 objectForKey:@"NAME"]:obj1);
     
     if (index2 == nil) {
