@@ -46,14 +46,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <imageView key="tableHeaderView" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="vST-fE-qQ8">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="165"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <sections>
                             <tableViewSection id="rZ8-ZU-3CF">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="NBN-9r-WGo">
-                                        <rect key="frame" x="0.0" y="160" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="165" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NBN-9r-WGo" id="FYC-gu-M7l">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -86,7 +86,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="RRA-Vw-bAd">
-                                        <rect key="frame" x="0.0" y="204" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="209" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RRA-Vw-bAd" id="FNg-2r-vsp">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -119,7 +119,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="R1K-we-l9o">
-                                        <rect key="frame" x="0.0" y="248" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="253" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R1K-we-l9o" id="hJq-dg-YiG">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -151,33 +151,34 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="7HR-Lg-2HY">
-                                        <rect key="frame" x="0.0" y="292" width="600" height="50"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="7HR-Lg-2HY">
+                                        <rect key="frame" x="0.0" y="297" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7HR-Lg-2HY" id="KBh-pE-NcM">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="311" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJb-eT-HPr">
-                                                    <rect key="frame" x="210" y="0.0" width="50" height="50"/>
+                                                    <rect key="frame" x="58" y="20" width="40" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="1ta-vu-dwu"/>
-                                                        <constraint firstAttribute="height" constant="50" id="K7H-qf-eWu"/>
+                                                        <constraint firstAttribute="width" constant="40" id="1ta-vu-dwu"/>
+                                                        <constraint firstAttribute="height" constant="40" id="K7H-qf-eWu"/>
                                                     </constraints>
-                                                    <state key="normal" image="cell_phone"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <state key="normal" image="cell_phone2"/>
                                                     <connections>
                                                         <action selector="btnAction:" destination="keL-xr-Wxr" eventType="touchUpInside" id="b2F-kx-fHR"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" tag="312" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZxK-s2-aTq">
-                                                    <rect key="frame" x="275" y="0.0" width="50" height="50"/>
+                                                    <rect key="frame" x="280" y="20" width="40" height="40"/>
                                                     <state key="normal" image="icon_msg"/>
                                                     <connections>
                                                         <action selector="btnAction:" destination="keL-xr-Wxr" eventType="touchUpInside" id="0HY-pd-Hy7"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" tag="313" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRr-rO-tXP">
-                                                    <rect key="frame" x="340" y="0.0" width="50" height="50"/>
+                                                    <rect key="frame" x="502" y="20" width="40" height="40"/>
                                                     <state key="normal" image="cell_love1_no"/>
                                                     <state key="selected" image="cell_love1_yes"/>
                                                     <connections>
@@ -186,13 +187,16 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="IRr-rO-tXP" secondAttribute="trailing" constant="50" id="1ke-n5-OPY"/>
                                                 <constraint firstItem="ZxK-s2-aTq" firstAttribute="width" secondItem="IJb-eT-HPr" secondAttribute="width" id="2OK-Xt-g2l"/>
+                                                <constraint firstItem="ZxK-s2-aTq" firstAttribute="centerY" secondItem="KBh-pE-NcM" secondAttribute="centerY" id="2wv-pE-zCT"/>
                                                 <constraint firstItem="ZxK-s2-aTq" firstAttribute="centerY" secondItem="KBh-pE-NcM" secondAttribute="centerY" id="47w-PV-FDv"/>
                                                 <constraint firstItem="IJb-eT-HPr" firstAttribute="centerY" secondItem="KBh-pE-NcM" secondAttribute="centerY" id="7eV-pr-IN0"/>
                                                 <constraint firstItem="ZxK-s2-aTq" firstAttribute="centerX" secondItem="KBh-pE-NcM" secondAttribute="centerX" id="7p2-xI-jxk"/>
                                                 <constraint firstItem="IRr-rO-tXP" firstAttribute="height" secondItem="IJb-eT-HPr" secondAttribute="height" id="AgR-Ba-r3W"/>
                                                 <constraint firstItem="ZxK-s2-aTq" firstAttribute="leading" secondItem="IJb-eT-HPr" secondAttribute="trailing" constant="15" id="BZI-lo-dya"/>
                                                 <constraint firstItem="IRr-rO-tXP" firstAttribute="centerY" secondItem="KBh-pE-NcM" secondAttribute="centerY" id="N6p-13-aeP"/>
+                                                <constraint firstItem="IJb-eT-HPr" firstAttribute="leading" secondItem="KBh-pE-NcM" secondAttribute="leadingMargin" constant="50" id="XWN-9l-HoS"/>
                                                 <constraint firstItem="IJb-eT-HPr" firstAttribute="leading" secondItem="KBh-pE-NcM" secondAttribute="leadingMargin" constant="109" id="kMu-VL-WFt"/>
                                                 <constraint firstItem="IRr-rO-tXP" firstAttribute="width" secondItem="IJb-eT-HPr" secondAttribute="width" id="m9l-eH-p9p"/>
                                                 <constraint firstItem="ZxK-s2-aTq" firstAttribute="height" secondItem="IJb-eT-HPr" secondAttribute="height" id="nL2-H2-Ji8"/>
@@ -201,6 +205,9 @@
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="kMu-VL-WFt"/>
+                                                    <exclude reference="47w-PV-FDv"/>
+                                                    <exclude reference="BZI-lo-dya"/>
+                                                    <exclude reference="ySy-QY-sSn"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -235,7 +242,7 @@
     <resources>
         <image name="cell_love1_no" width="22" height="22"/>
         <image name="cell_love1_yes" width="22" height="22"/>
-        <image name="cell_phone" width="25" height="25"/>
+        <image name="cell_phone2" width="25" height="25"/>
         <image name="icon_msg" width="25" height="25"/>
     </resources>
 </document>

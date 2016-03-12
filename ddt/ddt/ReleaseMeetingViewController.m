@@ -35,19 +35,19 @@
 }
 - (void)moreAction:(UIBarButtonItem *)barButtonItem{
     if (self.titleField.text.length==0) {
-        [SVProgressHUD showErrorWithStatus:@"请输入会议标题"];
+        [SVProgressHUD showInfoWithStatus:@"请输入会议标题"];
         return;
     }
     if(self.addressField.text.length == 0){
-        [SVProgressHUD showErrorWithStatus:@"请输入会议地点"];
+        [SVProgressHUD showInfoWithStatus:@"请输入会议地点"];
         return;
     }
     if ([self.meetingTimeBtn.titleLabel.text isEqual:@"选择会议时间"]) {
-        [SVProgressHUD showErrorWithStatus:@"请选择会议时间"];
+        [SVProgressHUD showInfoWithStatus:@"请选择会议时间"];
         return;
     }
     if (self.introTextView.text.length == 0) {
-        [SVProgressHUD showErrorWithStatus:@"请录入会议说明"];
+        [SVProgressHUD showInfoWithStatus:@"请录入会议说明"];
         return;
     }
     
@@ -129,6 +129,8 @@
     datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0, 35, CurrentScreenWidth, 216)];
     datePicker.datePickerMode = UIDatePickerModeDateAndTime;
     datePicker.locale = [[NSLocale alloc]initWithLocaleIdentifier:@"zh_CN"];
+    datePicker.minimumDate = [NSDate date];
+    
     //[datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     [_bgView addSubview:datePicker];
     [self.window addSubview:_bgView];

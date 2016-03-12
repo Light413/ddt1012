@@ -20,7 +20,7 @@
 #import "MeInfoCell.h"
 
 #define HeaderViewHeight 120.0
-#define CellDefaultHeight   55
+#define CellDefaultHeight   50
 
 #define KimageName @"imageName"
 #define KlabelName @"labelName"
@@ -88,10 +88,10 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
     myTableView.dataSource = self;
     myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:myTableView];
-//    myTableView.hidden = YES;
     [myTableView setContentInset:UIEdgeInsetsMake(5, 0, 20, 0)];
     myTableView.showsVerticalScrollIndicator = NO;
-
+    myTableView.bounces = NO;
+    
     [myTableView registerNib:[UINib nibWithNibName:@"MeInfoCell" bundle:nil] forCellReuseIdentifier:MeInfoCellID];
 }
 

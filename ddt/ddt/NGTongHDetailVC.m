@@ -127,8 +127,13 @@ const float border_w = 0.6;
     self.ywsmLab.font = _f;
     self.telLab.font = [UIFont boldSystemFontOfSize:18];
     self.telLab.textColor = Color_3;
-    self.lable_1.textColor = Color_1;
-    self.lable_2.textColor = Color_3;
+//    self.lable_1.textColor = Color_1;
+//    self.lable_2.textColor = Color_3;
+    
+    self.lable_1.textColor = [UIColor darkGrayColor];
+    self.lable_2.textColor = [UIColor darkGrayColor];
+    self.lable_3.textColor = [UIColor darkGrayColor];
+    
     self.lable_2.font = [UIFont boldSystemFontOfSize:14];
     
     //...初始值
@@ -265,7 +270,7 @@ const float border_w = 0.6;
     }
 }
 
-#define heightValue 60
+#define heightValue 70
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -287,7 +292,7 @@ const float border_w = 0.6;
         }break;
         case 3:
         {
-            _h = 0 ;
+            _h = 100 ;
             
         }break;
         default:return 0;break;

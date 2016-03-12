@@ -119,15 +119,15 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section ==0) {
-        return 40;
+        return 50;
     }
-    return 10;
+    return 15;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (section ==1) {
-        return 30;
+        return 40;
     }
     return 1;
 }
@@ -135,9 +135,9 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (section ==0) {
-        UILabel *_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, 30)];
+        UILabel *_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, 50)];
         _lab.text = _s13;
-        _lab.font = [UIFont boldSystemFontOfSize:16];
+        _lab.font = [UIFont boldSystemFontOfSize:18];
         _lab.textAlignment = NSTextAlignmentCenter;
         _lab.textColor = [UIColor colorWithRed:0.925 green:0.675 blue:0.173 alpha:1];
         _lab.backgroundColor = [UIColor whiteColor];

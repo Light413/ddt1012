@@ -580,7 +580,7 @@ const float cellDefaultHeight = 80.0;
         case NGVCTypeId_4:return 90;//_h + 40 > 80?_h + 40:80;
             break;
             
-        case NGVCTypeId_5:return cellDefaultHeight;break;
+        case NGVCTypeId_5:return 85;break;
         default:break;
     }
     

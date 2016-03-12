@@ -32,6 +32,8 @@
     [super viewDidLoad];
     self.title = @"系统中心";
 
+    [self.navigationController setNavigationBarHidden:NO];
+    
     [self creatTableView];
 //    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]init];
 //    [attr addAttribute:(NSString*)kCTForegroundColorAttributeName value:(id)[UIColor redColor].CGColor range:NSMakeRange(5, 10)];
