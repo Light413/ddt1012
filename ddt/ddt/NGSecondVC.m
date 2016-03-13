@@ -193,6 +193,9 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
             _common_list_url  =NSLocalizedString(@"url_qiuzhi", @"");
             _selectedArea = @"";
             _selectedType = @"";
+            _selectedSex = @"";
+            _selectedJingYan = @"";
+            _selectedZhiWei = @"";
         } break;
 
         default: break;
@@ -219,17 +222,18 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         case NGVCTypeId_2:
         case NGVCTypeId_1://,@"121.68571511,31.19302052"-同行
         {
-            NSDate *localDate = [NSDate date]; //获取当前时间
-            NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
-            NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",tel,timeString];
-            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex:@"",@"xb",@"121.68571511",@"mapx",@"31.19302052",@"mapy",token,@"token",nil];
+            //tel,@"username",tel,@"mobile",
+            NSString * _lat = [[NSUserDefaults standardUserDefaults]objectForKey:CURRENT_LOCATION_LAT]?[[NSUserDefaults standardUserDefaults]objectForKey:CURRENT_LOCATION_LAT]:@"31.19302052";
+            NSString *_log = [[NSUserDefaults standardUserDefaults]objectForKey:CURRENT_LOCATION_LOG]?[[NSUserDefaults standardUserDefaults]objectForKey:CURRENT_LOCATION_LOG] :@"121.68571511";
+            
+            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys: _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex?_selectedSex:@"",@"xb",_log,@"mapx",_lat,@"mapy",nil];
         }break;
             
         case NGVCTypeId_4://搜单子
             _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username",tel,@"mobile", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedTime,@"time",@"10",@"psize",@(_pageNum),@"pnum",nil];
             break;
         case NGVCTypeId_5://招聘
-            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",@"",@"money",@"",@"old",@"",@"work",@"10",@"psize",@(_pageNum),@"pnum",nil]; break;
+            _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", _selectedArea?_selectedArea:@"",@"quyu",_selectedType?_selectedType:@"",@"yewu",_searchBar.text.length > 0?_searchBar.text:@"",@"word",_selectedSex,@"money",_selectedJingYan,@"old",_selectedZhiWei,@"work",@"10",@"psize",@(_pageNum),@"pnum",nil]; break;
         default:break;
     }
 }
@@ -302,7 +306,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:_common_list_url parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         _pageNum ==1?({[_tableView.header endRefreshing];}):([_tableView.footer endRefreshing]);
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
+            if ([[responseObject objectForKey:@"result"]integerValue] ==0 ) {
                 if (_pageNum ==1) { [_common_list_dataSource removeAllObjects];}
                 NSArray *dataarr = [responseObject objectForKey:@"data"];
                 if (dataarr) {
@@ -316,6 +320,11 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
                     [_common_list_dataSource addObjectsFromArray:dataarr];
                     [_tableView reloadData];
                 }
+            }
+            else if ([[responseObject objectForKey:@"result"]integerValue] ==2)
+            {
+                if (_pageNum ==1) { [_common_list_dataSource removeAllObjects];}
+                [_tableView reloadData];
             }
             else
             {
@@ -405,8 +414,11 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
         }break;
         
         case 5:
-        case 6:
             if (index ==3) {
+                if ([str isEqualToString:@"全部"]) {
+                    _selectedSex = @"";
+                }
+                else
                _selectedSex = str;
             }
             else if (index ==4)

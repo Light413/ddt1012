@@ -91,7 +91,16 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [[AFNetworkActivityIndicatorManager sharedManager]decrementActivityCount];
             if (task && task.responseSuccessblock) {
-                task.responseSuccessblock(operation,responseObject);
+                if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                    if ([[responseObject objectForKey:@"result"] integerValue] ==9) {
+                        [[MySharetools shared]changeRootVcWithLogin:YES];
+                    }
+                    else
+                    {
+                        task.responseSuccessblock(operation,responseObject);
+                    }
+                }
+
             }
         });
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

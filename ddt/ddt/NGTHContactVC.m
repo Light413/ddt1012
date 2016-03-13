@@ -82,12 +82,7 @@ static NSString * thcontactCellReuseId = @"thcontactCellReuseId";
         return;
     }
 
-//    NSString *tel = [[MySharetools shared]getPhoneNumber];
-//    NSDate *localDate = [NSDate date]; //获取当前时间
-//    NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
-//    NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",tel,timeString];
-
-  NSDictionary*  _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys: @"",@"quyu",@"",@"yewu",@"10",@"psize",@(1),@"pnum",@"",@"word",nil];
+  NSDictionary*  _common_list_request_parm = [NSDictionary dictionaryWithObjectsAndKeys: @"",@"quyu",@"",@"yewu",@"10",@"psize",@(_pageNum),@"pnum",@"",@"word",nil];
     NSDictionary *_d = [MySharetools getParmsForPostWith:_common_list_request_parm withToken:YES];
     
     RequestTaskHandle *task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_jiaoliuhui", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -137,17 +132,42 @@ static NSString * thcontactCellReuseId = @"thcontactCellReuseId";
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _dataArray.count;
+    return _dataArray.count==0?1:_dataArray.count;
 }
 
 
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-     NGTHContactCell *cell = [tableView dequeueReusableCellWithIdentifier:thcontactCellReuseId forIndexPath:indexPath];
+     
+     UITableViewCell * cell;
+     if (_dataArray.count ==0) {
+         static NSString *_nodatareusecellid = @"_nodatareusecellid";
+         cell = [tableView dequeueReusableCellWithIdentifier:_nodatareusecellid];
+         if (cell ==nil) {
+             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_nodatareusecellid];
+             cell.textLabel.text = @"没有数据?\n下拉刷新试试\n\n\n\n\n\n";
+             cell.textLabel.numberOfLines = 0;
+             cell.textLabel.textAlignment = NSTextAlignmentCenter;
+             cell.textLabel.font = [UIFont systemFontOfSize:18];
+             cell.textLabel.textColor = [UIColor lightGrayColor];
+             cell.userInteractionEnabled = NO;
+         }
+         return cell;
+     }
+     
+     cell = [tableView dequeueReusableCellWithIdentifier:thcontactCellReuseId forIndexPath:indexPath];
      NSDictionary *dic = [_dataArray objectAtIndex:indexPath.row];
-     [cell setCellWith:dic];
+     [(NGTHContactCell *)cell setCellWith:dic];
  
      return cell;
  }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (_dataArray.count ==0) {
+        return tableView.frame.size.height;
+    }
+    return 85;
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

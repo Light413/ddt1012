@@ -20,12 +20,12 @@
 #import "NewAddView.h"
 #import "ScrollPicView.h"
 
-#define ScrollViewHeight    (110 * SCREEN_SCALE)
-#define AddViewHeight       80
+#define ScrollViewHeight    (110 * SCREEN_SCALE > 180?180:110 * SCREEN_SCALE)
+#define AddViewHeight       (80 + SCREEN_SCALE * 10)
 #define Btn_share_height    40
-#define Btn_qudao_height    60
+#define Btn_qudao_height    (60 + SCREEN_SCALE * 5)
 
-#define CollectionHeaderViewHight (ScrollViewHeight + AddViewHeight +Btn_share_height + Btn_qudao_height+20)
+#define CollectionHeaderViewHight (ScrollViewHeight + AddViewHeight +Btn_share_height + Btn_qudao_height+20 + SCREEN_SCALE *2)
 
 #define FootRecordData @"FootRecordData"
 #define TapStr @"最近访问的类别会出现在这里"
@@ -476,7 +476,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
         
         //分享按钮
         UIButton *_shareBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-        _shareBtn.frame = CGRectMake(CurrentScreenWidth -70,_todaynewadd.bottom -2, 60, Btn_share_height);//40
+        _shareBtn.frame = CGRectMake(CurrentScreenWidth -70,_todaynewadd.bottom -2 , 60, Btn_share_height);//40
         [reuseView addSubview:_shareBtn];
         [_shareBtn setTitle:@"分享" forState:UIControlStateNormal];
         [_shareBtn setImage:[UIImage imageNamed:@"share_icon"] forState:UIControlStateNormal];
@@ -490,13 +490,13 @@ typedef NS_ENUM(NSInteger ,NextvcType)
         float _btn_w = (CurrentScreenWidth -30)/ 2.0;
         for (int i =0; i<2; i++) {
             UIButton *btnport = [UIButton buttonWithType:UIButtonTypeCustom];//70
-            btnport.frame = CGRectMake(10+(_btn_w + 10) *i, _shareBtn.bottom + 5, _btn_w, Btn_qudao_height);//60
+            btnport.frame = CGRectMake(10+(_btn_w + 10) *i, _shareBtn.bottom + 5+SCREEN_SCALE *2, _btn_w, Btn_qudao_height);//60
             [reuseView addSubview:btnport];
             btnport.tag = 17 + i;
             btnport.layer.cornerRadius = 5;
             btnport.layer.masksToBounds = YES;
             [btnport setTintColor:[UIColor whiteColor]];
-            btnport.titleLabel.font = [UIFont systemFontOfSize:14];
+            btnport.titleLabel.font = [UIFont systemFontOfSize:15];
             [btnport setImageEdgeInsets:UIEdgeInsetsMake(10, 0, 10, _btn_w - 60)];
             [btnport setTitleEdgeInsets:UIEdgeInsetsMake(0, -55, 0, 5)];
             [btnport setShowsTouchWhenHighlighted:YES];

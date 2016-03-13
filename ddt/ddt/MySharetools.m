@@ -211,13 +211,17 @@ static MySharetools *instance = nil;
         NSString *timeString = [NSString stringWithFormat:@"%lld", (long long)[localDate timeIntervalSince1970]];  //转化为UNIX时间戳
         NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",tel,timeString];
         [_pars setObject:token forKey:@"token"];
-        
+        if (![[MySharetools shared]isSessionid]) {
+            [_pars setObject:@"" forKey:@"mobile"];
+            [_pars setObject:@"" forKey:@"username"];
+        }
         NSString *jsonstr = [NSString jsonStringFromDictionary:_pars];
         new = [NSDictionary dictionaryWithObjectsAndKeys:jsonstr,@"jsondata", nil];
     }
     
     else
     {
+
         NSString * session = [[self alloc]getsessionid];//成功登陆
         NSString *jsonstr = [NSString jsonStringFromDictionary:_pars];
         new = [NSDictionary dictionaryWithObjectsAndKeys:jsonstr,@"jsondata",session,@"session", nil];

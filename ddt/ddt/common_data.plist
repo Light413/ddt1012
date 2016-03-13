@@ -117,6 +117,12 @@
 	<array>
 		<dict>
 			<key>ID</key>
+			<string>01</string>
+			<key>NAME</key>
+			<string>全部</string>
+		</dict>
+		<dict>
+			<key>ID</key>
 			<string>10</string>
 			<key>NAME</key>
 			<string>3000以下</string>

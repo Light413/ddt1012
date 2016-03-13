@@ -72,7 +72,7 @@ const float border_w = 0.6;
     self.yewude_cell.layer.borderWidth = border_w;
     
     
-    [self loadData];
+//    [self loadData];
     [self initSubviews];
     [self initHeaderView];
 }
