@@ -23,7 +23,7 @@
 #define ScrollViewHeight    (110 * SCREEN_SCALE > 180?180:110 * SCREEN_SCALE)
 #define AddViewHeight       (80 + SCREEN_SCALE * 10)
 #define Btn_share_height    40
-#define Btn_qudao_height    (60 + SCREEN_SCALE * 5)
+#define Btn_qudao_height    (55 + SCREEN_SCALE * 5)
 
 #define CollectionHeaderViewHight (ScrollViewHeight + AddViewHeight +Btn_share_height + Btn_qudao_height+20 + SCREEN_SCALE *2)
 
