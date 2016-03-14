@@ -60,8 +60,8 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     
     
     UIButton *inputBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    inputBtn.frame = CGRectMake(0, 0, 100, 30);
-    inputBtn.backgroundColor = [UIColor lightGrayColor];
+    inputBtn.frame = CGRectMake(0, 0, 100, 35);
+    inputBtn.backgroundColor = KeyBoardColor;
     [inputBtn setTitle:@"完成" forState:UIControlStateNormal];
     [inputBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     inputBtn.titleLabel.font = [UIFont systemFontOfSize:15];

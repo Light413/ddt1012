@@ -51,8 +51,8 @@
     [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 10, 0)];
     
     UIButton *inputBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    inputBtn.frame = CGRectMake(0, 0, 100, 30);
-    inputBtn.backgroundColor = [UIColor lightGrayColor];
+    inputBtn.frame = CGRectMake(0, 0, 100, 35);
+    inputBtn.backgroundColor = KeyBoardColor;
     [inputBtn setTitle:@"完成" forState:UIControlStateNormal];
     [inputBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     inputBtn.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -221,7 +221,14 @@
     if (textView.text == 0) {
         [self textviewDetaultDisp:YES];
     }
+    else
+    {
+        if (textView.text.length > 200) {
+            textView.text = [textView.text substringToIndex:200];
+        }
+    }
 }
+
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     
     return YES;
@@ -264,7 +271,7 @@
             CGSize size = [ToolsClass calculateSizeForText:_yewu_type :CGSizeMake(CurrentScreenWidth - 100, 300) font:[UIFont systemFontOfSize:14]];
             return size.height > 50?size.height + 20:60;
         }break;
-        case 11:return 80;break;
+        case 11:return 100;break;
         default: break;
     }
     

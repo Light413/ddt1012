@@ -124,7 +124,8 @@
     }
     if (indexPath.row ==4) {
         //给我评分
-        
+       NSString *baseUrl = @"https://itunes.apple.com/cn/app/qq/id444934666?mt=8";
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:baseUrl]];
     }
     
 }

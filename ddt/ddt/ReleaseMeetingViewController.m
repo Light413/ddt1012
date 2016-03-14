@@ -26,7 +26,15 @@
     
     [self createRightBarItemWithBackTitle:@"发布" andImageName:nil];
     self.introTextView.delegate = self;
-    // Do any additional setup after loading the view.
+    
+    UIButton *inputBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    inputBtn.frame = CGRectMake(0, 0, 100, 35);
+    inputBtn.backgroundColor = KeyBoardColor;
+    [inputBtn setTitle:@"完成" forState:UIControlStateNormal];
+    [inputBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    inputBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [inputBtn addTarget:self action:@selector(inputbtnAction) forControlEvents:UIControlEventTouchUpInside];
+    self.introTextView.inputAccessoryView = inputBtn;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -134,16 +142,6 @@
     //[datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     [_bgView addSubview:datePicker];
     [self.window addSubview:_bgView];
-    
-    
-    UIButton *inputBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    inputBtn.frame = CGRectMake(0, 0, 100, 30);
-    inputBtn.backgroundColor = [UIColor lightGrayColor];
-    [inputBtn setTitle:@"完成" forState:UIControlStateNormal];
-    [inputBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    inputBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [inputBtn addTarget:self action:@selector(inputbtnAction) forControlEvents:UIControlEventTouchUpInside];
-    self.introTextView.inputAccessoryView = inputBtn;
 }
 
 //textview相关方法

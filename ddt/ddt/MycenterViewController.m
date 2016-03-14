@@ -42,7 +42,7 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
     [super viewWillAppear:YES];
     
     [MobClick beginLogPageView:@"Me-Page"];
-//    [myTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    [myTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

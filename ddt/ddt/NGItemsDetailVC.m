@@ -94,6 +94,9 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     UIImage *img2 = [img1 stretchableImageWithLeftCapWidth:5 topCapHeight:5];
     [self.btn_search_dz setBackgroundImage:img2 forState:UIControlStateNormal];
     [self.btn_search_th setBackgroundImage:img2 forState:UIControlStateNormal];
+    
+    _btn_normal.selected = YES;
+    
 }
 
 -(void)awakeFromNib

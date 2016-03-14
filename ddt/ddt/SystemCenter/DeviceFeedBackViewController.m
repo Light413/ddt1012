@@ -31,11 +31,11 @@
     // Do any additional setup after loading the view.
     
     UIButton *inputBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    inputBtn.frame = CGRectMake(0, 0, 100, 30);
-    inputBtn.backgroundColor = [UIColor lightGrayColor];
+    inputBtn.frame = CGRectMake(0, 0, 100, 40);
+    inputBtn.backgroundColor = KeyBoardColor;
     [inputBtn setTitle:@"完成" forState:UIControlStateNormal];
     [inputBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    inputBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    inputBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [inputBtn addTarget:self action:@selector(inputbtnAction) forControlEvents:UIControlEventTouchUpInside];
     self.deviceTextView.inputAccessoryView = inputBtn;
     
@@ -74,8 +74,10 @@
     if (textView.text.length<=100) {
         wordNumLabel.text = [NSString stringWithFormat:@"%ld/100",textView.text.length];
     }else{
+        textView.text = [textView.text substringToIndex:100];
         wordNumLabel.text = @"100/100";
-        deviceTextView.editable = NO;
+        UIAlertView *_alert = [[UIAlertView alloc]initWithTitle:nil message:@"输入内容长度不得大于100" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [_alert show];
     }
 }
 

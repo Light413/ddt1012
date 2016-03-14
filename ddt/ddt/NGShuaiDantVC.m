@@ -68,8 +68,8 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     self.btn_area.titleLabel.numberOfLines = 0;
     
     UIButton *inputBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    inputBtn.frame = CGRectMake(0, 0, 100, 30);
-    inputBtn.backgroundColor = [UIColor lightGrayColor];
+    inputBtn.frame = CGRectMake(0, 0, 100, 35);
+    inputBtn.backgroundColor = KeyBoardColor;
     [inputBtn setTitle:@"完成" forState:UIControlStateNormal];
     [inputBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     inputBtn.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -103,7 +103,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     else
     {
         self.textview.text = @"";
-        self.textview.textColor = [UIColor blackColor];
+        self.textview.textColor = [UIColor darkGrayColor];
             _textviewHasStart = YES;
     }
 }
@@ -348,6 +348,9 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     if (textView.text.length<=100) {
         self.textviewNumLab.text = [NSString stringWithFormat:@"%ld/100",textView.text.length];
     }else{
+        textView.text = [textView.text substringToIndex:100];
+        UIAlertView *_alertv = [[UIAlertView alloc]initWithTitle:nil message:@"输入内容长度不得大于100" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [_alertv show];
         self.textviewNumLab.text = @"100/100";
     }
 }
