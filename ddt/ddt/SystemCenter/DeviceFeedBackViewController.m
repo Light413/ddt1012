@@ -61,6 +61,9 @@
 {
     return 1;
 }
+
+
+#pragma mark -- UITextViewDelegate
 -(void)textViewDidChange:(UITextView *)textView{
     if (textView.text.length>0) {
         holderLabel.hidden = YES;
@@ -74,16 +77,26 @@
         wordNumLabel.text = @"100/100";
         deviceTextView.editable = NO;
     }
-    
+}
 
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    NSLog(@"textViewDidEndEditing");
 }
+
+
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    if (range.location>=100) {
-        return NO;
-    }else{
-        return YES;
-    }
+//    if (range.location>=100) {
+//        return NO;
+//    }else{
+//        return YES;
+//    }
+    
+    return YES;
 }
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

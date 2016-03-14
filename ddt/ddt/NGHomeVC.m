@@ -496,7 +496,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
             btnport.layer.cornerRadius = 5;
             btnport.layer.masksToBounds = YES;
             [btnport setTintColor:[UIColor whiteColor]];
-            btnport.titleLabel.font = [UIFont systemFontOfSize:15];
+            btnport.titleLabel.font = [UIFont systemFontOfSize:14];
             [btnport setImageEdgeInsets:UIEdgeInsetsMake(10, 0, 10, _btn_w - 60)];
             [btnport setTitleEdgeInsets:UIEdgeInsetsMake(0, -55, 0, 5)];
             [btnport setShowsTouchWhenHighlighted:YES];

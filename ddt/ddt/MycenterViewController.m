@@ -42,7 +42,7 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
     [super viewWillAppear:YES];
     
     [MobClick beginLogPageView:@"Me-Page"];
-    [myTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+//    [myTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -357,6 +357,8 @@ static NSString * MeInfoCellID = @"MeInfoCellID";
                 //...设置当前头像的图片
                 UIImage *_ig = [[UIImage alloc]initWithData:dataImage];
                 _user_icon_img.image = _ig;
+
+                [myTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
                 
                 NSString *imageFile = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg",[[MySharetools shared]getPhoneNumber]]];
                 [UIImageJPEGRepresentation(_ig, 1.0f) writeToFile:imageFile atomically:YES];

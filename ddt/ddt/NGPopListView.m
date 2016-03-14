@@ -11,6 +11,7 @@
 #define BtnNormalColor  [UIColor colorWithRed:0.749 green:0.792 blue:0.859 alpha:1]
 #define BtnSelectColer  [UIColor colorWithRed:0.808 green:0.855 blue:0.918 alpha:0.5]
 #define BtnHeight 40
+#define HeightToBottom  70 //距离底部的高度
 
 @implementation NGPopListView
 {
@@ -60,6 +61,9 @@
 -(void)btnAction:(UIButton*)btn
 {
     if (btn.selected) {
+        btn.selected = NO;
+        btn.backgroundColor = BtnNormalColor;
+        [self disappear];
         return;
     }
     for (UIView *_v in self.subviews) {
@@ -99,7 +103,7 @@
     CGRect rec = _listView.frame;
     
     float _maxHeigt = [self.delegate popListView:self numberOfRowsWithIndex:_selectedBtnTag - 1000] * 44.0 ;
-    _maxHeigt = _maxHeigt >_maskView.frame.size.height - 60? _maskView.frame.size.height - 60:_maxHeigt;
+    _maxHeigt = _maxHeigt >_maskView.frame.size.height - HeightToBottom? _maskView.frame.size.height - HeightToBottom:_maxHeigt;
     
     rec.size.height = _maxHeigt + 2;
     [UIView animateWithDuration:0.3 animations:^{
