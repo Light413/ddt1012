@@ -9,16 +9,20 @@
 #import "NGSearchCitiesVC.h"
 #import "ChineseToPinyin.h"
 
-@interface NGSearchCitiesVC ()<UISearchBarDelegate>
+#define DefaultBgColor [UIColor colorWithRed:0.922 green:0.922 blue:0.922 alpha:1]
+
+@interface NGSearchCitiesVC ()<UISearchBarDelegate,UISearchDisplayDelegate>
 {
     NSArray *_allcity;
     NSArray *_searchResultArr;
     
     NSMutableArray *_allKey;
     NSMutableDictionary *_dataSourceDic;
+    
 }
 
 @property(nonatomic,assign)BOOL isSearchStatus;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchCityBar;
 
 @end
 
@@ -26,9 +30,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor whiteColor];
-//    self.tableView.backgroundColor = [UIColor redColor];
+
+    UIImage *_img = [UIImage imageNamed:@"bg_bar"];
+    _img = [_img stretchableImageWithLeftCapWidth:5 topCapHeight:5];
+    [self.searchCityBar setBackgroundImage:_img];
+//    self.searchCityBar.barTintColor = DefaultBgColor;
     
     [self initData];
 }
@@ -47,10 +53,6 @@
 
 -(void)initData
 {
-    
-    self.tableView.backgroundView = nil;
-//    self.backgroundColor = [UIColor whiteColor];
-    
     self.title = @"选择城市";
     _allKey = [[NSMutableArray alloc]init];
     _dataSourceDic = [[NSMutableDictionary alloc]init];
@@ -72,8 +74,13 @@
     UIBarButtonItem* item=[[UIBarButtonItem alloc]initWithCustomView:button];
     [self.navigationItem setLeftBarButtonItem:item];
     [button setImageEdgeInsets:UIEdgeInsetsMake(_h,_h, _h, _h)] ;
-
+    
+//    self.tableView.backgroundView = nil;
+//    self.tableView.backgroundColor = DefaultBgColor;
+    self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
+    self.tableView.sectionIndexColor = [UIColor darkGrayColor];
 }
+
 -(void)goback:(id)btn
 {
     [self.navigationController dismissViewControllerAnimated:YES completion:^{
@@ -112,6 +119,10 @@
 
 -(NSArray *)searchDatawith:(NSString *)key
 {
+    if (!key ||(key && key.length < 1)) {
+        return nil;
+    }
+    
     NSString *_strkey = [ChineseToPinyin pinyinFromChiniseString:key];
     NSMutableArray *_desarr =[[NSMutableArray alloc]init];
     [_allcity enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -149,13 +160,18 @@
     [self.tableView reloadData];
 }
 
-- (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-//    for (UIView *v in controller.searchBar.subviews) {
-//        if ([v isKindOfClass:[UIButton class]]) {
-//            [(UIButton *)v setTitle:@"返回" forState:UIControlStateNormal];
-//        }
-//    }
+    _searchResultArr = [self searchDatawith:searchBar.text];
+    if (_searchResultArr) {
+        [self.searchDisplayController.searchResultsTableView reloadData];
+    }
+}
+
+- (void) searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
+{
+    self.isSearchStatus = NO;
+    [self.tableView reloadData];
 }
 
 #pragma mark -- UITableView delegate
