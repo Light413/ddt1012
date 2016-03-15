@@ -109,7 +109,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     if (![tjr isEqual:@"(null)"]&&tjr.length>0) {
         
         self.recommandPersonTF.text = tjr;
-        
+//        self.recommandPersonTF.userInteractionEnabled = NO;
 //        [recommandPersonBtn setTitle:tjr forState:UIControlStateNormal];
     }
     NSString *area = [NSString stringWithFormat:@"%@",[[[MySharetools shared]getLoginSuccessInfo]objectForKey:@"quyu"]];
@@ -256,6 +256,16 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     }
 }
 #pragma mark --UITextField delegate
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (textField == self.recommandPersonTF && textField.text.length > 1) {
+        UIAlertView *_v = [[UIAlertView alloc]initWithTitle:nil message:@"推荐人只能填写一次" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [_v show];return NO;
+    }
+    return YES;
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
