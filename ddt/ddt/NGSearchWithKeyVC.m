@@ -59,8 +59,25 @@
     searchbar.delegate = self;
     searchbar.showsCancelButton = YES;
     searchbar.placeholder = @"请输入搜索关键字";
-    searchbar.tintColor = bgColor;
+    searchbar.tintColor = [UIColor blackColor];
     self.navigationItem.titleView = searchbar;
+    
+    for (UIView *view in searchbar.subviews) {
+        if ([view isKindOfClass:NSClassFromString(@"UIView")] && view.subviews.count > 0) {
+            for (UIView *_view in view.subviews) {
+                if ([_view isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
+                    [_view removeFromSuperview];
+                }
+                
+                if ([_view isKindOfClass:NSClassFromString(@"UINavigationButton")]) {
+                    UIButton *_btn = (UIButton *)_view;
+                    [_btn setTintColor:[UIColor whiteColor]];
+                    _btn.titleLabel.font = [UIFont systemFontOfSize:16];
+                }
+            }
+
+        }
+    }
 }
 
 
