@@ -27,11 +27,11 @@ BMKMapManager* _mapManager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    _mapManager = [[BMKMapManager alloc]init];
-    BOOL ret = [_mapManager start:@"kTXoqGQj9VoCyasyuwtxQv80" generalDelegate:self];
-    if (!ret) {
-        NSLog(@"manager start failed!");
-    }
+//    _mapManager = [[BMKMapManager alloc]init];
+//    BOOL ret = [_mapManager start:@"kTXoqGQj9VoCyasyuwtxQv80" generalDelegate:self];
+//    if (!ret) {
+//        NSLog(@"manager start failed!");
+//    }
     
     //分享
     [UMSocialData setAppKey:umengkey];
@@ -42,7 +42,7 @@ BMKMapManager* _mapManager;
     
     //统计
     [MobClick setCrashReportEnabled:YES];
-    [MobClick setLogEnabled:YES];
+    [MobClick setLogEnabled:NO];
     [MobClick setAppVersion:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
     [MobClick startWithAppkey:umengkey reportPolicy:BATCH channelId:@"PGY"];
     
@@ -112,7 +112,6 @@ BMKMapManager* _mapManager;
 
 
 #pragma mark --第三方 回调方法
-
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     return  [UMSocialSnsService handleOpenURL:url];

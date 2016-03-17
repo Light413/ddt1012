@@ -164,10 +164,13 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
             _common_pop_btnTitleArr = _btnTitleArr1;
             _common_pop_btnListArr  = @[_areaArr,_typeArr,_sexArr];
             _common_list_url =self.vcType < NGVCTypeId_3? NSLocalizedString(@"url_tongh_fj_list", @""):NSLocalizedString(@"url_tongh_fj_list", @"");//url_tongh_list
-            _selectedArea = @"";
-            _selectedType = @"";
+            _selectedArea = self.selectedArea?self.selectedArea: @"";
+            _selectedType = self.selectedType ?self.selectedType: @"";
             _selectedSex = @"";
             _isLoved = NO;
+            
+            [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshDataForNoti) name:@"NOTI_LOVE_ORNOT_ACTION" object:nil];
+            
         } break;
     
         case NGVCTypeId_4:
@@ -212,6 +215,13 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     cellFitfont = [UIFont systemFontOfSize:14];
     
 }
+
+-(void)refreshDataForNoti
+{
+    _pageNum = 1;
+    [self loadMoreData];
+}
+
 
 //请求参数初始化
 -(void)initParams

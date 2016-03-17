@@ -252,6 +252,9 @@ const float border_w = 0.6;
             RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:_url parms:_d1 andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [SVProgressHUD dismiss];
                 sender.selected = !sender.selected;
+                
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"NOTI_LOVE_ORNOT_ACTION" object:nil];
+                
             } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
                 [SVProgressHUD showInfoWithStatus:[error localizedDescription]];
             }];
