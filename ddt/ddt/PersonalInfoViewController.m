@@ -256,7 +256,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     }
 }
 #pragma mark --UITextField delegate
-
+//150 - 155
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if (textField == self.recommandPersonTF && textField.text.length > 1) {
@@ -269,6 +269,10 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    NSInteger _tag = textField.tag;
+    UIView *_next = [self.view viewWithTag:_tag + 1];
+    [_next becomeFirstResponder];
+    
     return YES;
 }
 

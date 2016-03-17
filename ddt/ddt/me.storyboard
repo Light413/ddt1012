@@ -937,10 +937,10 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入职位名称" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eZP-HM-heO">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="150" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入职位名称" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eZP-HM-heO">
                                                     <rect key="frame" x="74" y="16" width="508" height="19"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="2fW-js-WUt" id="0ib-Pu-Hc7"/>
                                                     </connections>
@@ -990,10 +990,10 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入招聘人数" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XVL-0E-siz">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="151" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入招聘人数" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XVL-0E-siz">
                                                     <rect key="frame" x="74" y="16" width="508" height="19"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="2fW-js-WUt" id="FqE-Jw-rm9"/>
                                                     </connections>
@@ -1276,10 +1276,10 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入公司名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SHH-Rj-NtM">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="152" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入公司名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SHH-Rj-NtM">
                                                     <rect key="frame" x="74" y="17" width="518" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="2fW-js-WUt" id="8Lu-8c-BuF"/>
                                                     </connections>
@@ -1328,10 +1328,10 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入详细地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qff-X6-Sd4">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="153" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入详细地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qff-X6-Sd4">
                                                     <rect key="frame" x="74" y="17" width="518" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="2fW-js-WUt" id="ndr-4r-UhB"/>
                                                     </connections>
@@ -1380,13 +1380,13 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入联系人" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ivY-eg-xAV">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="154" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入联系人" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ivY-eg-xAV">
                                                     <rect key="frame" x="78" y="17" width="509" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="xKV-JC-NPx"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="xKV-JC-NPx"/>
@@ -1440,13 +1440,13 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入联系人电话" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s27-bc-xkb">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="155" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入联系人电话" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s27-bc-xkb">
                                                     <rect key="frame" x="74" y="17" width="513" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="9FR-Bn-4sV"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="9FR-Bn-4sV"/>
@@ -1606,7 +1606,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sM7-FU-Sfl">
                                                     <rect key="frame" x="70" y="3" width="522" height="95"/>
                                                     <subviews>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ttk-d4-I13">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="156" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ttk-d4-I13">
                                                             <rect key="frame" x="2" y="2" width="518" height="91"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1736,11 +1736,11 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入姓名" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FEI-K9-s4Y">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="150" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入姓名" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FEI-K9-s4Y">
                                                     <rect key="frame" x="61" y="16" width="521" height="19"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="xkA-TK-dVd" id="qiK-Qf-edH"/>
                                                     </connections>
@@ -1924,11 +1924,11 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入微信" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FmI-92-PDj">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="151" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入微信" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FmI-92-PDj">
                                                     <rect key="frame" x="76" y="16" width="506" height="19"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="xkA-TK-dVd" id="653-lj-bgr"/>
                                                     </connections>
@@ -1965,11 +1965,11 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入公司名称" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kYp-7p-b7k">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="152" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入公司名称" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kYp-7p-b7k">
                                                     <rect key="frame" x="79" y="16" width="503" height="19"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="xkA-TK-dVd" id="DBY-p7-otr"/>
                                                     </connections>
@@ -2019,11 +2019,11 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入推荐人(提交后不能修改)" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PWb-vO-Mfs">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="153" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入推荐人(提交后不能修改)" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PWb-vO-Mfs">
                                                     <rect key="frame" x="80" y="16" width="502" height="19"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="xkA-TK-dVd" id="Cs1-NG-5BH"/>
                                                     </connections>
@@ -2202,14 +2202,14 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入自己关键字" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rdz-jK-6KB">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="154" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入自己关键字" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rdz-jK-6KB">
                                                     <rect key="frame" x="80" y="17" width="507" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="839-wn-Zxz"/>
                                                     </constraints>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="839-wn-Zxz"/>
@@ -2253,7 +2253,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CN6-il-aYX">
                                                     <rect key="frame" x="70" y="3" width="522" height="75"/>
                                                     <subviews>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BX8-FW-lmS">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="155" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BX8-FW-lmS">
                                                             <rect key="frame" x="2" y="2" width="518" height="71"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>

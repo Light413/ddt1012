@@ -179,6 +179,8 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    UIView *_next = [self.view viewWithTag:textField.tag + 1];
+    [_next becomeFirstResponder];
     
     return YES;
 }
