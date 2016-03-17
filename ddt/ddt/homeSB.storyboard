@@ -177,115 +177,10 @@
                             <outlet property="delegate" destination="QmL-Iw-Mhv" id="jok-Ud-Qdb"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <segue destination="wat-Ce-GWl" kind="show" identifier="showUserSearchDetailId" id="uUX-1Z-sIS"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BwS-vi-NGx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1240" y="-2125"/>
-        </scene>
-        <!--Search ResultVC-->
-        <scene sceneID="Lh7-5p-MQH">
-            <objects>
-                <viewController id="wat-Ce-GWl" customClass="NGSearchResultVC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="W0k-Ik-Km6"/>
-                        <viewControllerLayoutGuide type="bottom" id="Tqh-nE-1EP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Wgo-8v-edc">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" tag="140" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Laq-Oi-zKW">
-                                <rect key="frame" x="20" y="30" width="184" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="JDm-Wh-ERH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="搜单子" backgroundImage="btn_common_bg">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnClickAction:" destination="wat-Ce-GWl" eventType="touchUpInside" id="Jr6-Sb-g3o"/>
-                                    <action selector="btnClickAction:" destination="QmL-Iw-Mhv" eventType="touchUpInside" id="UuY-bY-5gI"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="141" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1W-dQ-qB3">
-                                <rect key="frame" x="209" y="30" width="183" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="OdQ-0T-nXp"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="搜同行" backgroundImage="btn_common_bg">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="OdQ-0T-nXp"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="btnClickAction:" destination="wat-Ce-GWl" eventType="touchUpInside" id="Kf9-3I-y7Q"/>
-                                    <action selector="btnClickAction:" destination="QmL-Iw-Mhv" eventType="touchUpInside" id="lXl-kZ-dvZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="142" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h6H-fB-GuN">
-                                <rect key="frame" x="396" y="30" width="184" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="VdD-Oi-gTD"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="搜公司" backgroundImage="btn_common_bg">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="VdD-Oi-gTD"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="btnClickAction:" destination="QmL-Iw-Mhv" eventType="touchUpInside" id="hrY-j4-qbH"/>
-                                    <action selector="btnClickAction:" destination="wat-Ce-GWl" eventType="touchUpInside" id="vZK-aI-jCf"/>
-                                </connections>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="isF-JS-vgw">
-                                <rect key="frame" x="20" y="78" width="560" height="473"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="h6H-fB-GuN" firstAttribute="width" secondItem="Laq-Oi-zKW" secondAttribute="width" id="1PH-VJ-uCc"/>
-                            <constraint firstItem="U1W-dQ-qB3" firstAttribute="leading" secondItem="Laq-Oi-zKW" secondAttribute="trailing" constant="5" id="A3K-24-tQl"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="h6H-fB-GuN" secondAttribute="trailing" id="FSo-kC-4dj"/>
-                            <constraint firstItem="h6H-fB-GuN" firstAttribute="centerY" secondItem="Laq-Oi-zKW" secondAttribute="centerY" id="H2T-WV-zug"/>
-                            <constraint firstItem="U1W-dQ-qB3" firstAttribute="width" secondItem="Laq-Oi-zKW" secondAttribute="width" id="HSO-l1-6x0"/>
-                            <constraint firstItem="Tqh-nE-1EP" firstAttribute="top" secondItem="isF-JS-vgw" secondAttribute="bottom" id="Hvg-nc-lS9"/>
-                            <constraint firstItem="isF-JS-vgw" firstAttribute="top" secondItem="Laq-Oi-zKW" secondAttribute="bottom" constant="13" id="JNh-7N-KWv"/>
-                            <constraint firstItem="Laq-Oi-zKW" firstAttribute="top" secondItem="W0k-Ik-Km6" secondAttribute="bottom" constant="10" id="N9M-vh-xmk"/>
-                            <constraint firstItem="h6H-fB-GuN" firstAttribute="leading" secondItem="U1W-dQ-qB3" secondAttribute="trailing" constant="5" id="X87-T7-kQX"/>
-                            <constraint firstItem="Tqh-nE-1EP" firstAttribute="top" secondItem="Laq-Oi-zKW" secondAttribute="bottom" constant="453" id="YJ8-Ex-W7V"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="isF-JS-vgw" secondAttribute="trailing" id="fEE-8u-5C2"/>
-                            <constraint firstItem="Laq-Oi-zKW" firstAttribute="leading" secondItem="Wgo-8v-edc" secondAttribute="leadingMargin" id="osJ-VL-G6H"/>
-                            <constraint firstItem="U1W-dQ-qB3" firstAttribute="centerY" secondItem="Laq-Oi-zKW" secondAttribute="centerY" id="pOJ-Ae-ag5"/>
-                            <constraint firstItem="U1W-dQ-qB3" firstAttribute="height" secondItem="Laq-Oi-zKW" secondAttribute="height" id="vf6-FO-WIe"/>
-                            <constraint firstItem="isF-JS-vgw" firstAttribute="leading" secondItem="Wgo-8v-edc" secondAttribute="leadingMargin" id="voP-h9-Z7F"/>
-                            <constraint firstItem="h6H-fB-GuN" firstAttribute="height" secondItem="Laq-Oi-zKW" secondAttribute="height" id="vxM-aE-5sX"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="YJ8-Ex-W7V"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <connections>
-                        <outlet property="tableview" destination="isF-JS-vgw" id="xIf-Lp-nke"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TdP-jU-gTf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="170" y="-2133"/>
         </scene>
         <!--首页-->
         <scene sceneID="7P4-0d-yLu">
@@ -2391,7 +2286,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="OpA-nh-NpN">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="nouse" id="OpA-nh-NpN">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OpA-nh-NpN" id="leW-xT-12q">

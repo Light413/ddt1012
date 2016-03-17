@@ -246,6 +246,7 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
     
     popView = [[NGPopListView alloc]initWithFrame:CGRectMake(0, 0, CurrentScreenWidth, 40) withDelegate:self withSuperView:self.view];
     [self.view addSubview:popView];
+    
     _searchBar = [[NGSearchBar alloc]initWithFrame:CGRectMake(2, popView.frame.origin.y + popView.frame.size.height + 1, CurrentScreenWidth -4 , 30)];
     _searchBar.delegate  =self;
     _searchBar.placeholder = @"请输入搜索关键字";
@@ -358,6 +359,10 @@ static NSString * JieDanCellReuseId = @"JieDanCellReuseId";
 }
 -(NSInteger)popListView:(NGPopListView *)popListView numberOfRowsWithIndex:(NSInteger)index
 {
+    if (_searchBar.isFirstResponse) {
+        _searchBar.isFirstResponse = YES;
+    }
+    
     return ((NSArray*)[_common_pop_btnListArr objectAtIndex:index]).count;
 }
 -(void)popListView:(NGPopListView *)popListView  didSelected:(NSString *)str withIndex:(NSInteger)index

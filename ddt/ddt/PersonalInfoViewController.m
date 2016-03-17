@@ -455,10 +455,10 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     [self.window addSubview:_bgView];
 }
 -(void)dateChanged:(UIDatePicker *)control{
-    NSDate *_date = control.date;
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *dateString = [dateFormatter stringFromDate:_date];
+//    NSDate *_date = control.date;
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+//    NSString *dateString = [dateFormatter stringFromDate:_date];
 }
 -(void)disappear{
     [_bgView removeFromSuperview];

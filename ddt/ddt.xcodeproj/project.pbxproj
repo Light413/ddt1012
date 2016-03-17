@@ -88,7 +88,6 @@
 		A12CD4F41BCBAC990020CB27 /* RBStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = A12CD4EB1BCBAC990020CB27 /* RBStoryboardSegue.m */; };
 		A12CD4F51BCBAC990020CB27 /* UIViewController+RBStoryboardLink.m in Sources */ = {isa = PBXBuildFile; fileRef = A12CD4ED1BCBAC990020CB27 /* UIViewController+RBStoryboardLink.m */; };
 		A12CD4F61BCBAC990020CB27 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A12CD4EE1BCBAC990020CB27 /* LICENSE */; };
-		A12CD4F71BCBAC990020CB27 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A12CD4EF1BCBAC990020CB27 /* README.md */; };
 		A12CD4F91BCBAD630020CB27 /* homeSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A12CD4F81BCBAD630020CB27 /* homeSB.storyboard */; };
 		A133C7A31C917D44009E21A1 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A133C7831C917D44009E21A1 /* MKAnnotationView+WebCache.m */; settings = {ASSET_TAGS = (); }; };
 		A133C7A41C917D44009E21A1 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = A133C7851C917D44009E21A1 /* NSData+ImageContentType.m */; settings = {ASSET_TAGS = (); }; };
@@ -143,7 +142,6 @@
 		A1C309F91BC65DD300B46BC2 /* LocationManger.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C309F81BC65DD300B46BC2 /* LocationManger.m */; };
 		A1DAAE691B492F84004F634B /* NGBaseNavigationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DAAE681B492F84004F634B /* NGBaseNavigationVC.m */; };
 		A1DAAE6C1B492FC2004F634B /* NGBaseTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DAAE6B1B492FC2004F634B /* NGBaseTableVC.m */; };
-		A1F0FB691BECA97C00FFC02F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1F0FB671BECA97C00FFC02F /* Info.plist */; };
 		A1F0FB6C1BECA9BC00FFC02F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1F0FB6E1BECA9BC00FFC02F /* InfoPlist.strings */; };
 		A1F680BD1BFD95EA0088D456 /* wx108x108.png in Resources */ = {isa = PBXBuildFile; fileRef = A1F680BC1BFD95EA0088D456 /* wx108x108.png */; };
 		AD07F7541C538255005B692B /* NewAddView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD07F7531C538255005B692B /* NewAddView.xib */; settings = {ASSET_TAGS = (); }; };
@@ -166,7 +164,7 @@
 		ADCA44871C07507A0066A371 /* NGZhaoPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCA44851C07507A0066A371 /* NGZhaoPinCell.m */; };
 		ADCA44881C07507A0066A371 /* NGZhaoPinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADCA44861C07507A0066A371 /* NGZhaoPinCell.xib */; };
 		ADCA448B1C0750DA0066A371 /* NGZhaoPinDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCA448A1C0750DA0066A371 /* NGZhaoPinDetailVC.m */; };
-		ADCE01C61BEEEC59007E874E /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCE01C51BEEEC59007E874E /* NSString+MD5Addition.m */; };
+		ADCE01C61BEEEC59007E874E /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCE01C51BEEEC59007E874E /* NSString+MD5Addition.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		ADCEAF951BD3B45E006F1E56 /* NGItemsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */; };
 		ADCF91E01BEDA5F000DC6CF7 /* NGWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCF91DF1BEDA5F000DC6CF7 /* NGWebView.m */; };
 		ADD023D11BEA39710047BA17 /* HttpRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD023D01BEA39710047BA17 /* HttpRequestManager.m */; };
@@ -175,7 +173,7 @@
 		ADD15E041BF23F8100CD868C /* NGJieDanListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD15E021BF23F8100CD868C /* NGJieDanListCell.m */; };
 		ADD15E051BF23F8100CD868C /* NGJieDanListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD15E031BF23F8100CD868C /* NGJieDanListCell.xib */; };
 		ADD298461C8C3F330010CF31 /* ScrollPicView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD298451C8C3F330010CF31 /* ScrollPicView.m */; settings = {ASSET_TAGS = (); }; };
-		ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */; };
+		ADD3052F1BDC72FA002F5BAE /* ToolsClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD3052E1BDC72FA002F5BAE /* ToolsClass.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		ADD305321BDCFFD7002F5BAE /* NGTHContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305311BDCFFD7002F5BAE /* NGTHContactVC.m */; };
 		ADD305351BDD005D002F5BAE /* NGReleaseContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305341BDD005D002F5BAE /* NGReleaseContactVC.m */; };
 		ADD305381BDD0086002F5BAE /* NGContactDetaillVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD305371BDD0086002F5BAE /* NGContactDetaillVC.m */; };
@@ -213,7 +211,6 @@
 		ADD447021C09BAFF002247AC /* NGZPPersonInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD447011C09BAFF002247AC /* NGZPPersonInfoVC.m */; };
 		ADD4F8661BECF6BA005F57F0 /* NGTHContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4F8651BECF6BA005F57F0 /* NGTHContactCell.m */; };
 		ADD5E69D1BE61E300035FC0F /* NGSearchWithKeyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5E69C1BE61E300035FC0F /* NGSearchWithKeyVC.m */; };
-		ADD5E6A01BE61E590035FC0F /* NGSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5E69F1BE61E590035FC0F /* NGSearchResultVC.m */; };
 		ADE8CF8C1BDBD420006CBC95 /* NGCompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */; };
 		B269C4E91BE5A88000127226 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B269C4E71BE5A88000127226 /* MenuTableViewCell.m */; };
 		B269C4EA1BE5A88000127226 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B269C4E81BE5A88000127226 /* MenuTableViewCell.xib */; };
@@ -606,8 +603,6 @@
 		ADD4F8651BECF6BA005F57F0 /* NGTHContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGTHContactCell.m; sourceTree = "<group>"; };
 		ADD5E69B1BE61E300035FC0F /* NGSearchWithKeyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSearchWithKeyVC.h; sourceTree = "<group>"; };
 		ADD5E69C1BE61E300035FC0F /* NGSearchWithKeyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSearchWithKeyVC.m; sourceTree = "<group>"; };
-		ADD5E69E1BE61E590035FC0F /* NGSearchResultVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSearchResultVC.h; sourceTree = "<group>"; };
-		ADD5E69F1BE61E590035FC0F /* NGSearchResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSearchResultVC.m; sourceTree = "<group>"; };
 		ADE8CF8A1BDBD420006CBC95 /* NGCompanyDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGCompanyDetailVC.h; sourceTree = "<group>"; };
 		ADE8CF8B1BDBD420006CBC95 /* NGCompanyDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGCompanyDetailVC.m; sourceTree = "<group>"; };
 		B269C4E61BE5A88000127226 /* MenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
@@ -1101,6 +1096,7 @@
 				A1DAAE6F1B493944004F634B /* controller */,
 				A17B7CF51B43F867003CF895 /* AppDelegate.h */,
 				A17B7CF61B43F867003CF895 /* AppDelegate.m */,
+				A1F0FB671BECA97C00FFC02F /* Info.plist */,
 				A17B7CFB1B43F867003CF895 /* MainSB.storyboard */,
 				A12CD4F81BCBAD630020CB27 /* homeSB.storyboard */,
 				A143F8381BCC96BA0029E555 /* secondSB.storyboard */,
@@ -1118,7 +1114,6 @@
 			children = (
 				A12442031BD0F68900D2588C /* basedata */,
 				A1042B821B64D53600A74215 /* scrollImg */,
-				A1F0FB671BECA97C00FFC02F /* Info.plist */,
 				A1F0FB6E1BECA9BC00FFC02F /* InfoPlist.strings */,
 				A1DAAE6D1B493100004F634B /* DDT_SYS_CONSTIST.h */,
 				A17B7CF31B43F867003CF895 /* main.m */,
@@ -1253,8 +1248,6 @@
 				ADD4308B1BE481D5000C03D8 /* NGSearchCitiesVC.m */,
 				ADD5E69B1BE61E300035FC0F /* NGSearchWithKeyVC.h */,
 				ADD5E69C1BE61E300035FC0F /* NGSearchWithKeyVC.m */,
-				ADD5E69E1BE61E590035FC0F /* NGSearchResultVC.h */,
-				ADD5E69F1BE61E590035FC0F /* NGSearchResultVC.m */,
 				ADCEAF901BD39B35006F1E56 /* NGItemsDetailVC.h */,
 				ADCEAF941BD3B45E006F1E56 /* NGItemsDetailVC.m */,
 				ADD305301BDCFFD7002F5BAE /* NGTHContactVC.h */,
@@ -1670,7 +1663,6 @@
 				A1AC85561BC8DB460099C7F7 /* NGCollectionReusableView.xib in Resources */,
 				9F04220C1BD8F45E00D82286 /* MyScTableViewCell.xib in Resources */,
 				A15A95281BC7C3F200643170 /* NGCollectionViewCell.xib in Resources */,
-				A1F0FB691BECA97C00FFC02F /* Info.plist in Resources */,
 				ADD085C41BEB98C900D2EBC4 /* Localizable.strings in Resources */,
 				ADD4315A1BE509EE000C03D8 /* UMSShareListController.xib in Resources */,
 				A12442071BD0F6A100D2588C /* cities.xml in Resources */,
@@ -1819,7 +1811,6 @@
 				088F23D51C0182950051BA3E /* MenuOfMyCenterModel.m in Sources */,
 				ADD023D41BEA4B0B0047BA17 /* RequestTaskHandle.m in Sources */,
 				A12442001BD0EFD900D2588C /* NSObject+LKModel.m in Sources */,
-				A12CD4F71BCBAC990020CB27 /* README.md in Sources */,
 				A12441D11BD0EDD200D2588C /* MJRefreshBackGifFooter.m in Sources */,
 				A133C7A51C917D44009E21A1 /* SDImageCache.m in Sources */,
 				A133C7AF1C917D44009E21A1 /* UIImage+WebP.m in Sources */,
@@ -1877,7 +1868,6 @@
 				A133C7A91C917D44009E21A1 /* SDWebImageDownloaderOperation.m in Sources */,
 				A12441CC1BD0EDD200D2588C /* MJRefreshFooter.m in Sources */,
 				AD92EB931BD21E3000C23992 /* NGXMLReader.m in Sources */,
-				ADD5E6A01BE61E590035FC0F /* NGSearchResultVC.m in Sources */,
 				ADD447021C09BAFF002247AC /* NGZPPersonInfoVC.m in Sources */,
 				A157110E1BD4EAB500D586F6 /* LPickerView.m in Sources */,
 				9F690B031BD73AE200DDCED6 /* PersonalInfoViewController.m in Sources */,
@@ -2093,6 +2083,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.light.ddt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
@@ -2131,6 +2122,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.light.ddt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5ebb9ba5-e406-4d9f-9144-564def68b421";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;

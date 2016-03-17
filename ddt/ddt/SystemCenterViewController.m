@@ -125,7 +125,7 @@
     if (indexPath.row ==4) {
         //给我评分 ////qq-444934666  dyt-1093404718
          NSString *baseUrl=[NSString stringWithFormat:
-             @"itms-apps://itunes.apple.com/app/id%@",@"889003085"];
+             @"itms-apps://itunes.apple.com/app/id%@",@"1093404718"];
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:baseUrl]];
     }
     

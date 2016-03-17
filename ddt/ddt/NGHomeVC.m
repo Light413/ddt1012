@@ -93,18 +93,23 @@ typedef NS_ENUM(NSInteger ,NextvcType)
             [leftBtn setTitle:@"定位失败" forState:UIControlStateNormal];
         }
 
-        //...上传位置信息<+31.19302052,+121.68571511>
-//        NSString *tel = [[MySharetools shared]getPhoneNumber];
-//        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", tel,@"mobile",@"121.68571511,31.19302052",@"distance",nil];
-//        NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
-//        
-//        RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_upLocation", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            
-//        } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            
-//        }];
-//        
-//        [HttpRequestManager doPostOperationWithTask:_task];
+        if ([[MySharetools shared]isSessionid]) {
+            //上传位置信息<+31.19302052,+121.68571511>
+            NSString *mylog = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_LOCATION_LOG];
+            NSString *mylat = [[NSUserDefaults standardUserDefaults]objectForKey:CURRENT_LOCATION_LAT];
+            NSString *tel = [[MySharetools shared]getPhoneNumber];
+            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:tel,@"username", tel,@"mobile",[NSString stringWithFormat:@"%@,%@",mylog?mylog:@"121.68571511",mylat?mylat:@"31.19302052"],@"distance",nil];//@"121.68571511,31.19302052"
+            
+            NSDictionary *_d = [MySharetools getParmsForPostWith:dic];
+            
+            RequestTaskHandle *_task = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_upLocation", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+            } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+                
+            }];
+            
+            [HttpRequestManager doPostOperationWithTask:_task];
+        }
         
     } andFailBlock:^(NSError *error) {
         [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];

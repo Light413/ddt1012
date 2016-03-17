@@ -234,6 +234,10 @@
 
 -(NSInteger)popListView:(NGPopListView *)popListView numberOfRowsWithIndex:(NSInteger)index
 {
+    if (_searchBar.isFirstResponse) {
+        _searchBar.isFirstResponse = YES;
+    }
+    
     return ((NSArray*)[_common_pop_btnListArr objectAtIndex:index]).count;
 }
 

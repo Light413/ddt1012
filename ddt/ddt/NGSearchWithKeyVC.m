@@ -30,6 +30,7 @@
     self.tableView.backgroundColor =bgColor;
     
     _btnTitleArr = @[@"房贷",@"车贷",@"企业贷",@"信贷",@"抵押",@"零首付",@"短拆过桥",@"股票配资"];
+    [searchbar becomeFirstResponder];
 }
 
 -(void)awakeFromNib
@@ -42,7 +43,6 @@
 {
     [super viewWillAppear:animated];
     [MobClick beginLogPageView:@"begin_search_vc"];
-//    [searchbar becomeFirstResponder];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

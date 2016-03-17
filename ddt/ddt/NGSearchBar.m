@@ -71,6 +71,17 @@
     _tf.enabled = enable;
 }
 
+-(void)setIsFirstResponse:(BOOL)isFirstResponse
+{
+    if (isFirstResponse) {
+        [_tf resignFirstResponder];
+    }
+}
+-(BOOL)isFirstResponse
+{
+    return [_tf isFirstResponder];
+}
+
 #pragma mark - textfield delegate
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {

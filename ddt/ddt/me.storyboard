@@ -21,7 +21,7 @@
                     </view>
                     <connections>
                         <segue destination="2fW-js-WUt" kind="show" identifier="showMyZPID" id="ePA-GL-fCr"/>
-                        <segue destination="TUz-OO-bRK" kind="show" id="zhh-rS-iCX"/>
+                        <segue destination="TUz-OO-bRK" kind="show" identifier="fabujiaoliuhuiID" id="zhh-rS-iCX"/>
                         <segue destination="xkA-TK-dVd" kind="show" identifier="MeInfoId" id="FQC-MS-zLI"/>
                     </connections>
                 </viewController>
@@ -249,7 +249,7 @@
                         <outlet property="phoneNumTextField" destination="h45-he-od4" id="tY0-Rl-2Xc"/>
                         <outlet property="regesterBtn" destination="Y8o-Ny-MEE" id="JZB-1d-VKB"/>
                         <outlet property="remeberPasswordandPhone" destination="ShH-XN-NzL" id="Oub-rD-t2L"/>
-                        <segue destination="v3k-hd-1uO" kind="show" id="PBC-Pg-mGc"/>
+                        <segue destination="v3k-hd-1uO" kind="show" identifier="onuseid_login" id="PBC-Pg-mGc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W8x-pf-gzW" userLabel="First Responder" sceneMemberID="firstResponder"/>

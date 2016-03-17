@@ -32,6 +32,7 @@
 @property(nonatomic,copy)   NSString               *text;                 // default is nil
 @property(nonatomic,copy)   NSString               *placeholder;
 @property(nonatomic,assign) BOOL                    enable;
+@property(nonatomic,assign)BOOL                     isFirstResponse;
 
 @property(nonatomic,assign) id<NGSearchBarDelegate> delegate;
 @end
