@@ -92,7 +92,7 @@
 -(void)baseView:(NGBaseListView *)baseListView didSelectObj:(id)obj1 atIndex:(NSIndexPath *)index1 secondObj:(id)obj2 atIndex:(NSIndexPath *)index2
 {
     NSLog(@"obj1 : %@ ---- obj2 :%@",obj1,obj2);
-    NSString * selectstr = [NSString stringWithFormat:@"%@-%@",[obj1 objectForKey:@"NAME"]?[obj1 objectForKey:@"NAME"]:@"",[obj2 objectForKey:@"NAME"]];
+    NSString * selectstr = [NSString stringWithFormat:@"%@-%@",([obj1 objectForKey:@"NAME"]&& ![[obj1 objectForKey:@"NAME"] isEqualToString:@"全部"])?[obj1 objectForKey:@"NAME"]:@"",[obj2 objectForKey:@"NAME"]];
     
 
     if ([_hasSelectedObj containsObject:selectstr]) {

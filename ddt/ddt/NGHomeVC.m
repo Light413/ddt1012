@@ -16,7 +16,6 @@
 #import "LoginViewController.h"
 #import "HotPicVC.h"
 
-#import <PgyUpdate/PgyUpdateManager.h>
 #import "NewAddView.h"
 #import "ScrollPicView.h"
 
@@ -78,7 +77,6 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     _selectIndex = 0;
     
     [self initCollectionView];
-    [self getNewadd];
 
     //获取位置信息
     [[LocationManger shareManger]getLocationWithSuccessBlock:^(NSString *str) {
@@ -111,17 +109,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     } andFailBlock:^(NSError *error) {
         [SVProgressHUD showInfoWithStatus:@"获取位置信息失败"];
     }];
-    
-    //...test检查版本更新
-    [[PgyUpdateManager sharedPgyManager]checkUpdate];
-    
-    
-    [self getTopPic];
-    
-   ;
 
-    
-    
     NSLog(@"#############:%@",NSStringFromCGRect(CurrentScreenFrame));
     NSLog(@"#############:%f",SCREEN_SCALE);
   /*
@@ -146,6 +134,8 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     } andFailBlock:^(NSError *error) {
         
     }];*/
+    
+    [self loadNewData];
 }
 
 
@@ -153,18 +143,25 @@ typedef NS_ENUM(NSInteger ,NextvcType)
 {
     [super viewWillAppear:animated];
     [_collectionView reloadData];
-//    [self getNewadd];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
 }
+
 -(void)awakeFromNib
 {
     [self initTopView];
 }
 
 #pragma mark --获取数据
+
+-(void)loadNewData
+{
+    [self getTopPic];
+    [self getNewadd];
+}
+
 //新增
 -(void)getNewadd
 {
@@ -179,10 +176,9 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     NSString *token = [NSString stringWithFormat:@"%@(!)*^*%@",tel,timeString];
     
     NSDictionary *_dic =[NSDictionary dictionaryWithObjectsAndKeys:dateString,@"date",token,@"token",tel,@"mobile", nil];
-    
     NSDictionary *_d = [MySharetools getParmsForPostWith:_dic];
-    
     RequestTaskHandle *_h = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_todaynewadd", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+
         NSLog(@"today new add : %@",responseObject);
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
@@ -192,7 +188,6 @@ typedef NS_ENUM(NSInteger ,NextvcType)
             }
         }
     } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
     }];
     [HttpRequestManager doPostOperationWithTask:_h];
 }
@@ -206,11 +201,13 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     
     NSDictionary *_d = [MySharetools getParmsForPostWith:_dic];
     RequestTaskHandle *_h = [RequestTaskHandle taskWithUrl:NSLocalizedString(@"url_gethot_pic", @"") parms:_d andSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([_collectionView.header isRefreshing]) {
+            [_collectionView.header endRefreshing];
+        }
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"result"]integerValue] ==0) {
                 NSArray *_arr = [responseObject objectForKey:@"data"];
                 if (_arr && _arr.count > 0) {
-                    
                     [[NSUserDefaults standardUserDefaults ]setObject:_arr forKey:@"SCROLL_PIC_DATA"];
                     [[NSUserDefaults standardUserDefaults]synchronize];
                     
@@ -226,7 +223,9 @@ typedef NS_ENUM(NSInteger ,NextvcType)
             }
         }
     } faileBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        if ([_collectionView.header isRefreshing]) {
+            [_collectionView.header endRefreshing];
+        }
     }];
     [HttpRequestManager doPostOperationWithTask:_h];
 }
@@ -309,7 +308,7 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     
     _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, CurrentScreenWidth, CurrentScreenHeight -64-44) collectionViewLayout:_layout];
     _collectionView.backgroundColor = [UIColor whiteColor];
-    _collectionView.bounces = NO;
+    _collectionView.bounces = YES;
     [self.view addSubview:_collectionView];
     _collectionView.delegate = self;
     _collectionView.dataSource  = self;
@@ -318,6 +317,11 @@ typedef NS_ENUM(NSInteger ,NextvcType)
     
     [_collectionView registerNib:[UINib nibWithNibName:@"NGCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"NGCollectionViewCellID"];
     [_collectionView registerNib:[UINib nibWithNibName:@"NGCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NGCollectionHeaderReuseID];
+    
+    __weak __typeof(self) weakSelf = self;
+    _collectionView.header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        [weakSelf loadNewData];
+    }];
 }
 
 

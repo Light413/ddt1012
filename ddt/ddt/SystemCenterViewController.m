@@ -123,8 +123,9 @@
         [self.navigationController pushViewController:joinUS animated:YES];
     }
     if (indexPath.row ==4) {
-        //给我评分
-       NSString *baseUrl = @"https://itunes.apple.com/cn/app/qq/id444934666?mt=8";
+        //给我评分 ////qq-444934666  dyt-1093404718
+         NSString *baseUrl=[NSString stringWithFormat:
+             @"itms-apps://itunes.apple.com/app/id%@",@"889003085"];
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:baseUrl]];
     }
     

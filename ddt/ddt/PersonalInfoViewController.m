@@ -296,6 +296,7 @@ typedef NS_ENUM(NSUInteger, NGSelectDataType) {
     PersonanlBusinessViewController *person = [[PersonanlBusinessViewController alloc]init];
     person.hidesBottomBarWhenPushed = YES;
     person.btnClickBlock = ^(NSString *name){
+        business = name;
         [bussinessSortBtn setTitle:name forState:UIControlStateNormal];
         [weakSelf.tableView reloadData];
     };

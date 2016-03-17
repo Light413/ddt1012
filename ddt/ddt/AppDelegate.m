@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import <PgySDK/PgyManager.h>
-#import <PgyUpdate/PgyUpdateManager.h>
+//#import <PgySDK/PgyManager.h>
+//#import <PgyUpdate/PgyUpdateManager.h>
 
 #import "UMSocialQQHandler.h"
 #import "UMSocialWechatHandler.h"
@@ -33,29 +33,28 @@ BMKMapManager* _mapManager;
         NSLog(@"manager start failed!");
     }
     
+    //分享
     [UMSocialData setAppKey:umengkey];
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-    
     [UMSocialQQHandler setQQWithAppId:@"1104880067" appKey:@"pqNu2AWR1n83gdML" url:@"http://www.123dyt.com"];
     //设置微信AppId、appSecret，分享url
     [UMSocialWechatHandler setWXAppId:@"wxb2eb04bf9f024905" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" url:@"http://www.123dyt.com"];
     
-    [MobClick setCrashReportEnabled:NO];
+    //统计
+    [MobClick setCrashReportEnabled:YES];
     [MobClick setLogEnabled:YES];
     [MobClick setAppVersion:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
     [MobClick startWithAppkey:umengkey reportPolicy:BATCH channelId:@"PGY"];
     
-    [[PgyUpdateManager sharedPgyManager]startManagerWithAppId:pgyAppId];
-    [[PgyManager sharedPgyManager]startManagerWithAppId:pgyAppId];
-    [[PgyManager sharedPgyManager]setEnableFeedback:NO];
+//    [[PgyUpdateManager sharedPgyManager]startManagerWithAppId:pgyAppId];
+//    [[PgyManager sharedPgyManager]startManagerWithAppId:pgyAppId];
+//    [[PgyManager sharedPgyManager]setEnableFeedback:NO];
     
     self.rootTabVC = (UITabBarController*)self.window.rootViewController;
     [self initTabBar];
     [self initsystem];
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
+
     NSLog(@"homedir  :%@",NSHomeDirectory());
-    [MySharetools shared].isFirstSignupViewController = YES;
     return YES;
 }
 
@@ -156,7 +155,7 @@ BMKMapManager* _mapManager;
     }
 }
 
-//检测网络状态
+//AFN检测网络状态
 -(void)startMonitor
 {
     AFNetworkReachabilityManager *_manger = [AFNetworkReachabilityManager sharedManager];

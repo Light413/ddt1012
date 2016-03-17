@@ -118,8 +118,6 @@
 		A143F83B1BCC96D50029E555 /* companySB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A143F83A1BCC96D50029E555 /* companySB.storyboard */; };
 		A143F83D1BCC96E50029E555 /* me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A143F83C1BCC96E50029E555 /* me.storyboard */; };
 		A143F8401BCCA5D60029E555 /* NGSecondVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A143F83F1BCCA5D60029E555 /* NGSecondVC.m */; };
-		A14468E71BF055F7000D6A2B /* PgySDk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14468E51BF055F7000D6A2B /* PgySDk.framework */; };
-		A14468E81BF055F7000D6A2B /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14468E61BF055F7000D6A2B /* PgyUpdate.framework */; };
 		A1487A401BEB3CCD00326359 /* NSString+ToJson.m in Sources */ = {isa = PBXBuildFile; fileRef = A1487A3F1BEB3CCC00326359 /* NSString+ToJson.m */; };
 		A149A4411BCF37320098E7C3 /* NGBaseListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A149A4401BCF37320098E7C3 /* NGBaseListView.m */; };
 		A15011FC1C8EC93B006B5421 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A15011FB1C8EC93B006B5421 /* Reachability.m */; settings = {ASSET_TAGS = (); }; };
@@ -439,8 +437,6 @@
 		A143F83C1BCC96E50029E555 /* me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = me.storyboard; sourceTree = "<group>"; };
 		A143F83E1BCCA5D60029E555 /* NGSecondVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSecondVC.h; sourceTree = "<group>"; };
 		A143F83F1BCCA5D60029E555 /* NGSecondVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSecondVC.m; sourceTree = "<group>"; };
-		A14468E51BF055F7000D6A2B /* PgySDk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDk.framework; sourceTree = "<group>"; };
-		A14468E61BF055F7000D6A2B /* PgyUpdate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgyUpdate.framework; sourceTree = "<group>"; };
 		A1487A3E1BEB3CCC00326359 /* NSString+ToJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ToJson.h"; sourceTree = "<group>"; };
 		A1487A3F1BEB3CCC00326359 /* NSString+ToJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ToJson.m"; sourceTree = "<group>"; };
 		A149A43F1BCF37320098E7C3 /* NGBaseListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGBaseListView.h; sourceTree = "<group>"; };
@@ -665,12 +661,10 @@
 				A12442021BD0F1DF00D2588C /* libsqlite3.dylib in Frameworks */,
 				ADD4315D1BE509EE000C03D8 /* libSocialSina.a in Frameworks */,
 				ADD4315C1BE509EE000C03D8 /* libSocialLaiWang.a in Frameworks */,
-				A14468E81BF055F7000D6A2B /* PgyUpdate.framework in Frameworks */,
 				ADD4315F1BE509EE000C03D8 /* TencentOpenAPI.framework in Frameworks */,
 				ADD431641BE509EE000C03D8 /* libYixinSDK_V2.2.a in Frameworks */,
 				ADD431611BE509EE000C03D8 /* libSocialWechat.a in Frameworks */,
 				A13A480A1C044D84002C450B /* BaiduMapAPI_Base.framework in Frameworks */,
-				A14468E71BF055F7000D6A2B /* PgySDk.framework in Frameworks */,
 				05B69C2E05AB6F177D83E56F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1032,8 +1026,6 @@
 				A12C7D311C07169E009A527A /* BaiduMapAPI_Search.framework */,
 				A13A48081C044D84002C450B /* BaiduMapAPI_Base.framework */,
 				A13A48091C044D84002C450B /* BaiduMapAPI_Location.framework */,
-				A14468E51BF055F7000D6A2B /* PgySDk.framework */,
-				A14468E61BF055F7000D6A2B /* PgyUpdate.framework */,
 			);
 			path = sdk;
 			sourceTree = "<group>";

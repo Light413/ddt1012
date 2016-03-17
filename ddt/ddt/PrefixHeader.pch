@@ -29,7 +29,6 @@
 #import <BaiduMapAPI_Location/BMKLocationService.h>
 //Http op
 #import "HttpRequestManager.h"
-//#import <UIImageView+AFNetworking.h>
 #import "SDWebImage/UIImageView+WebCache.h"
 
 //category

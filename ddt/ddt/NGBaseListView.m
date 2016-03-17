@@ -65,13 +65,15 @@
 {
     [super setFrame:frame];
     if ([self.delegate respondsToSelector:@selector(baseViewGetBtnID)]) {
+        NSIndexPath *_t = [self.delegate baseViewGetBtnID];
+        
         if (_numberTableview ==1) {
-           _tableview1_selectedIndex = [self.delegate baseViewGetBtnID];
+           _tableview1_selectedIndex = [NSIndexPath indexPathForRow:_t.row inSection:0];
         }
         else if (_numberTableview == 2)
         {
-            NSIndexPath *_t = [self.delegate baseViewGetBtnID];
             _tableview1_selectedIndex_last = [NSIndexPath indexPathForRow:_t.section inSection:0];
+            _tableview1_selectedIndex = _tableview1_selectedIndex_last;
             _tableview2_selectedIndex = [NSIndexPath indexPathForRow:_t.row inSection:0];
         }
     }
@@ -153,23 +155,18 @@
             UIImage *_img = [UIImage imageNamed:@"btn_cell_selectedBG.jpg"];
             cell.selectedBackgroundView =[[UIImageView alloc]initWithImage:_img];
             cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-            if (_tableview1_selectedIndex_last && _tableview1_selectedIndex_last.row == indexPath.row) {
+            
+            if (_tableview1_selectedIndex.row == indexPath.row) {
                 _lastSelectedCell = cell;
                 cell.backgroundView =[[UIImageView alloc]initWithImage:_img];
-                //二级列表参数
-                _tableview1_selectedObj =[_dataSource objectAtIndex:_tableview1_selectedIndex_last.row];
-                _tableview1_selectedIndex = _tableview1_selectedIndex_last;
+                //获取二级列表所需参数
+                _tableview1_selectedObj =[_dataSource objectAtIndex:indexPath.row];
                 _dataSource_2 = nil;
                 [_t reloadData];
             }
             else
             {
               cell.backgroundView =nil;
-                if (indexPath.row==0 && _tableview1_selectedIndex_last == nil) {
-                  cell.backgroundView =[[UIImageView alloc]initWithImage:_img];
-                _lastSelectedCell = cell;
-                [_t reloadData];
-                }
             }
         }
         
@@ -191,7 +188,8 @@
         _title = [_dic objectForKey:@"NAME"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        if ((_tableview2_selectedIndex && _tableview2_selectedIndex.row == indexPath.row && _tableview1_selectedIndex_last.row == _tableview1_selectedIndex.row)|| [self hasContaintSelectedObject:[NSNumber numberWithInteger:10 * _tableview1_selectedIndex.row + indexPath.row]]) {//...多选的问题
+        //()-下拉弹出的情况 ，hasContaintSelectedObject-pushVC
+        if ((_tableview2_selectedIndex && _tableview2_selectedIndex.row == indexPath.row && _tableview1_selectedIndex == _tableview1_selectedIndex_last)|| [self hasContaintSelectedObject:[NSString stringWithFormat:@"%ld-%ld",_tableview1_selectedIndex.row,indexPath.row]]) {//...多选的问题
            cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
         else
@@ -208,7 +206,7 @@
     if (tableView.tag == 300) {
         _tableview1_selectedObj =[_dataSource objectAtIndex:indexPath.row];
         _tableview1_selectedIndex = indexPath;
-        _tableview1_selectedIndex_last = indexPath;
+//        _tableview1_selectedIndex_last = nil;
         
         if (_numberTableview == 1) {
             if ([self.delegate respondsToSelector:@selector(baseView:didSelectObj:atIndex:secondObj:atIndex:)]) {
@@ -229,43 +227,47 @@
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         _tableview2_selectedObj = [_dataSource_2 objectAtIndex:indexPath.row];
         _tableview2_selectedIndex = indexPath;
-        if ([self.delegate respondsToSelector:@selector(baseView:didSelectObj:atIndex:secondObj:atIndex:)]) {
-            [self.delegate baseView:self didSelectObj:_tableview1_selectedObj atIndex:_tableview1_selectedIndex secondObj:_tableview2_selectedObj atIndex:_tableview2_selectedIndex];return;
-        }
         
         if (_hasSelecetedIndexArr == nil) {
             _hasSelecetedIndexArr = [[NSMutableArray alloc]init];
         }
         
-        NSInteger num = _tableview1_selectedIndex.row * 10 + _tableview2_selectedIndex.row;
-//        _tableview1_selectedIndex = nil;
-        _tableview2_selectedIndex = nil;
-        NSNumber *numobj = [NSNumber numberWithInteger:num];
-        if ([self hasContaintSelectedObject:numobj]) {
-            [_hasSelecetedIndexArr removeObject:numobj];
+//        NSInteger num = _tableview1_selectedIndex.row * 10 + _tableview2_selectedIndex.row;
+        NSString *str = [NSString stringWithFormat:@"%ld-%ld",_tableview1_selectedIndex.row,_tableview2_selectedIndex.row];
+        
+//        NSNumber *numobj = [NSNumber numberWithInteger:num];
+        if ([self hasContaintSelectedObject:str]) {
+            [_hasSelecetedIndexArr removeObject:str];
         }
         else
-        [_hasSelecetedIndexArr addObject:numobj];
+            [_hasSelecetedIndexArr addObject:str];
+        
+        //        _tableview1_selectedIndex = nil;
+        //        _tableview2_selectedIndex = nil;
         
         UITableView *_t = (UITableView *) [self viewWithTag:301];
         [_t reloadData];
+        
+        if ([self.delegate respondsToSelector:@selector(baseView:didSelectObj:atIndex:secondObj:atIndex:)]) {
+            [self.delegate baseView:self didSelectObj:_tableview1_selectedObj atIndex:_tableview1_selectedIndex secondObj:_tableview2_selectedObj atIndex:_tableview2_selectedIndex];//return;
+        }
+        
     }
 }
 
 
-//只记录索引，不涉及具体对象(2个列表的情况，二级列表的选择判断)
--(BOOL)hasContaintSelectedObject :(NSNumber*)num
+//只记录索引，不涉及具体对象(只针对2个列表的情况，二级列表的选择判断)
+-(BOOL)hasContaintSelectedObject :(NSString*)num
 {
     if (_hasSelecetedIndexArr == nil) {
         return NO;
     }
     for (int i =0; i<_hasSelecetedIndexArr.count; i++) {
-        id obj = [_hasSelecetedIndexArr objectAtIndex:i];
-        if ([num integerValue] == [obj integerValue]) {
+        NSString * obj = [_hasSelecetedIndexArr objectAtIndex:i];
+        if ([num isEqualToString:obj]) {
             return YES;
         }
     }
-    
     return NO;
 }
 
