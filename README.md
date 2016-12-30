@@ -1,5 +1,5 @@
-### ddt1012 
+### ddt1012 <hr>
 
-A zoomdie app in apple store<br>
+A zoombie app in apple store<br>
 
 ![](https://raw.githubusercontent.com/Light413/images/master/dyt.gif)
